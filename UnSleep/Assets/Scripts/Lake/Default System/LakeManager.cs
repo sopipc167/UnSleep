@@ -1,0 +1,250 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+
+public class LakeManager : MonoBehaviour
+{
+    public bool moveWithMouseWheel;
+    public Color changeColor;
+    public Color nonInterativeColor;
+
+    [Range(1, 4)]
+    public static int currentPhase = 1;    //임시 데이터. 이후 싱글톤 데이터로
+    public GameObject[] PhaseGroups;
+
+    private Camera mainCamera;
+    private RotateLake[] lakes;
+    private GameObject[] lakeObjs;
+    private SpriteRenderer[] lakeSprites;
+    private int nonInteractiveLakeIndex;
+    private int currentLake = -1;
+    private bool isInteracting = false;
+    private bool isStart = false;
+
+    //드래그
+    private Vector3 screenPos;
+    private float angleOffset;
+    private bool isDragging = false;
+
+    void Start()
+    {
+        mainCamera = Camera.main;
+
+        //임시
+        if (currentPhase == 5)
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+
+        //페이즈 설정
+        for (int i = 0; i < PhaseGroups.Length; i++)
+        {
+            if (i != currentPhase - 1)
+            {
+                PhaseGroups[i].SetActive(false);
+            }
+            else
+            {
+                PhaseGroups[i].SetActive(true);
+            }
+        }
+
+        //현재 퍼즐 세팅
+        int size = PhaseGroups[currentPhase - 1].transform.childCount;
+        lakeObjs = new GameObject[size];
+        lakeSprites = new SpriteRenderer[size];
+        lakes = new RotateLake[size];
+        for (int i = 0; i < size; i++)
+        {
+            lakeObjs[i] = PhaseGroups[currentPhase - 1].transform.GetChild(i).gameObject;
+            lakeSprites[i] = lakeObjs[i].GetComponent<SpriteRenderer>();
+            lakes[i] = lakeObjs[i].GetComponent<RotateLake>();
+            if (lakes[i] != null)
+            {
+                lakes[i].moveWithMouseWheel = moveWithMouseWheel;
+            }
+            else if (i != size - 1)
+            {
+                nonInteractiveLakeIndex = i;
+                lakeSprites[i].color = nonInterativeColor;
+            }
+        }
+    }
+
+    private void Update()
+    {
+        //드래그일 때
+        if (!moveWithMouseWheel && !isStart && currentLake != -1 && Time.timeScale != 0)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                isDragging = true;
+                lakes[currentLake].isRotating = true;
+                screenPos = mainCamera.WorldToScreenPoint(lakeObjs[currentLake].transform.position);
+                Vector3 vec = Input.mousePosition - screenPos;
+                angleOffset = (Mathf.Atan2(lakeObjs[currentLake].transform.right.y, lakeObjs[currentLake].transform.right.x) - Mathf.Atan2(vec.y, vec.x)) * Mathf.Rad2Deg;
+                lakeSprites[currentLake].color = changeColor;
+            }
+            else if (Input.GetMouseButton(0))
+            {
+                Vector3 vec = Input.mousePosition - screenPos;
+                float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+                lakeObjs[currentLake].transform.localEulerAngles = new Vector3(0f, 0f, angle + angleOffset);
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                isDragging = false;
+                isInteracting = false;
+                lakes[currentLake].isRotating = false;
+                lakeSprites[currentLake].color = Color.white;
+                currentLake = -1;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isStart && !MemoManager.isMemoOn)
+        {
+            //마우스휠
+            if (moveWithMouseWheel)
+            {
+                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+                {
+                    //상호작용 가능한 호수를 처음 만났을 때
+                    if (!isInteracting)
+                    {
+                        for (int i = 0; i < lakeObjs.Length; i++)
+                        {
+                            if (hit.transform.gameObject == lakeObjs[i] && lakes[i] != null)
+                            {
+                                isInteracting = true;
+                                currentLake = i;
+                                lakes[i].isRotating = true;
+                                lakeSprites[i].color = changeColor;
+                                break;
+                            }
+                        }
+                    }
+
+                    //상호작용 가능한 호수가 바뀌었을 때
+                    else if (lakeObjs[currentLake] != hit.transform.gameObject)
+                    {
+                        lakes[currentLake].isRotating = false;
+                        lakeSprites[currentLake].color = Color.white;
+
+                        for (int i = 0; i < lakeObjs.Length; i++)
+                        {
+                            if (hit.transform.gameObject == lakeObjs[i] && lakes[i] != null)
+                            {
+                                currentLake = i;
+                                lakes[i].isRotating = true;
+                                lakeSprites[i].color = changeColor;
+                                break;
+                            }
+                        }
+
+                        //상호작용 불가능한 호수
+                        if (lakeObjs[currentLake] != hit.transform.gameObject)
+                        {
+                            isInteracting = false;
+                            lakes[currentLake].isRotating = false;
+                            currentLake = -1;
+                        }
+                    }
+                }
+                //만약 아무것도 안 맞았다면 상호작용 해제
+                else if (isInteracting)
+                {
+                    isInteracting = false;
+                    if (currentLake != -1)
+                    {
+                        lakes[currentLake].isRotating = false;
+                        lakeSprites[currentLake].color = Color.white;
+                        currentLake = -1;
+                    }
+                }
+            }
+
+            //드래그
+            else if (!isDragging)
+            {
+                if (Physics.Raycast(mainCamera.ScreenPointToRay(Input.mousePosition), out RaycastHit hit))
+                {
+                    //상호작용 가능한 호수를 처음 만났을 때
+                    if (!isInteracting)
+                    {
+                        for (int i = 0; i < lakeObjs.Length; i++)
+                        {
+                            if (hit.transform.gameObject == lakeObjs[i] && lakes[i] != null)
+                            {
+                                isInteracting = true;
+                                currentLake = i;
+                                break;
+                            }
+                        }
+                    }
+
+                    //상호작용 가능한 호수가 바뀌었을 때
+                    else if (lakeObjs[currentLake] != hit.transform.gameObject)
+                    {
+                        for (int i = 0; i < lakeObjs.Length; i++)
+                        {
+                            if (hit.transform.gameObject == lakeObjs[i] && lakes[i] != null)
+                            {
+                                currentLake = i;
+                                break;
+                            }
+                        }
+
+                        //상호작용 불가능한 호수
+                        if (lakeObjs[currentLake] != hit.transform.gameObject)
+                        {
+                            isInteracting = false;
+                            currentLake = -1;
+                        }
+                    }
+                }
+                else if (!isDragging)
+                {
+                    isInteracting = false;
+                    currentLake = -1;
+                }
+            }
+        }
+    }
+
+
+    public void OnClickStart()
+    {
+        isStart = true;
+        isInteracting = false;
+        currentLake = -1;
+        lakeSprites[nonInteractiveLakeIndex].color = Color.white;
+
+        int size = lakeObjs.Length;
+        for (int i = 0; i < size; i++)
+        {
+            if (lakes[i] != null)
+            {
+                lakes[i].isStart = true;
+            }
+        }
+    }
+
+    //임시
+    public void OnClickDrag()
+    {
+        moveWithMouseWheel = !moveWithMouseWheel;
+        int size = PhaseGroups[currentPhase - 1].transform.childCount;
+        for (int i = 0; i < size; i++)
+        {
+            if (lakes[i] != null)
+            {
+                lakes[i].moveWithMouseWheel = moveWithMouseWheel;
+            }
+        }
+    }
+}

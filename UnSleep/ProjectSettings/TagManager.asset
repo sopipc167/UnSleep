@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Block
+  - Manager
+  - Interaction
+  - Gear
+  - Bomb
+  - Magma
+  - Wall
+  - Character
+  - fence
+  - Cavehole
+  - Drop
+  - RoadEnd
+  - Item
+  - Appear
+  - DiaInterClick
+  - DiaInterCollision
+  - Ob_N
+  - Ob_S
+  - Native
+  - Monster
+  - Hand
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - FogOfWarRend
+  - FogOfWarSecond
+  - Tilemap
+  - Shape
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - Memo
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 2242020149
+    locked: 0
+  - name: ClockTower
+    uniqueID: 2898791083
+    locked: 0
+  - name: UI
+    uniqueID: 1627219397
+    locked: 0
