@@ -45,8 +45,10 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         OffEffect();
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            ScrSpace = transform.parent.transform.position;
-            offset = transform.parent.transform.position - new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScrSpace.z);
+            offset = transform.parent.transform.position - ConvertCameraSpace(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100f));
+
+
+
             Draging = true;
             clkSound.PlaySound(0);
         }
@@ -59,7 +61,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             transform.parent.transform.SetParent(Main_Panel.transform);
             Vector3 curScrSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScrSpace.z);
-            Vector3 curPosition = curScrSpace + offset;
+            Vector3 curPosition = ConvertCameraSpace(curScrSpace + offset);
             transform.parent.transform.position = curPosition;
             Draging = true;
 
@@ -79,8 +81,6 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 transform.parent.transform.SetParent(Gear_Panel.transform);
                 GetComponent<Gear>().in_Main_Panel = false;
 
-                //if (!Moving)
-                //    StartCoroutine(BackTopos());
 
                 if (GetComponent<Gear>().Operating)
                     GetComponent<Gear>().Operating = false;
@@ -89,7 +89,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
             else
             {
                 GetComponent<Gear>().in_Main_Panel = true;
-                Before_pos = transform.transform.parent.transform.position;
+                Before_pos = ConvertCameraSpace(transform.transform.parent.transform.position); 
             }
 
             clkSound.PlaySound(1);
@@ -127,7 +127,6 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void OnPointerEnter(PointerEventData eventData)
     {
         transform.GetChild(0).GetComponent<Outline>().enabled = true;
-        //StartCoroutine("GetBigger");
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -136,72 +135,17 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     }
 
 
-    IEnumerator GetBigger() //렉걸림
-    {
-        GameObject Gear_Image = transform.GetChild(0).gameObject;
-        float curtime = 0f;
-
-        while (curtime < effecttime)
-        {
-            Debug.Log(curtime);
-            curtime += Time.deltaTime/10f;
-            Gear_Image.transform.localScale = Vector3.one * (1 + curtime);
-        }
-        yield return null;
-
-    }
 
     public void OffEffect()
     {
         transform.GetChild(0).GetComponent<Outline>().enabled = false;
-        //transform.GetChild(0).transform.localScale = Vector3.one;
-
     }
 
-    /*
-        public void OnPointerClick(PointerEventData eventData)
+  
+    public Vector3 ConvertCameraSpace(Vector3 ori)
     {
-        if (eventData.button == PointerEventData.InputButton.Right)
-        {
-            if (GetComponent<Gear>().Doubling)
-            {
-                StartCoroutine(UnDoDouble());
-                //GetComponent<Gear>().UnDoGearDoubling(GetComponent<Gear>().DoublingGear, this.gameObject);
-                //if (!Moving)
-                //    StartCoroutine(BackToStartpos());
-
-            }
-        }
+        Vector3 con = new Vector3(ori.x, ori.y, 100f); //Canvas의 Plane Distance 값을 z 축에 넣어주기
+        return Camera.main.ScreenToWorldPoint(con);
     }
-
-
-     
-        IEnumerator BackTopos()
-    {
-        Moving = true;
-        Before_pos = new Vector3(transform.parent.transform.localPosition.x + 20f, transform.parent.transform.localPosition.y + 20f);
-        while (Vector3.Distance(transform.parent.transform.localPosition, Before_pos) > 0.05f)
-        {
-            transform.parent.transform.localPosition = Vector3.MoveTowards(transform.parent.transform.localPosition, Before_pos, 40f);
-            yield return null;
-        }
-        GetComponent<Gear>().RotateDirection = true;
-        Moving = false;
-        UnDoing = false;
-
-    }
-
-    IEnumerator UnDoDouble()
-    {
-        UnDoing = true;
-        GetComponent<Gear>().UnDoGearDoubling(GetComponent<Gear>().DoublingGear, this.gameObject);
-        if (!Moving)
-            StartCoroutine(BackTopos());
-        yield return null;
-
-    }
-
-
-     */
 
 }
