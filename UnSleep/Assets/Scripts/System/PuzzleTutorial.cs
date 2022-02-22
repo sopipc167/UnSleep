@@ -23,9 +23,9 @@ public class PuzzleTutorial : MonoBehaviour
     public TutorialPage[] tutorialPages;
 
     //start부터 until까지의 페이지를 보여줌. 
-    private int start;
-    private int end;
-    private int curr;
+    public int start;
+    public int end;
+    public int curr;
    
 
     //(start, end]의 튜토리얼 출력 범위를 정합니다. 

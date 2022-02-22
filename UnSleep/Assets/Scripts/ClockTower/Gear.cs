@@ -155,7 +155,7 @@ public class Gear : MonoBehaviour
         if (!Start_Gear && col_gears.Length == 0) //시작기어도 아닌데 col_gears가 비었다? 
         {
             False_Operating(this.gameObject);
-            Debug.Log("파바바박");
+            //Debug.Log("파바바박");
 
         }
 
@@ -345,7 +345,7 @@ public class Gear : MonoBehaviour
             radius_d = GearB.radius;
 
 
-        col_gears_d = Physics2D.OverlapCircleAll(center.transform.position, radius_d + 20f); //주변에 있는 콜라이더 인식
+        col_gears_d = Physics2D.OverlapCircleAll(center.transform.position, radius_d); //주변에 있는 콜라이더 인식
         List<Collider2D> tmp = new List<Collider2D>(col_gears_d); //위에 저거 리스트로 임시 저장
         for (int i = 0; i < col_gears_d.Length; i++) //인식된 콜라이더 개수만큼 반복
         {
@@ -370,6 +370,7 @@ public class Gear : MonoBehaviour
 
         for (int i = 0; i < col_gears_d.Length; i++) 
         {
+
 
             if (!col_gears_d[i].GetComponent<Gear>().in_Main_Panel) //메인 패널에 없으면 뛰어넘어요
                 continue;

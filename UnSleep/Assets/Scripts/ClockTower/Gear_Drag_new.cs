@@ -48,8 +48,8 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            ScrSpace = transform.parent.transform.position;
-            offset = transform.parent.transform.position - new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScrSpace.z);
+            //ScrSpace = transform.parent.transform.position;
+            offset = transform.parent.transform.position - ConvertCameraSpace(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100f));
             Draging = true;
             clkSound.PlaySound(0);
         }
@@ -65,7 +65,7 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             transform.parent.transform.SetParent(Main_Panel.transform);
             Vector3 curScrSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScrSpace.z);
-            Vector3 curPosition = curScrSpace + offset;
+            Vector3 curPosition = ConvertCameraSpace(curScrSpace + offset);
             transform.parent.transform.position = curPosition;
             Draging = true;
 
@@ -108,6 +108,12 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.GetChild(0).GetComponent<Outline>().enabled = false;
         //transform.GetChild(0).transform.localScale = Vector3.one;
 
+    }
+
+    public Vector3 ConvertCameraSpace(Vector3 ori)
+    {
+        Vector3 con = new Vector3(ori.x, ori.y, 100f); //Canvas의 Plane Distance 값을 z 축에 넣어주기
+        return Camera.main.ScreenToWorldPoint(con);
     }
 
 }
