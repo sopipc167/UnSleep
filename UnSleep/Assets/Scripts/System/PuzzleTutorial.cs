@@ -23,10 +23,16 @@ public class PuzzleTutorial : MonoBehaviour
     public TutorialPage[] tutorialPages;
 
     //start부터 until까지의 페이지를 보여줌. 
-    public int start;
-    public int end;
-    public int curr;
-   
+    private int start;
+    private int end;
+    private int curr; //현재 페이지 번호
+
+
+    public GameObject[] CameraObject0; //0번 카메라에 찍힐 오브젝트
+    public GameObject[] CameraObject1; //1번 카메라에 찍힐 오브젝트
+    public GameObject[] CameraObject2; //2번 카메라에 찍힐 오브젝트
+
+
 
     //(start, end]의 튜토리얼 출력 범위를 정합니다. 
     //레벨에 따라 출력되게끔 씬 시작 시 세팅해주세요
@@ -76,11 +82,22 @@ public class PuzzleTutorial : MonoBehaviour
     
     private void SetPage(int idx) //idx 페이지로 내용을 바꾼다
     {
+        int cco_idx = 0;
         for (int i = 0; i < 3; i++)
         {
             //카메라 사용 or 이미지 출력
             if (tutorialPages[idx].isCamera[i])
+            {
                 cameras[i].SetActive(true);
+                switch (i)
+                {
+                    case 0: CameraObject0[idx].SetActive(true); break;
+                    case 1: CameraObject1[idx].SetActive(true); break;
+                    case 2: CameraObject2[idx].SetActive(true); break;
+
+                }
+                cco_idx++;
+            }
             else
             {
                 cameras[i].SetActive(false);
@@ -94,8 +111,17 @@ public class PuzzleTutorial : MonoBehaviour
 
     }
 
+    public void TurnOffCameraObject(int curr)
+    {
+        CameraObject0[curr].SetActive(false);
+        CameraObject1[curr].SetActive(false);
+        CameraObject2[curr].SetActive(false);
+
+    }
+
     public void NextButton()
     {
+        TurnOffCameraObject(curr); //카메라 뒤쪽 끄고 가기
         curr++;
         if (curr >= tutorialPages.Length) //그럴일은 없겠지만 넘치는 경우 방지
             curr = tutorialPages.Length - 1;
@@ -104,6 +130,7 @@ public class PuzzleTutorial : MonoBehaviour
 
     public void PrevButton()
     {
+        TurnOffCameraObject(curr); //카메라 뒤쪽 끄고 가기
         curr--;
         if (curr < 0) //그럴일은 없겠지만 넘치는 경우 방지
             curr = 0;
@@ -115,6 +142,7 @@ public class PuzzleTutorial : MonoBehaviour
         for (int i = 0; i < 3; i++)
             cameras[i].SetActive(false);
 
+        TurnOffCameraObject(curr);
         Tutorial_Panel.SetActive(false);
     }
 

@@ -30826,6 +30826,18 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject0.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject1.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject2.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
       propertyPath: Tutorial_Panel
       value: 
       objectReference: {fileID: 757128130}
@@ -31023,6 +31035,54 @@ PrefabInstance:
       propertyPath: tutorialPages.Array.data[2].sprites.Array.data[2]
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject0.Array.data[0]
+      value: 
+      objectReference: {fileID: 909827578}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject0.Array.data[1]
+      value: 
+      objectReference: {fileID: 990782274}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject0.Array.data[2]
+      value: 
+      objectReference: {fileID: 1261844449}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject0.Array.data[3]
+      value: 
+      objectReference: {fileID: 1156404026}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject1.Array.data[0]
+      value: 
+      objectReference: {fileID: 235010259}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject1.Array.data[1]
+      value: 
+      objectReference: {fileID: 162750892}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject1.Array.data[2]
+      value: 
+      objectReference: {fileID: 49737796}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject1.Array.data[3]
+      value: 
+      objectReference: {fileID: 337554887}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject2.Array.data[0]
+      value: 
+      objectReference: {fileID: 1174269204}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject2.Array.data[1]
+      value: 
+      objectReference: {fileID: 1054858803}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject2.Array.data[2]
+      value: 
+      objectReference: {fileID: 561278538}
+    - target: {fileID: 1222885371535968973, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: CameraObject2.Array.data[3]
+      value: 
+      objectReference: {fileID: 359083227}
     - target: {fileID: 1222885371535968974, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
       propertyPath: m_Name
       value: TutorialManager
