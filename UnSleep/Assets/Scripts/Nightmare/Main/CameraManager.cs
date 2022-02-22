@@ -27,6 +27,8 @@ public class CameraManager : MonoBehaviour
     public TugOfWar Tug;
     public Image blood;
 
+    public float delay;
+
     void Start()
     {
         if (isThree)
@@ -68,8 +70,8 @@ public class CameraManager : MonoBehaviour
         }
 
         TransTargetPos();
-        if (targetPos_M.y < 2.0f && targetPos_M.y > -12f)
-            targetPos = new Vector3(151.8f, targetPos_M.y / 1.2f, -10);
+        if (targetPos_M.y < 2.5f && targetPos_M.y > -20f)
+            targetPos = new Vector3(151.8f, targetPos_M.y / delay, -10);
         if (transform.position.y > 0.3f)
         {
             isStart = true;
