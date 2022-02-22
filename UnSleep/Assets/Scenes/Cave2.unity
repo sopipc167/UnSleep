@@ -839,6 +839,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1222885371535968974, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1222885371875479893, guid: b91f95d746dd3ab4694c142d7beca5d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -178
@@ -984,6 +988,10 @@ PrefabInstance:
     - target: {fileID: 494503603495684488, guid: 1d4925d1bbf929f4c9ad0bf26df25b34, type: 3}
       propertyPath: m_Name
       value: Tutorial_UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 494503603495684488, guid: 1d4925d1bbf929f4c9ad0bf26df25b34, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 494503603717845972, guid: 1d4925d1bbf929f4c9ad0bf26df25b34, type: 3}
       propertyPath: m_IsActive
@@ -1974,7 +1982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7345df44371d5a42b64d8f809858fc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Epi_num: 65
+  Epi_num: 50
   Row:
   - Col: []
   - Col: []
