@@ -8,6 +8,7 @@ public class CameraManager : MonoBehaviour
 {
     public GameObject target;
     Vector3 targetPos;
+    Vector3 originPos;
     public float smooth = 5.0f;
 
     public GameObject BG;
@@ -17,8 +18,8 @@ public class CameraManager : MonoBehaviour
 
     public bool isThree;
     Vector3 mousePos, transPos, targetPos_M;
-
-    public float FrameTime;
+    
+    float FrameTime;
     public bool isFrame;
 
     public bool isStart;
@@ -28,13 +29,15 @@ public class CameraManager : MonoBehaviour
     public Image blood;
 
     public float delay;
+    public float min;
+    public float max;
 
     void Start()
     {
         if (isThree)
         {
             isFirst = true;
-            targetPos = new Vector3(151.8f, -9.48f, -10);
+            targetPos = new Vector3(152.03f, 0.3f, -10);
         }
     }
 
@@ -52,7 +55,8 @@ public class CameraManager : MonoBehaviour
         else if (isThree && !isFrame && !Tug.isStart && !Tug.isEnd)
             StartCoroutine(FrameWork());
 
-        transform.position = Vector3.Lerp(targetPos, transform.position, Time.deltaTime * smooth);
+        if(originPos != targetPos_M)
+            transform.position = Vector3.Lerp(targetPos, transform.position, Time.deltaTime * smooth);
     }
 
     public void fadeOut()
@@ -65,14 +69,17 @@ public class CameraManager : MonoBehaviour
         isFrame = true;
         if (isFirst)
         {
+            TransTargetPos();
+            originPos = targetPos_M;
             yield return new WaitForSeconds(1.2f);
             isFirst = false;
         }
 
+
         TransTargetPos();
-        if (targetPos_M.y < 2.5f && targetPos_M.y > -20f)
+        if (targetPos_M.y < max && targetPos_M.y > min)
             targetPos = new Vector3(151.8f, targetPos_M.y / delay, -10);
-        if (transform.position.y > 0.3f)
+        if (transform.position.y > 9.5f)
         {
             isStart = true;
             StartCoroutine(Timer());
