@@ -28,7 +28,7 @@ public class CliffTile : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private ParticleSystem particle;
 
-    private void Start()
+    private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         particle = transform.parent.GetChild(0).GetComponent<ParticleSystem>();
@@ -125,7 +125,7 @@ public class CliffTile : MonoBehaviour
     private IEnumerator ClearShapeCouroutine()
     {
         isDestroying = true;
-        particle.Clear();
+        particle.Stop();
 
         Color spriteColor = Color.white;
         Vector3 scale = transform.localScale;
