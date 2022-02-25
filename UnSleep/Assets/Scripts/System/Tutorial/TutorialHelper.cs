@@ -7,7 +7,6 @@ public class TutorialInfo
 {
     public int id;
     public int maxInfo;
-    public int showPage;
 }
 
 public class TutorialHelper : MonoBehaviour
@@ -41,7 +40,7 @@ public class TutorialHelper : MonoBehaviour
             if (Dialogue_Proceeder.instance.CurrentEpiID == item.id)
             {
                 currentInfo = item;
-                puzzle.SetTutorial(currentInfo.maxInfo, currentInfo.showPage);
+                puzzle.SetTutorial(currentInfo.maxInfo, (currentInfo.maxInfo - 1) / 3);
                 break;
             }
         }
