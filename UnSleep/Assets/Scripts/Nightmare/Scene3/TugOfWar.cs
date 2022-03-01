@@ -18,6 +18,15 @@ public class TugOfWar : MonoBehaviour
     public GameObject[] handChange;
     public GameObject[] footChange;
 
+    public Image BG;
+    public RectTransform screen;
+    new Vector3 mousePos;
+    new Vector3 transPos_M;
+    new Vector3 targetPos;
+    public bool isMove;
+    public float frame;
+    public float frameTime;
+
     void Start()
     {
         Gauge.value = 0.5f;
@@ -54,6 +63,51 @@ public class TugOfWar : MonoBehaviour
                 Debug.Log("Game Over");
             }
         }
+
+        TransMousePos();
+        if (!isMove)
+        {
+            if (transPos_M.y >= 2.0f)
+                StartCoroutine(bgDown());
+            else
+                StartCoroutine(bgUp());
+        }
+    }
+
+    void TransMousePos()
+    {
+        mousePos = Input.mousePosition;
+        transPos_M = Camera.main.ScreenToWorldPoint(mousePos);
+    }
+
+    IEnumerator bgUp()
+    {
+        isMove = true;
+
+        if(BG.transform.position.y < 879)
+        {
+            targetPos = BG.transform.position + new Vector3(0, frame, 0);
+            BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
+            Debug.Log(BG.transform.position);
+        }
+
+        yield return new WaitForSeconds(frameTime);
+        isMove = false;
+    }
+
+    IEnumerator bgDown()
+    {
+        isMove = true;
+
+        if(BG.transform.position.y > 30)
+        {
+            targetPos = BG.transform.position - new Vector3(0, frame, 0);
+            BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
+            Debug.Log(BG.transform.position);
+        }
+
+        yield return new WaitForSeconds(frameTime);
+        isMove = false;
     }
 
     IEnumerator GaugeAdd()
