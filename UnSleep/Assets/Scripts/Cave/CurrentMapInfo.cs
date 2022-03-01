@@ -140,7 +140,7 @@ public class CurrentMapInfo : MonoBehaviour
         {
             if (!Dialogue_Proceeder.instance.AlreadyDone(talk_id))
             {
-                Debug.Log(Dialogue_Proceeder.instance.Satisfy_Condition(textManager.ReturnDiaConditions(talk_id)));
+
                 if (Dialogue_Proceeder.instance.Satisfy_Condition(textManager.ReturnDiaConditions(talk_id)))
                 {
                     Dialogue_Proceeder.instance.UpdateCurrentDiaID(talk_id);
