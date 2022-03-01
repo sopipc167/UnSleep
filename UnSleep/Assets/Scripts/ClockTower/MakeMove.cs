@@ -22,7 +22,6 @@ public class MakeMove : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(transform.position);
     }
 
     private void num0()

@@ -77,7 +77,6 @@ public class ObjectManager : MonoBehaviour
             if (objects[i].activeSelf)
             {
                 objects[i].SetActive(false);
-                Debug.Log("꺼짐");
 
             }
         }
