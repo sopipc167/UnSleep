@@ -69,69 +69,69 @@ public class Portrait : MonoBehaviour
         }
         else if (cha_id == 1001) //도문 
         {
-            if (epi_id <= 6)
+            if (epi_id <= 0)
                 return 0;
-            else if (epi_id <= 12)
+            else if (epi_id <= 3)
                 return 20;
-            else if (epi_id <= 19)
+            else if (epi_id <= 5)
                 return 40;
-            else if (epi_id <= 25)
+            else if (epi_id <= 9)
                 return 60;
-            else if (epi_id <= 32) //도문이 턱시도는 예외로 처리하기
+            else if (epi_id <= 12) //도문이 턱시도는 예외로 처리하기
                 return 80;
-            else if (epi_id <= 56)
+            else if (epi_id <= 17)
                 return 100;
-            else if (epi_id <= 67)
+            else if (epi_id <= 19)
                 return 120;
             else
                 return -1;
         }
         else if (cha_id == 1004 || cha_id == 1005) //재준 장현
         {
-            if (epi_id <= 12)
+            if (epi_id <= 3)
                 return 0;
-            else if (epi_id <= 19)
+            else if (epi_id <= 5)
                 return 20;
-            else if (epi_id <= 25)
+            else if (epi_id <= 9)
                 return 40;
-            else if (epi_id <= 32)
+            else if (epi_id <= 13)
                 return 60;
-            else if (epi_id <= 56) //도문이 턱시도는 예외로 처리하기
+            else if (epi_id <= 16) 
                 return 80;
-            else if (epi_id <= 67)
+            else if (epi_id <= 19)
                 return 100;
             else
                 return -1;
         }
         else if (cha_id == 1002 || cha_id == 1003) //부모님
         {
-            if (epi_id <= 12)
+            if (epi_id <= 3)
                 return 0;
-            else if (epi_id <= 27)
+            else if (epi_id <= 11)
                 return 6;
             else
                 return 12;
         }
         else if (cha_id == 1006) //새나
         {
-            if (epi_id <= 24)
+            if (epi_id <= 9)
                 return 0;
-            else if (epi_id <= 27)
+            else if (epi_id <= 13)
                 return 20;
-            else if (epi_id <= 32)
+            else if (epi_id <= 15)
                 return 40;
-            else if (epi_id <= 56)
+            else if (epi_id <= 16)
                 return 60;
             else
                 return 80;
         }
         else if (cha_id == 1007) //이비
         {
-            if (epi_id <= 45)
+            if (epi_id <= 14)
                 return 0; //애기
-            else if (epi_id <= 50)
+            else if (epi_id <= 15)
                 return 20; //교복
-            else if (epi_id <= 56)
+            else if (epi_id <= 16)
                 return 40; //성인(대학생)
             else
                 return 60; //직장인

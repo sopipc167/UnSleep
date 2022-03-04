@@ -16,7 +16,8 @@ public class Dialogue //대사 단위
     public int nextDiaKey; //선택지 선택 시 다음 대화 묶음
 
     public int layoutchange; //레이아웃 변화
-    public int BG; //배경 
+    public string BG; //배경
+    public string Content; //일러스트명, 상호작용 명
 
     public string SE; //효과음
 

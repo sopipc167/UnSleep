@@ -55,7 +55,7 @@ public class CurrentMapInfo : MonoBehaviour
         mapGenerator = GetComponent<MapGenerator>();
         audioLeftRight = GetComponent<AudioLeftRight>();
         objectManager = GetComponent<ObjectManager>();
-        objectManager.GetObjects(mapGenerator.Epi_num);
+        objectManager.GetObjects(Dialogue_Proceeder.instance.CurrentEpiID);
         gr = canvas.GetComponent<GraphicRaycaster>();
 
     }

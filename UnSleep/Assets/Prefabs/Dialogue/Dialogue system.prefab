@@ -2883,7 +2883,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58378e25a1e412641814eccdbfee4ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csvData: {fileID: 4900000, guid: f38c30247ba98ef48af8f036e04bdb10, type: 3}
 --- !u!114 &8528798682782122523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2916,19 +2915,13 @@ MonoBehaviour:
   GoToCurr: {fileID: 6543727339095962547}
   LogPanel: {fileID: 0}
   BackGround: {fileID: 8528798681765602456}
-  Change_BackGround: {fileID: 0}
-  BG:
-  - {fileID: 21300000, guid: e0c065a5ef3d5cf4ea46bfb0feff2b0c, type: 3}
-  - {fileID: 21300000, guid: 8705f010bbea2c8459b19fb2806311a1, type: 3}
-  - {fileID: 21300000, guid: b66f3bffc8d41f24f8c2684be8313295, type: 3}
-  - {fileID: 21300000, guid: 50821fbcd76818845bf94fdd04f00c35, type: 3}
-  - {fileID: 21300000, guid: 2ec879b3750ba7d42a5c0c1d2a9fc3c8, type: 3}
+  Change_BackGround: {fileID: 3390130911827811946}
   isDnI: 0
   Epi_num: 0
   Dia_index: 1801
   dialogues_index: 0
   Increasediaindex: 1
-  FadeInOut: {fileID: 0}
+  STEManager: {fileID: 0}
   UI_Objects: {fileID: 0}
   DIALOGUE_Eventlist: []
 --- !u!114 &8528798682782122516
@@ -2943,7 +2936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35f0a2ac1f2011b45a98107f63edf128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Portraits: []
 --- !u!114 &5764091617630811381
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,10 +44,11 @@ public class TextManager : MonoBehaviour
     public GameObject GoToCurr;
     public GameObject LogPanel;
 
-    //<---------- 배경(임시)---------------->
+    //<---------- 배경---------------->
     [Header("배경")]
     public Image BackGround;
     public Image Change_BackGround;
+
 
     private bool BG_Change;
     private SpriteManager spriteManager;
@@ -59,7 +60,6 @@ public class TextManager : MonoBehaviour
 
     //<---------- 기타 정보 ---------------->
 
-    public int Epi_num;
     public int Dia_index;
     public int dialogues_index = 0;
     private int First_portrait_pos_1 = 0;
@@ -70,7 +70,6 @@ public class TextManager : MonoBehaviour
 
 
     [Header("씬 전환")]
-    //public GameObject FadeInOut; //페이드 인/아웃
     public SceneTransEffectManager STEManager; //씬 전환 효과
     public GameObject UI_Objects; //대화UI 레이아웃 변경 주관하는 녀석
 
@@ -94,7 +93,6 @@ public class TextManager : MonoBehaviour
     void Awake()
     {
         DialogueParser DialogueParser = GetComponent<DialogueParser>();
-        //DIALOGUE_Eventlist = DialogueParser.Parse_Dialogue(Parse_Start, Parse_End); //파싱되어 배열로 받는다
         DIALOGUE_Eventlist = DialogueParser.Parse_Dialogue(); //파싱되어 배열로 받는다
 
         for (int i = 0; i < DIALOGUE_Eventlist.Length; i++) //(대화묶음id , 대화묶음) 꼴로 묶는다
@@ -105,12 +103,11 @@ public class TextManager : MonoBehaviour
 
         Portrait portrait = GetComponent<Portrait>();
         cha_ids = DialogueParser.GetCharId();
-        PorDic = portrait.GetPortraitDic(cha_ids, Epi_num); //18세 에피소드 기준 cha_ids에 담긴 인물들의 초상화가 담긴 딕셔너리를 받는다
+        PorDic = portrait.GetPortraitDic(cha_ids, Dialogue_Proceeder.instance.CurrentEpiID); //18세 에피소드 기준 cha_ids에 담긴 인물들의 초상화가 담긴 딕셔너리를 받는다
 
 
         spriteManager = GetComponent<SpriteManager>();  //BG 조절을 위한 매니저 함수
 
-        //FadeInOut.GetComponent<FadeInOut>().Fade_InOut(); //얘는 추후 옮길 예정 
 
     }
 
@@ -124,12 +121,18 @@ public class TextManager : MonoBehaviour
        //Complete_Condition = Dialogue_Proceeder.instance.Dia_Complete_Condition; //현재 완수한 대화 조건
 
         GoToPrevButton.interactable = false;
-        //if (DiaDic[Dia_index].dialogues[dialogues_index].background != -1)
-        //    BackGround.sprite = BG[DiaDic[Dia_index].dialogues[dialogues_index].background];
         
 
         Set_Dialogue_System();
         STEManager.FadeInOut(); //테스트 위해 넣었습니다 원래는 페이드인/아웃
+
+        //배경 전환
+        if (DiaDic[Dia_index].dialogues[0].BG != null)
+            Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_index].dialogues[0].BG);
+
+        if (DiaDic[Dia_index].BGM != null)
+            SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
+
     }
 
 
@@ -145,7 +148,6 @@ public class TextManager : MonoBehaviour
             Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
 
 
-        //Debug.Log(DiaDic[Dia_index].isStory);
 
        // Complete_Condition = Dialogue_Proceeder.instance.Dia_Complete_Condition; //움,, 이거 왜 있지? 빼면 무서우니까 일단 주석으로 
        //-> 이거 빼니까 정신세계 맵에서 상호작용으로 갱신된 완료 조건에 TextManager에 반영이 안되네요
@@ -238,8 +240,13 @@ public class TextManager : MonoBehaviour
                                     Dia_index += 1; //다음 대화 묶음으로 
                                     Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //Proceeder 업데이트.
 
-                                }
-                                else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
+                                //BGM 전환
+                                if (DiaDic[Dia_index].BGM != null)
+                                    SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
+
+
+                            }
+                            else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
                                 {
                                     Increasediaindex = false;
 
@@ -276,10 +283,11 @@ public class TextManager : MonoBehaviour
 
 
 
-
             //배경 전환 
-            if (DiaDic[Dia_index].dialogues[dialogues_index].BG > -2)
-                Change_BG(DiaDic[Dia_index].dialogues[dialogues_index].BG);
+            if (DiaDic[Dia_index].dialogues[dialogues_index].BG != null)
+                Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_index].dialogues[dialogues_index].BG);
+
+
 
 
         }
@@ -307,6 +315,7 @@ public class TextManager : MonoBehaviour
         //if (DiaDic[Dia_index].dialogues[dialogues_index].background != -1)
         //    BackGround.sprite = BG[DiaDic[Dia_index].dialogues[dialogues_index].background];
 
+
  
         Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //선택지 선택으로 변한 Dia_index로 Proceeder 업데이트.
 
@@ -321,21 +330,29 @@ public class TextManager : MonoBehaviour
         int EMOTION = DiaDic[Dia_index].dialogues[dialogues_index].portrait_emotion; //초상화id (표정id) 
         float result; //이름(문자열)이 문자인지 숫자인지 판단하기 위해 있는 변수 (아래 보면 알아요) 
         int LAYOUT = DiaDic[Dia_index].dialogues[dialogues_index].layoutchange; //레이아웃 변화
-        int DNIIDX = DiaDic[Dia_index].dialogues[dialogues_index].BG;//LAYOUT이 2인 경우 일러스트 번호, 3인 경우 상호작용 연출 번호
+        string CONTENT = DiaDic[Dia_index].dialogues[dialogues_index].Content;//상호작용명(int가 될 수 있음)
+        string SE = DiaDic[Dia_index].dialogues[dialogues_index].SE; //효과음
 
         UI_Objects.GetComponent<ChangeLayout>().LayoutChange(LAYOUT); //전달. 저쪽에서 알아서 할거임
-        
+
 
 
         if (LAYOUT == 3 && !isDnI)
         {
-            GetComponent<Run_DnI>().Run_Direc_N_Inter(DNIIDX);
-            Debug.Log(DNIIDX);
+            //GetComponent<Run_DnI>().Run_Direc_N_Inter(DNIIDX);
             isDnI = true;
             Increasediaindex = false;
 
         }
 
+
+
+
+        if (SE != null) //효과음 있으면 효과음 재생 
+        {
+            SoundManager.Instance.PlaySE(SE);
+
+        }
 
         if (NAME.Equals("")) //나레이션 -> 이름, 초상화 Off 
         {
@@ -538,24 +555,24 @@ public class TextManager : MonoBehaviour
             return 1;
     }
 
-    void Change_BG(int BG_idx)
+    void Change_IMG(Image target, Image Change_target, string ImgName) //target: BackGround, Illust //Change_target: Change_BackGround, Change_Illust
     {
-        if (BG_idx == -1)
+        if (ImgName.Equals("Transparent"))
         {
-            BackGround.color = new Color(1, 1, 1, 0);
-            Change_BackGround.color = new Color(1, 1, 1, 0);
+            target.color = new Color(1, 1, 1, 0);
+            Change_target.color = new Color(1, 1, 1, 0);
 
             return;
         }
 
-        Change_BackGround.color = new Color(1, 1, 1, 0);
-        spriteManager.LoadImage(Change_BackGround, BG_idx);
+        Change_target.color = new Color(1, 1, 1, 0);
+        spriteManager.LoadImage(Change_target, ImgName);
         //Change_BackGround.sprite = BG[BG_idx];
 
         if (!BG_Change)
         {
             //Debug.Log("배경바뀜");
-            StartCoroutine(fadein(0f, 1f, 0.5f, BG_idx));
+            StartCoroutine(fadein(target, Change_target, 0f, 1f, 0.5f, ImgName));
 
         }
     }
@@ -577,28 +594,27 @@ public class TextManager : MonoBehaviour
 
   
 
-    private IEnumerator fadein(float start, float end, float FadeTime, int BG_idx)
+    private IEnumerator fadein(Image target, Image Change_target, float start, float end, float FadeTime, string ImgName)
     {
 
         BG_Change = true;
         float time = 0f;
-        Color color = Change_BackGround.color;
+        Color color = Change_target.color;
         color.a = Mathf.Lerp(start, end, time);
 
         while (color.a < 0.98f)
         {
             time += Time.deltaTime / FadeTime;
             color.a = Mathf.Lerp(start, end, time);
-            Change_BackGround.color = color;
+            Change_target.color = color;
 
 
             yield return null;
 
         }
         BG_Change = false;
-        spriteManager.LoadImage(BackGround, BG_idx);
-        //BackGround.sprite = BG[BG_idx];
-        Change_BackGround.color = new Color(1, 1, 1, 0);
+        spriteManager.LoadImage(target, ImgName);
+        Change_target.color = new Color(1, 1, 1, 0);
 
     }
 
