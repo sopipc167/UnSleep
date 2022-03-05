@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다른 오브젝트간의 상호작용을 관장하는 스크립트
 {
     int gameboardint = 0; //현재 게임스테이지
+    private GameObject GameBoard;
     protected class bombs //폭탄의 내용을 간략하게 저장하기 위한 구조체
     {
         Vector2 pos; //폭탄의 위치
@@ -115,7 +116,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     public void Start()
     {
         bombSound = GetComponent<BombSound>();
-
+        GameBoard = GameObject.Find("GameBoard");
 
         Swap_List.Clear();
         if (gameboardint == 0)
@@ -149,8 +150,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             snum = 8;
         }
         fnum = 1;
-        swaping.text = "스왑 횟수:" + snum;
-        fire.text = "점화 횟수:" + fnum;
+        swaping.text = snum.ToString();
+        fire.text =  fnum.ToString();
         stage.text = "현재 퍼즐 :" + (gameboardint+1) + "번 퍼즐";
         raymode = true;
         for (int j = 0; j < 12; j++) //초기에 배열에 있는 대로 블럭을 생성하는 for문
@@ -160,6 +161,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 if (gameboardArray[gameboardint, j, i] == -1) //게임보드 배열 내에서 해당 위치 오브젝트의 유형을 판별함
                 {
                     GameObject newB = GameObject.Instantiate(magma); //현재 위치에 적절한 오브젝트 생성
+                    newB.transform.SetParent(GameBoard.transform);
                     newB.GetComponent<BlockBehavior>().Location = new Vector2(i, j); //자신의 상대적 위치를 해당 오브젝트 스크립트에 전달
                     Map[i, j] = newB; //오브젝트 배열에 해당 위치의 오브젝트 저장
                     newB.transform.position = new Vector3((i - 7) * 5.2f - 16f, (j - 5) * 5.2f - 3f, -1); //해당 상대 위치를 월드 좌표에 맞춰서 이동시킴
@@ -168,6 +170,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 if (gameboardArray[gameboardint, j, i] == 0)
                 {
                     GameObject newB = GameObject.Instantiate(block);
+                    newB.transform.SetParent(GameBoard.transform);
                     newB.GetComponent<BlockBehavior>().Location = new Vector2(i, j);
                     Map[i,j] = newB;
                     newB.transform.position = new Vector3((i - 7) *5.2f - 16f, (j - 5)*5.2f - 3f, -1);
@@ -175,6 +178,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 else if (gameboardArray[gameboardint, j, i] == 1)
                 {
                     GameObject newB = GameObject.Instantiate(bomb);
+                    newB.transform.SetParent(GameBoard.transform);
                     newB.GetComponent<BlockBehavior>().Location = new Vector2(i, j);
                     Map[i,j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 0;
@@ -183,6 +187,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 else if (gameboardArray[gameboardint, j, i] == 2)
                 {
                     GameObject newB = GameObject.Instantiate(bomb);
+                    newB.transform.SetParent(GameBoard.transform);
                     newB.GetComponent<BlockBehavior>().Location = new Vector2(i, j);
                     Map[i, j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 1;
@@ -191,6 +196,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 else if (gameboardArray[gameboardint, j, i] == 3)
                 {
                     GameObject newB = GameObject.Instantiate(bomb);
+                    newB.transform.SetParent(GameBoard.transform);
                     newB.GetComponent<BlockBehavior>().Location = new Vector2(i, j);
                     Map[i, j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 2;
@@ -199,6 +205,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 else if (gameboardArray[gameboardint, j, i] == 4)
                 {
                     GameObject newB = GameObject.Instantiate(bomb);
+                    newB.transform.SetParent(GameBoard.transform);
                     newB.GetComponent<BlockBehavior>().Location = new Vector2(i, j);
                     Map[i, j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 3;
@@ -206,6 +213,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 }
             }
         }
+
+        GameBoard.transform.position = GameBoard.transform.position + new Vector3(13.5f, 0f, 0f);
     }
     public int getsnum() { return snum; } //스왑가능 횟수를 반환
     public void Swap(GameObject a) //스왑(자리바꿈)을 해주는 함수
@@ -236,7 +245,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 if (Swap_List[0].gameObject != Swap_List[1].gameObject)
                     snum--;
                 Swap_List.Clear(); //리스트 비우기
-                swaping.text = "스왑 횟수:" + snum; //스왑 횟수 갱신
+                swaping.text = snum.ToString(); //스왑 횟수 갱신
             }
             else //예외 일경우 에러나고 스왑 리스트 다 비워짐
             {
@@ -267,7 +276,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             bombs newbomb = new bombs(new Vector2(x, y), b);
             Bomb_List.Add(newbomb);
             fnum--;
-            fire.text = "점화 횟수:" + fnum;
+            fire.text = fnum.ToString();
             this.StartCoroutine(phase()); //페이스 코루틴을 호출해서 하나하나씩 터트림
         }
     }
