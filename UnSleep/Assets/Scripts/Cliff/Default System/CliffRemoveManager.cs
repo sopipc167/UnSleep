@@ -141,7 +141,6 @@ public class CliffRemoveManager : MonoBehaviour
         interactNum = 0;
         changeFlag = false;
         ChangeColor(Color.white);
-        changeFlag = false;
         tileList.Clear();
     }
 

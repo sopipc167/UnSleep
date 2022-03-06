@@ -41,12 +41,8 @@ public class CliffUIManager : MonoBehaviour
     //public Text progressText;
 
     private float currentPercent = 0f;
-    public int GetProgress
-    { get
-        {
-            return Mathf.RoundToInt(currentPercent);
-        }
-    }
+    public int GetProgress { get => Mathf.RoundToInt(currentPercent); }
+
 
     private void Start()
     {

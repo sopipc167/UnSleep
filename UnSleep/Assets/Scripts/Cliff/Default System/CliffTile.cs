@@ -17,13 +17,16 @@ public struct CliffType
 
 public class CliffTile : MonoBehaviour
 {
+    internal static float ALPHA_VALUE = 0.4f;
+
     public CliffType type;
 
     internal CliffTile parentTile = null;
-
-    internal bool canRevert = false;    //== destroyed
+    internal bool canRevert = false;    // == destroyed
     internal bool isDestroying = false;
     internal bool isReverting = false;
+    internal bool startAniFlag = true;
+
 
     private SpriteRenderer spriteRenderer;
     private ParticleSystem particle;
@@ -32,7 +35,14 @@ public class CliffTile : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         particle = transform.parent.GetChild(0).GetComponent<ParticleSystem>();
-        StartCoroutine(StartRotationCoroutine());
+    }
+
+    private void Start()
+    {
+        if (startAniFlag)
+        {
+            StartCoroutine(StartRotationCoroutine());
+        }
     }
 
     private void OnMouseEnter()
@@ -64,6 +74,11 @@ public class CliffTile : MonoBehaviour
         StartCoroutine(ClearShapeCouroutine());
     }
 
+    public void ChangeAlpha(float value)
+    {
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, value);
+    }
+
     public void ChangeColor(Color color)
     {
         spriteRenderer.color = color;
@@ -92,7 +107,7 @@ public class CliffTile : MonoBehaviour
         particle.Stop();
 
         Color spriteColor = spriteRenderer.color;
-        while (spriteColor.a > 0.4f)
+        while (spriteColor.a > ALPHA_VALUE)
         {
             spriteColor.a -= 0.6f * Time.deltaTime;
             spriteRenderer.color = spriteColor;
@@ -111,9 +126,6 @@ public class CliffTile : MonoBehaviour
         while (spriteColor.a < 0.99f)
         {
             spriteColor.a += 0.6f * Time.deltaTime;
-            spriteColor.r += 0.4f * Time.deltaTime;
-            spriteColor.g += 0.4f * Time.deltaTime;
-            spriteColor.b += 0.4f * Time.deltaTime;
             spriteRenderer.color = spriteColor;
             yield return null;
         }

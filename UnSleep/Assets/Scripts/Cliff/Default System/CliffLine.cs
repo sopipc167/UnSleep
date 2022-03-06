@@ -5,19 +5,19 @@ using UnityEngine;
 public class CliffLine : MonoBehaviour
 {
     private Camera mainCamera;
-    private LineRenderer lineRenderer;
+    protected LineRenderer lineRenderer;
 
-    private Vector3 startPos;
-    private Vector3 endPos;
+    protected Vector3 startPos;
+    protected Vector3 endPos;
     private Vector3 mousePos;
-    private Vector3 mouseDir;
+    protected Vector3 mouseDir;
 
-    private Transform targetPos;
-    private int InteractNum = 0;
+    protected Transform targetPos;
+    protected int interactNum = 0;
     private bool isStart = false;
 
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Awake()
     {
         mainCamera = Camera.main;
         lineRenderer = GetComponent<LineRenderer>();
@@ -26,7 +26,7 @@ public class CliffLine : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (isStart)
         {
@@ -39,7 +39,7 @@ public class CliffLine : MonoBehaviour
             {
                 endPos = mousePos;
                 endPos.z = 0f;
-                lineRenderer.SetPosition(InteractNum, endPos);
+                lineRenderer.SetPosition(interactNum, endPos);
             }
             else if (Input.GetMouseButtonUp(0))
             {
@@ -48,7 +48,7 @@ public class CliffLine : MonoBehaviour
         }
     }
 
-    public void DrawLine(Transform target)
+    public virtual void DrawLine(Transform target)
     {
         targetPos = target;
         startPos = target.position;
@@ -57,15 +57,15 @@ public class CliffLine : MonoBehaviour
         lineRenderer.enabled = true;
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, startPos);
-        InteractNum = 1;
+        interactNum = 1;
         isStart = true;
     }
 
-    public void SetPoint(Transform target)
+    public virtual void SetPoint(Transform target)
     {
         targetPos = target;
         startPos = target.position;
-        if (InteractNum % 2 != 0)
+        if (interactNum % 2 != 0)
         {
             startPos.z = 40f;
         }
@@ -75,8 +75,8 @@ public class CliffLine : MonoBehaviour
         }
 
         ++lineRenderer.positionCount;
-        lineRenderer.SetPosition(InteractNum, startPos);
-        ++InteractNum;
+        lineRenderer.SetPosition(interactNum, startPos);
+        ++interactNum;
     }
 
     public void StopDrawing()
