@@ -16,7 +16,6 @@ public class ObjectManager : MonoBehaviour
 
     private void Awake()
     {
-        //GetObjects(9);
         SetObjectOff();
     }
 
@@ -24,17 +23,17 @@ public class ObjectManager : MonoBehaviour
     {
         GameObject rootObject;
 
-        if (epi_num == 9)
+        if (epi_num == 2)
             rootObject = MonoBehaviour.Instantiate(cave_object[0]);
-        else if (epi_num == 19)
+        else if (epi_num == 6)
             rootObject = MonoBehaviour.Instantiate(cave_object[1]);
-        else if (epi_num == 27)
+        else if (epi_num == 11)
             rootObject = MonoBehaviour.Instantiate(cave_object[2]);
-        else if (epi_num == 50)
+        else if (epi_num == 15)
             rootObject = MonoBehaviour.Instantiate(cave_object[3]);
-        else if (epi_num == 56)
+        else if (epi_num == 16)
             rootObject = MonoBehaviour.Instantiate(cave_object[4]);
-        else if (epi_num == 65)
+        else if (epi_num == 17)
         {
             rootObject = MonoBehaviour.Instantiate(cave_object[5]);
             GearUI = MonoBehaviour.Instantiate(GearUI65);
@@ -42,9 +41,9 @@ public class ObjectManager : MonoBehaviour
             //GearUI.transform.position = OBJECT.position;
             GearUI.SetActive(false);
         }
-        else if (epi_num == 70)
+        else if (epi_num == 18)
             rootObject = MonoBehaviour.Instantiate(cave_object[6]);
-        else if (epi_num == 80)
+        else if (epi_num == 19)
             rootObject = MonoBehaviour.Instantiate(cave_object[7]);
         else 
             rootObject = MonoBehaviour.Instantiate(cave_object[0]);
@@ -77,7 +76,6 @@ public class ObjectManager : MonoBehaviour
             if (objects[i].activeSelf)
             {
                 objects[i].SetActive(false);
-                Debug.Log("꺼짐");
 
             }
         }
@@ -93,8 +91,6 @@ public class ObjectManager : MonoBehaviour
             {
                 ObjectCG = objects[i].GetComponent<CanvasGroup>();
                 ObjectCG.DOFade(0f, 0.5f);
-                Debug.Log("흐려짐");
-
             }
         }
         Invoke("SetObjectOff", 0.5f);

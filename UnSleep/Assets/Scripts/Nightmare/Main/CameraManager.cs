@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CameraManager : MonoBehaviour
 {
+    public RectTransform screen;
     public GameObject target;
     Vector3 targetPos;
     Vector3 originPos;
@@ -23,7 +24,6 @@ public class CameraManager : MonoBehaviour
     public bool isFrame;
 
     public bool isStart;
-    public bool isFirst;
 
     public TugOfWar Tug;
     public Image blood;
@@ -36,8 +36,12 @@ public class CameraManager : MonoBehaviour
     {
         if (isThree)
         {
-            isFirst = true;
             targetPos = new Vector3(152.03f, 0.3f, -10);
+        }
+        else
+        {
+            originPos = new Vector3(500, 500, 500);
+            targetPos = new Vector3(0, 0, -10);
         }
     }
 
@@ -53,10 +57,10 @@ public class CameraManager : MonoBehaviour
             targetPos = new Vector3(-0.4f, 0, -10);
         }
         else if (isThree && !isFrame && !Tug.isStart && !Tug.isEnd)
-            StartCoroutine(FrameWork());
+            //StartCoroutine(FrameWork());
 
-        if(originPos != targetPos_M)
-            transform.position = Vector3.Lerp(targetPos, transform.position, Time.deltaTime * smooth);
+
+        transform.position = Vector3.Lerp(targetPos, transform.position, Time.deltaTime * smooth);
     }
 
     public void fadeOut()
@@ -67,14 +71,6 @@ public class CameraManager : MonoBehaviour
     IEnumerator FrameWork()
     {
         isFrame = true;
-        if (isFirst)
-        {
-            TransTargetPos();
-            originPos = targetPos_M;
-            yield return new WaitForSeconds(1.2f);
-            isFirst = false;
-        }
-
 
         TransTargetPos();
         if (targetPos_M.y < max && targetPos_M.y > min)
@@ -117,6 +113,7 @@ public class CameraManager : MonoBehaviour
     {
         mousePos = Input.mousePosition;
         transPos = Camera.main.ScreenToWorldPoint(mousePos);
+        transPos = screen.InverseTransformPoint(transPos);
 
         targetPos_M = new Vector3(0, transPos.y, 0);
     }
