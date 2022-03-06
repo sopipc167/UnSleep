@@ -6,6 +6,7 @@ public class ShowCliffRevert : MonoBehaviour
 {
     private CliffTile[] tiles;
     private LineRenderer lineRenderer;
+    private bool flag = false;
 
     private WaitForSeconds delay1 = new WaitForSeconds(1.2f);
     private WaitForSeconds delay2 = new WaitForSeconds(0.5f);
@@ -20,7 +21,6 @@ public class ShowCliffRevert : MonoBehaviour
         {
             tiles[i] = item.GetChild(1).GetComponent<CliffTile>();
             tiles[i].startAniFlag = false;
-            tiles[i].ChangeAlpha(1f);
             tmp = item.position;
             if (i % 2 != 0) tmp.z = 40f;
             else tmp.z = 10f;
@@ -29,9 +29,18 @@ public class ShowCliffRevert : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        flag = true;
+        StartCoroutine(RevertCoroutine());
+    }
+
     private void OnEnable()
     {
-        StartCoroutine(RevertCoroutine());
+        if (flag)
+        {
+            StartCoroutine(RevertCoroutine());
+        }
     }
 
     private void OnDisable()
