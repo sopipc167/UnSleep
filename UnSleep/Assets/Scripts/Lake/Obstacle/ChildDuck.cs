@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChildDuck : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
+    private LakeBall ball;
 
     private void Awake()
     {
@@ -15,7 +16,12 @@ public class ChildDuck : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<LakeBall>().duckCnt += 1;
+            if (ball == null)
+            {
+                ball = collision.gameObject.GetComponent<LakeBall>();
+            }
+
+            ball.duckCnt += 1;
             StartCoroutine(DestroyCoroutine());
         }
     }
@@ -29,6 +35,6 @@ public class ChildDuck : MonoBehaviour
             spriteRenderer.color = AlphaColor;
             yield return null;
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }
