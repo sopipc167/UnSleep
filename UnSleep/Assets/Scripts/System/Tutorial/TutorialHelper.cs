@@ -27,6 +27,14 @@ public class TutorialHelper : MonoBehaviour
         puzzle = GetComponent<PuzzleTutorial>();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            puzzle.SetTutorial(maxSize, 1);
+        }
+    }
+
     void Start()
     {
         if (showAtStart)

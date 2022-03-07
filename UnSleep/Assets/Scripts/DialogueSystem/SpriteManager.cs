@@ -7,6 +7,7 @@ public class SpriteManager : MonoBehaviour
 {
     private readonly string url = "Assets/Sprites/BackGround/";
 
+
     public void LoadImage(Image target, string name, string extension = ".png")
     {
         byte[] byteTexture = System.IO.File.ReadAllBytes(url + name + extension);

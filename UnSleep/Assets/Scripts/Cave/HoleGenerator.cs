@@ -32,7 +32,7 @@ public class HoleGenerator : MonoBehaviour
             gi = Random.Range(0, 4);
             gy = Random.Range(400f, 500f) - 540f;
             gx = Random.Range(-400f, -340f);
-            Debug.Log(gx);
+
             hole_012[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(gx, gy);
             hole_012[0].GetComponent<Image>().sprite = hole_imgs[gi];
 

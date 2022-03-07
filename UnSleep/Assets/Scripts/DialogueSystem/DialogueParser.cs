@@ -6,14 +6,21 @@ using UnityEngine.UI;
 //파싱하여 딕셔너리에 모두 저장, 에피소드 시작 시 Awake()로 한방에 파싱  
 public class DialogueParser : MonoBehaviour
 {
-    public TextAsset csvData; //csv파일, 일단은 인스펙터에서 넣기
+    private TextAsset csvData; //csv파일, 일단은 인스펙터에서 넣기
     public static bool ParsingisFinish = false; //나중에 파싱 로딩할 때 끊김 방지용
     private string CharIdCell;
 
-  
+ 
+    private TextAsset LoadCSV()
+    {
+        int EpiId = Dialogue_Proceeder.instance.CurrentEpiID;
+        TextAsset csv = Resources.Load<TextAsset>("epi_csv/epi_" + EpiId.ToString());
+        return csv;
+    }
      
     public DialogueEvent[] Parse_Dialogue() //start에서 finish까지의 라인을 파싱 
     {
+        csvData = LoadCSV();
         List<DialogueEvent> diaEList = new List<DialogueEvent>(); //마지막에 return할 리스트, 각 요소는 대화 묶음
         
         string[] data = csvData.text.Split(new char[] { '\n' }); //개행문자 단위로 자름 (가로 한 줄)
@@ -57,10 +64,8 @@ public class DialogueParser : MonoBehaviour
 
             }
 
-
-
-            if (!row[12].Equals(""))
-                diaE.BGM = row[12];
+            if (!row[13].Equals("")) 
+                diaE.BGM = row[13]; //배경음
 
             List<Dialogue> dialogueList = new List<Dialogue>(); //파싱된 대사를 임시 저장할 리스트
            
@@ -97,12 +102,13 @@ public class DialogueParser : MonoBehaviour
                 }
 
                 if (!cur_row[11].Equals("")) //공란이 아니면 
-                    dia.BG = int.Parse(cur_row[11]); //배경
-                else
-                    dia.BG = -2; //공란이면 -2. 
+                    dia.BG = cur_row[11]; //배경
 
-                if (!cur_row[13].Equals(""))
-                    dia.SE = cur_row[13];
+                if (!cur_row[12].Equals("")) //공란이 아니면 
+                    dia.Content = cur_row[12]; //상호작용명
+
+                if (!cur_row[14].Equals(""))
+                    dia.SE = cur_row[14]; //효과음
 
                 dialogueList.Add(dia); //대사 한줄을 리스트에 추가 
 
@@ -121,7 +127,7 @@ public class DialogueParser : MonoBehaviour
 
 
             diaE.dialogues = dialogueList.ToArray(); //대사 리스트를 배열로 만들어서 저장
-            diaE.dialogues_size = diaE.dialogues.Length; //길이는 넣어놨으나.. 맨날 Length로 해서 없어질지도? 
+            diaE.dialogues_size = diaE.dialogues.Length; 
 
             diaEList.Add(diaE); //한 대화 묶음을 리스트에 추가
         }

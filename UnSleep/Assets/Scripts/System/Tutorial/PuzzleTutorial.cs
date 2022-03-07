@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class TutorialContent
 {
     public Sprite sprite; //튜토리얼 이미지
-    [TextArea(0, 3)]
+    [TextArea(0, 5)]
     public string explain; //설명 text 내용
 }
 
@@ -153,7 +153,7 @@ public class PuzzleTutorial : MonoBehaviour
     // idx의 정보를 보여줌
     private void ShowInfo(int infoIdx, int panlInfoIdx)
     {
-        //만약 제한 정보를 넘기거나 설명이 없는 칸은 빈 칸으로 남긴다.
+        // 만약 제한 정보를 넘기거나 설명이 없는 칸은 빈 칸으로 남긴다.
         if (infoIdx >= maxInfoSize || tutorialinfo[infoIdx].explain == string.Empty)
         {
             tutorialPages[panlInfoIdx].camera.SetActive(false);
@@ -175,7 +175,7 @@ public class PuzzleTutorial : MonoBehaviour
             tutorialPages[panlInfoIdx].camera.SetActive(true);
         }
 
-        //설명 텍스트
+        // 설명 텍스트
         tutorialPages[panlInfoIdx].text.text = tutorialinfo[infoIdx].explain;
     }
 
@@ -204,7 +204,7 @@ public class PuzzleTutorial : MonoBehaviour
         int idx = pageIdx * 3;
         for (int i = 0; i < PENEL_INFO_CNT; ++i)
         {
-            if (idx + i > maxInfoSize) break;
+            if (idx + i >= maxInfoSize) break;
             content = GetContent(i);
             if (content.Length == 0) break;
             content[pageIdx].SetActive(false);

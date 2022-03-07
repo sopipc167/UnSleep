@@ -20,7 +20,6 @@ public class Control : MonoBehaviour
         Select_UI = GameObject.Find("SelectUI");
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -53,8 +52,8 @@ public class Control : MonoBehaviour
 
 
 
-        /*
-                 if (Dia_UI.activeSelf == false)
+        
+        if (Dia_UI.activeSelf == false)
         {
 
         if (behaviour.Run(targetPos)) //Run에 전달하고, 리턴 bool값이 true면 
@@ -63,7 +62,7 @@ public class Control : MonoBehaviour
             }
         }
 
-         */
+         
 
 
 

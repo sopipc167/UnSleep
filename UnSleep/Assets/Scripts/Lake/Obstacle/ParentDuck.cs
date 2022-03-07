@@ -19,7 +19,9 @@ public class ParentDuck : MonoBehaviour
     }
     private void Update()
     {
-        if (!isChange && ball.duckCnt == childrenCnt)
+        if (isChange) return;
+
+        if (ball.duckCnt == childrenCnt)
         {
             isChange = true;
             gameObject.tag = "Untagged";
@@ -46,6 +48,8 @@ public class ParentDuck : MonoBehaviour
             spriteRenderer.color = AlphaColor;
             yield return null;
         }
-        Destroy(gameObject);
+        isChange = false;
+        gameObject.tag = "Wall";
+        gameObject.SetActive(false);
     }
 }

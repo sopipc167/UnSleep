@@ -10,7 +10,7 @@ public class LakeManager : MonoBehaviour
     public Color nonInterativeColor;
 
     [Range(1, 4)]
-    public static int currentPhase = 1;    //임시 데이터. 이후 싱글톤 데이터로
+    public static int currentPhase = 4;    //임시 데이터. 이후 싱글톤 데이터로
     public GameObject[] PhaseGroups;
 
     private Camera mainCamera;
@@ -32,7 +32,7 @@ public class LakeManager : MonoBehaviour
         mainCamera = Camera.main;
 
         //임시
-        if (currentPhase == 5)
+        if (currentPhase == 6)
         {
             gameObject.SetActive(false);
             return;
