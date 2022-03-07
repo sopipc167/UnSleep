@@ -80,6 +80,7 @@ public class Player : MonoBehaviour
                 targetPos.y = -2.85f;
             }
 
+
             if (transform.position == targetPos)
                 animator.SetBool("isMove", false);
 

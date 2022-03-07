@@ -1029,7 +1029,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634536, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634538, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1962,7 +1962,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &436431053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2022,7 +2022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 436431052}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.26, y: -1.19, z: 0}
+  m_LocalPosition: {x: 0.45, y: -1.19, z: 0}
   m_LocalScale: {x: -0.8, y: 0.8, z: 1}
   m_Children:
   - {fileID: 480947545}
@@ -4420,7 +4420,7 @@ PrefabInstance:
     - target: {fileID: 8528798682782122522, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: csvData
       value: 
-      objectReference: {fileID: 4900000, guid: 3c8eb6c856a948d4abda1b32308147ce, type: 3}
+      objectReference: {fileID: 4900000, guid: 066601a511dd65f499d5a8fe16d99b99, type: 3}
     - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: BG.Array.size
       value: 9
@@ -4559,7 +4559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682909620385, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8528798683032485725, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_RaycastTarget
@@ -4977,7 +4977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3312009997333351414, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3312009997333351415, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
       propertyPath: m_Enabled
@@ -5528,7 +5528,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1166384657
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7074,7 +7074,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563125557}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 151.88, y: 0.3, z: -10}
+  m_LocalPosition: {x: 1, y: 0.3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -7098,7 +7098,7 @@ MonoBehaviour:
   BG: {fileID: 0}
   isStop: 0
   isMiniGame: 0
-  isThree: 1
+  isThree: 0
   isFrame: 0
   isStart: 0
   Tug: {fileID: 337816009}
