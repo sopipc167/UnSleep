@@ -42,13 +42,9 @@ public class LakeBall : LakeMovement
 
     private void Awake()
     {
+        ballButtonPos = rightButton.transform.parent.GetComponent<RectTransform>();
         InitAccel(lineAcceleration, lineRotationAcceleration);
         BallUIOff();
-    }
-
-    private void Start()
-    {
-        ballButtonPos = rightButton.transform.parent.GetComponent<RectTransform>();
     }
 
     private void FixedUpdate()
@@ -251,28 +247,9 @@ public class LakeBall : LakeMovement
 
 
 
-    public void OnClickLevel1()
+    public void OnClickLevel(int level)
     {
-        LakeManager.currentPhase = 1;
-        TestLake.isOpen = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    public void OnClickLevel2()
-    {
-        LakeManager.currentPhase = 2;
-        TestLake.isOpen = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-
-    }
-    public void OnClickLevel3()
-    {
-        LakeManager.currentPhase = 3;
-        TestLake.isOpen = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    public void OnClickLevel4()
-    {
-        LakeManager.currentPhase = 4;
+        LakeManager.currentPhase = level;
         TestLake.isOpen = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

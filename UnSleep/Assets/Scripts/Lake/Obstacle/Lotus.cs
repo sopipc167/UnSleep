@@ -5,6 +5,7 @@ using UnityEngine;
 public class Lotus : MonoBehaviour
 {
     private LotusManager lotusManager;
+    private LakeBall ball;
     private bool isFirst = true;
 
     private void Start()
@@ -21,7 +22,10 @@ public class Lotus : MonoBehaviour
                 isFirst = false;
                 lotusManager.canMove = true;
 
-                var ball = collision.gameObject.GetComponent<LakeBall>();
+                if (ball == null)
+                {
+                    ball = collision.gameObject.GetComponent<LakeBall>();
+                }
                 lotusManager.velocity = ball.ballManager.velocity;
                 if (ball.ballManager.isRight)
                 {
@@ -41,5 +45,10 @@ public class Lotus : MonoBehaviour
             lotusManager.velocity = 0f;
             lotusManager.canMove = false;
         }
+    }
+
+    public void ReadyToStart()
+    {
+        isFirst = true;
     }
 }
