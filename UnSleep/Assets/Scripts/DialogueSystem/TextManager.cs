@@ -88,7 +88,7 @@ public class TextManager : MonoBehaviour
 
     private int[] cha_ids; //매 에피소드 당 등장하는 인물들 id를 담은 배열.
     //csv파일 최상단에 입력하도록 할 계획
-
+    public DiaEvent DE;
 
     void Awake()
     {
@@ -219,7 +219,10 @@ public class TextManager : MonoBehaviour
                     }
 
 
-
+                    if(DiaDic[Dia_index].dialogues[dialogues_index].Content == "lightDown")
+                    {
+                        DE.lightDown();
+                    }
 
 
 

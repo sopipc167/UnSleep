@@ -11,6 +11,11 @@ public class DiaPlayer : MonoBehaviour
     public Player player;
     Vector3 MousePosition;
 
+    public GameObject lightClick1;
+    public GameObject lightClick2;
+
+    public DiaEvent DE;
+
     // Update is called once per frame
     void Update()
     {
@@ -29,6 +34,13 @@ public class DiaPlayer : MonoBehaviour
             if (hitted_object)
             {
                 hit_info = hitted_object.transform.GetComponent<DiaInterInfo>();
+
+                /*if(hit_info.OnlyOnce[0] && hit_info.Obj_Diaid[0] == 704)
+                {
+                    lightClick2.SetActive(true);
+                    lightClick1.SetActive(false);
+                }*/
+
                 //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력
                 if (hitted_object.transform.tag.Equals("DiaInterClick")
                     && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false
@@ -63,8 +75,6 @@ public class DiaPlayer : MonoBehaviour
             Debug.Log("씬 전환");
             SceneManager.LoadScene(hit.ChangeSceneName);
         }
-
-
 
         Debug.Log("상호작용 대화 실행");
 
