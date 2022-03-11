@@ -25,7 +25,7 @@ public class ObjectManager : MonoBehaviour
 
         if (epi_num == 2)
             rootObject = MonoBehaviour.Instantiate(cave_object[0]);
-        else if (epi_num == 6)
+        else if (epi_num == 5)
             rootObject = MonoBehaviour.Instantiate(cave_object[1]);
         else if (epi_num == 11)
             rootObject = MonoBehaviour.Instantiate(cave_object[2]);

@@ -88,7 +88,10 @@ public class TextManager : MonoBehaviour
 
     private int[] cha_ids; //매 에피소드 당 등장하는 인물들 id를 담은 배열.
     //csv파일 최상단에 입력하도록 할 계획
-    public DiaEvent DE;
+
+    //7세
+    public bool isSeven;
+    public string con;
 
     void Awake()
     {
@@ -133,6 +136,8 @@ public class TextManager : MonoBehaviour
         if (DiaDic[Dia_index].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
 
+        if (isSeven)
+            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
     }
 
 
@@ -192,8 +197,11 @@ public class TextManager : MonoBehaviour
                         if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
                             dialogues_index++;
 
+                        if (isSeven)
+                            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
 
-                    }
+
+                }
                     else //대화 묶음 넘어갈 때
                     {
                         Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index); //대화 종료. 완수 조건에 현재 대화묶음id 추가
@@ -216,12 +224,6 @@ public class TextManager : MonoBehaviour
                         Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
                         SceneManager.LoadScene("DialogueTest");
 
-                    }
-
-
-                    if(DiaDic[Dia_index].dialogues[dialogues_index].Content == "lightDown")
-                    {
-                        DE.lightDown();
                     }
 
 

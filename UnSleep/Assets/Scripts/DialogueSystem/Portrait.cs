@@ -71,7 +71,7 @@ public class Portrait : MonoBehaviour
         {
             if (epi_id <= 0)
                 return 0;
-            else if (epi_id <= 3)
+            else if (epi_id <= 2)
                 return 20;
             else if (epi_id <= 5)
                 return 40;
@@ -88,7 +88,7 @@ public class Portrait : MonoBehaviour
         }
         else if (cha_id == 1004 || cha_id == 1005) //재준 장현
         {
-            if (epi_id <= 3)
+            if (epi_id <= 2)
                 return 0;
             else if (epi_id <= 5)
                 return 20;

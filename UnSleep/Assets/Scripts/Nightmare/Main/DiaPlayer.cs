@@ -14,7 +14,6 @@ public class DiaPlayer : MonoBehaviour
     public GameObject lightClick1;
     public GameObject lightClick2;
 
-    public DiaEvent DE;
 
     // Update is called once per frame
     void Update()

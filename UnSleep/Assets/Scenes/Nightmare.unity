@@ -1579,7 +1579,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 349265051}
-  - component: {fileID: 349265052}
   m_Layer: 0
   m_Name: DiaEvent
   m_TagString: Untagged
@@ -1601,19 +1600,6 @@ Transform:
   m_Father: {fileID: 1666733838}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &349265052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 349265050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e99963e9a2d406745aa951af5a62e40b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  light: {fileID: 639161580}
 --- !u!1 &356742842
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,9 +2264,8 @@ MonoBehaviour:
   Dialogue_system_manager: {fileID: 312500856}
   dia_hit_colliders: []
   player: {fileID: 436431055}
-  lightClick1: {fileID: 1750923788}
-  lightClick2: {fileID: 1067155322}
-  DE: {fileID: 349265052}
+  lightClick1: {fileID: 0}
+  lightClick2: {fileID: 0}
 --- !u!1 &445821343
 GameObject:
   m_ObjectHideFlags: 0
@@ -7927,7 +7912,7 @@ SpriteRenderer:
   m_Size: {x: 16, y: 16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1710479706
