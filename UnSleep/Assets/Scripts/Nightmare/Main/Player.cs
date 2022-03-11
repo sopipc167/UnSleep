@@ -44,6 +44,10 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(0.26f, 0.05f, 0);
             animator.SetBool("isRun", true);
         }
+        else
+        {
+            animator.SetBool("isSeven", true);
+        }
     }
 
     
@@ -76,6 +80,9 @@ public class Player : MonoBehaviour
                 targetPos.y = -2.85f;
             }
 
+            if (transform.position == targetPos)
+                animator.SetBool("isMove", false);
+
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         }
 
@@ -104,6 +111,7 @@ public class Player : MonoBehaviour
         }
 
         targetPos = new Vector3(transPos.x, transPos.y, 0);
+        animator.SetBool("isMove", true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
