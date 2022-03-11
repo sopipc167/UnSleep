@@ -111,7 +111,6 @@ public class TextManager : MonoBehaviour
 
         spriteManager = GetComponent<SpriteManager>();  //BG 조절을 위한 매니저 함수
 
-
     }
 
 
@@ -135,9 +134,6 @@ public class TextManager : MonoBehaviour
 
         if (DiaDic[Dia_index].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
-
-        if (isSeven)
-            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
     }
 
 
@@ -176,7 +172,6 @@ public class TextManager : MonoBehaviour
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
         if (Input.GetMouseButtonDown(0) && DiaUI.activeSelf == true  && LogUI.activeSelf == false && !EventSystem.current.IsPointerOverGameObject())
         {
-
 
 
                 if (isTyping)
