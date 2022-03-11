@@ -8,7 +8,7 @@ public class CameraManager : MonoBehaviour
 {
     public RectTransform screen;
     public GameObject target;
-    Vector3 targetPos;
+    public Vector3 targetPos;
     Vector3 originPos;
     public float smooth = 5.0f;
 
@@ -50,7 +50,10 @@ public class CameraManager : MonoBehaviour
     {
         if (!isStop && !isMiniGame && !isThree)
         {
-            targetPos = new Vector3(target.transform.position.x, 0, -10);
+            if(target.transform.position.x >= -0.6 && target.transform.position.x <= 19.45)
+            {
+                targetPos = new Vector3(target.transform.position.x, 0, -10);
+            }
         }
         else if (isMiniGame)
         {
@@ -59,8 +62,8 @@ public class CameraManager : MonoBehaviour
         else if (isThree && !isFrame && !Tug.isStart && !Tug.isEnd)
         {
             //StartCoroutine(FrameWork());
+            Debug.Log("아 설마");
         }
-
 
         transform.position = Vector3.Lerp(targetPos, transform.position, Time.deltaTime * smooth);
     }
