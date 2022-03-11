@@ -57,7 +57,9 @@ public class CameraManager : MonoBehaviour
             targetPos = new Vector3(-0.4f, 0, -10);
         }
         else if (isThree && !isFrame && !Tug.isStart && !Tug.isEnd)
+        {
             //StartCoroutine(FrameWork());
+        }
 
 
         transform.position = Vector3.Lerp(targetPos, transform.position, Time.deltaTime * smooth);
