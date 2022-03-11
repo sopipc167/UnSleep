@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다른 오브젝트간의 상호작용을 관장하는 스크립트
 {
@@ -99,6 +100,9 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         }
 
     }; //스테이지별 폭탄과 블럭의 위치를 배열로 만들음
+
+
+
     public GameObject block, bomb, magma; //각각 블럭 폭탄 마그마의 프리랩
     public GameObject Over, Clear; //게임클리어, 게임 오버 UI
     public Sprite X;
@@ -111,20 +115,20 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     List<bombs> Bomb_List = new List<bombs>(); //폭탄이 터질때 다음 폭탄들을 저장해주는 리스트
 
 
-    BombSound bombSound;
 
 
     public void Start()
     {
-        bombSound = GetComponent<BombSound>();
         GameBoard = GameObject.Find("GameBoard");
+        //SoundManager.Instance.PlayBGM("Clean and Dance - An Jone");
 
         Swap_List.Clear();
         if (gameboardint == 0)
         {
-            initialx = 13;
-            initialy = 11;
-            snum = 15;
+            initialx = 4;
+            initialy = 0;
+            snum = 8;
+
         }
         else if (gameboardint == 1)
         {
@@ -146,9 +150,10 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         }
         else if (gameboardint == 4)
         {
-            initialx = 4;
-            initialy = 0;
-            snum = 8;
+            initialx = 13;
+            initialy = 11;
+            snum = 15;
+
         }
         fnum = 1;
         swaping.text = snum.ToString();
@@ -398,7 +403,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     {
         while (Bomb_List.Count > 0) //폭탄 리스트가 빌때 까지
         {
-            bombSound.PlayBombSE();
+            SoundManager.Instance.PlaySE("boom");
             Explode(Bomb_List[0].getObj().GetComponent<BombBehavior>().BombArr, (int)Bomb_List[0].getPos().x, (int)Bomb_List[0].getPos().y);//계속 Explode함수를 호출
             Bomb_List.RemoveAt(0); //폭탄하나 폭발 했으면 리스트에서 삭제
             yield return new WaitForSeconds(0.5f);//한박자 쉼
@@ -412,5 +417,11 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             return true;
         else
             return false;
+    }
+
+    public void GotoNext()
+    {
+        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+        SceneManager.LoadScene("Mental_World_Map");
     }
 }

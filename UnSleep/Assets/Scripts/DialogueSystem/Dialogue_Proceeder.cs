@@ -29,6 +29,13 @@ public class Dialogue_Proceeder : MonoBehaviour
         CurrentDiaID = updateid;
     }
 
+    public void UpdateCurrentDiaIDPlus1() //현재 대화 id 갱신
+    {
+
+        CurrentDiaID++;
+    }
+
+
     public void AddCompleteCondition(int complete) //대화 종료시 완료 조건 리스트에 대화 id 추가
     {
         if (!Complete_Condition.Contains(complete))
