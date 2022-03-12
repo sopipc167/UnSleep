@@ -22,6 +22,11 @@ public class SceneTransEffectManager : MonoBehaviour
         fadeinout.Fade_InOut();
     }
 
+    public void WaitBlackOut(float waitsec)
+    {
+        fadeinout.Blackout_Func(waitsec);
+    }
+
     public void BlinkOpen()
     {
         //blink = GetComponent<BlinkAnimation>();

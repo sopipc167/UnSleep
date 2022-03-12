@@ -13,6 +13,35 @@ public class FadeInOut : MonoBehaviour
     float time = 0f;
     bool isPlaying = false;
 
+    public void Blackout_Func(float waitsec)
+    {
+
+        if (FADEINOUT.activeSelf == false)
+        {
+            FADEINOUT.SetActive(true);
+
+        }
+        FADE_panel = FADEINOUT.GetComponent<Image>();
+        start = 1f;
+        end = 0f;
+
+
+        StartCoroutine("Blackout_Co", waitsec);
+
+    }
+
+    IEnumerator Blackout_Co(float waitsec)
+    {
+
+        Color _color = FADE_panel.color;
+        _color.a = 1f;
+
+        FADE_panel.color = _color;
+
+        yield return new WaitForSeconds(waitsec);
+
+        StartCoroutine("fadeout");
+    }
 
 
     public void Fade_InOut()
