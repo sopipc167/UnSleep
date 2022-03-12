@@ -126,7 +126,7 @@ public class TextManager : MonoBehaviour
         
 
         Set_Dialogue_System();
-        STEManager.FadeInOut(); //테스트 위해 넣었습니다 원래는 페이드인/아웃
+        STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
 
         //배경 전환
         if (DiaDic[Dia_index].dialogues[0].BG != null)
