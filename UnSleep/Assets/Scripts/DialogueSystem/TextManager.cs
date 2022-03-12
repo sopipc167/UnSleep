@@ -134,6 +134,12 @@ public class TextManager : MonoBehaviour
 
         if (DiaDic[Dia_index].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
+
+        //멘탈월드 왔을 때 지정된 스폰 위치에서 스폰하도록=
+        if (!DiaDic[Dia_index].isStory)
+        {
+            GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
+        }
     }
 
 

@@ -2447,7 +2447,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.3364258, y: -6.3259277}
+  m_AnchoredPosition: {x: -3.3364258, y: -129}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8528798682103681902
@@ -2917,13 +2917,14 @@ MonoBehaviour:
   BackGround: {fileID: 8528798681765602456}
   Change_BackGround: {fileID: 3390130911827811946}
   isDnI: 0
-  Epi_num: 0
   Dia_index: 1801
   dialogues_index: 0
   Increasediaindex: 1
   STEManager: {fileID: 0}
   UI_Objects: {fileID: 0}
   DIALOGUE_Eventlist: []
+  isSeven: 0
+  con: 
 --- !u!114 &8528798682782122516
 MonoBehaviour:
   m_ObjectHideFlags: 0
