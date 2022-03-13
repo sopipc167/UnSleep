@@ -10,9 +10,12 @@ public class PlayerSpawn : MonoBehaviour
 
     void Start()
     {
+        Triggers = GameObject.FindWithTag("MapTrigger");
         spawn = Triggers.GetComponent<Spawn>();
 
     }
+
+    
 
     public void SetPlayerPos(string place)
     {

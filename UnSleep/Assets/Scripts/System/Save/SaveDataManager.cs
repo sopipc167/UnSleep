@@ -23,7 +23,15 @@ public class EpiProgress
 [Serializable]
 public class SystemOption
 {
-    //시스템 옵션
+    public float volume_master; //마스터볼륨
+    public float volume_bgm; //BGM 볼륨
+    public float volume_se; //SE 볼륨
+    public bool mute_master; //마스터 뮤트
+    public bool mute_bgm; //BGM 뮤트
+    public bool mute_se; //SE 뮤트
+    public int graphic; //그래픽 설정
+    public int resolutionType; //해상도 설정
+    public int screenType; //스크린 설정
 }
 
 public class SaveDataManager : MonoBehaviour
@@ -60,11 +68,38 @@ public class SaveDataManager : MonoBehaviour
     private void Start()
     {
 
-        //타이틀 씬으로 옮기기
-        SaveEpiProgress(0);
-        EP = LoadEpiProgress();
-        epiProgress = EP.progress;
     }
+
+    public void SaveSystemOption(float vm, float vb, float vs, bool mm, bool mb, bool ms, int g, int r, int s)
+    {
+        SystemOption systemOption = new SystemOption();
+
+        systemOption.volume_master = vm;
+        systemOption.volume_bgm = vb;
+        systemOption.volume_se = vs;
+
+        systemOption.mute_master = mm;
+        systemOption.mute_bgm = mb;
+        systemOption.mute_se = ms;
+
+        systemOption.graphic = g;
+        systemOption.resolutionType = r;
+        systemOption.screenType = s;
+
+        var textdata = SaveLoad.ObjectToJson(systemOption);
+        var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
+
+        SaveLoad.CreateJsonFile(Application.dataPath, "SystemOptionData", AEStextdata);
+
+    }
+
+    public YourInfo LoadSystemOption()
+    {
+        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.dataPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
+        return data;
+    }
+
+
 
     public void SaveYourInfo(string _name, int _person, int _season, int _message, string _dream)
     {
@@ -91,80 +126,17 @@ public class SaveDataManager : MonoBehaviour
     {
         EpiProgress ep = new EpiProgress();
 
-        if (epi_num == 0) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
+        if (epi_num == -1) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
         {
             ep.progress = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         }
         else
         {
             ep = LoadEpiProgress();
+            ep.progress[epi_num] = 1; //진행사항 세이브 
         }
 
 
-        switch (epi_num)
-        {
-            case 6:
-                ep.progress[0] = 1;
-                break;
-            case 7:
-                ep.progress[1] = 1;
-                break;
-            case 9:
-                ep.progress[2] = 1;
-                break;
-            case 15:
-                ep.progress[3] = 1;
-                break;
-            case 18:
-                ep.progress[4] = 1;
-                break;
-            case 19:
-                ep.progress[5] = 1;
-                break;
-            case 20:
-                ep.progress[6] = 1;
-                break;
-            case 21:
-                ep.progress[7] = 1;
-                break;
-            case 23:
-                ep.progress[8] = 1;
-                break;
-            case 24:
-                ep.progress[9] = 1;
-                break;
-            case 27:
-                ep.progress[10] = 1;
-                break;
-            case 28:
-                ep.progress[11] = 1;
-                break;
-            case 31:
-                ep.progress[12] = 1;
-                break;
-            case 32:
-                ep.progress[13] = 1;
-                break;
-            case 45:
-                ep.progress[14] = 1;
-                break;
-            case 50:
-                ep.progress[15] = 1;
-                break;
-            case 56:
-                ep.progress[16] = 1;
-                break;
-            case 65:
-                ep.progress[17] = 1;
-                break;
-            case 70:
-                ep.progress[18] = 1;
-                break;
-            case 80:
-                ep.progress[19] = 1;
-                break;
-
-        }
 
         var textdata = SaveLoad.ObjectToJson(ep);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
@@ -175,14 +147,19 @@ public class SaveDataManager : MonoBehaviour
 
     public EpiProgress LoadEpiProgress()
     {
-       if (!File.Exists(Path.Combine(Application.dataPath, "EpiProgressData.json"))) {
+       if (!FileExist()) {
             Debug.Log("No file");
-            SaveEpiProgress(0); //초회 세이브 파일 생성. 
+            SaveEpiProgress(-1); //초회 세이브 파일 생성. 
         }
         Debug.Log("File exist");
         var data = SaveLoad.LoadJsonFileAES<EpiProgress>(Application.dataPath, "EpiProgressData", "aes256=32CharA49AScdg5135=48Fk63");
+
+        epiProgress = data.progress;
         return data;
-        
     }
 
+    public bool FileExist()
+    {
+        return File.Exists(Path.Combine(Application.dataPath, "EpiProgressData.json"));
+    }
 }
