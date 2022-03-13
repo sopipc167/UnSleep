@@ -120,10 +120,10 @@ public class TextManager : MonoBehaviour
         //씬 시작 시 Dialogue_Proceeder에게서 정보 받아온다
 
         Dia_index = Dialogue_Proceeder.instance.CurrentDiaID; //현재 대화 묶음 id
-       //Complete_Condition = Dialogue_Proceeder.instance.Dia_Complete_Condition; //현재 완수한 대화 조건
+                                                              //Complete_Condition = Dialogue_Proceeder.instance.Dia_Complete_Condition; //현재 완수한 대화 조건
 
         GoToPrevButton.interactable = false;
-        
+
 
         Set_Dialogue_System();
         STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
@@ -134,6 +134,12 @@ public class TextManager : MonoBehaviour
 
         if (DiaDic[Dia_index].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
+
+        //멘탈월드 왔을 때 지정된 스폰 위치에서 스폰하도록=
+        if (!DiaDic[Dia_index].isStory)
+        {
+            GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
+        }
     }
 
 
@@ -150,14 +156,14 @@ public class TextManager : MonoBehaviour
 
 
 
-       // Complete_Condition = Dialogue_Proceeder.instance.Dia_Complete_Condition; //움,, 이거 왜 있지? 빼면 무서우니까 일단 주석으로 
-       //-> 이거 빼니까 정신세계 맵에서 상호작용으로 갱신된 완료 조건에 TextManager에 반영이 안되네요
+        // Complete_Condition = Dialogue_Proceeder.instance.Dia_Complete_Condition; //움,, 이거 왜 있지? 빼면 무서우니까 일단 주석으로 
+        //-> 이거 빼니까 정신세계 맵에서 상호작용으로 갱신된 완료 조건에 TextManager에 반영이 안되네요
 
-            // if (DiaUI.activeSelf == false && (DiaDic[Dia_index].Condition.Equals(Complete_Condition) || DiaDic[Dia_index].Condition.Equals("")))
-            //    DiaUI.SetActive(true); //대화 조건 새로 충족하면 대화 활성화: 대화 조건이 공란이면 조건x 무조건 실행
-            //-> 조건에 맞아야 대화 발생
+        // if (DiaUI.activeSelf == false && (DiaDic[Dia_index].Condition.Equals(Complete_Condition) || DiaDic[Dia_index].Condition.Equals("")))
+        //    DiaUI.SetActive(true); //대화 조건 새로 충족하면 대화 활성화: 대화 조건이 공란이면 조건x 무조건 실행
+        //-> 조건에 맞아야 대화 발생
 
-            //스토리 -> 대화 발생 조건 충족 -> 바로 활성화. 이부분은 주로 선택지 -> 대화로 돌아올 때 실행될 것. 
+        //스토리 -> 대화 발생 조건 충족 -> 바로 활성화. 이부분은 주로 선택지 -> 대화로 돌아올 때 실행될 것. 
         if (DiaDic[Dia_index].isStory && DiaUI.activeSelf == false)
         {
             if ((DiaDic[Dia_index].Condition.Length == 1 && DiaDic[Dia_index].Condition[0] == 0) || Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index].Condition))
@@ -170,47 +176,54 @@ public class TextManager : MonoBehaviour
 
 
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
-        if (Input.GetMouseButtonDown(0) && DiaUI.activeSelf == true  && LogUI.activeSelf == false && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0) && DiaUI.activeSelf == true && LogUI.activeSelf == false && !EventSystem.current.IsPointerOverGameObject())
         {
 
 
-                if (isTyping)
+            if (isTyping)
+            {
+                if (type_coroutine != null)
                 {
-                    if (type_coroutine != null)
+                    StopCoroutine(type_coroutine);
+                    LineText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
+                    isTyping = false;
+                }
+            }
+            else
+            {
+                if (dialogues_index < DiaDic[Dia_index].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
+                {
+
+
+                    if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
+                        dialogues_index++;
+
+                    if (isSeven)
+                        con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
+
+
+                }
+                else //대화 묶음 넘어갈 때
+                {
+                    Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index); //대화 종료. 완수 조건에 현재 대화묶음id 추가
+                    if (!DiaDic.ContainsKey(Dia_index + 1))
                     {
-                        StopCoroutine(type_coroutine);
-                        LineText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
-                        isTyping = false;
+                        Dialogue_Proceeder.instance.End = "E"; //음... 왜 string으로 했지? 조만간 윤지랑 얘기해서 bool로 바꿔버리자
+                        SaveDataManager.Instance.SaveEpiProgress(Dialogue_Proceeder.instance.CurrentEpiID); //현재 에피소드 완료 저장
+                        SceneManager.LoadScene("Diary");
                     }
-                }
-                else
-                {
-                    if (dialogues_index < DiaDic[Dia_index].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
-                    {
 
 
-                        if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
-                            dialogues_index++;
-
-                        if (isSeven)
-                            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
-
-
-                }
-                    else //대화 묶음 넘어갈 때
-                    {
-                        Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index); //대화 종료. 완수 조건에 현재 대화묶음id 추가
-                        
-                        dialogues_index = 0; //대사 인덱스 초기화
+                    dialogues_index = 0; //대사 인덱스 초기화
                     if (Increasediaindex)
                         STEManager.FadeInOut();
-                        //FadeInOut.GetComponent<FadeInOut>().Fade_InOut();
-                        First_portrait_pos_1 = 0; //이거도 초기화... 하지만 수정될 예정
+                    //FadeInOut.GetComponent<FadeInOut>().Fade_InOut();
+                    First_portrait_pos_1 = 0; //이거도 초기화... 하지만 수정될 예정
 
 
                     if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
                     {
-                        Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index+1); //Proceeder 업데이트.
+                        Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
                         SceneManager.LoadScene("Mental_World_Map");
 
                     }
@@ -224,21 +237,21 @@ public class TextManager : MonoBehaviour
 
 
                     if (DiaDic[Dia_index].isStory) //스토리모드
+                    {
+                        if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
                         {
-                            if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
+                            //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록. 
+                            //선택지 개수를 동적으로 바꾼다면 수정해야 함
+                            //211025추가) 선택지를 개별의 대화묶음으로 하여 int형으로 표현하도록 변경해야함
+                            Dia_index += 2;
+                            SelectA = false;
+                        }
+                        else
+                        {
+                            if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index + 1].Condition)) //다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
                             {
-                                //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록. 
-                                //선택지 개수를 동적으로 바꾼다면 수정해야 함
-                                //211025추가) 선택지를 개별의 대화묶음으로 하여 int형으로 표현하도록 변경해야함
-                                Dia_index += 2;
-                                SelectA = false;
-                            }
-                            else
-                            {
-                                if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index+1].Condition)) //다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
-                                {
-                                    Dia_index += 1; //다음 대화 묶음으로 
-                                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //Proceeder 업데이트.
+                                Dia_index += 1; //다음 대화 묶음으로 
+                                Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //Proceeder 업데이트.
 
                                 //BGM 전환
                                 if (DiaDic[Dia_index].BGM != null)
@@ -247,39 +260,30 @@ public class TextManager : MonoBehaviour
 
                             }
                             else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
-                                {
-                                    Increasediaindex = false;
-
-                                }
+                            {
+                                Increasediaindex = false;
 
                             }
 
                         }
-                        else //맵모드
-                        {
-                            Increasediaindex = false;
-                            DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
-                        }
-
-
-
-                    if (DiaDic[Dia_index].Eventname.Equals("E"))
-                        {
-                            Dialogue_Proceeder.instance.End = "E"; //<*************윤지에게 전달하기 마지막 자동 파라랑 조건 변수 새로 만들었음****>
-                            SceneManager.LoadScene("Diary");
-                        }
-
-            
-
 
                     }
+                    else //맵모드
+                    {
+                        Increasediaindex = false;
+                        DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
+                    }
 
-                    if (DiaDic[Dia_index].dialogues[dialogues_index].isSelect) //선택지인 경우
-                        Set_Select_System();
-                    else
-                        Set_Dialogue_System();
+
 
                 }
+
+                if (DiaDic[Dia_index].dialogues[dialogues_index].isSelect) //선택지인 경우
+                    Set_Select_System();
+                else
+                    Set_Dialogue_System();
+
+            }
 
 
 
@@ -316,7 +320,7 @@ public class TextManager : MonoBehaviour
         //    BackGround.sprite = BG[DiaDic[Dia_index].dialogues[dialogues_index].background];
 
 
- 
+
         Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //선택지 선택으로 변한 Dia_index로 Proceeder 업데이트.
 
 
@@ -491,14 +495,14 @@ public class TextManager : MonoBehaviour
     void Create_Log(int Dia_index, int dialogues_index) //Log 생성
     {
 
-        for (int i=0; i < dialogues_index; i++) //현재 대화 묶음의 처음 ~ 직전 대사까지 
+        for (int i = 0; i < dialogues_index; i++) //현재 대화 묶음의 처음 ~ 직전 대사까지 
         {
             GameObject log = MonoBehaviour.Instantiate(log_prefab); //프리팹 생성
             log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
 
             log.name = "log_content";
             //이름 대사 초상화id 가져오고
-            string NAME = DiaDic[Dia_index].dialogues[i].name; 
+            string NAME = DiaDic[Dia_index].dialogues[i].name;
             string CONTEXT = DiaDic[Dia_index].dialogues[i].contexts;
             int EMOTION = DiaDic[Dia_index].dialogues[i].portrait_emotion;
             float result; //이름(문자열)이 문자인지 숫자인지
@@ -522,7 +526,7 @@ public class TextManager : MonoBehaviour
                     log.GetComponent<SetLogContent>().Set(char_img, NAME, CONTEXT, Dia_index, i); //정보 넘겨주면 set
 
                 }
-                
+
             }
         }
     }
@@ -592,7 +596,7 @@ public class TextManager : MonoBehaviour
         DiaUI.SetActive(true);
     }
 
-  
+
 
     private IEnumerator fadein(Image target, Image Change_target, float start, float end, float FadeTime, string ImgName)
     {

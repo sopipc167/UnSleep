@@ -6,8 +6,8 @@ public class Dialogue_Proceeder : MonoBehaviour
 {
     public static Dialogue_Proceeder instance;
 
-    public int CurrentEpiID;
-    public int CurrentDiaID = 1801; //현재 대화 id
+    public int CurrentEpiID; //현재 에피소드 id (0~19)
+    public int CurrentDiaID; //현재 대화 id
     public List<int> Complete_Condition = new List<int>(); //완료 조건 리스트
     public string End; //일기장 펄럭펄럭용. 에피소드 끝 -> 일기장 전환시 "E"로 설정.
   
@@ -23,6 +23,12 @@ public class Dialogue_Proceeder : MonoBehaviour
         }
          DontDestroyOnLoad(gameObject);
     }
+
+    public void UpdateCurrentEpiID(int updateid) //현재 에피소드 id 갱신
+    {
+        CurrentEpiID = updateid;
+    }
+
 
     public void UpdateCurrentDiaID(int updateid) //현재 대화 id 갱신
     {
@@ -74,6 +80,36 @@ public class Dialogue_Proceeder : MonoBehaviour
         
     }
 
+
+    public void SetCurrentDiaID() //<------------ 일기장 -> 스토리 진입 시 호출------------->
+    {
+        switch (CurrentEpiID)
+        {
+            case 0: CurrentDiaID = 601; break;
+            case 1: CurrentDiaID = 701; break;
+            case 2: CurrentDiaID = 901; break;
+            case 3: CurrentDiaID = 1501; break;
+            case 4: CurrentDiaID = 1801; break;
+
+            case 5: CurrentDiaID = 1901; break;
+            case 6: CurrentDiaID = 1901; break;
+            case 7: CurrentDiaID = 2001; break;
+            case 8: CurrentDiaID = 2301; break;
+            case 9: CurrentDiaID = 2401; break;
+
+            case 10: CurrentDiaID = 2701; break;
+            case 11: CurrentDiaID = 2701; break;
+            case 12: CurrentDiaID = 3101; break;
+            case 13: CurrentDiaID = 3201; break;
+            case 14: CurrentDiaID = 4501; break;
+
+            case 15: CurrentDiaID = 5001; break;
+            case 16: CurrentDiaID = 5601; break;
+            case 17: CurrentDiaID = 6501; break;
+            case 18: CurrentDiaID = 7001; break;
+            case 19: CurrentDiaID = 8001; break;
+        }
+    }
 
 
 }

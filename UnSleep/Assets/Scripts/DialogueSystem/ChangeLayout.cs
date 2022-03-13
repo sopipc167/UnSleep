@@ -6,7 +6,6 @@ using DG.Tweening;
 
 public class ChangeLayout : MonoBehaviour
 {
-    //Animator Dia_animator;
 
     public RectTransform NAME;
     public RectTransform LINE;
@@ -14,24 +13,6 @@ public class ChangeLayout : MonoBehaviour
     public RectTransform speaker2;
 
 
-
-
-
-    void Start()
-    {
-        //Dia_animator = GetComponent<Animator>();
-
-    }
-
-    /*
-    // Update is called once per frame
-    void Update()
-    {
-        //Dia_animator.SetInteger("LayoutChange", LayoutChangeint);
-
-    }
-
-     */
 
     public void LayoutChange(int layoutnum)
     {
@@ -51,8 +32,8 @@ public class ChangeLayout : MonoBehaviour
         }
         else if (layoutnum == 4)
         {
-            LINE.DOAnchorPos(new Vector2(0, -240), 1);
-            NAME.DOAnchorPos(new Vector2(-500, -345), 1);
+            LINE.DOAnchorPos(new Vector2(0, -100), 1);
+            NAME.DOAnchorPos(new Vector2(0, -200), 1);
             speaker1.DOAnchorPos(new Vector2(-460, -1043), 1);
             speaker2.DOAnchorPos(new Vector2(460, -1043), 1);
         }

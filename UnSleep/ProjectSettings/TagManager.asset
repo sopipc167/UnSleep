@@ -25,6 +25,7 @@ TagManager:
   - Native
   - Monster
   - Hand
+  - MapTrigger
   layers:
   - Default
   - TransparentFX

@@ -35,4 +35,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cliff2.unity
     guid: e7c7ae4a5a1008b4c9a975d301248c58
+  - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: 89fd560c4d96d0c45b2e9dee63be404a
+  - enabled: 1
+    path: Assets/Scenes/Prologue.unity
+    guid: e88672c1da32c3645a8a933fb798e8e8
   m_configObjects: {}

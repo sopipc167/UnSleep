@@ -7,7 +7,7 @@ public class Behaviour : MonoBehaviour
     public float speed = 2.0f; //이동속도
     public float TurnSpeed = 10.0f; //시점 회전 속도
     private Rigidbody rigid;
-    Animator animator;
+    private Animator animator;
 
     // Start is called before the first frame update
     void Start()
