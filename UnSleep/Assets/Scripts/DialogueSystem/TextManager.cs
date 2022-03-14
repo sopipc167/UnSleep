@@ -126,7 +126,8 @@ public class TextManager : MonoBehaviour
 
 
         Set_Dialogue_System();
-        STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
+        if(!isSeven)
+            STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
 
         //배경 전환
         if (DiaDic[Dia_index].dialogues[0].BG != null)
@@ -215,7 +216,7 @@ public class TextManager : MonoBehaviour
 
 
                     dialogues_index = 0; //대사 인덱스 초기화
-                    if (Increasediaindex)
+                    if (Increasediaindex && !isSeven)
                         STEManager.FadeInOut();
                     //FadeInOut.GetComponent<FadeInOut>().Fade_InOut();
                     First_portrait_pos_1 = 0; //이거도 초기화... 하지만 수정될 예정
@@ -275,7 +276,8 @@ public class TextManager : MonoBehaviour
                     }
 
 
-
+                    if (isSeven)
+                        con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
                 }
 
                 if (DiaDic[Dia_index].dialogues[dialogues_index].isSelect) //선택지인 경우
@@ -588,7 +590,7 @@ public class TextManager : MonoBehaviour
     }
 
     public void SetDiaInMap()
-    {
+    { 
 
         Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
         dialogues_index = 0;
