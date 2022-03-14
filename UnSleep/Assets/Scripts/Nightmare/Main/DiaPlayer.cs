@@ -11,9 +11,7 @@ public class DiaPlayer : MonoBehaviour
     public Player player;
     Vector3 MousePosition;
 
-    public GameObject lightClick1;
-    public GameObject lightClick2;
-
+    public GameObject diaScene1;
 
     // Update is called once per frame
     void Update()
@@ -59,6 +57,9 @@ public class DiaPlayer : MonoBehaviour
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
+                }else if(dia_hit_colliders[i].tag == "SceneOver")
+                {
+                    diaScene1.SetActive(false);
                 }
             }
         }

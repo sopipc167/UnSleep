@@ -6,6 +6,7 @@ public class DiaEvent : MonoBehaviour
 {
     public TextManager TM;
     public GameObject[] ob;
+    public GameObject[] Dia;
     public GameObject FirstDia;
     public GameObject SecondDia;
     public int diaIndex;
@@ -29,6 +30,10 @@ public class DiaEvent : MonoBehaviour
         {
             switch (EventNum)
             {
+                case 0:
+                    nextLevel();
+                    isFirst = true;
+                    break;
                 case 1:
                     Shadow(false);
                     isFirst = true;
@@ -67,6 +72,11 @@ public class DiaEvent : MonoBehaviour
                     Sound(1);
                 Setting();
             }
+            else if(TM.con == "Next")
+            {
+                Setting();
+                EventNum = 0;
+            }
         }
     }
 
@@ -76,6 +86,13 @@ public class DiaEvent : MonoBehaviour
         TM.con = "NULL";
         diaGroupIndex = TM.Dia_index;
         diaIndex = TM.dialogues_index;
+    }
+
+    public void nextLevel()
+    {
+        //Debug.Log("i'm on the nextlevel");
+        Dia[diaGroupIndex - 701].SetActive(false);
+        Dia[diaGroupIndex - 700].SetActive(true);
     }
 
     public void Shadow(bool isOn)
@@ -96,7 +113,7 @@ public class DiaEvent : MonoBehaviour
 
     public void BearUp()
     {
-        ob[1].transform.localPosition = new Vector3(9.23f, 1, 0);
+        ob[1].transform.localPosition = new Vector3(10.15f, 0.58f, 0);
         ob[1].transform.eulerAngles = new Vector3(0, 0, 0);
     }
 
