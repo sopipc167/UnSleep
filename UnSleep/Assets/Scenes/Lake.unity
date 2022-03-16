@@ -17261,12 +17261,56 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: maxSize
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: showAtStart
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[0].maxInfo
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[0].id
+      value: 611
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[1].id
+      value: 2312
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[1].maxInfo
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[2].id
+      value: 3209
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[2].maxInfo
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[3].id
+      value: 7050
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[3].maxInfo
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[4].id
+      value: 7050
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[4].maxInfo
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5703343808980061984, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_Camera
