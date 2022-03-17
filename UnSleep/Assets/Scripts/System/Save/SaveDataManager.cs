@@ -93,6 +93,17 @@ public class SaveDataManager : MonoBehaviour
 
     }
 
+    //생각해봤는데 왜 클래스 만들어놓고 매개변수로 줬죠? 능지수준ㅋㅋㅋㅋ
+    public void SaveSystemOption(SystemOption systemOption)
+    {
+        var textdata = SaveLoad.ObjectToJson(systemOption);
+        var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
+
+        SaveLoad.CreateJsonFile(Application.dataPath, "SystemOptionData", AEStextdata);
+
+    }
+
+
     public YourInfo LoadSystemOption()
     {
         var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.dataPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
@@ -114,7 +125,19 @@ public class SaveDataManager : MonoBehaviour
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
         SaveLoad.CreateJsonFile(Application.dataPath, "YourInfoData", AEStextdata);
+
     }
+
+
+    public void SaveYourInfo(YourInfo info)
+    {
+
+        var textdata = SaveLoad.ObjectToJson(info);
+        var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
+
+        SaveLoad.CreateJsonFile(Application.dataPath, "YourInfoData", AEStextdata);
+    }
+
 
     public YourInfo LoadYourInfo()
     {
