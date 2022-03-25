@@ -6705,7 +6705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e5c0ba85cf562846ac5517c74e42573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameboardint: 0
+  gameboardint: 4
   block: {fileID: 3590953177188029754, guid: 5bc4974ad7bff72429463147acecec4f, type: 3}
   bomb: {fileID: 2322230362620232432, guid: 9c63d593f90647149836201c0d54f467, type: 3}
   magma: {fileID: 8817232817772142730, guid: 60067c4f487edda46a39d76712a6805d, type: 3}
