@@ -8,7 +8,7 @@ public class Spawn : MonoBehaviour
 {
     private Dictionary<string, Vector3> TriggerPosDic;
 
-    private void Start()
+    private void Awake()
     {
         SetTriggerPos();
     }
