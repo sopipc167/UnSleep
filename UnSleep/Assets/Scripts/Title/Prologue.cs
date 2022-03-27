@@ -7,9 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class Prologue : MonoBehaviour
 {
-    private string[] scripts = {"당신의 이름을 알려주세요",
-        "평소의 당신은 어떤 사람인가요?", "당신이 좋아하는 계절을 알려주세요",
-        "이중에서 듣고 싶은 말은 무엇인가요?", "당신의 꿈은 무엇인가요?"};
+    private string[] scripts = {"반가워. 넌 이름이 뭐야?",
+        "넌 어떤 사람이니?", "좋아하는 계절이 뭐야?",
+        "이중에서 어떤 말을 듣고 싶어?", "마지막으로 너의 꿈을 얘기해줄래?"};
 
     private YourInfo yourInfo; //정보
 
