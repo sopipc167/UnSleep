@@ -8,8 +8,6 @@ public class Clear_Condition : MonoBehaviour
     public GameObject[] Gear_Object;
     public GameObject Clear_UI;
     public int Level = 0;
-    private int Complete_Condition;
-    private int Complete_After_Diaid;
 
     public float ClearCount = 0f;
 
@@ -29,8 +27,6 @@ public class Clear_Condition : MonoBehaviour
     {
         if (Level == 0)
         {
-            Complete_Condition = 1830;
-            Complete_After_Diaid = 1811;
             if (CounterClockwise(Gear_Object[0]))
                 ClearCount += 1f*Time.deltaTime;
             else
@@ -129,8 +125,8 @@ public class Clear_Condition : MonoBehaviour
     public void Clear()
     {
         Clear_UI.SetActive(true);
-        Dialogue_Proceeder.instance.AddCompleteCondition(Complete_Condition);
-        Dialogue_Proceeder.instance.UpdateCurrentDiaID(Complete_After_Diaid);
+        //Dialogue_Proceeder.instance.AddCompleteCondition(Complete_Condition);
+        //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Complete_After_Diaid);
 
     }
 

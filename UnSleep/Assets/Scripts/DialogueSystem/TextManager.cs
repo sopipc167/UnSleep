@@ -126,7 +126,7 @@ public class TextManager : MonoBehaviour
 
 
         Set_Dialogue_System();
-        if(!isSeven)
+        if(isSeven)
             STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
 
         //배경 전환
@@ -356,6 +356,7 @@ public class TextManager : MonoBehaviour
 
         if (SE != null) //효과음 있으면 효과음 재생 
         {
+            Debug.Log(SE);
             SoundManager.Instance.PlaySE(SE);
 
         }
@@ -412,7 +413,11 @@ public class TextManager : MonoBehaviour
                     Speaker2.sprite = PorDic[int.Parse(NAME.ToString())][EMOTION + emotion_cnt(int.Parse(NAME.ToString()))];
                 else
                     Speaker2.sprite = PorDic[9999][EMOTION + 14]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
-                Speaker1.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+
+                if (Speaker1.sprite == null) //이전에 왼쪽 발화자가 없는 경우에는 표시하지 않음.
+                    Speaker1.color = new Color(0.5f, 0.5f, 0.5f, 0f);
+                else
+                    Speaker1.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             }
 
         }
