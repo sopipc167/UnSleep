@@ -8,16 +8,14 @@ public class Control : MonoBehaviour
     private Camera mainCamera; //카메라
     public Vector3 targetPos; //이동할 좌표
 
-    GameObject Dia_UI; //대화UI
-    GameObject Select_UI;
+    public GameObject Dia_UI; 
+    public GameObject Select_UI;
 
 
     void Start()
     {
         behaviour = GetComponent<Behaviour>();
         mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
-        Dia_UI = GameObject.Find("DiaUI");
-        Select_UI = GameObject.Find("SelectUI");
     }
 
     void Update()
@@ -53,7 +51,7 @@ public class Control : MonoBehaviour
 
 
         
-        if (Dia_UI.activeSelf == false)
+        if (Dia_UI.activeSelf == false && Select_UI.activeSelf == false)
         {
 
         if (behaviour.Run(targetPos)) //Run에 전달하고, 리턴 bool값이 true면 

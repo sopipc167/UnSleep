@@ -46,6 +46,8 @@ public class Dialogue_Proceeder : MonoBehaviour
     {
         if (!Complete_Condition.Contains(complete))
             Complete_Condition.Add(complete);
+
+        etcCase(complete);
     }
 
     public bool Satisfy_Condition(int[] condition) //input: 조건 배열
@@ -109,6 +111,14 @@ public class Dialogue_Proceeder : MonoBehaviour
             case 18: CurrentDiaID = 7001; break;
             case 19: CurrentDiaID = 8001; break;
         }
+    }
+
+    public void etcCase(int id) //진짜진짜 예외 처리
+    {
+
+        if (CurrentEpiID == 7 &&(id == 2009 || id == 2010))
+            Complete_Condition.Add(777);
+
     }
 
 
