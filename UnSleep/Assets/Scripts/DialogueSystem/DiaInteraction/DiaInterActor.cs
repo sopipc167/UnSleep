@@ -57,9 +57,9 @@ public class DiaInterActor : MonoBehaviour
             SceneManager.LoadScene(hit.ChangeSceneName);
         }
 
+        Debug.Log(hit.gameObject.name);
 
 
-        //Debug.Log("상호작용 대화 실행");
 
         int[] hit_Diaid = hit.Obj_Diaid;
         int event_cnt = hit_Diaid.Length;
@@ -86,6 +86,7 @@ public class DiaInterActor : MonoBehaviour
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
+                Debug.Log("상호작용 대화 실행");
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
                 Dialogue_system_manager.GetComponent<TextManager>().SetDiaInMap();
                 Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
@@ -96,7 +97,7 @@ public class DiaInterActor : MonoBehaviour
         }
 
 
-        //Debug.Log("실행 조건 불충분"); //디버깅용 
+        Debug.Log("실행 조건 불충분"); //디버깅용 
     }
 
 }
