@@ -559,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 1901
+      value: 2001
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -567,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled
@@ -959,6 +959,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8528798681124546643, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6de86941009f4234b8a0cb688fbb33da, type: 3}
+    - target: {fileID: 8528798681124546643, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8528798681149987615, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -970,6 +978,18 @@ PrefabInstance:
     - target: {fileID: 8528798681149987615, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 460
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528798681541586595, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: bebff56ff97b03444a00e93780d88fd8, type: 3}
+    - target: {fileID: 8528798681541586595, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528798681541586595, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8528798681765602456, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_Maskable
@@ -1026,6 +1046,14 @@ PrefabInstance:
     - target: {fileID: 8528798682089432713, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528798682103681875, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6de86941009f4234b8a0cb688fbb33da, type: 3}
+    - target: {fileID: 8528798682103681875, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682120478723, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_Color.r
@@ -1222,6 +1250,18 @@ PrefabInstance:
     - target: {fileID: 8528798683032485727, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528798683113094209, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: bebff56ff97b03444a00e93780d88fd8, type: 3}
+    - target: {fileID: 8528798683113094209, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528798683113094209, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8571790700920214147, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchoredPosition.y

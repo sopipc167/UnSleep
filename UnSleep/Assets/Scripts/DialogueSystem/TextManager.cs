@@ -152,8 +152,9 @@ public class TextManager : MonoBehaviour
             GoToPrevButton.interactable = true;
 
 
-        if (Dia_index != Dialogue_Proceeder.instance.CurrentDiaID)
-            Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
+        //if (Dia_index != Dialogue_Proceeder.instance.CurrentDiaID)
+        //    Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
+
 
 
 
@@ -185,6 +186,7 @@ public class TextManager : MonoBehaviour
             {
                 if (type_coroutine != null)
                 {
+                    
                     StopCoroutine(type_coroutine);
                     LineText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
                     isTyping = false;
@@ -196,8 +198,10 @@ public class TextManager : MonoBehaviour
                 {
 
 
-                    if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
+                    if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행 
+                    {
                         dialogues_index++;
+                    }
 
                     if (isSeven)
                         con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
@@ -215,7 +219,6 @@ public class TextManager : MonoBehaviour
                     }
 
 
-                    dialogues_index = 0; //대사 인덱스 초기화
                     if (Increasediaindex && !isSeven)
                         STEManager.FadeInOut();
                     //FadeInOut.GetComponent<FadeInOut>().Fade_InOut();
@@ -235,6 +238,7 @@ public class TextManager : MonoBehaviour
 
                     }
 
+                    dialogues_index = 0; //대사 인덱스 초기화
 
 
                     if (DiaDic[Dia_index].isStory) //스토리모드
@@ -343,6 +347,8 @@ public class TextManager : MonoBehaviour
 
 
 
+        Debug.Log(Dia_index.ToString() + " - " + dialogues_index.ToString());
+
         if (LAYOUT == 3 && !isDnI)
         {
             //GetComponent<Run_DnI>().Run_Direc_N_Inter(DNIIDX);
@@ -422,11 +428,13 @@ public class TextManager : MonoBehaviour
 
         }
 
-        //LineText.text = CONTEXT; //대사 출력
-        if (!isTyping)
-        {
-            type_coroutine = StartCoroutine(OnType(0.05f, CONTEXT));
-        }
+      
+        //이전 대사 출력 효과 코루틴을 멈춘 후 비우고 새로운 대사 시작 (220403수정)
+        if (type_coroutine != null)
+            StopCoroutine(type_coroutine);
+        LineText.text = "";
+        type_coroutine = StartCoroutine(OnType(0.05f, CONTEXT));
+        
     }
 
     public void CombackfromDnI()
@@ -550,9 +558,12 @@ public class TextManager : MonoBehaviour
     void Select(int nextDiaKey, bool isA) //선택지 선택
     {
         Dia_index = nextDiaKey; //다음 대화 묶음 id
+        dialogues_index = 0; //대사 idx 초기화를 먼저 해야 갱신이 됨
+        Set_Dialogue_System();
+
+        Dialogue_Proceeder.instance.UpdateCurrentDiaID(nextDiaKey);
         SelectUI.SetActive(false); //선택지 UI끄고 대화 UI키기
         DiaUI.SetActive(true);
-        dialogues_index = 0; //대사 idx 초기화
         SelectA = isA; //A를 눌렀으면 true, Dia_index 하나 더 올리는 flag 
     }
 
@@ -599,6 +610,7 @@ public class TextManager : MonoBehaviour
 
         Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
         dialogues_index = 0;
+        Debug.Log("Inmap = " + Dia_index.ToString() + " - " + dialogues_index.ToString());
         Set_Dialogue_System();
         DiaUI.SetActive(true);
     }

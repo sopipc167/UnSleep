@@ -36,62 +36,66 @@ public class MapGenerator : MonoBehaviour
     {
         string[] Selected_Data;
 
-        /*
-         if (20세 파트2) {
+        
+         if (Dialogue_Proceeder.instance.CurrentEpiID == 7 && Dialogue_Proceeder.instance.AlreadyDone(2014)) {
             RowLength = 3;
             parse_start = 18;
 
         }
-
-         */
-
-        switch (Dialogue_Proceeder.instance.CurrentEpiID)
+         else
         {
-            case 2:
-                RowLength = 4;
-                parse_start = 1;
-                break;
-            case 5:
-                RowLength = 4;
-                parse_start = 6;
-                break;
-            case 7:
-                RowLength = 6;
-                parse_start = 11;
-                break;
-            case 9:
-                RowLength = 5;
-                parse_start = 22;
-                break;
-            case 11:
-                RowLength = 4;
-                parse_start = 28;
-                break;
-            case 15:
-                RowLength = 5;
-                parse_start = 33;
-                break;
-            case 16:
-                RowLength = 4;
-                parse_start = 39;
-                break;
-            case 17:
-                RowLength = 3;
-                parse_start = 44;
-                break;
-            case 18:
-                RowLength = 1;
-                parse_start = 48;
-                break;
-            case 19:
-                RowLength = 2;
-                parse_start = 50;
-                break;
-            default:
-                RowLength = 4;
-                parse_start = 1;
-                break;
+            switch (Dialogue_Proceeder.instance.CurrentEpiID)
+            {
+                case 2:
+                    RowLength = 4;
+                    parse_start = 1;
+                    break;
+                case 5:
+                    RowLength = 4;
+                    parse_start = 6;
+                    break;
+                case 7:
+                    RowLength = 6;
+                    parse_start = 11;
+                    break;
+                case 9:
+                    RowLength = 5;
+                    parse_start = 22;
+                    break;
+                case 11:
+                    RowLength = 4;
+                    parse_start = 28;
+                    break;
+                case 15:
+                    RowLength = 5;
+                    parse_start = 33;
+                    break;
+                case 16:
+                    RowLength = 4;
+                    parse_start = 39;
+                    break;
+                case 17:
+                    RowLength = 3;
+                    parse_start = 44;
+                    break;
+                case 18:
+                    RowLength = 1;
+                    parse_start = 48;
+                    break;
+                case 19:
+                    RowLength = 2;
+                    parse_start = 50;
+                    break;
+                default:
+                    RowLength = 4;
+                    parse_start = 1;
+                    break;
+            }
+
         }
+
+
+
 
 
         string[] tmpstring = MapTable.text.Split(new char[] { '\n' });

@@ -20,9 +20,10 @@ public class DiaInterActor : MonoBehaviour
             if (Physics.Raycast(dia_ray, out hitted_object))
             {
                 hit_info = hitted_object.transform.GetComponent<DiaInterInfo>();
-                //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력
+                //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력 + 220405추가 선택지 UI도 꺼져있어야 함
                 if (hitted_object.transform.tag.Equals("DiaInterClick") 
                     && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false
+                    && Dialogue_system_manager.GetComponent<TextManager>().SelectUI.activeSelf == false
                     && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance)
                     DialogueInteraction(hit_info);
             }
@@ -52,13 +53,13 @@ public class DiaInterActor : MonoBehaviour
 
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
-            Debug.Log("씬 전환");
+            //Debug.Log("씬 전환");
             SceneManager.LoadScene(hit.ChangeSceneName);
         }
 
 
 
-        Debug.Log("상호작용 대화 실행");
+        //Debug.Log("상호작용 대화 실행");
 
         int[] hit_Diaid = hit.Obj_Diaid;
         int event_cnt = hit_Diaid.Length;
@@ -95,7 +96,7 @@ public class DiaInterActor : MonoBehaviour
         }
 
 
-        Debug.Log("실행 조건 불충분"); //디버깅용 
+        //Debug.Log("실행 조건 불충분"); //디버깅용 
     }
 
 }
