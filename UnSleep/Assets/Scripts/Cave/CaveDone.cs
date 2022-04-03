@@ -34,9 +34,9 @@ public class CaveDone : MonoBehaviour
                 GoMWM();
             else if (CurDiaId == 2017)
                 GoDT();
-
-
         }
+        else if (CurEpiId == 9)
+            GoMWM();
     }
 
     private void GoMWM()

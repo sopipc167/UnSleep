@@ -11133,7 +11133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 2313
+      value: 2419
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -11153,7 +11153,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled
@@ -13015,7 +13015,7 @@ MonoBehaviour:
   - {fileID: 7226818315916549423, guid: ec086795903513c4f825060364eb63c2, type: 3}
   - {fileID: 7226818315916549423, guid: ec086795903513c4f825060364eb63c2, type: 3}
   - {fileID: 4321417361713812353, guid: 9c5a7182a659c48458aecb71fec3fcc3, type: 3}
-  - {fileID: 1670557377053002228, guid: 4efb4dd042387dc45a115df6aa4443e8, type: 3}
+  - {fileID: 989046279983483107, guid: 2922fae8eae743944a25e042bf1a4773, type: 3}
   - {fileID: 1670557377053002228, guid: 4efb4dd042387dc45a115df6aa4443e8, type: 3}
   - {fileID: 1670557377053002228, guid: 4efb4dd042387dc45a115df6aa4443e8, type: 3}
   - {fileID: 1670557377053002228, guid: 4efb4dd042387dc45a115df6aa4443e8, type: 3}
