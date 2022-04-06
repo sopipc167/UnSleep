@@ -1393,6 +1393,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6484870065636851150, guid: 8331fce996c2d0f4c8be7cefe6f3d656, type: 3}
   m_PrefabInstance: {fileID: 60474419}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &65268626
 GameObject:
   m_ObjectHideFlags: 0
@@ -6205,6 +6206,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+=======
+>>>>>>> ohmin
 --- !u!1001 &68297433
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62029,6 +62032,7 @@ PrefabInstance:
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: showAtStart
       value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: maxSize

@@ -137,7 +137,7 @@ public class CliffTile : MonoBehaviour
     private IEnumerator ClearShapeCouroutine()
     {
         isDestroying = true;
-        particle.Stop();
+        particle.IsAlive(false);
 
         Color spriteColor = Color.white;
         Vector3 scale = transform.localScale;

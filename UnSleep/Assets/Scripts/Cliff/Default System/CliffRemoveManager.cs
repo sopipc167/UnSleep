@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CliffRemoveManager : MonoBehaviour
 {
@@ -157,5 +158,13 @@ public class CliffRemoveManager : MonoBehaviour
             i.ClearPhase();
         }
         cliffTiles.Clear();
+
+        StartCoroutine(ChangeSceneCoroutine(2f));
+    }
+
+    private IEnumerator ChangeSceneCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        SceneManager.LoadScene("Mental_World_Map");
     }
 }
