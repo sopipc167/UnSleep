@@ -34,6 +34,12 @@ public class ShowLakeMovement : MonoBehaviour
     protected void OnDisable()
     {
         StopAllCoroutines();
+        ball.StopBall();
+        
+        foreach (var item in buttons)
+        {
+            item.color = Color.white;
+        }
     }
 
     protected virtual IEnumerator MoveTargetCoroutine()
@@ -44,7 +50,6 @@ public class ShowLakeMovement : MonoBehaviour
             // 위치 조정
             ballManager.SetPositionAndRotation(defaultBallManagerPos, defaultBallManagerRot);
             ball.transform.SetPositionAndRotation(defaultBallPos, defaultBallRot);
-
             ball.BallUIOn();
 
             Color tempColor;

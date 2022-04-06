@@ -185,7 +185,8 @@ public class LakeBall : LakeMovement
         {
             TestLake.isOpen = true;
         }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        SceneManager.LoadScene("Mental_World_Map");
     }
 
     public void StopBall()
