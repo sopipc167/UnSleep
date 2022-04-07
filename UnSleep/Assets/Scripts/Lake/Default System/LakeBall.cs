@@ -245,7 +245,7 @@ public class LakeBall : LakeMovement
 
     public void OnClickLevel(int level)
     {
-        LakeManager.currentPhase = level;
+        //LakeManager.currentPhase = level;
         TestLake.isOpen = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
