@@ -7,8 +7,7 @@ public enum CliffCheckType { None, Color, Shape, All, AllDiff }
 
 public class CliffManager : MonoBehaviour
 {
-    [Header("현재 페이즈"), Range(1, 6)]
-    public static int phase = 1;   //후에 싱글톤 데이터로
+    public int phase;
 
     [Header("참조")]
     public Transform phaseGroup;
@@ -52,35 +51,56 @@ public class CliffManager : MonoBehaviour
 
     private void SetPhaseOption()
     {
+        switch (Dialogue_Proceeder.instance.CurrentEpiID)
+        {
+            case 611:
+                limitedOption = false;
+                additionalOption = false;
+                phase = 1;
+                break;
+            case 2: break;
+            case 3: break;
+            case 4: break;
+            case 5: break;
+            case 6: break;
+            default:
+                break;
+        }
         if (phase == 1)
         {
             limitedOption = false;
             additionalOption = false;
+            phase = 1;
         }
         else if (phase == 2)
         {
             limitedOption = false;
             additionalOption = false;
+            phase = 2;
         }
         else if (phase == 3)
         {
             limitedOption = true;
             additionalOption = false;
+            phase = 3;
         }
         else if (phase == 4)
         {
             limitedOption = true;
             additionalOption = false;
+            phase = 4;
         }
         else if (phase == 5)
         {
             limitedOption = true;
             additionalOption = true;
+            phase = 5;
         }
         else if (phase == 6)
         {
             limitedOption = true;
             additionalOption = true;
+            phase = 6;
         }
     }
 
