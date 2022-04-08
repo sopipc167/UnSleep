@@ -8,6 +8,13 @@ public class LotusManager : LakeMovement
     internal bool isRight = false;
     internal bool isLeft = false;
 
+    public void Stop()
+    {
+        isRight = false;
+        isLeft = false;
+        velocity = 0f;
+    }
+
     private void Awake()
     {
         InitAccel(0.06f);
@@ -19,12 +26,12 @@ public class LotusManager : LakeMovement
         {
             if (isRight)
             {
-                transform.eulerAngles += Vector3.forward * velocity;
+                transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + velocity));
                 Accelerate();
             }
             else if (isLeft)
             {
-                transform.eulerAngles += Vector3.back * velocity;
+                transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - velocity));
                 Accelerate();
             }
             else

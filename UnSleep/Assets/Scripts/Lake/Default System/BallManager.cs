@@ -23,29 +23,38 @@ public class BallManager : LakeMovement
         InitAccel(rotateAcceleration, lineRotationAcceleration);
     }
 
+    public void Stop()
+    {
+        isRight = false;
+        isLeft = false;
+        isRightStop = false;
+        isLeftStop = false;
+        velocity = 0f;
+    }
+
     private void FixedUpdate()
     {
         if (isRight)
         {
-            transform.eulerAngles += new Vector3(0, 0, velocity);
+            transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + velocity));
             Accelerate();
             RotateBall(ball, false, false);
         }
         else if (isLeft)
         {
-            transform.eulerAngles += new Vector3(0, 0, -velocity);
+            transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - velocity));
             Accelerate();
             RotateBall(ball, true, false);
         }
         else if (isRightStop)
         {
-            transform.eulerAngles += new Vector3(0, 0, -velocity);
+            transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z - velocity));
             SlowdownRotate();
             RotateBall(ball, true, true);
         }
         else if (isLeftStop)
         {
-            transform.eulerAngles += new Vector3(0, 0, velocity);
+            transform.rotation = Quaternion.Euler(new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, transform.eulerAngles.z + velocity));
             SlowdownRotate();
             RotateBall(ball, false, true);
         }

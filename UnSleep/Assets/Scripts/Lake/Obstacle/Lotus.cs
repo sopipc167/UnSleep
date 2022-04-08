@@ -8,7 +8,13 @@ public class Lotus : MonoBehaviour
     private LakeBall ball;
     private bool isFirst = true;
 
-    private void Start()
+    public void ResetData()
+    {
+        gameObject.tag = "Untagged";
+        isFirst = true;
+    }
+
+    private void Awake()
     {
         lotusManager = transform.parent.GetComponent<LotusManager>();
     }
@@ -45,10 +51,5 @@ public class Lotus : MonoBehaviour
             lotusManager.velocity = 0f;
             lotusManager.canMove = false;
         }
-    }
-
-    public void ReadyToStart()
-    {
-        isFirst = true;
     }
 }

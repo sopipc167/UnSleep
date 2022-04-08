@@ -9,8 +9,7 @@ public class LakeManager : MonoBehaviour
     public Color changeColor;
     public Color nonInterativeColor;
 
-    [Range(1, 4)]
-    public static int currentPhase = 4;    //임시 데이터. 이후 싱글톤 데이터로
+    private int currentPhase;
     public GameObject[] PhaseGroups;
 
     private Camera mainCamera;
@@ -27,15 +26,21 @@ public class LakeManager : MonoBehaviour
     private float angleOffset;
     private bool isDragging = false;
 
-    void Start()
+    private void Awake()
     {
         mainCamera = Camera.main;
+    }
 
-        //임시
-        if (currentPhase == 6)
+    void Start()
+    {
+        // 현재 페이즈 찾기
+        switch (Dialogue_Proceeder.instance.CurrentEpiID)
         {
-            gameObject.SetActive(false);
-            return;
+            case 0: currentPhase = 0; break;
+            case 8: currentPhase = 8; break;
+            case 13: currentPhase = 13; break;
+            case 18: currentPhase = 18; break;
+            default: currentPhase = 19; break;
         }
 
         //페이즈 설정
