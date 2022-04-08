@@ -125,39 +125,40 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         //SoundManager.Instance.PlayBGM("Clean and Dance - An Jone");
 
         Swap_List.Clear();
-        if (gameboardint == 0)
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
         {
             initialx = 13;
             initialy = 11;
             snum = 15;
-
+            gameboardint = 3;
         }
-        else if (gameboardint == 1)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 11)
         {
             initialx = 6;
             initialy = 0;
-            snum = 7;
+            snum = 9;
+            gameboardint = 0;
         }
-        else if (gameboardint == 2)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 15)
         {
             initialx = 0;
             initialy = 2;
-            snum = 9;
+            snum = 11;
+            gameboardint = 1;
         }
-        else if (gameboardint == 3)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 16)
         {
             initialx = 0;
             initialy = 3;
-            snum = 11;
+            snum = 8;
+            gameboardint = 2;
         }
-        else if (gameboardint == 4)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 3)
         {
-
             initialx = 4;
             initialy = 0;
             snum = 8;
-
-
+            gameboardint = 4;
         }
         fnum = 1;
         swaping.text = snum.ToString();

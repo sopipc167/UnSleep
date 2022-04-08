@@ -160,6 +160,12 @@ public class CliffRemoveManager : MonoBehaviour
         }
         cliffTiles.Clear();
 
+        StartCoroutine(ChangeSceneCoroutine(2f));
+    }
+
+    private IEnumerator ChangeSceneCoroutine(float delay)
+    {
+        yield return new WaitForSeconds(delay);
         clearCanvas.ClearPuzzle(1f);
     }
 }

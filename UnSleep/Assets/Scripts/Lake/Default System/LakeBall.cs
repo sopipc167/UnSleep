@@ -187,8 +187,10 @@ public class LakeBall : LakeMovement
             ballManager.velocity *= 0.95f;
             yield return delay;
         }
+
         Stop();
 
+        
         puzzleClear.ClearPuzzle();
     }
 

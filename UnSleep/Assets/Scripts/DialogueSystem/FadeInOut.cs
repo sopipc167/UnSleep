@@ -59,14 +59,11 @@ public class FadeInOut : MonoBehaviour
             FADEINOUT.SetActive(true);
 
         }
-
         StartCoroutine("fadein");
 
         start = 1f;
         end = 0f;
         StartCoroutine("fadeout");
-
-
 
     }
 
