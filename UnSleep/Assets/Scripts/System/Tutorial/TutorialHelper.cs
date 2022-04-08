@@ -27,6 +27,7 @@ public class TutorialHelper : MonoBehaviour
         puzzle = GetComponent<PuzzleTutorial>();
     }
 
+    // DUMMY
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
@@ -37,17 +38,18 @@ public class TutorialHelper : MonoBehaviour
 
     void Start()
     {
+        // DUMMY
         if (showAtStart)
         {
             puzzle.SetTutorial(maxSize, 1);
             return;
         }
 
-        foreach (var item in info)
+        for (int i = info.Length - 1; i >= 0; --i)
         {
-            if (Dialogue_Proceeder.instance.CurrentEpiID == item.id)
+            if (Dialogue_Proceeder.instance.CurrentEpiID >= info[i].id)
             {
-                currentInfo = item;
+                currentInfo = info[i];
                 puzzle.SetTutorial(currentInfo.maxInfo, (currentInfo.maxInfo - 1) / 3);
                 break;
             }

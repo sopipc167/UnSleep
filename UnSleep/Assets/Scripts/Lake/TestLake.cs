@@ -17,10 +17,10 @@ public class TestLake : MonoBehaviour
 
     private void OnEnable()
     {
-        if (LakeManager.currentPhase == 5)
-        {
-            LakeManager.currentPhase = 1;
-            clear.SetActive(true);
-        }
+        //if (LakeManager.currentPhase == 5)
+        //{
+        //    LakeManager.currentPhase = 1;
+        //    clear.SetActive(true);
+        //}
     }
 }

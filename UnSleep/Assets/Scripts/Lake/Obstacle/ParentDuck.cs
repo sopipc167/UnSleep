@@ -13,10 +13,18 @@ public class ParentDuck : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private bool isChange = false;
 
+    public void ResetData()
+    {
+        isChange = false;
+        spriteRenderer.color = Color.white;
+        gameObject.tag = "Wall";
+    }
+
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+
     private void Update()
     {
         if (isChange) return;

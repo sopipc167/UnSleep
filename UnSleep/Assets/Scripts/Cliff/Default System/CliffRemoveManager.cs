@@ -8,6 +8,7 @@ public class CliffRemoveManager : MonoBehaviour
     [Header("참조")]
     public LineRenderer lineEffect;
     public LayerMask shapeLayer;
+    public PuzzleClear clearCanvas;
 
     //전체 타일 저장
     public HashSet<CliffTile> cliffTiles = new HashSet<CliffTile>();
@@ -165,7 +166,6 @@ public class CliffRemoveManager : MonoBehaviour
     private IEnumerator ChangeSceneCoroutine(float delay)
     {
         yield return new WaitForSeconds(delay);
-        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1(); //씬 이동 후 다음 대사를 말하기 위해 하나 슬쩍 넣었습니다
-        SceneManager.LoadScene("Mental_World_Map");
+        clearCanvas.ClearPuzzle(1f);
     }
 }

@@ -6,24 +6,29 @@ using UnityEngine.UI;
 public class ShowLakeMovement : MonoBehaviour
 {
     public LakeBall ball;
-    public Transform ballManager;
+    public BallManager ballManager;
     public Image[] buttons;
     public Color changeColor;
 
-    protected Vector3 defaultBallPos;
-    protected Quaternion defaultBallRot;
+    private Vector3 bPos;
+    private Quaternion bRot;
+    private Vector3 bScl;
 
-    protected Vector3 defaultBallManagerPos;
-    protected Quaternion defaultBallManagerRot;
+    private Vector3 bmPos;
+    private Quaternion bmRot;
+    private Vector3 bmScl;
 
     protected readonly WaitForSeconds delay = new WaitForSeconds(0.1f);
 
-    protected virtual void Awake()
+    protected virtual void Start()
     {
-        defaultBallPos = ball.transform.position;
-        defaultBallRot = ball.transform.rotation;
-        defaultBallManagerPos = ballManager.position;
-        defaultBallManagerRot = ballManager.rotation;
+        bPos = ball.transform.localPosition;
+        bRot = ball.transform.localRotation;
+        bScl = ball.transform.localScale;
+
+        bmPos = ballManager.transform.localPosition;
+        bmRot = ballManager.transform.localRotation;
+        bmScl = ballManager.transform.localScale;
     }
 
     protected void OnEnable()
@@ -34,22 +39,35 @@ public class ShowLakeMovement : MonoBehaviour
     protected void OnDisable()
     {
         StopAllCoroutines();
-        ball.StopBall();
-        
+        ResetData();
+    }
+
+    protected virtual void ResetData()
+    {
+        ball.Stop();
+        ballManager.Stop();
+        ball.BallUIOff();
+
         foreach (var item in buttons)
         {
             item.color = Color.white;
         }
+
+        ball.transform.localPosition = bPos;
+        ball.transform.localRotation = bRot;
+        ball.transform.localScale = bScl;
+
+        ballManager.transform.localPosition = bmPos;
+        ballManager.transform.localRotation = bmRot;
+        ballManager.transform.localScale = bmScl;
     }
 
-    protected virtual IEnumerator MoveTargetCoroutine()
+    protected IEnumerator MoveTargetCoroutine()
     {
         yield return delay;
         while (true)
         {
-            // 위치 조정
-            ballManager.SetPositionAndRotation(defaultBallManagerPos, defaultBallManagerRot);
-            ball.transform.SetPositionAndRotation(defaultBallPos, defaultBallRot);
+            ResetData();
             ball.BallUIOn();
 
             Color tempColor;
@@ -89,7 +107,6 @@ public class ShowLakeMovement : MonoBehaviour
                 yield return delay;
                 yield return new WaitUntil(() => ball.rightButton.activeSelf);
             }
-
         }
     }
 }
