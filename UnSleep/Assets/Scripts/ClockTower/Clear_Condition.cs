@@ -15,13 +15,13 @@ public class Clear_Condition : MonoBehaviour
     public GameObject pointA, pointB;
 
 
-    private void Start()
+    private void OnEnable()
     {
-       // FadeInOut fadeInOut = GameObject.Find("FadeInOut").GetComponent<FadeInOut>();
-       // fadeInOut.Fade_InOut();
-
-
+        if (Clear_UI.activeSelf) //클리어 UI가 켜져있으면 끄기
+            Clear_UI.SetActive(false);
     }
+
+    
 
     void Update()
     {
@@ -128,6 +128,12 @@ public class Clear_Condition : MonoBehaviour
         //Dialogue_Proceeder.instance.AddCompleteCondition(Complete_Condition);
         //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Complete_After_Diaid);
 
+    }
+
+    public void resetClear() //2개 이상의 스테이지가 나오는 경우 클리어를 초기화
+    {
+        ClearCount = 0f;
+        Clear_UI.SetActive(false);
     }
 
     bool Clockwise(GameObject Static_Gear)

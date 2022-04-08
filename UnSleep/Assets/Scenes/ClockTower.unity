@@ -1937,54 +1937,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8440239402523619337, guid: f3bdc538dfff61946a5d33692a5d1555, type: 3}
   m_PrefabInstance: {fileID: 7606978711837369512}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &176328254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 176328255}
-  - component: {fileID: 176328256}
-  m_Layer: 5
-  m_Name: GotoMW
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &176328255
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176328254}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2123197892}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &176328256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176328254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bf13b73995e56e468ad4b8f6c5704de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &192867788 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7158655911026007336, guid: 71b06b97ceafe0e40894bcc99e67501d, type: 3}
@@ -5317,7 +5269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &494633459
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7128,6 +7080,7 @@ GameObject:
   - component: {fileID: 677382292}
   - component: {fileID: 677382295}
   - component: {fileID: 677382294}
+  - component: {fileID: 677382296}
   m_Layer: 0
   m_Name: EtcManager
   m_TagString: Untagged
@@ -7274,6 +7227,30 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &677382296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677382291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb1191e1f166584484f22b4f669a20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levels:
+  - {fileID: 494633458}
+  - {fileID: 2096671377}
+  - {fileID: 1349909955}
+  - {fileID: 847534559}
+  - {fileID: 1820770183}
+  - {fileID: 1727996286}
+  - {fileID: 1997618740}
+  - {fileID: 745363539}
+  - {fileID: 648166235}
+  - {fileID: 135043239}
+  - {fileID: 919429095}
 --- !u!224 &679896522 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7457202164435480836, guid: 698eae337f9bbd84d842d7ff2e48df9f, type: 3}
@@ -11417,9 +11394,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 176328256}
-        m_TargetAssemblyTypeName: GotoMentaWorld_Script, Assembly-CSharp
-        m_MethodName: GotoMentalWorld
+      - m_Target: {fileID: 677382296}
+        m_TargetAssemblyTypeName: ClocktowerStageManager, Assembly-CSharp
+        m_MethodName: GotoNextBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13240,7 +13217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1081515758}
   m_Layer: 5
-  m_Name: Level (5)
+  m_Name: Deleted Level (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14273,7 +14250,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: BypassReverbZones
@@ -22815,7 +22792,7 @@ RectTransform:
   - {fileID: 1555099819}
   - {fileID: 1089039439}
   m_Father: {fileID: 2123197892}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -23979,19 +23956,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: info.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: info.Array.data[0].id
-      value: 18
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: info.Array.data[1].id
-      value: 0
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: showAtStart
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: maxSize
@@ -24000,6 +23977,10 @@ PrefabInstance:
     - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: info.Array.data[0].maxInfo
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[1].maxInfo
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5703343808980061984, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_Camera
@@ -25053,7 +25034,6 @@ RectTransform:
   m_Children:
   - {fileID: 1991962373}
   - {fileID: 963267074}
-  - {fileID: 176328255}
   - {fileID: 1977686534}
   m_Father: {fileID: 726457459}
   m_RootOrder: 1

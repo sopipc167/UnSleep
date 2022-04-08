@@ -84,7 +84,8 @@ public class TextManager : MonoBehaviour
     Dictionary<int, string> NAMEDic = new Dictionary<int, string>() //이름 딕셔너리. 캐릭터 id가 있는 주요 인물들
     {
         {1000,"잠재우미" },{1001,"도문"}, {1002,"어머니"}, {1003, "아버지"},
-        {1004, "재준"}, {1005, "장현"}, {1006, "새나"}, {1007, "이비"}
+        {1004, "재준"}, {1005, "장현"}, {1006, "새나"}, {1007, "이비"},
+        {1008, "구광일"}, {1009, "고준일"}
     };
 
     private int[] cha_ids; //매 에피소드 당 등장하는 인물들 id를 담은 배열.
@@ -233,7 +234,7 @@ public class TextManager : MonoBehaviour
                         SceneManager.LoadScene("Mental_World_Map");
 
                     }
-                    else if (!DiaDic[Dia_index].isStory && DiaDic[Dia_index + 1].isStory) //정신세계->스토리
+                    else if (!DiaDic[Dia_index].isStory && DiaDic[Dia_index + 1].isStory) //정신세계(퍼즐)->스토리
                     {
                         Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
                         SceneManager.LoadScene("DialogueTest");
@@ -249,8 +250,11 @@ public class TextManager : MonoBehaviour
                         {
                             //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록. 
                             //선택지 개수를 동적으로 바꾼다면 수정해야 함
-                            //211025추가) 선택지를 개별의 대화묶음으로 하여 int형으로 표현하도록 변경해야함
-                            Dia_index += 2;
+                            if (Dialogue_Proceeder.instance.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
+                                Dia_index++;
+                            else
+                                Dia_index += 2;
+                            Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index);
                             SelectA = false;
                         }
                         else
@@ -576,7 +580,7 @@ public class TextManager : MonoBehaviour
 
     public int emotion_cnt(int cha_id) //우측 초상화 가져오기 위한 단위 - 표정 개수
     {
-        if (cha_id == 1002 || cha_id == 1003) //어머니 아버지
+        if (cha_id == 1002 || cha_id == 1003 || cha_id == 1008 || cha_id == 1009) //어머니 아버지 구광일 고준일
             return 3;
         else if (cha_id >= 1000 && cha_id <= 1007) //잠재우미 도문 재준 장현 새나 이비
             return 10;

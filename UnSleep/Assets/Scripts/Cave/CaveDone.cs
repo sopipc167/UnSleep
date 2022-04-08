@@ -35,7 +35,7 @@ public class CaveDone : MonoBehaviour
             else if (CurDiaId == 2017)
                 GoDT();
         }
-        else if (CurEpiId == 9)
+        else if (CurEpiId == 9 || CurEpiId == 11 || CurEpiId == 15)
             GoMWM();
     }
 

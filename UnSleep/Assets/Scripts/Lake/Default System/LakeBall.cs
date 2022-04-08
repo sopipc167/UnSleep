@@ -186,6 +186,7 @@ public class LakeBall : LakeMovement
             TestLake.isOpen = true;
         }
 
+        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1(); //대사 인덱스+1 슬쩍 넣어놓고 갑니다 ㅎ
         SceneManager.LoadScene("Mental_World_Map");
     }
 

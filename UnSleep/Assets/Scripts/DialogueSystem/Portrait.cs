@@ -9,8 +9,8 @@ public class Portrait : MonoBehaviour
     private Sprite[] Portraits;
     
     //얘네 켜서 인스펙터로 점검
-    //public Sprite[] DebugCheck;
-    //public List<Sprite> DebugCheckList;
+    public Sprite[] DebugCheck;
+    public List<Sprite> DebugCheckList;
 
 
 
@@ -31,6 +31,7 @@ public class Portrait : MonoBehaviour
             for (int j = 0; j < emotion_cnt(cha_id[i]) * 2; j++, por_idx++) //한 초상화를 좌우 묶음으로
             {
                 Por_list.Add(Portraits[por_idx]); //필요한 초상화를 Por_list에 넣기 (ex. 교복 도문이 좌10 우10 총 20개를 하나의 리스트에 넣기)
+
             }
 
             PorDic.Add(cha_id[i], Por_list.ToArray()); //(캐릭터 id, 초상화 배열)을 딕셔너리에 추가
@@ -53,7 +54,7 @@ public class Portrait : MonoBehaviour
 
     public int emotion_cnt(int cha_id)
     {
-        if (cha_id == 1002 || cha_id == 1003) //어머니 아버지
+        if (cha_id == 1002 || cha_id == 1003 || cha_id == 1008 || cha_id == 1009) //어머니 아버지 구광일 고준일
             return 3;
         else if (cha_id >= 1000 && cha_id <= 1007) //잠재우미 도문 재준 장현 새나 이비
             return 10;
@@ -77,7 +78,7 @@ public class Portrait : MonoBehaviour
                 return 40;
             else if (epi_id <= 9)
                 return 60;
-            else if (epi_id <= 12) //도문이 턱시도는 예외로 처리하기
+            else if (epi_id <= 13) //도문이 턱시도는 예외로 처리하기
                 return 80;
             else if (epi_id <= 17)
                 return 100;
@@ -136,6 +137,10 @@ public class Portrait : MonoBehaviour
             else
                 return 60; //직장인
 
+        }
+        else if (cha_id == 1008 || cha_id == 1009)
+        {
+            return 0;
         }
         else
             return -1;
