@@ -30,6 +30,8 @@ public class PuzzleClear : MonoBehaviour
 
         ani.SetBool("isStart", true);
         yield return new WaitForSeconds(_endDelay);
+
+        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1(); //씬 이동 후 다음 대사를 말하기 위해 하나 슬쩍 넣었습니다
         SceneManager.LoadScene("Mental_World_Map");
     }
 }
