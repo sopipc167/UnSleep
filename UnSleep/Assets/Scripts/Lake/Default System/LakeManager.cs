@@ -36,11 +36,11 @@ public class LakeManager : MonoBehaviour
         // 현재 페이즈 찾기
         switch (Dialogue_Proceeder.instance.CurrentEpiID)
         {
-            case 0: currentPhase = 0; break;
-            case 8: currentPhase = 8; break;
-            case 13: currentPhase = 13; break;
-            case 18: currentPhase = 18; break;
-            default: currentPhase = 19; break;
+            case 0: currentPhase = 1; break;
+            case 8: currentPhase = 2; break;
+            case 13: currentPhase = 3; break;
+            case 18: currentPhase = 4; break;
+            default: currentPhase = 5; break;
         }
 
         //페이즈 설정

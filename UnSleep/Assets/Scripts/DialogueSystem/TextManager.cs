@@ -62,8 +62,7 @@ public class TextManager : MonoBehaviour
 
     public int Dia_index;
     public int dialogues_index = 0;
-    private bool showSpeaker2When1 = false; //발화자 1일때 2를 회색으로 출력할 것인지
-    private bool showSpeaker1When2 = false; //발화자 2일때 1을 회색으로 출력할 것인지
+    private int First_portrait_pos_1 = 0;
 
 
     [Tooltip("클릭 상호작용시 처음 인덱스가 넘어가버리는 현상 방지. true일때만 대화 진행")]
@@ -127,7 +126,7 @@ public class TextManager : MonoBehaviour
 
 
         Set_Dialogue_System();
-        if(isSeven)
+        if(!isSeven)
             STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
 
         //배경 전환
@@ -153,9 +152,8 @@ public class TextManager : MonoBehaviour
             GoToPrevButton.interactable = true;
 
 
-        //if (Dia_index != Dialogue_Proceeder.instance.CurrentDiaID)
-        //    Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
-
+        if (Dia_index != Dialogue_Proceeder.instance.CurrentDiaID)
+            Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
 
 
 
@@ -187,7 +185,6 @@ public class TextManager : MonoBehaviour
             {
                 if (type_coroutine != null)
                 {
-                    
                     StopCoroutine(type_coroutine);
                     LineText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
                     isTyping = false;
@@ -199,10 +196,8 @@ public class TextManager : MonoBehaviour
                 {
 
 
-                    if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행 
-                    {
+                    if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
                         dialogues_index++;
-                    }
 
                     if (isSeven)
                         con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
@@ -220,12 +215,12 @@ public class TextManager : MonoBehaviour
                     }
 
 
+                    dialogues_index = 0; //대사 인덱스 초기화
                     if (Increasediaindex && !isSeven)
                         STEManager.FadeInOut();
+                    //FadeInOut.GetComponent<FadeInOut>().Fade_InOut();
+                    First_portrait_pos_1 = 0; //이거도 초기화... 하지만 수정될 예정
 
-                    //대화 묶음 넘어갈 때 초상화 초기화
-                    showSpeaker2When1 = false;
-                    showSpeaker1When2 = false;
 
                     if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
                     {
@@ -240,7 +235,6 @@ public class TextManager : MonoBehaviour
 
                     }
 
-                    dialogues_index = 0; //대사 인덱스 초기화
 
 
                     if (DiaDic[Dia_index].isStory) //스토리모드
@@ -349,10 +343,9 @@ public class TextManager : MonoBehaviour
 
 
 
-
         if (LAYOUT == 3 && !isDnI)
         {
-            //GetComponent<Run_DnI>().Run_Direc_N_Inter(DNIIDX);
+            // GetComponent<Run_DnI>().Run_Direc_N_Inter(DNIIDX);
             isDnI = true;
             Increasediaindex = false;
 
@@ -363,7 +356,6 @@ public class TextManager : MonoBehaviour
 
         if (SE != null) //효과음 있으면 효과음 재생 
         {
-            Debug.Log(SE);
             SoundManager.Instance.PlaySE(SE);
 
         }
@@ -394,7 +386,6 @@ public class TextManager : MonoBehaviour
                 else //엑스트라
                     Speaker1.sprite = PorDic[9999][EMOTION];
 
-                showSpeaker1When2 = true; //스피커1에 이미지가 들어있으므로 회색처리해도 됨
                 Speaker2.color = new Color(0f, 0f, 0f, 0f); //우측 투명하게
 
             }
@@ -407,10 +398,8 @@ public class TextManager : MonoBehaviour
                 else
                     Speaker1.sprite = PorDic[9999][EMOTION];
 
-                showSpeaker1When2 = true; //스피커1에 이미지가 들어있으므로 회색처리해도 됨
 
-
-                if (!showSpeaker2When1) //처음 나오는 발화자 id 1이면 2에 듣는 상대가 존재x 
+                if (First_portrait_pos_1 == 0) //처음 나오는 발화자 id 1이면 2에 듣는 상대가 존재x -> 근데 약간 꼬인게 있어서 수정 예정
                     Speaker2.color = new Color(0.5f, 0.5f, 0.5f, 0f); //우측 안보이게
                 else
                     Speaker2.color = new Color(0.5f, 0.5f, 0.5f, 1f); //우측 회색으로
@@ -423,25 +412,16 @@ public class TextManager : MonoBehaviour
                     Speaker2.sprite = PorDic[int.Parse(NAME.ToString())][EMOTION + emotion_cnt(int.Parse(NAME.ToString()))];
                 else
                     Speaker2.sprite = PorDic[9999][EMOTION + 14]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
-
-                showSpeaker2When1 = true; //스피커2에 이미지가 들어있으므로 회색처리해도 됨
-
-
-                if (Speaker1.sprite == null || !showSpeaker1When2) //현재 대화묶음 기준 왼쪽 발화자가 없는 경우에는 표시하지 않음.
-                    Speaker1.color = new Color(0.5f, 0.5f, 0.5f, 0f);
-                else
-                    Speaker1.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                Speaker1.color = new Color(0.5f, 0.5f, 0.5f, 1f);
             }
 
         }
 
-      
-        //이전 대사 출력 효과 코루틴을 멈춘 후 비우고 새로운 대사 시작 (220403수정)
-        if (type_coroutine != null)
-            StopCoroutine(type_coroutine);
-        LineText.text = "";
-        type_coroutine = StartCoroutine(OnType(0.05f, CONTEXT));
-        
+        //LineText.text = CONTEXT; //대사 출력
+        if (!isTyping)
+        {
+            type_coroutine = StartCoroutine(OnType(0.05f, CONTEXT));
+        }
     }
 
     public void CombackfromDnI()
@@ -565,12 +545,9 @@ public class TextManager : MonoBehaviour
     void Select(int nextDiaKey, bool isA) //선택지 선택
     {
         Dia_index = nextDiaKey; //다음 대화 묶음 id
-        dialogues_index = 0; //대사 idx 초기화를 먼저 해야 갱신이 됨
-        Set_Dialogue_System();
-
-        Dialogue_Proceeder.instance.UpdateCurrentDiaID(nextDiaKey);
         SelectUI.SetActive(false); //선택지 UI끄고 대화 UI키기
         DiaUI.SetActive(true);
+        dialogues_index = 0; //대사 idx 초기화
         SelectA = isA; //A를 눌렀으면 true, Dia_index 하나 더 올리는 flag 
     }
 
@@ -617,7 +594,6 @@ public class TextManager : MonoBehaviour
 
         Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
         dialogues_index = 0;
-        Debug.Log("Inmap = " + Dia_index.ToString() + " - " + dialogues_index.ToString());
         Set_Dialogue_System();
         DiaUI.SetActive(true);
     }
