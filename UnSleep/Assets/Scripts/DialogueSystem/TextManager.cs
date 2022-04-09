@@ -352,10 +352,9 @@ public class TextManager : MonoBehaviour
 
         if (LAYOUT == 3 && !isDnI)
         {
-            GetComponent<Run_DnI>().Run_Direc_N_Inter(0);
+            GetComponent<Run_DnI>().Run_Direc_N_Inter();
             isDnI = true;
             Increasediaindex = false;
-            print(123);
         }
 
 
