@@ -26,7 +26,7 @@ public class SceneChanger
     {
         // 순서대로 세팅하긴 했는데 추후 바뀔까봐...
         //SceneManager.LoadScene((int)type);
-        SceneManager.LoadScene(GetSceneName(SceneType.Volcano));
+        SceneManager.LoadScene(GetSceneName(type));
     }
 
     public static string GetSceneName(SceneType type)
