@@ -349,10 +349,10 @@ public class TextManager : MonoBehaviour
 
         if (LAYOUT == 3 && !isDnI)
         {
-            // GetComponent<Run_DnI>().Run_Direc_N_Inter(DNIIDX);
+            GetComponent<Run_DnI>().Run_Direc_N_Inter(0);
             isDnI = true;
             Increasediaindex = false;
-
+            print(123);
         }
 
 
@@ -364,7 +364,7 @@ public class TextManager : MonoBehaviour
 
         }
 
-        if (NAME.Equals("")) //나레이션 -> 이름, 초상화 Off 
+        if (NAME.Equals(string.Empty)) //나레이션 -> 이름, 초상화 Off 
         {
             NAMETAG.SetActive(false);
             Speaker1.color = new Color(1f, 1f, 1f, 0f); //투명하게 처리해서 없는 것처럼

@@ -92,6 +92,7 @@ public class CliffManager : MonoBehaviour
         removeManager = GetComponent<CliffRemoveManager>();
         uiManager = GetComponent<CliffUIManager>();
 
+        SetPhaseOption();
         int size = phaseGroup.childCount;
         for (int i = 0; i < size; i++)
         {
@@ -107,7 +108,6 @@ public class CliffManager : MonoBehaviour
             }
         }
 
-        SetPhaseOption();
         if (limitedOption)
         {
             limitedTileSet = new HashSet<CliffType>();

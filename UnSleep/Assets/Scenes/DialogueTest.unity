@@ -559,7 +559,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 3201
+      value: 5601
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -567,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled
@@ -902,7 +902,7 @@ PrefabInstance:
     - target: {fileID: 5764091617630811381, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: DnI_List.Array.data[0]
       value: 
-      objectReference: {fileID: 4518534476273426499, guid: 719022a3bd248d2449efafb3ddbbc039, type: 3}
+      objectReference: {fileID: 5732246638560382230, guid: 86ed633fa2de72a46b2e8b9e6d94a096, type: 3}
     - target: {fileID: 5925705487786836662, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
@@ -1130,6 +1130,10 @@ PrefabInstance:
     - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: BG.Array.size
       value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: DIALOGUE_Eventlist.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: fadeInOut

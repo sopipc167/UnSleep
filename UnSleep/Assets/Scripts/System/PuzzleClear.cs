@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class PuzzleClear : MonoBehaviour
 {
-    private float _startDelay;
-    private float _endDelay;
+    private float startDelay;
+    private float endDelay;
+    private SceneType sceneType;
     [SerializeField] private Animator ani;
 
-    public void ClearPuzzle(float startDelay = 0f, float endDelay = 2f)
+    public void ClearPuzzle(SceneType type = SceneType.MenTal, float startDelay = 0f, float endDelay = 2f)
     {
-        _startDelay = startDelay;
-        _endDelay = endDelay < 2f ? 2f : endDelay;
+        sceneType = type;
+        this.startDelay = startDelay;
+        this.endDelay = endDelay < 2f ? 2f : endDelay;
         gameObject.SetActive(true);
     }
 
@@ -23,15 +24,15 @@ public class PuzzleClear : MonoBehaviour
 
     private IEnumerator ClearCoroutine()
     {
-        if (_startDelay != 0f)
+        if (startDelay != 0f)
         {
-            yield return new WaitForSeconds(_startDelay);
+            yield return new WaitForSeconds(startDelay);
         }
 
         ani.SetBool("isStart", true);
-        yield return new WaitForSeconds(_endDelay);
+        yield return new WaitForSeconds(endDelay);
 
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1(); //씬 이동 후 다음 대사를 말하기 위해 하나 슬쩍 넣었습니다
-        SceneManager.LoadScene("Mental_World_Map");
+        SceneChanger.ChangeScene(sceneType);
     }
 }
