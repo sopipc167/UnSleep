@@ -35,8 +35,10 @@ public class CaveDone : MonoBehaviour
             else if (CurDiaId == 2017)
                 GoDT();
         }
-        else if (CurEpiId == 9 || CurEpiId == 11 || CurEpiId == 15)
+        else if (CurEpiId == 9 || CurEpiId == 11 || CurEpiId == 15 || CurEpiId == 16 || CurEpiId == 18) //나중엔 퍼즐 연출로
             GoMWM();
+        else if (CurEpiId == 17)
+            GoDT();
     }
 
     private void GoMWM()
