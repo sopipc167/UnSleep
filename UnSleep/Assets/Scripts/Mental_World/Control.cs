@@ -4,68 +4,79 @@ using UnityEngine;
 
 public class Control : MonoBehaviour
 {
-    private Behaviour behaviour; //behaviour 스크립트 **본 프로젝트 만들면 이름 변경하기 (디폴트값이랑 겹쳐서 경고 뜸)
-    private Camera mainCamera; //카메라
-    public Vector3 targetPos; //이동할 좌표
-
+    [Header("참조")]
     public GameObject Dia_UI; 
     public GameObject Select_UI;
 
+    [Header("잠재우미 속도 설정")]
+    public float speed;
+    public float turnSpeed;
+
+    private Camera cam;
+    private Ray ray;
+    private bool flag;
+
+    private Quaternion targetRot;
+    private Vector3 destination;
+    private Vector3 offset;
+
+    private Animator animator;
 
     void Start()
     {
-        behaviour = GetComponent<Behaviour>();
-        mainCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        cam = Camera.main;
+        animator = GetComponent<Animator>();
+        targetRot = transform.rotation;
+    }
+
+    private void FixedUpdate()
+    {
+        if (!flag) return;
+        flag = false;
+
+        // 클릭해서 부딪히면 좌표 저장
+        if (Physics.Raycast(ray, out RaycastHit hit, 10000f))
+        {
+            destination.x = hit.point.x;
+            destination.y = hit.point.y + 2f;
+            destination.z = hit.point.z;
+        }
     }
 
     void Update()
     {
+        if (Dia_UI.activeSelf || Select_UI.activeSelf) return;
 
-        if (Input.GetMouseButtonDown(0)) //마우스 입력
+        if (Input.GetMouseButtonDown(0))
         {
-        
-                //마우스 클릭 위치 좌표 받아옴
-                Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-                Vector3 Screenhit = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            // 마우스 클릭 위치 좌표 받아옴
+            ray = cam.ScreenPointToRay(Input.mousePosition);
+            flag = true;
 
-                RaycastHit hit;
-
-                if (Screenhit.x < 0.5)
-                    transform.localScale = new Vector3(-1, 1, 1);
-                else
-                    transform.localScale = new Vector3(1, 1, 1);
-
-                if (Physics.Raycast(ray, out hit, 10000f)) //클릭해서 부딪히면
-                {
-                    targetPos.x = hit.point.x; //거기 좌표 저장해서
-                    targetPos.y = hit.point.y + 2;
-                    targetPos.z = hit.point.z;
-
-                }
-
-            
-
-
-        }
-
-
-
-        
-        if (Dia_UI.activeSelf == false && Select_UI.activeSelf == false)
-        {
-
-        if (behaviour.Run(targetPos)) //Run에 전달하고, 리턴 bool값이 true면 
+            // 화면 기준 좌, 우 클릭에 따라 잠재우미 좌우반전
+            if (cam.ScreenToViewportPoint(Input.mousePosition).x < 0.5f)
             {
-                behaviour.Turn(targetPos); //Turn까지 실행
+                transform.localScale = new Vector3(-0.5f, 0.5f, 0.5f);
+            }
+            else
+            {
+                transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
             }
         }
 
-         
-
-
-
-
-
+        // 어느정도 차이가 있으면 targetPos로 이동
+        offset = destination - transform.position;
+        if (offset.sqrMagnitude >= 0.5f)
+        {
+            animator.SetBool("Running", true);
+            transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
+            targetRot = Quaternion.LookRotation(offset);
+            targetRot = Quaternion.Euler(targetRot.eulerAngles.x, targetRot.eulerAngles.y, 0f);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRot, turnSpeed * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("Running", false);
+        }
     }
-
 }
