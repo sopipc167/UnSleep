@@ -1,37 +1,31 @@
 fileFormatVersion: 2
-guid: 5b9e6efce1b8f28469dfb4096924c75d
+guid: b73db05a4b723334eb161307012c23fe
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2235348573595177177
-    second: domun_tuxedo_0
+      213: 6937817954938267909
+    second: 2_0
   - first:
-      213: 8285790322311498851
-    second: domun_tuxedo_1
+      213: 3191122964850554743
+    second: 2_1
   - first:
-      213: -7321370472101849559
-    second: domun_tuxedo_2
+      213: 5382512944479897801
+    second: 2_2
   - first:
-      213: 3937841860712185632
-    second: domun_tuxedo_3
+      213: -5515383189529662604
+    second: 2_3
   - first:
-      213: 1755634130205821162
-    second: domun_tuxedo_4
+      213: -3926759211464601419
+    second: 2_4
   - first:
-      213: 7174955246665608601
-    second: domun_tuxedo_5
+      213: -4424780041397978121
+    second: 2_5
   - first:
-      213: -7461372837149040556
-    second: domun_tuxedo_6
+      213: 8817454751965551104
+    second: 2_6
   - first:
-      213: 2496586857442774524
-    second: domun_tuxedo_7
-  - first:
-      213: -8838602592869555110
-    second: domun_tuxedo_8
-  - first:
-      213: 1972334322699000299
-    second: domun_tuxedo_9
+      213: 3974921216390489406
+    second: 2_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +44,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -73,7 +67,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -167,7 +161,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: domun_tuxedo_0
+      name: 2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -181,14 +175,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72feea1d0527af0e0800000000000000
-      internalID: -2235348573595177177
+      spriteID: 5092c600ca4184060800000000000000
+      internalID: 6937817954938267909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: domun_tuxedo_1
+      name: 2_1
       rect:
         serializedVersion: 2
         x: 400
@@ -202,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36c0fbce56a0df270800000000000000
-      internalID: 8285790322311498851
+      spriteID: 7773282ed65294c20800000000000000
+      internalID: 3191122964850554743
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: domun_tuxedo_2
+      name: 2_2
       rect:
         serializedVersion: 2
         x: 800
@@ -223,14 +217,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 926d55d8854456a90800000000000000
-      internalID: -7321370472101849559
+      spriteID: 9c88aa6510782ba40800000000000000
+      internalID: 5382512944479897801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: domun_tuxedo_3
+      name: 2_3
       rect:
         serializedVersion: 2
         x: 1200
@@ -244,14 +238,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02fb9690f4606a630800000000000000
-      internalID: 3937841860712185632
+      spriteID: 47b6cebf53c6573b0800000000000000
+      internalID: -5515383189529662604
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: domun_tuxedo_4
+      name: 2_4
       rect:
         serializedVersion: 2
         x: 1600
@@ -265,14 +259,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae8487e80f34d5810800000000000000
-      internalID: 1755634130205821162
+      spriteID: 5b0d8225d495189c0800000000000000
+      internalID: -3926759211464601419
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: domun_tuxedo_5
+      name: 2_5
       rect:
         serializedVersion: 2
         x: 2000
@@ -286,14 +280,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 99d24d448cf829360800000000000000
-      internalID: 7174955246665608601
+      spriteID: 7fb3c3feef50892c0800000000000000
+      internalID: -4424780041397978121
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: domun_tuxedo_6
+      name: 2_6
       rect:
         serializedVersion: 2
         x: 2400
@@ -307,14 +301,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 450abf8cfe0e37890800000000000000
-      internalID: -7461372837149040556
+      spriteID: 00a9cf94164ed5a70800000000000000
+      internalID: 8817454751965551104
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: domun_tuxedo_7
+      name: 2_7
       rect:
         serializedVersion: 2
         x: 2800
@@ -328,50 +322,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cfd09c4f488a5a220800000000000000
-      internalID: 2496586857442774524
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: domun_tuxedo_8
-      rect:
-        serializedVersion: 2
-        x: 3200
-        y: 0
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a54e92d45c9f65580800000000000000
-      internalID: -8838602592869555110
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: domun_tuxedo_9
-      rect:
-        serializedVersion: 2
-        x: 3600
-        y: 0
-        width: 400
-        height: 1000
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: be9d8cadd932f5b10800000000000000
-      internalID: 1972334322699000299
+      spriteID: e356e1949c1c92730800000000000000
+      internalID: 3974921216390489406
       vertices: []
       indices: 
       edges: []

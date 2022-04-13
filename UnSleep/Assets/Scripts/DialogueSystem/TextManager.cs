@@ -69,6 +69,9 @@ public class TextManager : MonoBehaviour
     [Tooltip("클릭 상호작용시 처음 인덱스가 넘어가버리는 현상 방지. true일때만 대화 진행")]
     public bool Increasediaindex = true; //클릭 상호작용시 처음 인덱스가 넘어가버리는 현상 방지. true일때만 대화 진행
 
+    [Header("퍼즐이야?")]
+    public bool isPuzzle;
+
 
     [Header("씬 전환")]
     public SceneTransEffectManager STEManager; //씬 전환 효과
@@ -139,7 +142,7 @@ public class TextManager : MonoBehaviour
             SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
 
         //멘탈월드 왔을 때 지정된 스폰 위치에서 스폰하도록=
-        if (!DiaDic[Dia_index].isStory)
+        if (!DiaDic[Dia_index].isStory && !isPuzzle)
         {
             GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
         }
@@ -225,17 +228,21 @@ public class TextManager : MonoBehaviour
                     showSpeaker2When1 = false;
                     showSpeaker1When2 = false;
 
-
-                    if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
+                    if (!isPuzzle) //퍼즐은 따로 (동굴때문에 추가)
                     {
-                        Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
-                        SceneManager.LoadScene("Mental_World_Map");
+                        if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
+                        {
+                            Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
+                            SceneManager.LoadScene("Mental_World_Map");
 
-                    }
-                    else if (!DiaDic[Dia_index].isStory && DiaDic[Dia_index + 1].isStory) //정신세계(퍼즐)->스토리
-                    {
-                        Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
-                        SceneManager.LoadScene("DialogueTest");
+                        }
+                        else if (!DiaDic[Dia_index].isStory && DiaDic[Dia_index + 1].isStory) //정신세계(퍼즐)->스토리
+                        {
+                            Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
+                            SceneManager.LoadScene("DialogueTest");
+
+                        }
+
 
                     }
 
