@@ -24,6 +24,7 @@ public class AudioLeftRight : MonoBehaviour
 
     }
 
+
     public void SetAudio(string SP,int SI, float volume)
     {
         position = SP;
@@ -34,8 +35,6 @@ public class AudioLeftRight : MonoBehaviour
         {
             leftAudio.clip = audioClips[idx];
             rightAudio.clip = audioClips[idx];
-            leftAudio.Play();
-            rightAudio.Play();
 
             if (leftAudio.mute)
                 leftAudio.mute = false;
@@ -43,13 +42,46 @@ public class AudioLeftRight : MonoBehaviour
             if (rightAudio.mute)
                 rightAudio.mute = false;
 
+            leftAudio.Play();
+            rightAudio.Play();
+
+
             leftAudio.volume = volume;
             rightAudio.volume = volume;
         }
         else if (SP.Equals("L"))
         {
             leftAudio.clip = audioClips[idx];
+            rightAudio.clip = audioClips[idx];
+
+            if (leftAudio.mute)
+                leftAudio.mute = false;
+
+            if (!rightAudio.mute)
+                rightAudio.mute = true;
+
             leftAudio.Play();
+            rightAudio.Play();
+            leftAudio.volume = volume;
+        }
+        else if (SP.Equals("R"))
+        {
+            leftAudio.clip = audioClips[idx];
+            rightAudio.clip = audioClips[idx];
+
+            if (!leftAudio.mute)
+                leftAudio.mute = true;
+
+            if (rightAudio.mute)
+                rightAudio.mute = false;
+
+            leftAudio.Play();
+            rightAudio.Play();
+            rightAudio.volume = volume;
+
+        }
+        else if (SP.Equals("l")) //최초가 아니면 소문자로 표기 -> 음원 크기만 변경
+        {
 
             if (leftAudio.mute)
                 leftAudio.mute = false;
@@ -59,11 +91,8 @@ public class AudioLeftRight : MonoBehaviour
 
             leftAudio.volume = volume;
         }
-        else if (SP.Equals("R"))
+        else if (SP.Equals("r"))
         {
-            rightAudio.clip = audioClips[idx];
-            rightAudio.Play();
-
             if (!leftAudio.mute)
                 leftAudio.mute = true;
 
@@ -71,7 +100,17 @@ public class AudioLeftRight : MonoBehaviour
                 rightAudio.mute = false;
 
             rightAudio.volume = volume;
+        }
+        else if (SP.Equals("c"))
+        {
+            if (leftAudio.mute)
+                leftAudio.mute = false;
 
+            if (rightAudio.mute)
+                rightAudio.mute = false;
+
+            leftAudio.volume = volume;
+            rightAudio.volume = volume;
         }
     }
 

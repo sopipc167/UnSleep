@@ -369,9 +369,13 @@ public class TextManager : MonoBehaviour
 
         if (SE != null) //효과음 있으면 효과음 재생 
         {
-            SoundManager.Instance.PlaySE(SE);
+            if (SE.Equals("stop"))
+                SoundManager.Instance.StopSE();
+            else 
+                SoundManager.Instance.PlaySE(SE);
 
         }
+  
 
         if (NAME.Equals(string.Empty)) //나레이션 -> 이름, 초상화 Off 
         {
