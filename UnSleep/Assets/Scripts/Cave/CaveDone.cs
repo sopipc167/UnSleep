@@ -39,7 +39,7 @@ public class CaveDone : MonoBehaviour
         }
         else if (CurEpiId == 9 || CurEpiId == 11 || CurEpiId == 15 || CurEpiId == 16 || CurEpiId == 18) //나중엔 퍼즐 연출로
             puzzleClear.ClearPuzzle(SceneType.MenTal, 1f);
-        else if (CurEpiId == 2 || CurEpiId == 17)
+        else if (CurEpiId == 2 || CurEpiId == 5 || CurEpiId == 17)
             puzzleClear.ClearPuzzle(SceneType.Dialogue, 1f);
     }
 

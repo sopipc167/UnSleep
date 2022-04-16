@@ -616,9 +616,8 @@ MonoBehaviour:
   Gear_Object:
   - {fileID: 1909839268}
   - {fileID: 325890710}
-  Clear_UI: {fileID: 2123197891}
-  Level: 9
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1001 &72657483
@@ -628,6 +627,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783402284}
     m_Modifications:
+    - target: {fileID: 1877115584701053251, guid: 194956917129b4f45b8368273d457c41, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 1783402283}
+    - target: {fileID: 1877115584701053251, guid: 194956917129b4f45b8368273d457c41, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 1310677802}
     - target: {fileID: 1877115584701053254, guid: 194956917129b4f45b8368273d457c41, type: 3}
       propertyPath: m_TagString
       value: Gear
@@ -4726,9 +4733,8 @@ MonoBehaviour:
   - {fileID: 2133258400}
   - {fileID: 1289960794}
   - {fileID: 225199153}
-  Clear_UI: {fileID: 2123197891}
-  Level: 7
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1 &458087261
@@ -6933,6 +6939,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 426465416}
     m_Modifications:
+    - target: {fileID: 240738633769283592, guid: 05aced2e2ce8d1947bc8f272b4ffacd0, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 689037041}
+    - target: {fileID: 240738633769283592, guid: 05aced2e2ce8d1947bc8f272b4ffacd0, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 426465415}
     - target: {fileID: 2525493029639788241, guid: 05aced2e2ce8d1947bc8f272b4ffacd0, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -7078,8 +7092,6 @@ GameObject:
   m_Component:
   - component: {fileID: 677382293}
   - component: {fileID: 677382292}
-  - component: {fileID: 677382295}
-  - component: {fileID: 677382294}
   - component: {fileID: 677382296}
   m_Layer: 0
   m_Name: EtcManager
@@ -7114,119 +7126,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &677382294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677382291}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89202e17eb70ebf45a5e60a2797883ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  clips:
-  - {fileID: 8300000, guid: 97c40c61bdd37a64fac4b565666934f4, type: 3}
-  - {fileID: 8300000, guid: 07b51f5b0173ba6469fc6f8fc259f576, type: 3}
-  - {fileID: 8300000, guid: 642598710b4bcfe4b8528f5ffc384380, type: 3}
-  audioSource: {fileID: 0}
---- !u!82 &677382295
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 677382291}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!114 &677382296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8906,9 +8805,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear_Object:
   - {fileID: 2456914919883232608}
-  Clear_UI: {fileID: 2123197891}
-  Level: 3
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1001 &757477606
@@ -9010,6 +8908,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gear
       objectReference: {fileID: 0}
+    - target: {fileID: 7031075744011346836, guid: 0c914da39cd484346839d965b7808c76, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 1783402283}
+    - target: {fileID: 7031075744011346836, guid: 0c914da39cd484346839d965b7808c76, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 1310677802}
     - target: {fileID: 7031075745390270405, guid: 0c914da39cd484346839d965b7808c76, type: 3}
       propertyPath: m_Color.r
       value: 1
@@ -9573,9 +9479,8 @@ MonoBehaviour:
   Gear_Object:
   - {fileID: 2028388373}
   - {fileID: 1810384206}
-  Clear_UI: {fileID: 2123197891}
-  Level: 8
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1 &806192962
@@ -10130,6 +10035,63 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3057117772576949872, guid: 2ef7f5591ac1ac84ea97ca21191fd6d5, type: 3}
   m_PrefabInstance: {fileID: 398470698}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &854823193
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7493502593937725166, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_Name
+      value: Sound Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7493502593937725168, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b88f4dbbc807f024e8dbd92fc742fdc1, type: 3}
 --- !u!224 &859682692 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9001982380084005278, guid: 8a8830594c05ecc43a25f2589c9ba126, type: 3}
@@ -11090,6 +11052,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783402284}
     m_Modifications:
+    - target: {fileID: 240738633769283592, guid: 05aced2e2ce8d1947bc8f272b4ffacd0, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 1783402283}
+    - target: {fileID: 240738633769283592, guid: 05aced2e2ce8d1947bc8f272b4ffacd0, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 1310677802}
     - target: {fileID: 240738633769283599, guid: 05aced2e2ce8d1947bc8f272b4ffacd0, type: 3}
       propertyPath: m_TagString
       value: Gear
@@ -12508,6 +12478,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gear
       objectReference: {fileID: 0}
+    - target: {fileID: 8436165966589709814, guid: 5471c383732f1f34497bd40523f4a7e7, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 1783402283}
+    - target: {fileID: 8436165966589709814, guid: 5471c383732f1f34497bd40523f4a7e7, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 1310677802}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5471c383732f1f34497bd40523f4a7e7, type: 3}
 --- !u!224 &1036679342 stripped
@@ -14250,7 +14228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: BypassReverbZones
@@ -14773,9 +14751,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear_Object:
   - {fileID: 538435846}
-  Clear_UI: {fileID: 2123197891}
-  Level: 2
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 1700460773}
   pointB: {fileID: 415393202}
 --- !u!224 &1214595271 stripped
@@ -15475,9 +15452,8 @@ MonoBehaviour:
   Gear_Object:
   - {fileID: 2004871433}
   - {fileID: 1634694411}
-  Clear_UI: {fileID: 2123197891}
-  Level: 1
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1 &1294063857 stripped
@@ -15949,9 +15925,8 @@ MonoBehaviour:
   - {fileID: 1739427639}
   - {fileID: 1406949974}
   - {fileID: 1055417379}
-  Clear_UI: {fileID: 2123197891}
-  Level: 5
-  ClearCount: 0
+  puzzleClear: {fileID: 0}
+  blinkPanel: {fileID: 0}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!224 &1344607434 stripped
@@ -18204,6 +18179,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Gear
       objectReference: {fileID: 0}
+    - target: {fileID: 8897112091023482302, guid: 71b06b97ceafe0e40894bcc99e67501d, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 1783402283}
+    - target: {fileID: 8897112091023482302, guid: 71b06b97ceafe0e40894bcc99e67501d, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 1310677802}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71b06b97ceafe0e40894bcc99e67501d, type: 3}
 --- !u!1 &1602731837
@@ -18258,9 +18241,8 @@ MonoBehaviour:
   - {fileID: 809541410}
   - {fileID: 1578002238}
   - {fileID: 876667427}
-  Clear_UI: {fileID: 2123197891}
-  Level: 4
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!224 &1604284924 stripped
@@ -19146,9 +19128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear_Object:
   - {fileID: 7618411872166175808}
-  Clear_UI: {fileID: 2123197891}
-  Level: 10
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!224 &1704529771 stripped
@@ -19348,6 +19329,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 426465416}
     m_Modifications:
+    - target: {fileID: 2306643577840565682, guid: e3899a1624104044dadc68db49f37001, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 426465415}
+    - target: {fileID: 2306643577840565682, guid: e3899a1624104044dadc68db49f37001, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 689037041}
     - target: {fileID: 2378653474573810337, guid: e3899a1624104044dadc68db49f37001, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 492
@@ -20140,6 +20129,14 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7031075744011346836, guid: 0c914da39cd484346839d965b7808c76, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 426465415}
+    - target: {fileID: 7031075744011346836, guid: 0c914da39cd484346839d965b7808c76, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 689037041}
     - target: {fileID: 8661500327764181649, guid: 0c914da39cd484346839d965b7808c76, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -20215,9 +20212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear_Object:
   - {fileID: 1719121003}
-  Clear_UI: {fileID: 2123197891}
-  Level: 6
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!224 &1749566323 stripped
@@ -20986,6 +20982,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860186945479241174, guid: 44e4c8b72e1bedc4ba26f848b270adf1, type: 3}
   m_PrefabInstance: {fileID: 2394749835564705295}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1830968749 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5765845540064608475, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+  m_PrefabInstance: {fileID: 2089051465}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb7abad65a123e4389ddfd0cde64ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1831729804 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860186945479241174, guid: 44e4c8b72e1bedc4ba26f848b270adf1, type: 3}
@@ -22289,7 +22296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1952474062
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22657,6 +22664,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1783402284}
     m_Modifications:
+    - target: {fileID: 1877115584701053251, guid: 194956917129b4f45b8368273d457c41, type: 3}
+      propertyPath: Gear_Panel
+      value: 
+      objectReference: {fileID: 1783402283}
+    - target: {fileID: 1877115584701053251, guid: 194956917129b4f45b8368273d457c41, type: 3}
+      propertyPath: Main_Panel
+      value: 
+      objectReference: {fileID: 1310677802}
     - target: {fileID: 1877115584701053254, guid: 194956917129b4f45b8368273d457c41, type: 3}
       propertyPath: m_TagString
       value: Gear
@@ -22811,19 +22826,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43590b88bf73134dba786e7d7d2d1bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Levels:
-  - {fileID: 494633458}
-  - {fileID: 2096671377}
-  - {fileID: 1349909955}
-  - {fileID: 847534559}
-  - {fileID: 1820770183}
-  - {fileID: 1081515757}
-  - {fileID: 1727996286}
-  - {fileID: 1997618740}
-  - {fileID: 745363539}
-  - {fileID: 648166235}
-  - {fileID: 135043239}
-  ClearUI: {fileID: 2123197891}
 --- !u!1 &1983850382
 GameObject:
   m_ObjectHideFlags: 0
@@ -23029,9 +23031,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear_Object:
   - {fileID: 1294063857}
-  Clear_UI: {fileID: 2123197891}
-  Level: 10
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1 &1991962372
@@ -24584,6 +24585,103 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2088211442}
   m_CullTransparentMesh: 0
+--- !u!1001 &2089051465
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608474, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608478, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Name
+      value: Clear Canvas
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
 --- !u!1 &2096671377
 GameObject:
   m_ObjectHideFlags: 0
@@ -24678,9 +24776,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Gear_Object:
   - {fileID: 1414962464}
-  Clear_UI: {fileID: 2123197891}
-  Level: 0
-  ClearCount: 0
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
 --- !u!1 &2102172742

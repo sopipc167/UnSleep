@@ -2641,6 +2641,8 @@ MonoBehaviour:
   right_speaker: {fileID: 2089577692}
   audioClips:
   - {fileID: 8300000, guid: b7db47d2fb607304bb779b001b6b6882, type: 3}
+  - {fileID: 8300000, guid: 3a48756404790db47851bdcb9e4c1e54, type: 3}
+  - {fileID: 8300000, guid: 951fc0dc84253314cbe3e73e89a9cc93, type: 3}
   position: 
   idx: 0
   vol: 0

@@ -29,6 +29,34 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     int [,,]gameboardArray=new int[5,12,16]
     {
         {
+            { 0,-1,0,0,4,0,0,2,0,0,1,0,0,0,0,0},
+          { 0,1,0,0,0,0,0,3,0,0,0,0,0,0,0,0},
+          { 0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0},
+          { 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0},
+          { 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0},
+          { 3,0,0,3,0,0,0,3,0,0,4,0,0,0,0,0},
+          { 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+          { 0,0,0,0,0,0,1,0,0,0,4,0,0,2,0,0},
+          { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+          { 0,0,0,0,3,0,0,0,0,0,3,0,0,0,1,0},
+          { 0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0},
+          { 0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0}
+        },
+        {
+           { 0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+              { 0,0,0,0,1,0,4,0,0,0,0,0,0,0,0,0},
+              { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+              { 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
+              { 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
+              { 0,0,0,0,0,0,4,0,0,0,4,0,0,0,1,0},
+              { 0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0},
+              { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
+              { 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},
+              { 0,0,0,0,0,0,1,0,0,0,0,0,0,0,-1,0},
+        },
+        {
            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
            { 0,0,0,0,2,0,0,0,0,0,0,0,0,2,0,0},
            { -1,0,1,0,0,0,0,4,0,1,0,0,0,0,0,0},
@@ -69,44 +97,14 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
            { -1,0,0,0,0,3,0,0,0,0,0,0,0,3,0,0},
            { 0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0},
            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-        },
-        {
-          { 0,-1,0,0,4,0,0,2,0,0,1,0,0,0,0,0},
-          { 0,1,0,0,0,0,0,3,0,0,0,0,0,0,0,0},
-          { 0,0,0,0,2,0,0,0,0,2,0,0,0,0,0,0},
-          { 0,0,0,0,0,0,0,0,0,3,0,0,0,0,0,0},
-          { 0,0,0,0,0,0,2,0,0,0,0,0,0,0,0,0},
-          { 3,0,0,3,0,0,0,3,0,0,4,0,0,0,0,0},
-          { 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
-          { 0,0,0,0,0,0,1,0,0,0,4,0,0,2,0,0},
-          { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-          { 0,0,0,0,3,0,0,0,0,0,3,0,0,0,1,0},
-          { 0,0,0,0,0,0,0,2,0,0,0,0,2,0,0,0},
-          { 0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0}
         }
-        ,
-                {
-           { 0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0},
-           { 0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0},
-           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           { 0,0,0,0,1,0,4,0,0,0,0,0,0,0,0,0},
-           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
-           { 0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0},
-           { 0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0},
-           { 0,0,0,0,0,0,4,0,0,0,4,0,0,0,1,0},
-           { 0,0,0,0,0,0,0,0,4,0,0,0,0,0,0,0},
-           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
-           { 0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0},
-           { 0,0,0,0,0,0,1,0,0,0,0,0,0,0,-1,0},
-        },
-
-
     }; //스테이지별 폭탄과 블럭의 위치를 배열로 만들음
 
 
 
     public GameObject block, bomb, magma; //각각 블럭 폭탄 마그마의 프리랩
-    public GameObject Over, Clear; //게임클리어, 게임 오버 UI
+    public GameObject Over;//, Clear; //게임클리어, 게임 오버 UI
+    public PuzzleClear puzzleClear; //퍼즐 클리어
     public Sprite X;
     public Text swaping, fire, stage; //UI에 표시할 내용 스왑 가능 횟수, 점화 가능 횟수(1개로 고정), 현재 스테이지
     int snum, fnum, initialx, initialy; //스왑가능 횟수, 점화가능 횟수, 마그마의 초기위치 (x,y)
@@ -130,30 +128,30 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             initialx = 13;
             initialy = 11;
             snum = 15;
-            gameboardint = 3;
+            gameboardint = 0;
         }
-        else if (Dialogue_Proceeder.instance.CurrentEpiID == 11)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 3)
         {
             initialx = 6;
             initialy = 0;
             snum = 9;
-            gameboardint = 0;
+            gameboardint = 1;
         }
-        else if (Dialogue_Proceeder.instance.CurrentEpiID == 15)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 11)
         {
             initialx = 0;
             initialy = 2;
             snum = 11;
-            gameboardint = 1;
+            gameboardint = 2;
         }
-        else if (Dialogue_Proceeder.instance.CurrentEpiID == 16)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 15)
         {
             initialx = 0;
             initialy = 3;
-            snum = 8;
-            gameboardint = 2;
+            snum = 11;
+            gameboardint = 3;
         }
-        else if (Dialogue_Proceeder.instance.CurrentEpiID == 3)
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 16)
         {
             initialx = 4;
             initialy = 0;
@@ -297,7 +295,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         {
             RayMode();
             StartCoroutine(Magmazation(initialx, initialy));
-            Clear.SetActive(true);
+            //Clear.SetActive(true);
+            puzzleClear.ClearPuzzle(SceneType.MenTal, 5f);
         }
         else
         {
@@ -385,7 +384,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     }
     public IEnumerator Magmazation(int x,int y) //마그마를 한번에 하나씩 뜸들여서 흐르게 만들도록 코루틴 사용
     {
-        yield return new WaitForSeconds(0.2f); //한박자 쉬고 전후좌우에 마그마 활성화 되지 않은 상태의 블록을 찾아 마그마로 바꾼 다음, 해당 블록 주위에서 다른 활성화 되지 않은 블록 찾기
+        yield return new WaitForSeconds(0.13f); //한박자 쉬고 전후좌우에 마그마 활성화 되지 않은 상태의 블록을 찾아 마그마로 바꾼 다음, 해당 블록 주위에서 다른 활성화 되지 않은 블록 찾기
         if (inRange(x+1,y))
             if (!Map[x + 1, y].activeSelf)
                 Map[x + 1, y].GetComponent<BlockBehavior>().Setmagma();

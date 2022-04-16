@@ -39,6 +39,7 @@ public class Portrait : MonoBehaviour
 
         //엑스트라: 얼마 없으니 그냥 다 넣기
         Portraits = Resources.LoadAll<Sprite>("Standing_Image/9999");
+        DebugCheck = Portraits;
         List<Sprite> extra_list = new List<Sprite>();
         for (int j = 0; j <Portraits.Length; j++) //한 초상화를 좌우 묶음으로
         {

@@ -41,7 +41,6 @@ public class Gear : MonoBehaviour
     public Image mask_image;
 
     public Sprite[] masks;
-    ClkSound clkSound;
 
     //public GameObject ok_gear;
 
@@ -56,7 +55,6 @@ public class Gear : MonoBehaviour
         }
         Origin_Parent = transform.parent.gameObject;
         Gears = GameObject.FindGameObjectsWithTag("Gear");
-        clkSound = GameObject.Find("EtcManager").GetComponent<ClkSound>();
     }
 
     private void Update()
@@ -231,7 +229,7 @@ public class Gear : MonoBehaviour
         //gear.GetComponent<Gear>().Gear_image.color = new Color(1f, 0f, 0f);
         Debug.Log("잘못된방향");
         //팅! 하는 소리로 튕겨 나오도록 -> 파지지직도 연출의 일종으로 써먹기
-        clkSound.PlaySound(2);
+        SoundManager.Instance.PlaySE("tinggear");
 
 
         gear.GetComponent<Gear_Drag>().GoToStartPos();
