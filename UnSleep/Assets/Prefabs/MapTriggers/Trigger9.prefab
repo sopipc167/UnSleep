@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989046279107064982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 9.3, z: -22.2}
+  m_LocalPosition: {x: -4.6, y: 17.3, z: -33.9}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 989046279983483106}
@@ -207,8 +207,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 5.383785, y: 3.560382, z: 3.753664}
+  m_Center: {x: -0.11233878, y: 2.3109517, z: -2.343131}
 --- !u!114 &989046279107064984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989046279440459075}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.6, y: 0.6, z: 33.5}
+  m_LocalPosition: {x: -6.2, y: -0.9, z: 33.5}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 989046279983483106}
@@ -334,8 +334,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: 6a0900006d090000
-  OnlyOnce: 0101
+  Obj_Diaid: 6a0900006d0900006e090000
+  OnlyOnce: 010101
   Interaction_distance: 30
   isChangeScene: 0
   ChangeSceneName: 
@@ -413,13 +413,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6409473804983135420}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.9, y: 35.4, z: 46.6}
+  m_LocalRotation: {x: -0, y: 0.50693387, z: -0, w: 0.8619849}
+  m_LocalPosition: {x: 44.369923, y: 53.1, z: 49.183704}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 989046279983483106}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 60.92, z: 0}
 --- !u!33 &3234046921455495334
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -480,8 +480,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 4.7348495, y: 4.543083, z: 5.781813}
+  m_Center: {x: -0.13298155, y: 1.7715416, z: 3.103842}
 --- !u!114 &7098506362684730387
 MonoBehaviour:
   m_ObjectHideFlags: 0

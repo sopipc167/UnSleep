@@ -18,12 +18,11 @@ public class Clear_Condition : MonoBehaviour
 
     Collider2D col;
     public GameObject pointA, pointB;
+    public GameObject ClearUI;
 
 
     private void OnEnable()
     {
-        //if (Clear_UI.activeSelf) //클리어 UI가 켜져있으면 끄기
-        //    Clear_UI.SetActive(false);
     }
 
 
@@ -65,26 +64,18 @@ public class Clear_Condition : MonoBehaviour
 
 
         }
-        else if (CurEpiId == 8) //23-1
+        else if (CurEpiId == 8) //23세
         {
-            CheckArea();
-            //if (SpeedCheck(Gear_Object[0], 300f))
-            //    ClearCount += 1f;
-            //else
-             //   ClearCount = 0f;
+            if (!Dialogue_Proceeder.instance.AlreadyDone(81)) //23-1
+                CheckArea();
+            else //23-2
+            {
+                if (SpeedCheckDown(Gear_Object[0], 200f))
+                    isClearCondition = true;
+                else
+                    isClearCondition = false;
 
-
-
-        }
-        else if (CurEpiId == 82) //23-2
-        {
-            if (SpeedCheckDown(Gear_Object[0], 200f))
-                isClearCondition = true;
-            else
-                isClearCondition = false;
-
-
-
+            }
         }
         else if (CurEpiId == 9) //24세
         {
@@ -147,8 +138,18 @@ public class Clear_Condition : MonoBehaviour
 
     public void Clear()
     {
-        //Clear_UI.SetActive(true);
-        puzzleClear.ClearPuzzle(SceneType.MenTal, 0f);
+        if (CurEpiId == 8 && !Dialogue_Proceeder.instance.AlreadyDone(81)) //23-1 클리어 시
+        {
+            Dialogue_Proceeder.instance.AddCompleteCondition(81);
+            ClearUI.SetActive(true);
+            ClearCount = 0f; 
+            isClearCondition = false;
+        }
+        else
+        {
+            puzzleClear.ClearPuzzle(SceneType.MenTal, 0f);
+
+        }
     }
 
     public void resetClear() //2개 이상의 스테이지가 나오는 경우 클리어를 초기화
