@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ClocktowerStageManager : MonoBehaviour
 {
     public GameObject[] levels;
+    public GameObject Clear_UI;
     private bool COMPLETE = false;
     private bool COMPLETE2 = false;
 
@@ -33,11 +34,11 @@ public class ClocktowerStageManager : MonoBehaviour
     {
         int CurEpiId = Dialogue_Proceeder.instance.CurrentEpiID;
 
-        if ((CurEpiId != 8 && CurEpiId != 19) ||(COMPLETE && COMPLETE2)) //단일 스테이지 or 모든 스테이지 클리어 했으면
-        {
-            GotoMentalWorld(); //일단 멘탈월드로
-            return;
-        }
+        //if ((CurEpiId != 8 && CurEpiId != 19) ||(COMPLETE && COMPLETE2)) //단일 스테이지 or 모든 스테이지 클리어 했으면
+        //{
+        //    GotoMentalWorld(); //일단 멘탈월드로
+        //    return;
+        //}
 
 
         if (CurEpiId == 8)
@@ -45,6 +46,7 @@ public class ClocktowerStageManager : MonoBehaviour
             levels[2].SetActive(false);
             levels[3].SetActive(true);
             COMPLETE = COMPLETE2 = true;
+            Clear_UI.SetActive(false);
         }
         else if (CurEpiId  == 19)
         {
@@ -66,10 +68,5 @@ public class ClocktowerStageManager : MonoBehaviour
 
     }
 
-    public void GotoMentalWorld()
-    {
-        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneManager.LoadScene("Mental_World_Map");
 
-    }
 }

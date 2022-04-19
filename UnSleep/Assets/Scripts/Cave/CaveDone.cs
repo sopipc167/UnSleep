@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class CaveDone : MonoBehaviour
 {
     private GameObject DiaUI;
+    private PuzzleClear puzzleClear;
     void Start()
     {
         DiaUI = GameObject.Find("DiaUI");
+        puzzleClear = GameObject.Find("Clear").transform.GetChild(0).GetComponent<PuzzleClear>();
     }
 
     // Update is called once per frame
@@ -31,27 +33,16 @@ public class CaveDone : MonoBehaviour
         if (CurEpiId == 7)
         {
             if (CurDiaId == 2013)
-                GoMWM();
+                puzzleClear.ClearPuzzle(SceneType.MenTal, 1f);
             else if (CurDiaId == 2017)
-                GoDT();
+                puzzleClear.ClearPuzzle(SceneType.Dialogue, 1f);
         }
         else if (CurEpiId == 9 || CurEpiId == 11 || CurEpiId == 15 || CurEpiId == 16 || CurEpiId == 18) //나중엔 퍼즐 연출로
-            GoMWM();
-        else if (CurEpiId == 17)
-            GoDT();
+            puzzleClear.ClearPuzzle(SceneType.MenTal, 1f);
+        else if (CurEpiId == 2 || CurEpiId == 5 || CurEpiId == 17)
+            puzzleClear.ClearPuzzle(SceneType.Dialogue, 1f);
     }
 
-    private void GoMWM()
-    {
-        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneManager.LoadScene("Mental_World_Map");
 
-    }
-    private void GoDT()
-    {
-        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneManager.LoadScene("DialogueTest");
-
-    }
 
 }

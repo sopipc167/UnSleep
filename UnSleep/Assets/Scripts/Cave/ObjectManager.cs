@@ -66,7 +66,7 @@ public class ObjectManager : MonoBehaviour
     {
         objects[idx].SetActive(true);
         objects[idx].GetComponent<CanvasGroup>().alpha = 1f;
-        Debug.Log("켜짐");
+
     }
 
     public void SetObjectOff()

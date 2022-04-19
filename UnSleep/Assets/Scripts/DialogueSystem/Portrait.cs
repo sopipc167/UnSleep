@@ -39,6 +39,7 @@ public class Portrait : MonoBehaviour
 
         //엑스트라: 얼마 없으니 그냥 다 넣기
         Portraits = Resources.LoadAll<Sprite>("Standing_Image/9999");
+        DebugCheck = Portraits;
         List<Sprite> extra_list = new List<Sprite>();
         for (int j = 0; j <Portraits.Length; j++) //한 초상화를 좌우 묶음으로
         {
@@ -117,9 +118,9 @@ public class Portrait : MonoBehaviour
         {
             if (epi_id <= 9)
                 return 0;
-            else if (epi_id <= 13)
+            else if (epi_id <= 11)
                 return 20;
-            else if (epi_id <= 15)
+            else if (epi_id <= 13)
                 return 40;
             else if (epi_id <= 17)
                 return 60;
