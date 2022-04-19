@@ -118,9 +118,9 @@ public class Portrait : MonoBehaviour
         {
             if (epi_id <= 9)
                 return 0;
-            else if (epi_id <= 13)
+            else if (epi_id <= 11)
                 return 20;
-            else if (epi_id <= 15)
+            else if (epi_id <= 13)
                 return 40;
             else if (epi_id <= 17)
                 return 60;
