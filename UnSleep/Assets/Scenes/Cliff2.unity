@@ -79339,5 +79339,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: Clear Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5765845540064608478, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540750478372, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Color.r
+      value: 0.756942
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540750478372, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Color.g
+      value: 0.7722944
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540750478372, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540836036142, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540836036142, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5765845540836036142, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}

@@ -2646,6 +2646,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7cdfffc466c3a414e8fb5062dafdf8fd, type: 3}
   - {fileID: 8300000, guid: 8259040ec4f728d46b13e8bc7876158e, type: 3}
   - {fileID: 8300000, guid: b4b260cb9bb3cef448adad1938d23d95, type: 3}
+  - {fileID: 8300000, guid: 1c5bcb06818d5624fa2bdb710f32f8f6, type: 3}
   position: 
   idx: 0
   vol: 0
@@ -2669,8 +2670,8 @@ MonoBehaviour:
   - {fileID: 8341947327793805809, guid: abf00bc6177259d408f63aa9e4842771, type: 3}
   - {fileID: 6839919989510768662, guid: 10bdec1f36b176f41bf83807e7f4c0e4, type: 3}
   - {fileID: 6839919989510768662, guid: 10bdec1f36b176f41bf83807e7f4c0e4, type: 3}
-  - {fileID: 6839919989510768662, guid: 10bdec1f36b176f41bf83807e7f4c0e4, type: 3}
-  - {fileID: 6839919989510768662, guid: 10bdec1f36b176f41bf83807e7f4c0e4, type: 3}
+  - {fileID: 7856341462439007048, guid: dc67851e5c728534a8a95f0969d00c22, type: 3}
+  - {fileID: 7856341462439007048, guid: dc67851e5c728534a8a95f0969d00c22, type: 3}
   objects: []
   GearUI65: {fileID: 5250413952282607332, guid: 505a4ab1838cde642b2584f8581b1454, type: 3}
 --- !u!4 &1835461995 stripped
