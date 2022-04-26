@@ -157,8 +157,9 @@ public class TextManager : MonoBehaviour
             GoToPrevButton.interactable = true;
 
 
-        //if (Dia_index != Dialogue_Proceeder.instance.CurrentDiaID)
-        //    Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
+        //얘 다시 살렸음 (6세 연출땜에)
+        if (Dia_index != Dialogue_Proceeder.instance.CurrentDiaID)
+            Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
 
 
 
@@ -626,6 +627,7 @@ public class TextManager : MonoBehaviour
         dialogues_index = 0;
         Set_Dialogue_System();
         DiaUI.SetActive(true);
+        Increasediaindex = true;
     }
 
 
