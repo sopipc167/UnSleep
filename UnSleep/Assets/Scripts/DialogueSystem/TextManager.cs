@@ -44,6 +44,14 @@ public class TextManager : MonoBehaviour
     public GameObject GoToCurr;
     public GameObject LogPanel;
 
+
+    //<----------잘 있어요 퍼즐 UI-------------->
+    [Header("잘 있어요 퍼즐 UI")]
+    public GameObject goodbyeUI;
+    public Image goodbyeImg;
+    public Text goodbyeText;
+
+
     //<---------- 배경---------------->
     [Header("배경")]
     public Image BackGround;
@@ -288,6 +296,7 @@ public class TextManager : MonoBehaviour
                     {
                         Increasediaindex = false;
                         DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
+                        Set_Off_Dialogue_Goodbye();
                     }
 
 
@@ -355,6 +364,12 @@ public class TextManager : MonoBehaviour
         string SE = DiaDic[Dia_index].dialogues[dialogues_index].SE; //효과음
 
         UI_Objects.GetComponent<ChangeLayout>().LayoutChange(LAYOUT); //전달. 저쪽에서 알아서 할거임
+
+        if (LAYOUT == 5) //잘 있어요 전용
+        {
+            Set_Dialogue_Goodbye(CONTEXT);
+            return;
+        }
 
 
 
@@ -669,6 +684,106 @@ public class TextManager : MonoBehaviour
         }
         isTyping = false;
     }
+
+    //잘 있어요 퍼즐 전용 대화 UI 
+    public void Set_Dialogue_Goodbye(string line_context)
+    {
+        DiaUI.SetActive(false);
+        LogUI.SetActive(false);
+
+        if (!goodbyeUI.activeSelf)
+        {
+            goodbyeUI.SetActive(true);
+            StartCoroutine(OnGoodbyeImg());
+        }
+        else
+        {
+            StartCoroutine(OffGoodbyeText()); 
+        }
+        goodbyeText.text = line_context;
+        StartCoroutine(OnGoodbyeText());
+    }
+
+    public void Set_Off_Dialogue_Goodbye()
+    {
+        if (goodbyeUI.activeSelf)
+        {
+            goodbyeUI.SetActive(false);
+            StartCoroutine(OffGoodbyeText());
+            StartCoroutine(OffGoodbyeImg());
+        }
+    }
+
+    IEnumerator OnGoodbyeImg()
+    {
+        Color color = goodbyeImg.color;
+        
+        while (color.a < 0.98f)
+        {
+            color.a += 2f * Time.deltaTime;
+            goodbyeImg.color = color;
+
+            yield return null;
+        }
+        color.a = 1f;
+        goodbyeImg.color = color;
+        yield return null;
+    }
+
+    IEnumerator OnGoodbyeText()
+    {
+        Color color_t = goodbyeText.color;
+
+        yield return new WaitForSeconds(1f); //대사 켤 때 찰나 대기
+        while (color_t.a < 0.98f)
+        {
+            color_t.a += 2f * Time.deltaTime;
+            goodbyeText.color = color_t;
+
+            yield return null;
+        }
+        color_t.a = 1f;
+
+        goodbyeText.color = color_t;
+
+        yield return null;
+    }
+
+    IEnumerator OffGoodbyeImg()
+    {
+        Color color = goodbyeImg.color;
+
+        while (color.a > 0.02f)
+        {
+            color.a -= 2f * Time.deltaTime;
+            goodbyeImg.color = color;
+
+            yield return null;
+        }
+        color.a = 0f;
+        goodbyeImg.color = color;
+        
+        yield return null;
+    }
+
+    IEnumerator OffGoodbyeText()
+    {
+        Color color_t = goodbyeText.color;
+
+        while (color_t.a > 0.02f)
+        {
+            color_t.a -= 2f * Time.deltaTime;
+            goodbyeText.color = color_t;
+
+            yield return null;
+        }
+        color_t.a = 0f;
+        goodbyeText.color = color_t;
+
+
+        yield return null;
+    }
+
 
 
 }
