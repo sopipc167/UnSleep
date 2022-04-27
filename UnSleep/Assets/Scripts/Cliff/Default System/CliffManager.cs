@@ -81,6 +81,7 @@ public class CliffManager : MonoBehaviour
                 limitedOption = true;
                 additionalOption = true;
                 phase = 6;
+                Dialogue_Proceeder.instance.AddCompleteCondition(60); //잘 있어요 절벽 연출을 위해 추가
                 break;
         }
     }

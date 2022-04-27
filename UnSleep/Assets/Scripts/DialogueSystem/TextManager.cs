@@ -50,6 +50,7 @@ public class TextManager : MonoBehaviour
     public GameObject goodbyeUI;
     public Image goodbyeImg;
     public Text goodbyeText;
+    public bool isGoodbye = false;
 
 
     //<---------- 배경---------------->
@@ -146,7 +147,7 @@ public class TextManager : MonoBehaviour
         }    
         
         
-        if(!isSeven)
+        if(!isSeven && !isPuzzle)
             STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
 
         //배경 전환
@@ -200,17 +201,21 @@ public class TextManager : MonoBehaviour
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
         if (Input.GetMouseButtonDown(0))
         {
-            if (goodbyeUI.activeSelf)
+            if (goodbyeUI.activeSelf && !isGoodbye)
             {
-                Set_Off_Dialogue_Goodbye();
+                
                 if (dialogues_index < DiaDic[Dia_index].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
                 {
                     dialogues_index++;
+                    StartCoroutine(Update_Dialogue_Goodbye());
+                    
                 }
                 else
                 {
+                    
                     Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index);
                     Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index);
+                    Set_Off_Dialogue_Goodbye();
                     dialogues_index = 0;
                 }
 
@@ -393,7 +398,7 @@ public class TextManager : MonoBehaviour
 
         if (LAYOUT == 5) //잘 있어요 전용
         {
-            Set_Dialogue_Goodbye(CONTEXT);
+            Set_Dialogue_Goodbye();
             DiaUI.SetActive(false);
             return;
         }
@@ -716,7 +721,7 @@ public class TextManager : MonoBehaviour
     }
 
     //잘 있어요 퍼즐 전용 대화 UI 
-    public void Set_Dialogue_Goodbye(string line_context)
+    public void Set_Dialogue_Goodbye() //처음 킬 때
     {
 
         Debug.Log("Set_Dialogue_Goodbye");
@@ -735,8 +740,24 @@ public class TextManager : MonoBehaviour
             goodbyeUI.SetActive(true);
             StartCoroutine(OnGoodbyeImg());
         }
-        goodbyeText.text = line_context;
+        goodbyeText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
         StartCoroutine(OnGoodbyeText());
+    }
+
+    IEnumerator Update_Dialogue_Goodbye() //한 대화 묶음 내에서 바꿀 때
+    {
+        
+        yield return StartCoroutine(OffGoodbyeText()); //껐다가
+
+        isGoodbye = true; //중간에 한번 꺼지니까 다시 막아
+
+        goodbyeText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts; //대사 갈아끼고
+
+
+        StartCoroutine(OnGoodbyeText()); //킨다
+
+        
+        yield return null;
     }
 
     public void Set_Off_Dialogue_Goodbye()
@@ -752,6 +773,7 @@ public class TextManager : MonoBehaviour
 
     IEnumerator OnGoodbyeImg()
     {
+        isGoodbye = true;
         Color color = goodbyeImg.color;
         
         while (color.a < 0.98f)
@@ -763,15 +785,16 @@ public class TextManager : MonoBehaviour
         }
         color.a = 1f;
         goodbyeImg.color = color;
+        isGoodbye = false;
         yield return null;
     }
 
     IEnumerator OnGoodbyeText()
     {
-
+        isGoodbye = true;
         Color color_t = goodbyeText.color;
 
-        yield return new WaitForSeconds(1f); //대사 켤 때 찰나 대기
+        yield return new WaitForSeconds(0.5f); //대사 켤 때 찰나 대기
         while (color_t.a < 0.98f)
         {
             color_t.a += 2f * Time.deltaTime;
@@ -782,13 +805,13 @@ public class TextManager : MonoBehaviour
         color_t.a = 1f;
 
         goodbyeText.color = color_t;
-
+        isGoodbye = false;
         yield return null;
     }
 
     IEnumerator OffGoodbyeImg()
     {
-
+        isGoodbye = true;
         Color color = goodbyeImg.color;
 
         while (color.a > 0.02f)
@@ -802,13 +825,13 @@ public class TextManager : MonoBehaviour
         goodbyeImg.color = color;
 
         goodbyeUI.SetActive(false);
-
+        isGoodbye = false;
         yield return null;
     }
 
     IEnumerator OffGoodbyeText()
     {
-
+        isGoodbye = true;
         Color color_t = goodbyeText.color;
 
         while (color_t.a > 0.02f)
@@ -820,7 +843,7 @@ public class TextManager : MonoBehaviour
         }
         color_t.a = 0f;
         goodbyeText.color = color_t;
-
+        isGoodbye = false;
 
         yield return null;
     }
