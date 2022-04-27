@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a83ad35cc3f2a044a91013a946bd2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &143832241 stripped
+--- !u!224 &143832242 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3312009997333351401, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
   m_PrefabInstance: {fileID: 3312009997458243416}
@@ -350,7 +350,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 270894608}
-  - {fileID: 143832241}
+  - {fileID: 143832242}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -626,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 8001
+      value: 8017
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]

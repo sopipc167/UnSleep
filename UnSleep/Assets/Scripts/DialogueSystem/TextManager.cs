@@ -137,8 +137,15 @@ public class TextManager : MonoBehaviour
 
         GoToPrevButton.interactable = false;
 
-
-        Set_Dialogue_System();
+        if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index].Condition))
+            Set_Dialogue_System();
+        else
+        {
+            DiaUI.SetActive(false);
+            goodbyeUI.SetActive(false);
+        }    
+        
+        
         if(!isSeven)
             STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
 
@@ -191,131 +198,150 @@ public class TextManager : MonoBehaviour
 
 
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
-        if (Input.GetMouseButtonDown(0) && DiaUI.activeSelf == true && LogUI.activeSelf == false && !EventSystem.current.IsPointerOverGameObject())
+        if (Input.GetMouseButtonDown(0))
         {
-
-
-            if (isTyping)
+            if (goodbyeUI.activeSelf)
             {
-                if (type_coroutine != null)
-                {
-                    StopCoroutine(type_coroutine);
-                    LineText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
-                    isTyping = false;
-                }
-            }
-            else
-            {
+                Set_Off_Dialogue_Goodbye();
                 if (dialogues_index < DiaDic[Dia_index].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
                 {
-
-
-                    if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
-                        dialogues_index++;
-
-                    if (isSeven)
-                        con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
-
-
+                    dialogues_index++;
                 }
-                else //대화 묶음 넘어갈 때
-                {
-                    Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index); //대화 종료. 완수 조건에 현재 대화묶음id 추가
-                    if (!DiaDic.ContainsKey(Dia_index + 1))
-                    {
-                        Dialogue_Proceeder.instance.End = "E"; //음... 왜 string으로 했지? 조만간 윤지랑 얘기해서 bool로 바꿔버리자
-                        SaveDataManager.Instance.SaveEpiProgress(Dialogue_Proceeder.instance.CurrentEpiID); //현재 에피소드 완료 저장
-                        SceneManager.LoadScene("Diary");
-                    }
-
-
-                    dialogues_index = 0; //대사 인덱스 초기화
-                    if (Increasediaindex && !isSeven)
-                        STEManager.FadeInOut();
-
-                    //대화 묶음 넘어갈 때 초상화 초기화
-                    showSpeaker2When1 = false;
-                    showSpeaker1When2 = false;
-
-                    if (!isPuzzle) //퍼즐은 따로 (동굴때문에 추가)
-                    {
-                        if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
-                        {
-                            Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
-                            SceneManager.LoadScene("Mental_World_Map");
-
-                        }
-                        else if (!DiaDic[Dia_index].isStory && DiaDic[Dia_index + 1].isStory) //정신세계(퍼즐)->스토리
-                        {
-                            Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
-                            SceneManager.LoadScene("DialogueTest");
-
-                        }
-
-
-                    }
-
-
-
-                    if (DiaDic[Dia_index].isStory) //스토리모드
-                    {
-                        if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
-                        {
-                            //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록. 
-                            //선택지 개수를 동적으로 바꾼다면 수정해야 함
-                            if (Dialogue_Proceeder.instance.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
-                                Dia_index++;
-                            else
-                                Dia_index += 2;
-                            Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index);
-                            SelectA = false;
-                        }
-                        else
-                        {
-                            if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index + 1].Condition)) //다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
-                            {
-                                Dia_index += 1; //다음 대화 묶음으로 
-                                Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //Proceeder 업데이트.
-
-                                //BGM 전환
-                                if (DiaDic[Dia_index].BGM != null)
-                                    SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
-
-
-                            }
-                            else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
-                            {
-                                Increasediaindex = false;
-
-                            }
-
-                        }
-
-                    }
-                    else //맵모드
-                    {
-                        Increasediaindex = false;
-                        DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
-                        Set_Off_Dialogue_Goodbye();
-                    }
-
-
-                    if (isSeven)
-                        con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
-                }
-
-                if (DiaDic[Dia_index].dialogues[dialogues_index].isSelect) //선택지인 경우
-                    Set_Select_System();
                 else
-                    Set_Dialogue_System();
+                {
+                    Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index);
+                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index);
+                    dialogues_index = 0;
+                }
+
+            }
+            else if (DiaUI.activeSelf && !LogUI.activeSelf && !EventSystem.current.IsPointerOverGameObject())
+            {
+
+                if (isTyping)
+                {
+                    if (type_coroutine != null)
+                    {
+                        StopCoroutine(type_coroutine);
+                        LineText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
+                        isTyping = false;
+                    }
+                }
+                else
+                {
+                    if (dialogues_index < DiaDic[Dia_index].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
+                    {
+
+
+                        if (DiaUI.activeSelf && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
+                            dialogues_index++;
+
+                        if (isSeven)
+                            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
+
+
+                    }
+                    else //대화 묶음 넘어갈 때
+                    {
+                        Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index); //대화 종료. 완수 조건에 현재 대화묶음id 추가
+                        if (!DiaDic.ContainsKey(Dia_index + 1))
+                        {
+                            Dialogue_Proceeder.instance.End = "E"; //음... 왜 string으로 했지? 조만간 윤지랑 얘기해서 bool로 바꿔버리자
+                            SaveDataManager.Instance.SaveEpiProgress(Dialogue_Proceeder.instance.CurrentEpiID); //현재 에피소드 완료 저장
+                            SceneManager.LoadScene("Diary");
+                        }
+
+
+                        dialogues_index = 0; //대사 인덱스 초기화
+                        if (Increasediaindex && !isSeven && STEManager != null && !isPuzzle)
+                            STEManager.FadeInOut();
+
+                        //대화 묶음 넘어갈 때 초상화 초기화
+                        showSpeaker2When1 = false;
+                        showSpeaker1When2 = false;
+
+                        if (!isPuzzle) //퍼즐은 따로 (동굴때문에 추가)
+                        {
+                            if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
+                            {
+                                Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
+                                SceneManager.LoadScene("Mental_World_Map");
+
+                            }
+                            else if (!DiaDic[Dia_index].isStory && DiaDic[Dia_index + 1].isStory) //정신세계(퍼즐)->스토리
+                            {
+                                Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
+                                SceneManager.LoadScene("DialogueTest");
+
+                            }
+
+
+                        }
+
+
+
+                        if (DiaDic[Dia_index].isStory) //스토리모드
+                        {
+                            if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
+                            {
+                                //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록. 
+                                //선택지 개수를 동적으로 바꾼다면 수정해야 함
+                                if (Dialogue_Proceeder.instance.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
+                                    Dia_index++;
+                                else
+                                    Dia_index += 2;
+                                Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index);
+                                SelectA = false;
+                            }
+                            else
+                            {
+                                if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index + 1].Condition)) //다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
+                                {
+                                    Dia_index += 1; //다음 대화 묶음으로 
+                                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //Proceeder 업데이트.
+
+                                    //BGM 전환
+                                    if (DiaDic[Dia_index].BGM != null)
+                                        SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
+
+
+                                }
+                                else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
+                                {
+                                    Increasediaindex = false;
+
+                                }
+
+                            }
+
+                        }
+                        else //맵모드
+                        {
+                            Increasediaindex = false;
+                            DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
+                        }
+
+
+                        if (isSeven)
+                            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
+                    }
+
+                    if (DiaDic[Dia_index].dialogues[dialogues_index].isSelect) //선택지인 경우
+                        Set_Select_System();
+                    else
+                        Set_Dialogue_System();
+
+                }
+
+
+
+                //배경 전환 
+                if (DiaDic[Dia_index].dialogues[dialogues_index].BG != null)
+                    Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_index].dialogues[dialogues_index].BG);
 
             }
 
 
-
-            //배경 전환 
-            if (DiaDic[Dia_index].dialogues[dialogues_index].BG != null)
-                Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_index].dialogues[dialogues_index].BG);
 
 
 
@@ -368,6 +394,7 @@ public class TextManager : MonoBehaviour
         if (LAYOUT == 5) //잘 있어요 전용
         {
             Set_Dialogue_Goodbye(CONTEXT);
+            DiaUI.SetActive(false);
             return;
         }
 
@@ -380,6 +407,8 @@ public class TextManager : MonoBehaviour
             Increasediaindex = false;
         }
 
+
+      
 
 
 
@@ -641,7 +670,8 @@ public class TextManager : MonoBehaviour
         Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
         dialogues_index = 0;
         Set_Dialogue_System();
-        DiaUI.SetActive(true);
+        if (DiaDic[Dia_index].dialogues[dialogues_index].layoutchange != 5)
+            DiaUI.SetActive(true);
         Increasediaindex = true;
     }
 
@@ -688,17 +718,22 @@ public class TextManager : MonoBehaviour
     //잘 있어요 퍼즐 전용 대화 UI 
     public void Set_Dialogue_Goodbye(string line_context)
     {
+
+        Debug.Log("Set_Dialogue_Goodbye");
+
         DiaUI.SetActive(false);
         LogUI.SetActive(false);
 
-        if (!goodbyeUI.activeSelf)
+        
+
+        if (goodbyeUI.activeSelf)
         {
-            goodbyeUI.SetActive(true);
-            StartCoroutine(OnGoodbyeImg());
+            StartCoroutine(OffGoodbyeText());
         }
         else
         {
-            StartCoroutine(OffGoodbyeText()); 
+            goodbyeUI.SetActive(true);
+            StartCoroutine(OnGoodbyeImg());
         }
         goodbyeText.text = line_context;
         StartCoroutine(OnGoodbyeText());
@@ -706,9 +741,10 @@ public class TextManager : MonoBehaviour
 
     public void Set_Off_Dialogue_Goodbye()
     {
+        Debug.Log("Set_Off_Dialogue_Goodbye");
+
         if (goodbyeUI.activeSelf)
         {
-            goodbyeUI.SetActive(false);
             StartCoroutine(OffGoodbyeText());
             StartCoroutine(OffGoodbyeImg());
         }
@@ -732,6 +768,7 @@ public class TextManager : MonoBehaviour
 
     IEnumerator OnGoodbyeText()
     {
+
         Color color_t = goodbyeText.color;
 
         yield return new WaitForSeconds(1f); //대사 켤 때 찰나 대기
@@ -751,6 +788,7 @@ public class TextManager : MonoBehaviour
 
     IEnumerator OffGoodbyeImg()
     {
+
         Color color = goodbyeImg.color;
 
         while (color.a > 0.02f)
@@ -762,12 +800,15 @@ public class TextManager : MonoBehaviour
         }
         color.a = 0f;
         goodbyeImg.color = color;
-        
+
+        goodbyeUI.SetActive(false);
+
         yield return null;
     }
 
     IEnumerator OffGoodbyeText()
     {
+
         Color color_t = goodbyeText.color;
 
         while (color_t.a > 0.02f)
