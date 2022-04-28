@@ -26,7 +26,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             return pos;
         }
     }
-    int [,,]gameboardArray=new int[5,12,16]
+    int [,,]gameboardArray=new int[6,12,16]
     {
         {
             { 0,-1,0,0,4,0,0,2,0,0,1,0,0,0,0,0},
@@ -98,12 +98,28 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
            { 0,0,0,0,0,0,0,0,0,0,0,0,3,0,0,0},
            { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
         }
+        ,
+         {
+           { 0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+           { 0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,0},
+        }
     }; //스테이지별 폭탄과 블럭의 위치를 배열로 만들음
 
 
 
     public GameObject block, bomb, magma; //각각 블럭 폭탄 마그마의 프리랩
-    public GameObject Over;//, Clear; //게임클리어, 게임 오버 UI
+    public GameObject Over; //게임 오버 UI
+    public GameObject Next; //잘 있어요 전용 다음 스테이지로 가는 UI
     public PuzzleClear puzzleClear; //퍼즐 클리어
     public Sprite X;
     public Text swaping, fire, stage; //UI에 표시할 내용 스왑 가능 횟수, 점화 가능 횟수(1개로 고정), 현재 스테이지
@@ -115,7 +131,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     List<bombs> Bomb_List = new List<bombs>(); //폭탄이 터질때 다음 폭탄들을 저장해주는 리스트
 
 
-
+    public TextManager textManager;
 
     public void Start()
     {
@@ -125,10 +141,22 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         Swap_List.Clear();
         if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
         {
-            initialx = 13;
-            initialy = 11;
-            snum = 15;
-            gameboardint = 0;
+            if (Dialogue_Proceeder.instance.CurrentDiaID == 8027)
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(40);
+                initialx = 13;
+                initialy = 11;
+                snum = 15;
+                gameboardint = 0;
+            }
+            else
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(42);
+                initialx = 7;
+                initialy = 0;
+                snum = 10;
+                gameboardint = 5;
+            }
         }
         else if (Dialogue_Proceeder.instance.CurrentEpiID == 3)
         {
@@ -295,8 +323,23 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         {
             RayMode();
             StartCoroutine(Magmazation(initialx, initialy));
-            //Clear.SetActive(true);
-            puzzleClear.ClearPuzzle(SceneType.MenTal, 5f);
+
+            if (gameboardint == 0)
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(41);
+                Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+                Next.SetActive(true);
+                textManager.Set_Dialogue_System();
+            }
+            else if (gameboardint == 5)
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(43);
+                Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+                textManager.Set_Dialogue_System();
+                puzzleClear.ClearPuzzle(SceneType.MenTal, 10f);
+            }
+            else 
+                puzzleClear.ClearPuzzle(SceneType.MenTal, 5f);
         }
         else
         {
@@ -426,6 +469,6 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     public void GotoNext()
     {
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneManager.LoadScene("Mental_World_Map");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

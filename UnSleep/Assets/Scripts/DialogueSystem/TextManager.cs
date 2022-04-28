@@ -731,15 +731,10 @@ public class TextManager : MonoBehaviour
 
         
 
-        if (goodbyeUI.activeSelf)
-        {
-            StartCoroutine(OffGoodbyeText());
-        }
-        else
-        {
-            goodbyeUI.SetActive(true);
-            StartCoroutine(OnGoodbyeImg());
-        }
+
+        goodbyeUI.SetActive(true);
+        StartCoroutine(OnGoodbyeImg());
+        
         goodbyeText.text = DiaDic[Dia_index].dialogues[dialogues_index].contexts;
         StartCoroutine(OnGoodbyeText());
     }
