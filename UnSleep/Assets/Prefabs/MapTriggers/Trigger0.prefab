@@ -123,6 +123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676023988182043755}
   - component: {fileID: 676023988182043756}
+  - component: {fileID: 3302348667615127500}
   m_Layer: 0
   m_Name: Trigger0
   m_TagString: MapTrigger
@@ -157,6 +158,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 79400b7f9ac705b408204dc690ae7566, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3302348667615127500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676023988182043754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b911f29eaafda24a938c25fdb0b0174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &676023988724818378
@@ -253,8 +266,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 25.019672, y: 1, z: 33.001564}
+  m_Center: {x: -0.28799057, y: 0, z: -8.11932}
 --- !u!114 &676023988724818380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,8 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: 
-  OnlyOnce: 
+  Obj_Diaid: 5c020000
+  OnlyOnce: 01
   Interaction_distance: 28
   isChangeScene: 0
   ChangeSceneName: 
@@ -299,13 +312,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6284016541573196738}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -27.5, y: -0.75, z: 59.2}
+  m_LocalRotation: {x: -0, y: 0.33257407, z: -0, w: 0.94307715}
+  m_LocalPosition: {x: -31.859165, y: -0.75, z: 58.332054}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 676023988182043755}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 38.85, z: 0}
 --- !u!33 &6284016541573196745
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -366,8 +379,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 19.276867, y: 4.2253246, z: 6.775236}
+  m_Center: {x: -9.138433, y: -1.61266, z: 2.8876152}
 --- !u!114 &6284016541573196748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -380,7 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: 5d020000
+  Obj_Diaid: 5e020000
   OnlyOnce: 01
   Interaction_distance: 5
   isChangeScene: 0
