@@ -42,5 +42,6 @@ public class UnwindRibbon : StoryInteract
             yield return delay;
         }
         result = true;
+        gameObject.SetActive(false);
     }
 }

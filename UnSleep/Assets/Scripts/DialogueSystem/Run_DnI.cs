@@ -28,12 +28,13 @@ public class Run_DnI : MonoBehaviour
     {
         switch (Dialogue_Proceeder.instance.CurrentDiaID)
         {
-            case 3201: return 0;
-            case 3116: return 1;
-            case 3117: return 2;
-            case 5602: return 3;
-            case 6502: return 4;
-            case 6517: return 5;
+            case 2403: return 0;
+            case 3201: return 1;
+            case 3116: return 2;
+            case 3117: return 3;
+            case 5602: return 4;
+            case 6502: return 5;
+            case 6517: return 6;
         }
         return -1;
     }

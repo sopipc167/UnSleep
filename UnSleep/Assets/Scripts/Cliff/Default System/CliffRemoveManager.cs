@@ -166,7 +166,6 @@ public class CliffRemoveManager : MonoBehaviour
             Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
             Dialogue_Proceeder.instance.AddCompleteCondition(61);
             textManager.Set_Dialogue_Goodbye();
-            clearCanvas.ClearPuzzle(SceneType.MenTal, 10f); //땜빵으로 대사 넘길때까지 전 딜레이 해놧어요 
             return;
         }
             

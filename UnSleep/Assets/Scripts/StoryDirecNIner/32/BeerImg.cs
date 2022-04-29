@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
@@ -8,7 +9,19 @@ public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
     private Vector3 curMousePos;
     private Vector3 prevMousePos;
     private Vector3 diff;
+    private Button button;
     internal bool result = false;
+
+    private void Update()
+    {
+        if (!result) return;
+
+        if (Dialogue_Proceeder.instance.CurrentDiaID == 3203 ||
+            Dialogue_Proceeder.instance.CurrentDiaID == 6503)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -35,11 +48,16 @@ public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
         
         transform.localPosition += diff;
 
-        if (transform.localPosition.x > -35.2f && transform.localPosition.y > -97.2f) result = true;
+        if (transform.localPosition.x > -35.2f && transform.localPosition.y > -97.2f)
+        {
+            button.interactable = false;
+            result = true;
+        }
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (result) return;
         curMousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f);
     }
 }

@@ -24,7 +24,7 @@ public class DialogueParser : MonoBehaviour
         List<DialogueEvent> diaEList = new List<DialogueEvent>(); //마지막에 return할 리스트, 각 요소는 대화 묶음
         
         string[] data = csvData.text.Split(new char[] { '\n' }); //개행문자 단위로 자름 (가로 한 줄)
-
+        Debug.Log(data[0]);
         string[] HeadRow = data[0].Split(new char[] { ',' });
         CharIdCell = HeadRow[1];
 
