@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ClickDomun24 : StoryInteract
+public class ClickCharacter : StoryInteract
 {
     public Button button;
     private bool isClick = false;
@@ -13,7 +13,7 @@ public class ClickDomun24 : StoryInteract
         return isClick;
     }
 
-    public void OnclickDomun()
+    public void OnclickCharacter()
     {
         isClick = true;
         gameObject.SetActive(false);
