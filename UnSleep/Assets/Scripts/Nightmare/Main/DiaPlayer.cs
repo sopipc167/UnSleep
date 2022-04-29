@@ -13,6 +13,8 @@ public class DiaPlayer : MonoBehaviour
 
     public GameObject diaScene1;
 
+    public TextManager TM;
+
     // Update is called once per frame
     void Update()
     {
@@ -38,6 +40,8 @@ public class DiaPlayer : MonoBehaviour
                     lightClick1.SetActive(false);
                 }*/
 
+                //TM.Get_Content();
+
                 //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력
                 if (hitted_object.transform.tag.Equals("DiaInterClick")
                     && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false
@@ -51,6 +55,8 @@ public class DiaPlayer : MonoBehaviour
         dia_hit_colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3.0f);
         if (dia_hit_colliders.Length > 0)
         {
+            //TM.Get_Content();
+
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
                 if (dia_hit_colliders[i].tag == "DiaInterCollision" && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false)

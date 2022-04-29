@@ -202,7 +202,6 @@ public class TextManager : MonoBehaviour
                     if (isSeven)
                         con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
 
-
                 }
                 else //대화 묶음 넘어갈 때
                 {
@@ -274,10 +273,6 @@ public class TextManager : MonoBehaviour
                         Increasediaindex = false;
                         DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
                     }
-
-
-                    if (isSeven)
-                        con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
                 }
 
                 if (DiaDic[Dia_index].dialogues[dialogues_index].isSelect) //선택지인 경우
@@ -298,6 +293,12 @@ public class TextManager : MonoBehaviour
 
         }
 
+    }
+
+    public void Get_Content()
+    {
+        if (isSeven)
+            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
     }
 
     public void Set_Select_System()

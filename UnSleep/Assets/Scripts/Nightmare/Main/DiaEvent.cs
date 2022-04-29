@@ -18,6 +18,9 @@ public class DiaEvent : MonoBehaviour
     public AudioClip[] audioClip;
     public AudioSource audioSource;
 
+    public FadeInOut fade;
+    public Coroutine fadeStart;
+
     void Start()
     {
         
@@ -41,6 +44,9 @@ public class DiaEvent : MonoBehaviour
                 case 2:
                     Sound(100);
                     isFirst = true;
+                    break;
+                case 3:
+                    fade.FadeStop(false);
                     break;
                 default:
                     isFirst = true;
@@ -76,6 +82,12 @@ public class DiaEvent : MonoBehaviour
             {
                 Setting();
                 EventNum = 0;
+            }
+            else if(TM.con == "Fadein")
+            {
+                EventNum = 3;
+                Debug.Log("Event3");
+                fade.FadeStop(true);
             }
         }
     }

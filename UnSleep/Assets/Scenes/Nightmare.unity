@@ -1864,6 +1864,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d2075bcb8d43caf47baf3eeaeba72517, type: 3}
   - {fileID: 8300000, guid: d2075bcb8d43caf47baf3eeaeba72517, type: 3}
   audioSource: {fileID: 349265053}
+  fade: {fileID: 571998039}
 --- !u!82 &349265053
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2842,6 +2843,7 @@ MonoBehaviour:
   dia_hit_colliders: []
   player: {fileID: 436431055}
   diaScene1: {fileID: 1723612007}
+  TM: {fileID: 997552215}
 --- !u!1 &445821343
 GameObject:
   m_ObjectHideFlags: 0
@@ -8734,7 +8736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1337636374
 Transform:
   m_ObjectHideFlags: 0

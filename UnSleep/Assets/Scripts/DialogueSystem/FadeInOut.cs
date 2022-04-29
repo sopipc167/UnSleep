@@ -30,6 +30,19 @@ public class FadeInOut : MonoBehaviour
 
     }
 
+    public void FadeStop(bool isStart)
+    {
+        if (isStart)
+        {
+            Debug.Log("fadein");
+            StartCoroutine(fadein());
+        }
+        else
+        {
+            StartCoroutine(fadeout());
+        }
+    }
+
     IEnumerator Blackout_Co(float waitsec)
     {
 
