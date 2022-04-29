@@ -160,7 +160,7 @@ public class TextManager : MonoBehaviour
         //멘탈월드 왔을 때 지정된 스폰 위치에서 스폰하도록=
         if (!DiaDic[Dia_index].isStory && !isPuzzle)
         {
-            GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
+            //GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
         }
     }
 
