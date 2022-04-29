@@ -12,6 +12,9 @@ public class Control : MonoBehaviour
     public float speed;
     public float turnSpeed;
 
+    [Header("잠재우미 레이어마스크")]
+    public LayerMask mask;
+
     private Camera cam;
     private Ray ray;
     private bool flag;
@@ -35,7 +38,7 @@ public class Control : MonoBehaviour
         flag = false;
 
         // 클릭해서 부딪히면 좌표 저장
-        if (Physics.Raycast(ray, out RaycastHit hit, 10000f))
+        if (Physics.Raycast(ray, out RaycastHit hit, 10000f, 1 << mask))
         {
             destination.x = hit.point.x;
             destination.y = hit.point.y + 2f;
