@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17193,7 +17193,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -17259,7 +17259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e69835e57646b64e9ef78bcd630020c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1475587912}
+  playerPos: {fileID: 1475587914}
   distance: 10
   rotationSpeed: 10
 --- !u!114 &1468922096
@@ -17387,13 +17387,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1475587914}
-  - component: {fileID: 1475587911}
   - component: {fileID: 1475587910}
   - component: {fileID: 1475587918}
   - component: {fileID: 1475587916}
   - component: {fileID: 1475587912}
   - component: {fileID: 1475587917}
   - component: {fileID: 1475587915}
+  - component: {fileID: 1475587911}
   m_Layer: 12
   m_Name: JamJammy
   m_TagString: Player
@@ -17417,8 +17417,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
---- !u!65 &1475587911
-BoxCollider:
+--- !u!135 &1475587911
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -17428,8 +17428,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.5028718, y: 7.2919674, z: 1.1751738}
-  m_Center: {x: 0.24891508, y: -0.009493351, z: 0.08758688}
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1475587912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17446,7 +17446,7 @@ MonoBehaviour:
   Select_UI: {fileID: 637818270}
   speed: 13
   turnSpeed: 10
-  mask:
+  ignoreMask:
     serializedVersion: 2
     m_Bits: 4096
 --- !u!4 &1475587914
