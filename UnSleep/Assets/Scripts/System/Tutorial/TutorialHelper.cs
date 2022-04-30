@@ -11,8 +11,7 @@ public class TutorialInfo
 
 public class TutorialHelper : MonoBehaviour
 {
-    private static int ID;
-    private bool startShow;
+    private static int ID = -1;
 
     [Header("퍼즐의 정보를 제한할 개수")]
     public TutorialInfo[] info;
@@ -41,7 +40,6 @@ public class TutorialHelper : MonoBehaviour
                 break;
             }
         }
-        puzzle.SetTutorial(currentInfo.maxInfo, (currentInfo.maxInfo + 2) / 3, false);
     }
 
     public void HowToPuzzle()
