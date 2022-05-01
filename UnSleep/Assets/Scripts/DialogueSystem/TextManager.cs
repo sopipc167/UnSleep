@@ -638,10 +638,14 @@ public class TextManager : MonoBehaviour
             int j;
             for (j = Backdialogidx; j > 0; j--) //배경 이미지 있는 곳까지 올라가서 -> 왜 못찾지????
             {
-                Debug.Log(j.ToString() + " " + DiaDic[BackDiaid].dialogues[Backdialogidx].BG);
+                Debug.Log(BackDiaid.ToString() + " " + Backdialogidx.ToString());
 
-                if (DiaDic[BackDiaid].dialogues[Backdialogidx].BG != null)
+                if (DiaDic[BackDiaid].dialogues[j].BG != null)
+                {
+                    Change_IMG(BackGround, Change_BackGround, DiaDic[BackDiaid].dialogues[j].BG);
                     break;
+                }
+                   
             }
 
             Change_IMG(BackGround, Change_BackGround, DiaDic[BackDiaid].dialogues[0].BG); //바꾼다
