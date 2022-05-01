@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7226818315916549422}
-  - component: {fileID: 7226818315916549417}
   m_Layer: 0
   m_Name: Trigger7
   m_TagString: MapTrigger
@@ -33,18 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7226818315916549417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7226818315916549423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79400b7f9ac705b408204dc690ae7566, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7226818316458799247
 GameObject:
   m_ObjectHideFlags: 0
