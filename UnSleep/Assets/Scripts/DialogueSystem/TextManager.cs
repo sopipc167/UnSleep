@@ -47,6 +47,7 @@ public class TextManager : MonoBehaviour
 
     //<----------잘 있어요 퍼즐 UI-------------->
     [Header("잘 있어요 퍼즐 UI")]
+    public PuzzleClear puzzleClear;
     public GameObject goodbyeUI;
     public Image goodbyeImg;
     public Text goodbyeText;
@@ -217,7 +218,8 @@ public class TextManager : MonoBehaviour
                     Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index);
                     Set_Off_Dialogue_Goodbye();
                     dialogues_index = 0;
-                    GetComponent<PuzzleClear>().ClearPuzzle(SceneType.MenTal, 1f); //땜빵으로 대사 넘길때까지 전 딜레이 해놧어요 
+                    
+                    
                 }
 
             }
@@ -803,6 +805,13 @@ public class TextManager : MonoBehaviour
         {
             StartCoroutine(OffGoodbyeText());
             StartCoroutine(OffGoodbyeImg());
+
+
+            //퍼즐 끝났니?
+            if (Dia_index == 8024 || Dia_index == 8026 || Dia_index == 8030 || Dia_index == 8034 || Dia_index == 8039)
+                puzzleClear.ClearPuzzle(SceneType.MenTal, 1f); //땜빵으로 대사 넘길때까지 전 딜레이 해놧어요 
+
+            Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
         }
     }
 

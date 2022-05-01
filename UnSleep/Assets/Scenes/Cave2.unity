@@ -363,6 +363,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+--- !u!114 &125660009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5765845540064608475, guid: 19c976226ec7a8d4aa3f97f8b98e74cf, type: 3}
+  m_PrefabInstance: {fileID: 125660008}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb7abad65a123e4389ddfd0cde64ca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &129474126
 GameObject:
   m_ObjectHideFlags: 0
@@ -2497,6 +2508,10 @@ PrefabInstance:
       propertyPath: isPuzzle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: puzzleClear
+      value: 
+      objectReference: {fileID: 125660009}
     - target: {fileID: 8528798682909620384, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
