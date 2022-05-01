@@ -12,6 +12,8 @@ public class LakeBall : LakeMovement
 
     [Header("참조")]
     public PuzzleClear puzzleClear;
+    public GameObject nextCanvas;
+    public TextManager textManager;
 
     [Header("공메니저 클래스")]
     public BallManager ballManager;
@@ -49,6 +51,7 @@ public class LakeBall : LakeMovement
         InitAccel(lineAcceleration, lineRotationAcceleration);
         BallUIOff();
     }
+
 
     public void Stop()
     {
@@ -190,8 +193,23 @@ public class LakeBall : LakeMovement
 
         Stop();
 
-        
-        puzzleClear.ClearPuzzle();
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
+        {
+            if (Dialogue_Proceeder.instance.CurrentDiaID == 8032)
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(51);
+                textManager.Set_Dialogue_Goodbye();
+                nextCanvas.SetActive(true); //다음 스테이지로 가는 버튼 
+            }
+            else
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(53);
+                textManager.Set_Dialogue_Goodbye();
+
+            }
+        }
+        else
+            puzzleClear.ClearPuzzle();
     }
 
     public void OnClickRestart()

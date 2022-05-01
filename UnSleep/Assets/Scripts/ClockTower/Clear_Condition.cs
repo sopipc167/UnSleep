@@ -19,16 +19,16 @@ public class Clear_Condition : MonoBehaviour
     Collider2D col;
     public GameObject pointA, pointB;
     public GameObject ClearUI;
-
-
-    private void OnEnable()
-    {
-    }
+    public TextManager textManager;
+    
 
 
     private void Start()
     {
         CurEpiId = Dialogue_Proceeder.instance.CurrentEpiID;
+
+        if (ClearUI.activeSelf)
+            ClearUI.SetActive(false);
     }
 
     void Update()
@@ -116,20 +116,28 @@ public class Clear_Condition : MonoBehaviour
             else
                 isClearCondition = false;
         }
-        else if (CurEpiId == 19) //잘 있어요 -1
+        else if (CurEpiId == 19) //잘 있어요
         {
-            if (SpeedCheck(Gear_Object[0], 8f) && Clockwise(Gear_Object[0]) && CounterClockwise(Gear_Object[1]))
-                isClearCondition = true;
-            else
-                isClearCondition = false;
+            if (!Dialogue_Proceeder.instance.AlreadyDone(31)) // 잘있어요-1
+            {
+                if (SpeedCheck(Gear_Object[0], 8f) && Clockwise(Gear_Object[0]) && CounterClockwise(Gear_Object[1]))
+                    isClearCondition = true;
+                else
+                    isClearCondition = false;
+
+            }
+            else if (!Dialogue_Proceeder.instance.AlreadyDone(32)) // 잘있어요-2
+            {
+                if (SpeedCheck(Gear_Object[0], 100f) && Clockwise(Gear_Object[0]))
+                    isClearCondition = true;
+                else
+                    isClearCondition = false;
+            }
+
+
+
         }
-        else if (CurEpiId == 192) //잘 있어요 -2
-        {
-            if (SpeedCheck(Gear_Object[0], 100f) && Clockwise(Gear_Object[0]))
-                isClearCondition = true;
-            else
-                isClearCondition = false;
-        }
+
 
         if (ClearCount >= 3.5f)
             Clear();
@@ -143,6 +151,22 @@ public class Clear_Condition : MonoBehaviour
             Dialogue_Proceeder.instance.AddCompleteCondition(81);
             ClearUI.SetActive(true);
             ClearCount = 0f; 
+            isClearCondition = false;
+        }
+        else if (CurEpiId == 19  && Dialogue_Proceeder.instance.CurrentDiaID == 8036) //잘있어요-1 클리어 시
+        {
+            Dialogue_Proceeder.instance.AddCompleteCondition(31);
+            ClearUI.SetActive(true);
+            textManager.Set_Dialogue_Goodbye();
+            ClearCount = 0f;
+            isClearCondition = false;
+        }
+        else if (CurEpiId == 19 && Dialogue_Proceeder.instance.CurrentDiaID == 8037)
+        {
+            Dialogue_Proceeder.instance.AddCompleteCondition(32);
+            ClearUI.SetActive(true);
+            textManager.Set_Dialogue_Goodbye();
+            ClearCount = 0f;
             isClearCondition = false;
         }
         else

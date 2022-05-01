@@ -6,17 +6,13 @@ public class LastClear : MonoBehaviour
 {
 
     public GameObject LastGear;
+    public TextManager textManager;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        textManager.Set_Dialogue_System();
     }
 
-    private void Update()
-    {
-
-    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,6 +24,9 @@ public class LastClear : MonoBehaviour
         LastGear.GetComponent<Gear_new>().LastGear = false;
         LastGear.GetComponent<Gear_new>().initial_speed = 1200f;
         LastGear.GetComponent<Gear_Drag_new>().Stop = true;
+
+        Dialogue_Proceeder.instance.AddCompleteCondition(34);
+        textManager.Set_Dialogue_Goodbye();
 
     }
 

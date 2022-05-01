@@ -39,14 +39,16 @@ public class LakeManager : MonoBehaviour
             case 0: currentPhase = 1; break;
             case 8: currentPhase = 2; break;
             case 13: currentPhase = 3; break;
-            case 18: 
+            case 19: 
                 if (Dialogue_Proceeder.instance.CurrentDiaID == 8031)
                 {
                     currentPhase = 4;
+                    Dialogue_Proceeder.instance.AddCompleteCondition(50);
                 }
                 else
                 {
                     currentPhase = 5;
+                    Dialogue_Proceeder.instance.AddCompleteCondition(52);
                 }
                 break;
             default: currentPhase = 5; break;
