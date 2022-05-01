@@ -26,7 +26,10 @@ public class ClocktowerStageManager : MonoBehaviour
             case 12: levels[5].SetActive(true); break; //31세 권태기
             case 13: levels[6].SetActive(true); break; //32세 결혼
             case 14: levels[7].SetActive(true); break; //45세 가족 부양
-            case 19: levels[8].SetActive(true); break; //잘 있어요 (8 9 10)
+            case 19: 
+                levels[8].SetActive(true);
+                Dialogue_Proceeder.instance.AddCompleteCondition(30);
+                break; //잘 있어요 (8 9 10)
         }
     }
 
@@ -61,7 +64,7 @@ public class ClocktowerStageManager : MonoBehaviour
                 levels[9].SetActive(false);
                 levels[10].SetActive(true);
                 COMPLETE2 = true;
-
+                Dialogue_Proceeder.instance.AddCompleteCondition(33);
             }
         }
 

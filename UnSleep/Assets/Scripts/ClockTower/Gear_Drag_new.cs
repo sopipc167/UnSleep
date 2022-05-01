@@ -20,7 +20,6 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     GameObject Gear_Panel;
 
 
-    ClkSound clkSound;
 
     void Start()
     {
@@ -28,7 +27,6 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         Gear_Panel = GameObject.Find("Gear_Panel");
 
         Start_pos = transform.parent.transform.position;
-        clkSound = GameObject.Find("EtcManager").GetComponent<ClkSound>();
     }
 
     void Update()
@@ -51,7 +49,7 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
             //ScrSpace = transform.parent.transform.position;
             offset = transform.parent.transform.position - ConvertCameraSpace(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 100f));
             Draging = true;
-            clkSound.PlaySound(0);
+            SoundManager.Instance.PlaySE("pickgear");
         }
     }
 
@@ -65,7 +63,7 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
             transform.parent.transform.SetParent(Main_Panel.transform);
             Vector3 curScrSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScrSpace.z);
-            Vector3 curPosition = ConvertCameraSpace(curScrSpace + offset);
+            Vector3 curPosition = ConvertCameraSpace(curScrSpace) + offset;
             transform.parent.transform.position = curPosition;
             Draging = true;
 
@@ -81,9 +79,9 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         {
 
             Before_pos = transform.transform.parent.transform.position;
-            
 
-            clkSound.PlaySound(1);
+
+            SoundManager.Instance.PlaySE("putgear");
 
         }
         Draging = false;
