@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MessageButton : StoryInteract
 {
-    public GameObject phoneObj;
+    public GameObject flagObj;
     public GameObject[] textObjs;
 
     private int curIdx = 0;
@@ -17,9 +17,17 @@ public class MessageButton : StoryInteract
 
     private void Update()
     {
-        if (!phoneObj.activeSelf) return;
+        if (flagObj.activeSelf) return;
 
-        if (Input.GetMouseButtonDown(0))
+        if (result)
+        {
+            if (Dialogue_Proceeder.instance.CurrentDiaID == 3118 ||
+                Dialogue_Proceeder.instance.CurrentDiaID == 5603)
+            {
+                gameObject.SetActive(false);
+            }
+        }
+        else if (Input.GetMouseButtonDown(0))
         {
             if (curIdx == textObjs.Length)
             {

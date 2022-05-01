@@ -217,6 +217,7 @@ public class TextManager : MonoBehaviour
                     Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index);
                     Set_Off_Dialogue_Goodbye();
                     dialogues_index = 0;
+                    GetComponent<PuzzleClear>().ClearPuzzle(SceneType.MenTal, 1f); //땜빵으로 대사 넘길때까지 전 딜레이 해놧어요 
                 }
 
             }

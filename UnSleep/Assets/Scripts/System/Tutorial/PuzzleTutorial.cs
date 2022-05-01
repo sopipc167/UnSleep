@@ -49,10 +49,10 @@ public class PuzzleTutorial : MonoBehaviour
 
 
     // 실제로 다른 클래스에서 쓰는 함수
-    public void SetTutorial(int _maxInfoSize, int _showPage)
+    public void SetTutorial(int _maxInfoSize, int _showPage, bool isShow = true)
     {
         maxInfoSize = _maxInfoSize;
-        ShowContentCanvas(true);
+        ShowContentCanvas(isShow);
         ShowPage(_showPage - 1);
     }
 
