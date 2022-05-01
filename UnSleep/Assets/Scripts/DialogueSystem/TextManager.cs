@@ -160,7 +160,7 @@ public class TextManager : MonoBehaviour
         //멘탈월드 왔을 때 지정된 스폰 위치에서 스폰하도록=
         if (!DiaDic[Dia_index].isStory && !isPuzzle)
         {
-            GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
+            //GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
         }
     }
 
@@ -577,6 +577,12 @@ public class TextManager : MonoBehaviour
 
         for (int i = 0; i < dialogues_index; i++) //현재 대화 묶음의 처음 ~ 직전 대사까지 
         {
+            int LAYOUT = DiaDic[Dia_index].dialogues[i].layoutchange;
+
+            if (LAYOUT == 3) //3번 레이아웃(연출)은 로그에서 표시 안함. 연출로 인덱스가 꼬이는 것 방지
+                continue;
+
+
             GameObject log = MonoBehaviour.Instantiate(log_prefab); //프리팹 생성
             log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
 
@@ -586,6 +592,11 @@ public class TextManager : MonoBehaviour
             string CONTEXT = DiaDic[Dia_index].dialogues[i].contexts;
             int EMOTION = DiaDic[Dia_index].dialogues[i].portrait_emotion;
             float result; //이름(문자열)이 문자인지 숫자인지
+
+
+
+
+
 
             if (NAME.Equals("")) //나레이션이면
             {
@@ -613,10 +624,37 @@ public class TextManager : MonoBehaviour
 
     public void BackToSeletedLogYes(int BackDiaid, int Backdialogidx)
     {
+        if (BackDiaid < Dia_index)
+            Dialogue_Proceeder.instance.RemoveCompleteCondition(BackDiaid);
         Dia_index = BackDiaid;
         dialogues_index = Backdialogidx;
         Dialogue_Proceeder.instance.UpdateCurrentDiaID(BackDiaid);
-        //Dialogue_Proceeder.instance.Dia_index = BackDiaid;
+        Set_Dialogue_System();
+
+
+
+        //배경
+        if (DiaDic[BackDiaid].dialogues[Backdialogidx].BG == null) //선택한 대사에 배경이 없으면
+        {
+            int j;
+            for (j = Backdialogidx; j > 0; j--) //배경 이미지 있는 곳까지 올라가서 -> 왜 못찾지????
+            {
+                Debug.Log(BackDiaid.ToString() + " " + Backdialogidx.ToString());
+
+                if (DiaDic[BackDiaid].dialogues[j].BG != null)
+                {
+                    Change_IMG(BackGround, Change_BackGround, DiaDic[BackDiaid].dialogues[j].BG);
+                    break;
+                }
+                   
+            }
+
+            Change_IMG(BackGround, Change_BackGround, DiaDic[BackDiaid].dialogues[0].BG); //바꾼다
+        }
+        else //선택한 대사에 배경이 있으면 그냥 바꿈
+            Change_IMG(BackGround, Change_BackGround, DiaDic[BackDiaid].dialogues[Backdialogidx].BG);
+
+
         Log_Off1();
     }
 
@@ -644,6 +682,7 @@ public class TextManager : MonoBehaviour
 
     void Change_IMG(Image target, Image Change_target, string ImgName) //target: BackGround, Illust //Change_target: Change_BackGround, Change_Illust
     {
+
         if (ImgName.Equals("Transparent"))
         {
             target.color = new Color(1, 1, 1, 0);

@@ -122,14 +122,14 @@ public class AudioLeftRight : MonoBehaviour
 
         leftAudio.clip = audioClips[i1];
         leftAudio.volume = vol1;
-        leftAudio.Play();
+        //leftAudio.Play();
 
         if (rightAudio.mute)
             rightAudio.mute = false;
 
         rightAudio.clip = audioClips[i2];
         rightAudio.volume = vol2;
-        rightAudio.Play();
+        //rightAudio.Play();
 
     }
 
@@ -141,6 +141,34 @@ public class AudioLeftRight : MonoBehaviour
         if (!rightAudio.mute)
             rightAudio.mute = true;
 
+    }
+
+
+    public void FadeoutCave()
+    {
+        StartCoroutine(FadeoutCaveCoroutine());
+    }
+
+    IEnumerator FadeoutCaveCoroutine()
+    {
+        float rightvol = rightAudio.volume;
+        float leftvol = leftAudio.volume;
+
+
+        while (rightvol > 0f && leftvol > 0f)
+        {
+            Debug.Log(leftvol);
+
+
+            rightvol -= 0.1f * Time.deltaTime;
+            leftvol -= 0.1f * Time.deltaTime;
+
+            rightAudio.volume = rightvol;
+            leftAudio.volume = leftvol;
+
+
+            yield return null;
+        }
     }
 
 }

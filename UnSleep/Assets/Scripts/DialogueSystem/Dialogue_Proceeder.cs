@@ -50,6 +50,12 @@ public class Dialogue_Proceeder : MonoBehaviour
         etcCase(complete);
     }
 
+    public void RemoveCompleteCondition(int complete) //로그 되돌아가기, 동굴 중간포인트부터 실행시 완료 조건 도르마무
+    {
+        if (Complete_Condition.Contains(complete))
+            Complete_Condition.Remove(complete);
+    }
+
     public bool Satisfy_Condition(int[] condition) //input: 조건 배열
     {
         if (condition[0] == 0) //조건 란이 공란 -> 크기 1짜리 int 배열. 내용은 0. 
