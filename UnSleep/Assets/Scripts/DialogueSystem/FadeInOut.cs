@@ -8,8 +8,8 @@ public class FadeInOut : MonoBehaviour
     public GameObject FADEINOUT;
     public float FadeTime = 1f;
     Image FADE_panel;
-    float start;
-    float end;
+    float start = 1f;
+    float end = 0f;
     float time = 0f;
     bool isPlaying = false;
 

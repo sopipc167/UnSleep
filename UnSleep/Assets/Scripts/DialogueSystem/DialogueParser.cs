@@ -10,7 +10,9 @@ public class DialogueParser : MonoBehaviour
     public static bool ParsingisFinish = false; //나중에 파싱 로딩할 때 끊김 방지용
     private string CharIdCell;
 
- 
+    //7세
+    public string con;
+
     private TextAsset LoadCSV()
     {
         int EpiId = Dialogue_Proceeder.instance.CurrentEpiID;
@@ -64,6 +66,7 @@ public class DialogueParser : MonoBehaviour
 
             }
 
+
             if (!row[13].Equals("")) 
                 diaE.BGM = row[13]; //배경음
 
@@ -104,8 +107,9 @@ public class DialogueParser : MonoBehaviour
                 if (!cur_row[11].Equals("")) //공란이 아니면 
                     dia.BG = cur_row[11]; //배경
 
-                if (!cur_row[12].Equals("")) //공란이 아니면 
+                if (!cur_row[12].Equals(""))//공란이 아니면 
                     dia.Content = cur_row[12]; //상호작용명
+
 
                 if (!cur_row[14].Equals(""))
                     dia.SE = cur_row[14]; //효과음

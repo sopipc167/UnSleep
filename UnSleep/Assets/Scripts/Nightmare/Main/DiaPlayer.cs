@@ -12,8 +12,12 @@ public class DiaPlayer : MonoBehaviour
     Vector3 MousePosition;
 
     public GameObject diaScene1;
+    public GameObject diaScene2;
 
     public TextManager TM;
+    public FadeInOut fade;
+    public GameObject chair;
+    public DiaEvent DE;
 
     // Update is called once per frame
     void Update()
@@ -34,18 +38,12 @@ public class DiaPlayer : MonoBehaviour
             {
                 hit_info = hitted_object.transform.GetComponent<DiaInterInfo>();
 
-                /*if(hit_info.OnlyOnce[0] && hit_info.Obj_Diaid[0] == 704)
-                {
-                    lightClick2.SetActive(true);
-                    lightClick1.SetActive(false);
-                }*/
-
-                //TM.Get_Content();
 
                 //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력
                 if (hitted_object.transform.tag.Equals("DiaInterClick")
                     && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false
-                    && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance)
+                    && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance
+                    && Vector3.Distance(transform.position, MousePosition) <= 11.5f)
                     DialogueInteraction(hit_info);
             }
         }
@@ -55,17 +53,23 @@ public class DiaPlayer : MonoBehaviour
         dia_hit_colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3.0f);
         if (dia_hit_colliders.Length > 0)
         {
-            //TM.Get_Content();
 
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
-                if (dia_hit_colliders[i].tag == "DiaInterCollision" && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false)
+                if (dia_hit_colliders[i].tag == "DiaInterCollision" 
+                    && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false)
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
                 }else if(dia_hit_colliders[i].tag == "SceneOver")
                 {
                     diaScene1.SetActive(false);
+                    diaScene2.SetActive(true);
+                    DE.next_flase = 700;
+                    DE.next_true = 699;
+                    fade.Blackout_Func(0.3f);
+                    player.transform.localPosition = new Vector3(-5.16f, -1.19f, 0);
+                    chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
                 }
             }
         }

@@ -137,7 +137,7 @@ public class TextManager : MonoBehaviour
             SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
 
         //멘탈월드 왔을 때 지정된 스폰 위치에서 스폰하도록=
-        if (!DiaDic[Dia_index].isStory)
+        if (!DiaDic[Dia_index].isStory && !isSeven)
         {
             GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
         }
@@ -199,8 +199,7 @@ public class TextManager : MonoBehaviour
                     if (DiaUI.activeSelf == true && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
                         dialogues_index++;
 
-                    if (isSeven)
-                        con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
+                    
 
                 }
                 else //대화 묶음 넘어갈 때
@@ -279,7 +278,6 @@ public class TextManager : MonoBehaviour
                     Set_Select_System();
                 else
                     Set_Dialogue_System();
-
             }
 
 
@@ -352,7 +350,11 @@ public class TextManager : MonoBehaviour
 
         }
 
-
+        if (isSeven)
+        {
+            con = CONTENT;
+            Debug.Log(con);
+        }
 
 
         if (SE != null) //효과음 있으면 효과음 재생 
@@ -591,10 +593,10 @@ public class TextManager : MonoBehaviour
     }
 
     public void SetDiaInMap()
-    { 
-
+    {
         Dia_index = Dialogue_Proceeder.instance.CurrentDiaID;
         dialogues_index = 0;
+        //Invoke("Set_Dialogue_System", 0.5f);
         Set_Dialogue_System();
         DiaUI.SetActive(true);
     }
