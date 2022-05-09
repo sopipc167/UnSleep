@@ -7,7 +7,7 @@ public class FadeInOut : MonoBehaviour
 {
     public GameObject FADEINOUT;
     public float FadeTime = 1f;
-    Image FADE_panel;
+    public Image FADE_panel;
     float start;
     float end;
     float time = 0f;
@@ -65,6 +65,33 @@ public class FadeInOut : MonoBehaviour
         end = 0f;
         StartCoroutine("fadeout");
 
+    }
+
+    public void Fade_Out()
+    {
+        start = 1f;
+        end = 0f;
+
+        if (FADEINOUT.activeSelf == false)
+        {
+            FADEINOUT.SetActive(true);
+
+        }
+        StartCoroutine("fadeout");
+    }
+
+    public void Fade_In()
+    {
+        start = 0f;
+        end = 1f;
+
+
+        if (FADEINOUT.activeSelf == false)
+        {
+            FADEINOUT.SetActive(true);
+
+        }
+        StartCoroutine("fadein");
     }
 
     IEnumerator fadeout()
