@@ -26,7 +26,7 @@ public class MakeMove : MonoBehaviour
 
     private void num0()
     {
-        transform.DOMoveX(-734f, 2f).SetDelay(2f).SetLoops(-1, LoopType.Yoyo);
+        transform.DOMoveX(-735f, 2f).SetDelay(2f).SetLoops(-1, LoopType.Yoyo);
     }
 
     private void num1()

@@ -46,6 +46,14 @@ public class Dialogue_Proceeder : MonoBehaviour
     {
         if (!Complete_Condition.Contains(complete))
             Complete_Condition.Add(complete);
+
+        etcCase(complete);
+    }
+
+    public void RemoveCompleteCondition(int complete) //로그 되돌아가기, 동굴 중간포인트부터 실행시 완료 조건 도르마무
+    {
+        if (Complete_Condition.Contains(complete))
+            Complete_Condition.Remove(complete);
     }
 
     public bool Satisfy_Condition(int[] condition) //input: 조건 배열
@@ -109,6 +117,14 @@ public class Dialogue_Proceeder : MonoBehaviour
             case 18: CurrentDiaID = 7001; break;
             case 19: CurrentDiaID = 8001; break;
         }
+    }
+
+    public void etcCase(int id) //진짜진짜 예외 처리
+    {
+
+        if (CurrentEpiID == 7 &&(id == 2009 || id == 2010))
+            Complete_Condition.Add(777);
+
     }
 
 

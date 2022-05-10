@@ -136,6 +136,10 @@ public class CurrentMapInfo : MonoBehaviour
         else
             audioLeftRight.SetAudioMute();
 
+
+        if (route == 999)
+            audioLeftRight.FadeoutCave();
+
         if (isTalk)
         {
             if (!Dialogue_Proceeder.instance.AlreadyDone(talk_id))

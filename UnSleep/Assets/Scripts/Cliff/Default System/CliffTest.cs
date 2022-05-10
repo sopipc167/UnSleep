@@ -19,7 +19,6 @@ public class CliffTest : MonoBehaviour
 
     public void OnClickButton(int phase)
     {
-        CliffManager.phase = phase;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

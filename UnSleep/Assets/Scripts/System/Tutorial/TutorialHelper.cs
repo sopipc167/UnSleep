@@ -11,10 +11,7 @@ public class TutorialInfo
 
 public class TutorialHelper : MonoBehaviour
 {
-    //임시
-    [Header("임시 - 테스트용")]
-    public bool showAtStart;
-    public int maxSize;
+    private static int ID = -1;
 
     [Header("퍼즐의 정보를 제한할 개수")]
     public TutorialInfo[] info;
@@ -27,28 +24,19 @@ public class TutorialHelper : MonoBehaviour
         puzzle = GetComponent<PuzzleTutorial>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            puzzle.SetTutorial(maxSize, 1);
-        }
-    }
-
     void Start()
     {
-        if (showAtStart)
-        {
-            puzzle.SetTutorial(maxSize, 1);
-            return;
-        }
+        // 재시작으로 인한 씬이동은 무시한다.
+        if (ID == Dialogue_Proceeder.instance.CurrentEpiID) return;
+        ID = Dialogue_Proceeder.instance.CurrentEpiID;
 
+        // 만약 새로운 정보가 추가됐다면, 퍼즐 처음부터 정보를 띄운다.
         foreach (var item in info)
         {
             if (Dialogue_Proceeder.instance.CurrentEpiID == item.id)
             {
                 currentInfo = item;
-                puzzle.SetTutorial(currentInfo.maxInfo, (currentInfo.maxInfo - 1) / 3);
+                puzzle.SetTutorial(currentInfo.maxInfo, (currentInfo.maxInfo + 2) / 3);
                 break;
             }
         }

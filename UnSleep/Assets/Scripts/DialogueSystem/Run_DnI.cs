@@ -14,13 +14,31 @@ public class Run_DnI : MonoBehaviour
         interactManager = GetComponent<InteractManager>();
     }
 
-    public void Run_Direc_N_Inter(int index)
+    public void Run_Direc_N_Inter()
     {
-        GameObject DnI = Instantiate(DnI_List[index]);
+        GameObject DnI = Instantiate(DnI_List[GetIdx()]);
         DnI.transform.position = DnI_Parent.transform.position;
         DnI.transform.SetParent(DnI_Parent.transform);
 
         //현재 상호작용을 가져와서 시작
         interactManager.StartInteraction(DnI.GetComponent<StoryInteract>());
+    }
+
+    private int GetIdx()
+    {
+        switch (Dialogue_Proceeder.instance.CurrentDiaID)
+        {
+            case 2304: return 0;    // 세나
+            case 2403: return 1;    // 도문
+            case 3108: return 2;    // 엘범
+            case 3116: return 3;    // 메시지1
+            case 3117: return 4;    // 메시지2
+            case 3201: return 5;    // 맥주1
+            case 4506: return 6;    // event45
+            case 5602: return 7;    // 메시지3
+            case 6502: return 8;    // 맥주2
+            case 6517: return 9;    // 리본
+        }
+        return -1;
     }
 }

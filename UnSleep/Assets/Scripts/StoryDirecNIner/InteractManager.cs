@@ -48,6 +48,6 @@ public class InteractManager : MonoBehaviour
 
         //>> 이거 왜 삭제해요???  
         //-----------쓸모 없어서요? 아... 굳이 삭제할 필요 없구나
-        curInteraction.gameObject.SetActive(false);
+        //curInteraction.gameObject.SetActive(false);
     }
 }

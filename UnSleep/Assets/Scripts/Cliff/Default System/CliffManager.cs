@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 
 public enum CliffCheckType { None, Color, Shape, All, AllDiff }
 
 public class CliffManager : MonoBehaviour
 {
-    [Header("현재 페이즈"), Range(1, 6)]
-    public static int phase = 1;   //후에 싱글톤 데이터로
+    public int phase;
 
     [Header("참조")]
     public Transform phaseGroup;
@@ -52,35 +50,39 @@ public class CliffManager : MonoBehaviour
 
     private void SetPhaseOption()
     {
-        if (phase == 1)
+        switch (Dialogue_Proceeder.instance.CurrentEpiID)
         {
-            limitedOption = false;
-            additionalOption = false;
-        }
-        else if (phase == 2)
-        {
-            limitedOption = false;
-            additionalOption = false;
-        }
-        else if (phase == 3)
-        {
-            limitedOption = true;
-            additionalOption = false;
-        }
-        else if (phase == 4)
-        {
-            limitedOption = true;
-            additionalOption = false;
-        }
-        else if (phase == 5)
-        {
-            limitedOption = true;
-            additionalOption = true;
-        }
-        else if (phase == 6)
-        {
-            limitedOption = true;
-            additionalOption = true;
+            case 3:
+                limitedOption = false;
+                additionalOption = false;
+                phase = 1;
+                break;
+            case 5:
+                limitedOption = false;
+                additionalOption = false;
+                phase = 2;
+                break;
+            case 9:
+                limitedOption = true;
+                additionalOption = false;
+                phase = 3;
+                break;
+            case 14:
+                limitedOption = true;
+                additionalOption = false;
+                phase = 4;
+                break;
+            case 17:
+                limitedOption = true;
+                additionalOption = true;
+                phase = 5;
+                break;
+            default:
+                limitedOption = true;
+                additionalOption = true;
+                phase = 6;
+                Dialogue_Proceeder.instance.AddCompleteCondition(60); //잘 있어요 절벽 연출을 위해 추가
+                break;
         }
     }
 
@@ -90,6 +92,7 @@ public class CliffManager : MonoBehaviour
         removeManager = GetComponent<CliffRemoveManager>();
         uiManager = GetComponent<CliffUIManager>();
 
+        SetPhaseOption();
         int size = phaseGroup.childCount;
         for (int i = 0; i < size; i++)
         {
@@ -105,7 +108,6 @@ public class CliffManager : MonoBehaviour
             }
         }
 
-        SetPhaseOption();
         if (limitedOption)
         {
             limitedTileSet = new HashSet<CliffType>();

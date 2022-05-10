@@ -14,20 +14,19 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public bool Moving = false; //톱니 이동중
     public bool Draging; //드래깅중
     public bool Reset = false;
-    GameObject Main_Panel;
-    GameObject Gear_Panel;
+    public GameObject Main_Panel;
+    public GameObject Gear_Panel;
 
     private float effecttime = 0.5f;
 
-    ClkSound clkSound;
 
     void Start()
     {
-        Main_Panel = GameObject.Find("Main_Panel");
-        Gear_Panel = GameObject.Find("Gear_Panel");
+        //Main_Panel = GameObject.Find("Main_Panel");
+        //Gear_Panel = GameObject.Find("Gear_Panel");
 
         Start_pos = transform.parent.transform.position;
-        clkSound = GameObject.Find("EtcManager").GetComponent<ClkSound>();
+        
     }
 
     void Update()
@@ -50,7 +49,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
 
             Draging = true;
-            clkSound.PlaySound(0);
+            SoundManager.Instance.PlaySE("pickgear");
         }
     }
 
@@ -61,7 +60,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
         {
             transform.parent.transform.SetParent(Main_Panel.transform);
             Vector3 curScrSpace = new Vector3(Input.mousePosition.x, Input.mousePosition.y, ScrSpace.z);
-            Vector3 curPosition = ConvertCameraSpace(curScrSpace + offset);
+            Vector3 curPosition = ConvertCameraSpace(curScrSpace) + offset;
             transform.parent.transform.position = curPosition;
             Draging = true;
 
@@ -80,6 +79,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 transform.SetParent(GetComponent<Gear>().Origin_Parent.transform);
                 transform.parent.transform.SetParent(Gear_Panel.transform);
                 GetComponent<Gear>().in_Main_Panel = false;
+                Debug.Log("여기");
 
 
                 if (GetComponent<Gear>().Operating)
@@ -92,7 +92,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
                 Before_pos = ConvertCameraSpace(transform.transform.parent.transform.position); 
             }
 
-            clkSound.PlaySound(1);
+            SoundManager.Instance.PlaySE("putgear");
 
         }
         Draging = false;

@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CliffRemoveManager : MonoBehaviour
 {
     [Header("참조")]
     public LineRenderer lineEffect;
     public LayerMask shapeLayer;
+    public PuzzleClear clearCanvas;
+    public TextManager textManager;
 
     //전체 타일 저장
     public HashSet<CliffTile> cliffTiles = new HashSet<CliffTile>();
@@ -157,5 +160,18 @@ public class CliffRemoveManager : MonoBehaviour
             i.ClearPhase();
         }
         cliffTiles.Clear();
+
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 19) //잘 있어요 용 조건 추가. 일단 미개하게 집어넣고 추후 수정이 필요하겠습니다
+        {
+            Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+            Dialogue_Proceeder.instance.AddCompleteCondition(61);
+            textManager.Set_Dialogue_Goodbye();
+            return;
+        }
+            
+        //conflict merge할때 여기 실수로 제꺼랑 스까해서 덮었네요 원상복구함
+        clearCanvas.ClearPuzzle(SceneType.MenTal, 1f);
     }
+
+    
 }

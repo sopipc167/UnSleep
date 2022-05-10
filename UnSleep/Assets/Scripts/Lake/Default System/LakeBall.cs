@@ -10,6 +10,11 @@ public class LakeBall : LakeMovement
     public GameObject ButtonCanvas;
     public GameObject MemoCanvas;
 
+    [Header("참조")]
+    public PuzzleClear puzzleClear;
+    public GameObject nextCanvas;
+    public TextManager textManager;
+
     [Header("공메니저 클래스")]
     public BallManager ballManager;
 
@@ -45,6 +50,16 @@ public class LakeBall : LakeMovement
         ballButtonPos = rightButton.transform.parent.GetComponent<RectTransform>();
         InitAccel(lineAcceleration, lineRotationAcceleration);
         BallUIOff();
+    }
+
+
+    public void Stop()
+    {
+        isFront = false;
+        isRear = false;
+        isFrontStop = false;
+        isRearStop = false;
+        velocity = 0f;
     }
 
     private void FixedUpdate()
@@ -163,37 +178,38 @@ public class LakeBall : LakeMovement
         }
     }
 
-    IEnumerator FinishCoroutine()
+    private IEnumerator FinishCoroutine()
     {
         ButtonCanvas.SetActive(false);
         MemoCanvas.SetActive(false);
-        Camera mainCamera = Camera.main;
+
         while (Vector3.Distance(transform.position, Vector3.zero) > 0.2f)
         {
-            mainCamera.orthographicSize -= 0.05f;
             transform.localScale *= 0.95f;
             velocity *= 0.95f;
             ballManager.velocity *= 0.95f;
             yield return delay;
         }
-        ballManager.isRight = false;
-        ballManager.isLeft = false;
-        isFront = false;
-        isRear = false;
-        ++LakeManager.currentPhase;
-        if (LakeManager.currentPhase == 5)
-        {
-            TestLake.isOpen = true;
-        }
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
 
-    public void StopBall()
-    {
-        ballManager.isLeft = false;
-        ballManager.isRight = false;
-        isFront = false;
-        isRear = false;
+        Stop();
+
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
+        {
+            if (Dialogue_Proceeder.instance.CurrentDiaID == 8032)
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(51);
+                textManager.Set_Dialogue_Goodbye();
+                nextCanvas.SetActive(true); //다음 스테이지로 가는 버튼 
+            }
+            else
+            {
+                Dialogue_Proceeder.instance.AddCompleteCondition(53);
+                textManager.Set_Dialogue_Goodbye();
+
+            }
+        }
+        else
+            puzzleClear.ClearPuzzle();
     }
 
     public void OnClickRestart()
@@ -210,7 +226,7 @@ public class LakeBall : LakeMovement
         RearButton.SetActive(true);
     }
 
-    private void BallUIOff()
+    public void BallUIOff()
     {
         leftButton.SetActive(false);
         rightButton.SetActive(false);
@@ -249,7 +265,7 @@ public class LakeBall : LakeMovement
 
     public void OnClickLevel(int level)
     {
-        LakeManager.currentPhase = level;
+        //LakeManager.currentPhase = level;
         TestLake.isOpen = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

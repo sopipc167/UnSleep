@@ -2,14 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(TowardPlayer))]
 public class TargetObj : MonoBehaviour
 {
-    [Header("참조")]
-    public Transform playerPos;
-
     private Light objLight;
-    private Vector3 basisPos;
-    private Vector3 dirToTarget;
 
     public void SetTarget()
     {
@@ -31,12 +27,6 @@ public class TargetObj : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        basisPos = transform.position;
-        basisPos.y = playerPos.position.y;
-
-        dirToTarget = playerPos.position - basisPos;
-        transform.rotation = Quaternion.LookRotation(dirToTarget, Vector3.up);
-
         if (Input.GetKeyDown(KeyCode.A))
         {
             SetTarget();

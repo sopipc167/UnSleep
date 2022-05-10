@@ -62,6 +62,33 @@ TextureImporter:
   - first:
       213: -7820407897108395778
     second: cave_65_gear_19
+  - first:
+      213: -7981884220293778419
+    second: cave_65_gear_2
+  - first:
+      213: -7546196812373523046
+    second: cave_65_gear_4
+  - first:
+      213: -8800300455949580514
+    second: cave_65_gear_14
+  - first:
+      213: -8636821770746010471
+    second: cave_65_gear_16
+  - first:
+      213: 8471779077376830301
+    second: cave_65_gear_17
+  - first:
+      213: 1626225459409046507
+    second: cave_65_gear_18
+  - first:
+      213: 3150244847947109571
+    second: cave_65_gear_19
+  - first:
+      213: 6741989296749903831
+    second: cave_65_gear_20
+  - first:
+      213: 1650815129160547521
+    second: cave_65_gear_21
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -200,10 +227,10 @@ TextureImporter:
       name: cave_65_gear_2
       rect:
         serializedVersion: 2
-        x: 53
-        y: 781
-        width: 151
-        height: 149
+        x: 28
+        y: 812
+        width: 153
+        height: 151
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -211,8 +238,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4a3a3b55ee01792d0800000000000000
-      internalID: -3272127988435278940
+      spriteID: d04f71b6796aa3190800000000000000
+      internalID: -7981884220293778419
       vertices: []
       indices: 
       edges: []
@@ -221,10 +248,10 @@ TextureImporter:
       name: cave_65_gear_4
       rect:
         serializedVersion: 2
-        x: 266
-        y: 799
+        x: 241
+        y: 830
         width: 117
-        height: 73
+        height: 74
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -232,8 +259,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d349f9547730a8e0800000000000000
-      internalID: -1684285287771323435
+      spriteID: a958a490bf5864790800000000000000
+      internalID: -7546196812373523046
       vertices: []
       indices: 
       edges: []
@@ -242,10 +269,10 @@ TextureImporter:
       name: cave_65_gear_14
       rect:
         serializedVersion: 2
-        x: 45
-        y: 598
+        x: 20
+        y: 630
         width: 158
-        height: 119
+        height: 121
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -253,8 +280,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 523ff5069a977f220800000000000000
-      internalID: 2519616284910416677
+      spriteID: e17ca6e7c5d0fd580800000000000000
+      internalID: -8800300455949580514
       vertices: []
       indices: 
       edges: []
@@ -263,8 +290,8 @@ TextureImporter:
       name: cave_65_gear_16
       rect:
         serializedVersion: 2
-        x: 258
-        y: 595
+        x: 233
+        y: 627
         width: 184
         height: 115
       alignment: 0
@@ -274,8 +301,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 83f3b85c9c9afadd0800000000000000
-      internalID: -2472570986335355080
+      spriteID: 994e25efb58d32880800000000000000
+      internalID: -8636821770746010471
       vertices: []
       indices: 
       edges: []
@@ -284,9 +311,9 @@ TextureImporter:
       name: cave_65_gear_17
       rect:
         serializedVersion: 2
-        x: 52
-        y: 408
-        width: 116
+        x: 27
+        y: 440
+        width: 115
         height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -295,8 +322,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef64fe7f32fa254e0800000000000000
-      internalID: -1994339115953338626
+      spriteID: d5be1aa7f2ec19570800000000000000
+      internalID: 8471779077376830301
       vertices: []
       indices: 
       edges: []
@@ -305,8 +332,8 @@ TextureImporter:
       name: cave_65_gear_18
       rect:
         serializedVersion: 2
-        x: 270
-        y: 407
+        x: 245
+        y: 439
         width: 114
         height: 117
       alignment: 0
@@ -316,8 +343,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2560801ac44c2dc0800000000000000
-      internalID: -3662476762308123350
+      spriteID: bebc5c07073819610800000000000000
+      internalID: 1626225459409046507
       vertices: []
       indices: 
       edges: []
@@ -326,8 +353,8 @@ TextureImporter:
       name: cave_65_gear_19
       rect:
         serializedVersion: 2
-        x: 73
-        y: 59
+        x: 48
+        y: 91
         width: 275
         height: 272
       alignment: 0
@@ -337,8 +364,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef8c13ea374587390800000000000000
-      internalID: -7820407897108395778
+      spriteID: 3c4546d9ffae7bb20800000000000000
+      internalID: 3150244847947109571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cave_65_gear_20
+      rect:
+        serializedVersion: 2
+        x: 411
+        y: 322
+        width: 55
+        height: 38
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7df73487b8b509d50800000000000000
+      internalID: 6741989296749903831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cave_65_gear_21
+      rect:
+        serializedVersion: 2
+        x: 427
+        y: 165
+        width: 47
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cc74731d9fd8e610800000000000000
+      internalID: 1650815129160547521
       vertices: []
       indices: 
       edges: []
