@@ -338,7 +338,7 @@ public class TextManager : MonoBehaviour
                                 }
 
                             }
-                            else //맵모드 + 동굴
+                            else //맵모드 + 동굴 + 7세까지 처리. 머지할때 잘 보고 하기
                             {
                                 Increasediaindex = false;
                                 DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
@@ -950,5 +950,6 @@ public class TextManager : MonoBehaviour
     }
 
 
+  
 
 }
