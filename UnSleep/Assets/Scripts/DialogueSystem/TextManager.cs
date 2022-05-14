@@ -79,8 +79,6 @@ public class TextManager : MonoBehaviour
     [Tooltip("클릭 상호작용시 처음 인덱스가 넘어가버리는 현상 방지. true일때만 대화 진행")]
     public bool Increasediaindex = true; //클릭 상호작용시 처음 인덱스가 넘어가버리는 현상 방지. true일때만 대화 진행
 
-    [Header("퍼즐이야?")]
-    public bool isPuzzle;
 
 
     [Header("씬 전환")]
@@ -160,20 +158,21 @@ public class TextManager : MonoBehaviour
 
         if (!DiaDic.ContainsKey(Dia_index-1)) //처음 시작 시 
         {
-            if (!isSeven && !isPuzzle)
+            if (!isSeven)
                 STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
         }
         else //에피소드 중간에 씬 전환 후 첫 시작
         {
             //스토리 -> 정신세계 전환 시 시네마틱 인트로 재생
-            if ((DiaDic[Dia_index - 1].isStory && !DiaDic[Dia_index].isStory) && !isPuzzle)
+            if (DiaDic[Dia_index - 1].SceneNum == 1 && DiaDic[Dia_index].SceneNum == 2)
             {
                 GameObject.Find("Cinematic").transform.GetChild(0).gameObject.SetActive(true);
             }
             //정신세계 -> 스토리 전환 시 눈뜨면서 시작 
             //음... 퍼즐 -> 정신세계에도 작동되네? 이건 해결법을 생각해보겠음
-            else if (!(DiaDic[Dia_index - 1].isStory && DiaDic[Dia_index].isStory) && !isPuzzle) 
+            else if (DiaDic[Dia_index - 1].SceneNum == 2 && DiaDic[Dia_index].SceneNum == 1)
             {
+                Debug.Log("여기 실행되니?");
                 STEManager.BlinkOpen();
             }
         }
@@ -205,7 +204,7 @@ public class TextManager : MonoBehaviour
         //-> 조건에 맞아야 대화 발생
 
         //스토리 -> 대화 발생 조건 충족 -> 바로 활성화. 이부분은 주로 선택지 -> 대화로 돌아올 때 실행될 것. 
-        if (DiaDic[Dia_index].isStory && DiaUI.activeSelf == false)
+        if (DiaDic[Dia_index].SceneNum == 1 && DiaUI.activeSelf == false)
         {
             if ((DiaDic[Dia_index].Condition.Length == 1 && DiaDic[Dia_index].Condition[0] == 0) || Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index].Condition))
             {
@@ -219,7 +218,7 @@ public class TextManager : MonoBehaviour
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
         if (Input.GetMouseButtonDown(0))
         {
-            if (goodbyeUI.activeSelf && !isGoodbye)
+            if (goodbyeUI.activeSelf && !isGoodbye && Dialogue_Proceeder.instance.CurrentEpiID == 19)
             {
 
                 if (dialogues_index < DiaDic[Dia_index].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
@@ -271,6 +270,11 @@ public class TextManager : MonoBehaviour
                             Set_Dialogue_System();
 
 
+                        //배경 전환 
+                        if (DiaDic[Dia_index].dialogues[dialogues_index].BG != null)
+                            Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_index].dialogues[dialogues_index].BG);
+
+
                     }
                     else //대화 묶음 넘어갈 때
                     {
@@ -281,13 +285,13 @@ public class TextManager : MonoBehaviour
                             SceneManager.LoadScene("Diary");
                         }
 
-                        if (DiaDic[Dia_index].isStory == DiaDic[Dia_index + 1].isStory) //씬 변화가 없음 
+                        if (DiaDic[Dia_index].SceneNum == DiaDic[Dia_index + 1].SceneNum) //씬 변화가 없음 
                         {
                             Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index); //대화 종료. 완수 조건에 현재 대화묶음id 추가
 
 
                             //dialogues_index = 0; //대사 인덱스 초기화
-                            if (Increasediaindex && !isSeven && STEManager != null && !isPuzzle && !DiaDic[Dia_index].isStory)
+                            if (Increasediaindex && !isSeven && STEManager != null && DiaDic[Dia_index].SceneNum == 1)
                                 STEManager.FadeInOut();
 
                             //대화 묶음 넘어갈 때 초상화 초기화
@@ -295,7 +299,7 @@ public class TextManager : MonoBehaviour
                             showSpeaker1When2 = false;
 
 
-                            if (DiaDic[Dia_index].isStory) //스토리모드
+                            if (DiaDic[Dia_index].SceneNum == 1) //스토리모드
                             {
                                 if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
                                 {
@@ -316,7 +320,6 @@ public class TextManager : MonoBehaviour
                                     {
                                         dialogues_index = 0; //대사 인덱스 초기화
                                         Dia_index += 1; //다음 대화 묶음으로 
-                                        Debug.Log("일반적 증가");
 
                                         Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //Proceeder 업데이트.
 
@@ -335,7 +338,7 @@ public class TextManager : MonoBehaviour
                                 }
 
                             }
-                            else //맵모드
+                            else //맵모드 + 동굴
                             {
                                 Increasediaindex = false;
                                 DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
@@ -356,27 +359,30 @@ public class TextManager : MonoBehaviour
                             if (DiaDic[Dia_index].dialogues[dialogues_index].BG != null)
                                 Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_index].dialogues[dialogues_index].BG);
                         }
-
-
                         else //씬 변화가 있음
                         {
-                            if (!isPuzzle) //퍼즐은 따로 (동굴때문에 추가)
+
+                            if (DiaDic[Dia_index].SceneNum == 1 && DiaDic[Dia_index + 1].SceneNum == 2) //스토리->정신세계
                             {
-                                if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
-                                {
-                                    StartCoroutine(LoadStoryMental("Mental_World_Map"));
-                                    //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
-                                    //SceneManager.LoadScene("Mental_World_Map");
+                                StartCoroutine(LoadStoryMental("Mental_World_Map"));
+                                //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
+                                //SceneManager.LoadScene("Mental_World_Map");
 
-                                }
-                                else if (!DiaDic[Dia_index].isStory && DiaDic[Dia_index + 1].isStory) //정신세계(퍼즐)->스토리
-                                {
-                                    StartCoroutine(LoadStoryMental("DialogueTest"));
-                                    //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
-                                    //SceneManager.LoadScene("DialogueTest");
-
-                                }
                             }
+                            else if (DiaDic[Dia_index].SceneNum == 2 && DiaDic[Dia_index + 1].SceneNum == 1) //정신세계(퍼즐)->스토리
+                            {
+                                
+                                StartCoroutine(LoadStoryMental("DialogueTest"));
+                                //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index + 1); //Proceeder 업데이트.
+                                //SceneManager.LoadScene("DialogueTest");
+
+                            }
+                            else // 그 밖의 경우에는 단순 대화 종료. (ex) 스토리 맵 -> 동굴 이동 전 대기 상태
+                            {
+                                Dialogue_Proceeder.instance.AddCompleteCondition(Dia_index); //대화 종료. 완수 조건에 현재 대화묶음id 추가
+                                DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
+                            }
+
                         }
                     }
 
@@ -934,7 +940,7 @@ public class TextManager : MonoBehaviour
         else if (sceneName.Equals("DialogueTest"))
             STEManager.FadeIn();
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
 
         
         

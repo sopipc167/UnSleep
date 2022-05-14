@@ -48,16 +48,19 @@ public class SceneTransEffectManager : MonoBehaviour
     public void BlinkClose()
     {
         //blink = GetComponent<BlinkAnimation>();
-        //blink.GetComponent<BlinkAnimation>().BlinkClose();
-        StartCoroutine(BlinkCloseCo());
+        blink.GetComponent<BlinkAnimation>().BlinkClose();
+        //StartCoroutine(BlinkCloseCo());
     }
 
-    IEnumerator BlinkCloseCo()
+
+
+    /*
+         IEnumerator BlinkCloseCo()
     {
         blink.GetComponent<BlinkAnimation>().BlinkClose();
 
-        yield return new WaitForSeconds(2.5f);
-
-        fadeinout.Blackout_Func(2f);
     }
+
+         
+         */
 }

@@ -33,12 +33,12 @@ public class DialogueParser : MonoBehaviour
 
             DialogueEvent diaE = new DialogueEvent(); //DialogueEvent 변수 하나 만들어서 정보 저장 후 리스트에 추가
 
-            diaE.Eventname = row[0]; //대화 이벤트 이름
+            diaE.SceneNum = int.Parse(row[0]); //대화 이벤트 이름
 
             diaE.Place = row[1]; //내용이 있으면 장소로. 추후 맵 오브젝트에 투명 오브젝트를 배치하여 각 장소의 위치를 지정하여 스폰
 
-            if (row[1].Equals("")) //장소 공란 => 스토리 모드 
-                diaE.isStory = true; 
+            //if (row[1].Equals("")) //장소 공란 => 스토리 모드 
+            //    diaE.isStory = true; 
 
             if (!row[2].Equals(""))
                 diaE.DiaKey = int.Parse(row[2]); //대화 묶음. 파싱하고 나면 모든 정보는 string이므로 int로 형변환
