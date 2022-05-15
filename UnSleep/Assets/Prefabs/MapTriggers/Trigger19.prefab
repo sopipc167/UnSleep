@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7716436214500329823}
   - component: {fileID: 7716436214500329822}
   - component: {fileID: 7716436214500329817}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: nullpos
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 7716436216277260092}
   - component: {fileID: 7716436216277260095}
   - component: {fileID: 7716436216277260094}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: 501
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}

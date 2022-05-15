@@ -6,20 +6,40 @@ using UnityEngine.EventSystems;
 
 public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
+    internal bool result;
+
+    private Vector3 initPos;
+    private Quaternion initRot;
+
+    private Dialogue_Proceeder dp;
     private Vector3 curMousePos;
     private Vector3 prevMousePos;
     private Vector3 diff;
-    private Button button;
-    internal bool result = false;
+    private Image img;
+
+    private void Awake()
+    {
+        dp = Dialogue_Proceeder.instance;
+        img = GetComponent<Image>();
+        initPos = transform.position;
+        initRot = transform.rotation;
+    }
+
+    private void OnEnable()
+    {
+        result = false;
+        img.raycastTarget = true;
+        transform.SetPositionAndRotation(initPos, initRot);
+    }
 
     private void Update()
     {
         if (!result) return;
 
-        if (Dialogue_Proceeder.instance.CurrentDiaID == 3203 ||
-            Dialogue_Proceeder.instance.CurrentDiaID == 6503)
+        if (dp.CurrentDiaID == 3201 && dp.CurrentDiaIndex == 4 ||
+            dp.CurrentDiaID == 6502 && dp.CurrentDiaIndex == 15)
         {
-            gameObject.SetActive(false);
+            transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -50,7 +70,7 @@ public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
 
         if (transform.localPosition.x > -35.2f && transform.localPosition.y > -97.2f)
         {
-            button.interactable = false;
+            img.raycastTarget = false;
             result = true;
         }
     }

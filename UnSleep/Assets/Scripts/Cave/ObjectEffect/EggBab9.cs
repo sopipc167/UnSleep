@@ -6,18 +6,16 @@ using DG.Tweening;
 
 public class EggBab9 : MonoBehaviour
 {
-    TextManager textManager;
+    Dialogue_Proceeder dp;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        textManager = GameObject.Find("Manager").GetComponent<TextManager>();
+        dp = Dialogue_Proceeder.instance;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (textManager.Dia_index == 911 && textManager.dialogues_index == 18)
+        if (dp.CurrentDiaID == 911 && dp.CurrentDiaIndex == 18)
             Disappear();
         //911-18
     }
