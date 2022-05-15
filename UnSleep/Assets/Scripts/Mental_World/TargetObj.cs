@@ -6,53 +6,58 @@ using UnityEngine;
 public class TargetObj : MonoBehaviour
 {
     private Light objLight;
+    private Coroutine endCoroutine;
+    private Coroutine setCoroutine;
 
-    public void SetTarget()
-    {
-        StartCoroutine(SetTargetCoroutine());
-    }
 
-    public void StopTarget()
-    {
-        StopAllCoroutines();
-        StartCoroutine(StopTargetCoroutine());
-    }
-
-    // Start is called before the first frame update
-    void Start()
+    public void InitLight(float range, Color color)
     {
         objLight = transform.GetChild(0).GetComponent<Light>();
+        objLight.intensity = 0f;
+        objLight.range = range;
+        objLight.color = color;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetTarget(float deltaLight, float maxVal, float minVal)
     {
-        if (Input.GetKeyDown(KeyCode.A))
+        if (endCoroutine != null)
         {
-            SetTarget();
+            StopCoroutine(endCoroutine);
         }
+        setCoroutine = StartCoroutine(SetTargetCoroutine(deltaLight, maxVal, minVal));
     }
 
-    private IEnumerator SetTargetCoroutine()
+    public void StopTarget(float deltaLight)
     {
-        float tmp = 0.004f;
+        if (setCoroutine != null)
+        {
+            StopCoroutine(setCoroutine);
+        }
+        endCoroutine = StartCoroutine(StopTargetCoroutine(deltaLight));
+    }
+
+    private IEnumerator SetTargetCoroutine(float deltaLight, float maxVal, float minVal)
+    {
         while (true)
         {
-            objLight.intensity += tmp;
-            if (objLight.intensity > 2.5f || objLight.intensity < 1f)
+            while (objLight.intensity < maxVal)
             {
-                tmp = -tmp;
+                objLight.intensity += deltaLight * Time.deltaTime;
+                yield return null;
             }
-            yield return null;
+            while (objLight.intensity > minVal)
+            {
+                objLight.intensity -= deltaLight * Time.deltaTime;
+                yield return null;
+            }
         }
     }
 
-    private IEnumerator StopTargetCoroutine()
+    private IEnumerator StopTargetCoroutine(float deltaLight)
     {
-        float tmp = 0.004f;
-        while (objLight.intensity > 1f)
+        while (objLight.intensity >= 0f)
         {
-            objLight.intensity -= tmp;
+            objLight.intensity -= deltaLight * Time.deltaTime;
             yield return null;
         }
     }
