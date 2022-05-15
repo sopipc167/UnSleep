@@ -351,6 +351,8 @@ MonoBehaviour:
   deltaLight: 1
   maxVal: 2.5
   minVal: 1
+  lightRange: 26
+  lightColor: {r: 0.8666667, g: 0.8, b: 0, a: 1}
 --- !u!4 &25453156
 Transform:
   m_ObjectHideFlags: 0
