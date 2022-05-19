@@ -327,7 +327,7 @@ public class TextManager : MonoBehaviour
                                           Dia_Id += 1; //다음 대화 묶음으로 
 
 
-                                          dp.instance.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
+                                          dp.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
 
                                           //BGM 전환
                                           if (DiaDic[Dia_Id].BGM != null)
