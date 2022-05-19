@@ -27,6 +27,10 @@ public class DiaEvent : MonoBehaviour
     public int next_flase;
     public int next_true;
 
+    bool isBearAppear;
+    public Animator anim_b;
+    public Player player;
+
     void Start()
     {
         EventNum = 100;
@@ -39,8 +43,10 @@ public class DiaEvent : MonoBehaviour
     {
         diaGroupIndex = TM.Dia_index;
 
-        if ((diaIndex != TM.dialogues_index || diaGroupIndex != TM.Dia_index) && !isFirst)
+        if ((diaGroupIndex != TM.Dia_index || diaIndex != TM.dialogues_index)&& !isFirst)
         {
+            //Debug.Log(diaGroupIndex);
+            //Debug.Log(EventNum);
             if (EventNum == 0)
                 nextLevel();
             else if (EventNum == 1)
@@ -57,13 +63,19 @@ public class DiaEvent : MonoBehaviour
                 Move(2, new Vector3(7.54f, -0.95f, 0), new Vector3(0, 0, 0));
             else if(EventNum == 5)
             {
-                ob[3].SetActive(false);
+                ob[1].SetActive(false);
                 if(diaGroupIndex == 728)
                 {
                     Dia[35].SetActive(false);
                     Dia[34].SetActive(true);
                     Dia[36].SetActive(true);
                 }
+            }
+            else if(EventNum == 6)
+            {
+                ob[3].SetActive(false);
+                ob[4].SetActive(true);
+                ob[5].SetActive(true);
             }
 
             isFirst = true;
@@ -103,10 +115,10 @@ public class DiaEvent : MonoBehaviour
             {
                 EventNum = 0;
             }
-            else if (TM.con == "Fadein")
+            /*else if (TM.con == "Fadein")
             {
-                //fadeinout.Blackout_Func(0.5f);
-            }
+                fadeinout.FadeStop(true);
+            }*/
             else if (TM.con == "BlinkOpen")
             {
                 Color tmp = Fade.color;
@@ -126,9 +138,41 @@ public class DiaEvent : MonoBehaviour
             }
             else if(TM.con == "BearDis")
             {
-                EventNum = 5;
+                if(diaGroupIndex == 738)
+                {
+                    ob[5].SetActive(false);
+                }
+                else
+                    EventNum = 5;
+            }
+            else if(TM.con == "WindowOpen")
+            {
+                EventNum = 6;
+            }
+            else if(TM.con == "BearBig")
+            {
+                if (!isBearAppear)
+                {
+                    isBearAppear = true;
+                    Move(5, new Vector3(-7.18f, -1.32f, 0), new Vector3(0, 0, 0));
+                    ob[5].SetActive(true);
+                }
+                else
+                {
+                    Move(5, new Vector3(-7.18f, -0.29f, 0), new Vector3(0, 0, 0));
+                    ob[5].transform.DOScaleX(-2.5f, 0.5f);
+                    ob[5].transform.DOScaleY(2.5f, 0.5f);
+                }
             }
         }
+    }
+
+    IEnumerator fade()
+    {
+        fadeinout.Blackout_Func(0.5f);
+        yield return new WaitForSeconds(1.5f);
+        Dialogue_Proceeder.instance.AddCompleteCondition(999);
+        Dia[37].SetActive(true);
     }
 
     void Setting()
@@ -151,7 +195,7 @@ public class DiaEvent : MonoBehaviour
         }
         else
         {
-            Debug.Log("OFF");
+            //Debug.Log("OFF");
             ob[0].SetActive(false);
             FirstDia.SetActive(false);
             SecondDia.SetActive(true);

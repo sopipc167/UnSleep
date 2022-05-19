@@ -139,7 +139,7 @@ public class TextManager : MonoBehaviour
 
         GoToPrevButton.interactable = false;
 
-        if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index].Condition))
+        if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index].Condition) && !isSeven)
             Set_Dialogue_System();
         else
         {
@@ -159,7 +159,7 @@ public class TextManager : MonoBehaviour
             SoundManager.Instance.PlayBGM(DiaDic[Dia_index].BGM);
 
         //멘탈월드 왔을 때 지정된 스폰 위치에서 스폰하도록=
-        if (!DiaDic[Dia_index].isStory && !isPuzzle)
+        if (!DiaDic[Dia_index].isStory && !isPuzzle && !isSeven)
         {
             //GameObject.Find("JamJammy").GetComponent<PlayerSpawn>().SetPlayerPos(DiaDic[Dia_index].Place);
         }
@@ -190,7 +190,7 @@ public class TextManager : MonoBehaviour
         //스토리 -> 대화 발생 조건 충족 -> 바로 활성화. 이부분은 주로 선택지 -> 대화로 돌아올 때 실행될 것.
         if (DiaDic[Dia_index].isStory && DiaUI.activeSelf == false)
         {
-            if ((DiaDic[Dia_index].Condition.Length == 1 && DiaDic[Dia_index].Condition[0] == 0) || Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index].Condition))
+            if ((DiaDic[Dia_index].Condition.Length == 1 && DiaDic[Dia_index].Condition[0] == 0) || Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index].Condition) && !isSeven)
             {
                 DiaUI.SetActive(true);
             }
@@ -268,7 +268,7 @@ public class TextManager : MonoBehaviour
                         showSpeaker2When1 = false;
                         showSpeaker1When2 = false;
 
-                        if (!isPuzzle) //퍼즐은 따로 (동굴때문에 추가)
+                        if (!isPuzzle && !isSeven) //퍼즐은 따로 (동굴때문에 추가)
                         {
                             if (DiaDic[Dia_index].isStory && !DiaDic[Dia_index + 1].isStory) //스토리->정신세계
                             {
@@ -303,7 +303,7 @@ public class TextManager : MonoBehaviour
                             }
                             else
                             {
-                                if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index + 1].Condition)) //다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
+                                if (Dialogue_Proceeder.instance.Satisfy_Condition(DiaDic[Dia_index + 1].Condition) && !isSeven) //다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
                                 {
                                     Dia_index += 1; //다음 대화 묶음으로
                                     Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_index); //Proceeder 업데이트.
@@ -316,6 +316,7 @@ public class TextManager : MonoBehaviour
                                 }
                                 else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
                                 {
+                                    Debug.Log("Story");
                                     Increasediaindex = false;
 
                                 }
@@ -323,15 +324,11 @@ public class TextManager : MonoBehaviour
                             }
 
                         }
-                        else //맵모드
+                        else if(isSeven)//맵모드
                         {
                             Increasediaindex = false;
                             DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기.
                         }
-
-
-                        if (isSeven)
-                            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
                     }
 
                     if (DiaDic[Dia_index].dialogues[dialogues_index].isSelect) //선택지인 경우
@@ -356,12 +353,6 @@ public class TextManager : MonoBehaviour
 
         }
 
-    }
-
-    public void Get_Content()
-    {
-        if (isSeven)
-            con = DiaDic[Dia_index].dialogues[dialogues_index].Content;
     }
 
     public void Set_Select_System()
@@ -422,7 +413,8 @@ public class TextManager : MonoBehaviour
         }
 
 
-
+        if (isSeven)
+            con = CONTENT;
 
 
 
@@ -897,7 +889,4 @@ public class TextManager : MonoBehaviour
 
         yield return null;
     }
-
-
-
 }
