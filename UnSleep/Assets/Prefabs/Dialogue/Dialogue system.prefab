@@ -2132,7 +2132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BackToPopup: {fileID: 1431779340929552042}
-  Manager: {fileID: 8528798682782122518}
+  textManager: {fileID: 8528798682782122523}
 --- !u!1 &8528798681124546670
 GameObject:
   m_ObjectHideFlags: 0
@@ -3071,6 +3071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58378e25a1e412641814eccdbfee4ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  con: 
 --- !u!114 &8528798682782122523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3102,19 +3103,19 @@ MonoBehaviour:
   GoToPrev: {fileID: 3684571970915864464}
   GoToCurr: {fileID: 6543727339095962547}
   LogPanel: {fileID: 4560876318259137657}
+  puzzleClear: {fileID: 0}
   goodbyeUI: {fileID: 1129212096085304098}
   goodbyeImg: {fileID: 7988435273217276220}
   goodbyeText: {fileID: 7922974267618360649}
+  isGoodbye: 0
   BackGround: {fileID: 8528798681765602456}
   Change_BackGround: {fileID: 3390130911827811946}
   isDnI: 0
-  Dia_index: 1801
-  dialogues_index: 0
+  Dia_Id: 0
   Increasediaindex: 1
   isPuzzle: 0
   STEManager: {fileID: 0}
   UI_Objects: {fileID: 6401566963517359663}
-  DIALOGUE_Eventlist: []
   isSeven: 0
   con: 
 --- !u!114 &8528798682782122516

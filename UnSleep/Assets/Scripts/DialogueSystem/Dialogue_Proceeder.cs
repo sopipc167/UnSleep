@@ -6,8 +6,10 @@ public class Dialogue_Proceeder : MonoBehaviour
 {
     public static Dialogue_Proceeder instance;
 
-    public int CurrentEpiID; //현재 에피소드 id (0~19)
-    public int CurrentDiaID; //현재 대화 id
+    public int CurrentEpiID; // 현재 에피소드 id (0~19)
+    public int CurrentDiaID; // 현재 대화 id
+    public int CurrentDiaIndex = 0; // 현재 대화 id index
+
     public List<int> Complete_Condition = new List<int>(); //완료 조건 리스트
     public string End; //일기장 펄럭펄럭용. 에피소드 끝 -> 일기장 전환시 "E"로 설정.
   
@@ -29,7 +31,6 @@ public class Dialogue_Proceeder : MonoBehaviour
         CurrentEpiID = updateid;
     }
 
-
     public void UpdateCurrentDiaID(int updateid) //현재 대화 id 갱신
     {
         CurrentDiaID = updateid;
@@ -37,10 +38,8 @@ public class Dialogue_Proceeder : MonoBehaviour
 
     public void UpdateCurrentDiaIDPlus1() //현재 대화 id 갱신
     {
-
         CurrentDiaID++;
     }
-
 
     public void AddCompleteCondition(int complete) //대화 종료시 완료 조건 리스트에 대화 id 추가
     {
@@ -85,7 +84,6 @@ public class Dialogue_Proceeder : MonoBehaviour
             return true; //이미 완수했으면 true 반환
         else
             return false; 
-        
     }
 
 
@@ -124,8 +122,5 @@ public class Dialogue_Proceeder : MonoBehaviour
 
         if (CurrentEpiID == 7 &&(id == 2009 || id == 2010))
             Complete_Condition.Add(777);
-
     }
-
-
 }

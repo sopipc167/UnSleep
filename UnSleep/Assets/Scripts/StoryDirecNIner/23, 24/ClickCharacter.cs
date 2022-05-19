@@ -8,6 +8,11 @@ public class ClickCharacter : StoryInteract
     public Button button;
     private bool isClick = false;
 
+    private void OnEnable()
+    {
+        isClick = false;
+    }
+
     public override bool IsCompelete()
     {
         return isClick;

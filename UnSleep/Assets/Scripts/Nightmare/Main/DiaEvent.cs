@@ -33,6 +33,7 @@ public class DiaEvent : MonoBehaviour
 
     void Start()
     {
+        dp = Dialogue_Proceeder.instance;
         EventNum = 100;
         next_flase = 700;
         next_true = 699;
@@ -41,7 +42,7 @@ public class DiaEvent : MonoBehaviour
 
     void Update()
     {
-        diaGroupIndex = TM.Dia_index;
+        diaGroupIndex = TM.Dia_Id;
 
         if ((diaGroupIndex != TM.Dia_index || diaIndex != TM.dialogues_index)&& !isFirst)
         {
@@ -178,7 +179,7 @@ public class DiaEvent : MonoBehaviour
     void Setting()
     {
         isFirst = false;
-        diaIndex = TM.dialogues_index;
+        diaIndex = dp.CurrentDiaIndex;
     }
 
     public void nextLevel()

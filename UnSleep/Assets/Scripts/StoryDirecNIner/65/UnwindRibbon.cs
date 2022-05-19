@@ -7,17 +7,24 @@ public class UnwindRibbon : StoryInteract
 {
     public Sprite[] ribbons;
 
-    private TextManager textManager;
     private bool clickFlag = false;
     private bool result = false;
     private Image image;
+    private Dialogue_Proceeder dp;
     private WaitForSeconds delay = new WaitForSeconds(0.1f);
 
     private void Start()
     {
+        dp = Dialogue_Proceeder.instance;
         image = GetComponent<Image>();
-        textManager = transform.parent.parent.parent.GetChild(0).GetComponent<TextManager>();
         transform.localPosition = new Vector3(-12.5f, -13f, 0f);
+    }
+
+    private void OnEnable()
+    {
+        result = false;
+        image.sprite = ribbons[0];
+        image.SetNativeSize();
     }
 
     public override bool IsCompelete()
@@ -34,7 +41,7 @@ public class UnwindRibbon : StoryInteract
             StartCoroutine(RibbonCoroutine());
         }
 
-        if (textManager.dialogues_index == 11)
+        if (dp.CurrentDiaIndex == 11)
         {
             gameObject.SetActive(false);
         }

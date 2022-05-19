@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class StoryEvent45 : StoryInteract
 {
-    private TextManager textManager;
     public Button button;
 
     public Image doorImg;
@@ -21,15 +20,21 @@ public class StoryEvent45 : StoryInteract
     public Sprite domunEffect;
 
     private bool isClick = false;
+    private Dialogue_Proceeder dp;
+
+    private void Awake()
+    {
+        dp = Dialogue_Proceeder.instance;
+    }
+
+    private void OnEnable()
+    {
+        isClick = false;
+    }
 
     public override bool IsCompelete()
     {
         return isClick;
-    }
-
-    private void Start()
-    {
-        textManager = transform.parent.parent.parent.GetChild(0).GetComponent<TextManager>();
     }
 
     public void OnclickCharacter()
@@ -43,23 +48,23 @@ public class StoryEvent45 : StoryInteract
 
     private IEnumerator EventCoroutine()
     {
-        yield return new WaitUntil(() => textManager.dialogues_index == 2);
+        yield return new WaitUntil(() => dp.CurrentDiaIndex == 2);
         eviImg.sprite = evi[0];
         domunImg.sprite = domun[0];
         eviEffectImg.transform.gameObject.SetActive(true);
         domunEffectImg.transform.gameObject.SetActive(true);
 
-        yield return new WaitUntil(() => textManager.dialogues_index == 4);
+        yield return new WaitUntil(() => dp.CurrentDiaIndex == 4);
         eviImg.sprite = evi[1];
         domunImg.sprite = domun[1];
 
-        yield return new WaitUntil(() => textManager.dialogues_index == 6);
+        yield return new WaitUntil(() => dp.CurrentDiaIndex == 6);
         domunEffectImg.sprite = domunEffect;
 
-        yield return new WaitUntil(() => textManager.dialogues_index == 8);
+        yield return new WaitUntil(() => dp.CurrentDiaIndex == 8);
         eviEffectImg.sprite = eviEffect;
 
-        yield return new WaitUntil(() => Dialogue_Proceeder.instance.CurrentDiaID == 4507);
+        yield return new WaitUntil(() => dp.CurrentDiaID == 4507);
         gameObject.SetActive(false);
     }
 }

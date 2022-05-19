@@ -15,6 +15,15 @@ public class MessageButton : StoryInteract
         return result;
     }
 
+    private void OnEnable()
+    {
+        result = false;
+        foreach (var item in textObjs)
+        {
+            item.SetActive(false);
+        }
+    }
+
     private void Update()
     {
         if (flagObj.activeSelf) return;
