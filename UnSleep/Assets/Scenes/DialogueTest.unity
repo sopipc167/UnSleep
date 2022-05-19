@@ -664,6 +664,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 503083884}
     m_Modifications:
+    - target: {fileID: 2631465844869656073, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3213294839885495758, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
       propertyPath: blink
       value: 
@@ -765,6 +769,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3312009997376138346, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646144082951956442, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464394387713288861, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7935416956807551303, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020801279536103330, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

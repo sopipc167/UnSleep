@@ -22,6 +22,16 @@ public class SceneTransEffectManager : MonoBehaviour
         fadeinout.Fade_InOut();
     }
 
+    public void FadeIn()
+    {
+        fadeinout.Fade_In();
+    }
+
+    public void FadeOut()
+    {
+        fadeinout.Fade_Out();
+    }
+
     public void WaitBlackOut(float waitsec)
     {
         fadeinout.Blackout_Func(waitsec);
@@ -39,5 +49,18 @@ public class SceneTransEffectManager : MonoBehaviour
     {
         //blink = GetComponent<BlinkAnimation>();
         blink.GetComponent<BlinkAnimation>().BlinkClose();
+        //StartCoroutine(BlinkCloseCo());
     }
+
+
+
+    /*
+         IEnumerator BlinkCloseCo()
+    {
+        blink.GetComponent<BlinkAnimation>().BlinkClose();
+
+    }
+
+         
+         */
 }

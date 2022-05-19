@@ -157,7 +157,7 @@ public class AudioLeftRight : MonoBehaviour
 
         while (rightvol > 0f && leftvol > 0f)
         {
-            Debug.Log(leftvol);
+
 
 
             rightvol -= 0.1f * Time.deltaTime;
