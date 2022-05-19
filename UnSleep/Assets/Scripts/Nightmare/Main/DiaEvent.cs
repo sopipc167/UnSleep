@@ -31,6 +31,8 @@ public class DiaEvent : MonoBehaviour
     public Animator anim_b;
     public Player player;
 
+    private Dialogue_Proceeder dp;
+
     void Start()
     {
         dp = Dialogue_Proceeder.instance;
@@ -44,7 +46,7 @@ public class DiaEvent : MonoBehaviour
     {
         diaGroupIndex = TM.Dia_Id;
 
-        if ((diaGroupIndex != TM.Dia_index || diaIndex != TM.dialogues_index)&& !isFirst)
+        if ((diaGroupIndex != dp.CurrentDiaIndex || diaIndex != dp.CurrentDiaID)&& !isFirst)
         {
             //Debug.Log(diaGroupIndex);
             //Debug.Log(EventNum);
