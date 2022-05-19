@@ -6,6 +6,6 @@ public class EventDrivenTM : TextManager
 {
     public void SetDiaIdx(int idx)
     {
-        Dia_index = idx;
+        Dia_Id = idx;
     }
 }

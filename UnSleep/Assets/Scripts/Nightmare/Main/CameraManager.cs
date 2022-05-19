@@ -62,7 +62,6 @@ public class CameraManager : MonoBehaviour
         else if (isThree && !isFrame && !Tug.isStart && !Tug.isEnd)
         {
             //StartCoroutine(FrameWork());
-            Debug.Log("아 설마");
         }
 
         transform.position = Vector3.Lerp(targetPos, transform.position, Time.deltaTime * smooth);

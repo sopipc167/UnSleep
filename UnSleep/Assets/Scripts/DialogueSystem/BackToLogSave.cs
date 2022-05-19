@@ -7,7 +7,8 @@ public class BackToLogSave : MonoBehaviour
     int Save_Dia_id;
     int Save_dialogue_idx;
     public GameObject BackToPopup;
-    public GameObject Manager;
+    public TextManager textManager;
+    public Transform interactionObjParent;
 
     public void BackToSeletedLog(int Dia_id, int dialogue_idx)
     {
@@ -19,12 +20,15 @@ public class BackToLogSave : MonoBehaviour
     public void Yes()
     {
         BackToPopup.SetActive(false);
-        Manager.GetComponent<TextManager>().BackToSeletedLogYes(Save_Dia_id, Save_dialogue_idx);
+        textManager.BackToSeletedLogYes(Save_Dia_id, Save_dialogue_idx);
+        foreach (Transform item in interactionObjParent)
+        {
+            item.gameObject.SetActive(false);
+        }
     }
 
     public void No()
     {
         BackToPopup.SetActive(false);
     }
-
 }

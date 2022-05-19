@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class DiaEvent : MonoBehaviour
 {
@@ -18,103 +20,193 @@ public class DiaEvent : MonoBehaviour
     public AudioClip[] audioClip;
     public AudioSource audioSource;
 
+    public FadeInOut fadeinout;
+    public Image Fade;
+    public BlinkAnimation BA;
+
+    public int next_flase;
+    public int next_true;
+
+    bool isBearAppear;
+    public Animator anim_b;
+    public Player player;
+
     void Start()
     {
-        
+        dp = Dialogue_Proceeder.instance;
+        EventNum = 100;
+        next_flase = 700;
+        next_true = 699;
     }
 
 
     void Update()
     {
-        if ((diaIndex != TM.dialogues_index || diaGroupIndex != TM.Dia_index) && !isFirst)
+        diaGroupIndex = TM.Dia_Id;
+
+        if ((diaGroupIndex != TM.Dia_index || diaIndex != TM.dialogues_index)&& !isFirst)
         {
-            switch (EventNum)
+            //Debug.Log(diaGroupIndex);
+            //Debug.Log(EventNum);
+            if (EventNum == 0)
+                nextLevel();
+            else if (EventNum == 1)
+                Shadow(false);
+            else if (EventNum == 2)
+                Sound(100);
+            else if (EventNum == 3)
             {
-                case 0:
-                    nextLevel();
-                    isFirst = true;
-                    break;
-                case 1:
-                    Shadow(false);
-                    isFirst = true;
-                    break;
-                case 2:
-                    Sound(100);
-                    isFirst = true;
-                    break;
-                default:
-                    isFirst = true;
-                    break;
+                Color tmp = Fade.color;
+                tmp.a = 255;
+                Fade.color = tmp;
             }
+            else if(EventNum == 4)
+                Move(2, new Vector3(7.54f, -0.95f, 0), new Vector3(0, 0, 0));
+            else if(EventNum == 5)
+            {
+                ob[1].SetActive(false);
+                if(diaGroupIndex == 728)
+                {
+                    Dia[35].SetActive(false);
+                    Dia[34].SetActive(true);
+                    Dia[36].SetActive(true);
+                }
+            }
+            else if(EventNum == 6)
+            {
+                ob[3].SetActive(false);
+                ob[4].SetActive(true);
+                ob[5].SetActive(true);
+            }
+
+            isFirst = true;
+            EventNum = 100;
         }
 
         if (isFirst)
         {
+            if (TM.con != "Sound0" || TM.con != "Sound1" || TM.con == "Sound2")
+                Setting();
+
             if (TM.con == "Shadow")
             {
+
                 //Debug.Log("SHADOW");
-                Setting();
                 EventNum = 1;
                 Shadow(true);
             }
             else if (TM.con == "BearUp")
             {
-                Setting();
                 EventNum = 100;
-                BearUp();
+                Move(1, new Vector3(10.15f, 0.58f, 0), new Vector3(0, 0, 0));
             }
-            else if(TM.con == "Sound0" || TM.con == "Sound1")
+            else if (TM.con == "Sound0" || TM.con == "Sound1" || TM.con == "Sound2")
             {
                 EventNum = 2;
                 if (TM.con == "Sound0")
                     Sound(0);
                 else if (TM.con == "Sound1")
                     Sound(1);
+                else if (TM.con == "Sound2")
+                    Sound(2);
+
                 Setting();
             }
-            else if(TM.con == "Next")
+            else if (TM.con == "Next")
             {
-                Setting();
                 EventNum = 0;
             }
+            /*else if (TM.con == "Fadein")
+            {
+                fadeinout.FadeStop(true);
+            }*/
+            else if (TM.con == "BlinkOpen")
+            {
+                Color tmp = Fade.color;
+                tmp.a = 0;
+                Fade.color = tmp;
+                BA.BlinkOpen();
+            }
+            else if(TM.con == "BlinkClose")
+            {
+                EventNum = 3;
+                Debug.Log("Black");
+                BA.BlinkClose();
+            }
+            else if(TM.con == "ChairMove")
+            {
+                EventNum = 4;
+            }
+            else if(TM.con == "BearDis")
+            {
+                if(diaGroupIndex == 738)
+                {
+                    ob[5].SetActive(false);
+                }
+                else
+                    EventNum = 5;
+            }
+            else if(TM.con == "WindowOpen")
+            {
+                EventNum = 6;
+            }
+            else if(TM.con == "BearBig")
+            {
+                if (!isBearAppear)
+                {
+                    isBearAppear = true;
+                    Move(5, new Vector3(-7.18f, -1.32f, 0), new Vector3(0, 0, 0));
+                    ob[5].SetActive(true);
+                }
+                else
+                {
+                    Move(5, new Vector3(-7.18f, -0.29f, 0), new Vector3(0, 0, 0));
+                    ob[5].transform.DOScaleX(-2.5f, 0.5f);
+                    ob[5].transform.DOScaleY(2.5f, 0.5f);
+                }
+            }
         }
+    }
+
+    IEnumerator fade()
+    {
+        fadeinout.Blackout_Func(0.5f);
+        yield return new WaitForSeconds(1.5f);
+        Dialogue_Proceeder.instance.AddCompleteCondition(999);
+        Dia[37].SetActive(true);
     }
 
     void Setting()
     {
         isFirst = false;
-        TM.con = "NULL";
-        diaGroupIndex = TM.Dia_index;
-        diaIndex = TM.dialogues_index;
+        diaIndex = dp.CurrentDiaIndex;
     }
 
     public void nextLevel()
     {
-        //Debug.Log("i'm on the nextlevel");
-        Dia[diaGroupIndex - 701].SetActive(false);
-        Dia[diaGroupIndex - 700].SetActive(true);
+        Dia[diaGroupIndex - next_flase].SetActive(false);
+        Dia[diaGroupIndex - next_true].SetActive(true);
     }
 
     public void Shadow(bool isOn)
     {
         if (isOn)
         {
-            //Debug.Log("ON");
             ob[0].SetActive(true);
         }
         else
         {
-            Debug.Log("OFF");
+            //Debug.Log("OFF");
             ob[0].SetActive(false);
             FirstDia.SetActive(false);
             SecondDia.SetActive(true);
         }
     }
 
-    public void BearUp()
+    public void Move(int index, Vector3 pos, Vector3 angle)
     {
-        ob[1].transform.localPosition = new Vector3(10.15f, 0.58f, 0);
-        ob[1].transform.eulerAngles = new Vector3(0, 0, 0);
+        ob[index].transform.localPosition = pos;
+        ob[index].transform.eulerAngles = angle;
     }
 
     public void Sound(int soundNum)
@@ -133,6 +225,12 @@ public class DiaEvent : MonoBehaviour
             case 1:
                 Debug.Log("Sound1");
                 audioSource.panStereo = 1;
+                audioSource.volume = 0.7f;
+                audioSource.Play();
+                return;
+            case 2:
+                Debug.Log("Sound2");
+                audioSource.panStereo = 0.7f;
                 audioSource.volume = 0.7f;
                 audioSource.Play();
                 return;

@@ -7,9 +7,9 @@ public class FadeInOut : MonoBehaviour
 {
     public GameObject FADEINOUT;
     public float FadeTime = 1f;
-    public Image FADE_panel;
-    float start;
-    float end;
+    Image FADE_panel;
+    float start = 1f;
+    float end = 0f;
     float time = 0f;
     bool isPlaying = false;
 
@@ -28,6 +28,19 @@ public class FadeInOut : MonoBehaviour
 
         StartCoroutine("Blackout_Co", waitsec);
 
+    }
+
+    public void FadeStop(bool isStart)
+    {
+        if (isStart)
+        {
+            Debug.Log("fadein");
+            StartCoroutine(fadein());
+        }
+        else
+        {
+            StartCoroutine(fadeout());
+        }
     }
 
     IEnumerator Blackout_Co(float waitsec)

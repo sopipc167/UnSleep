@@ -12,6 +12,15 @@ public class DiaPlayer : MonoBehaviour
     Vector3 MousePosition;
 
     public GameObject diaScene1;
+    public GameObject diaScene2;
+    public GameObject diaScene3;
+
+    public TextManager TM;
+    public FadeInOut fade;
+    public GameObject chair;
+    public DiaEvent DE;
+
+    public bool isOnce;
 
     // Update is called once per frame
     void Update()
@@ -32,16 +41,12 @@ public class DiaPlayer : MonoBehaviour
             {
                 hit_info = hitted_object.transform.GetComponent<DiaInterInfo>();
 
-                /*if(hit_info.OnlyOnce[0] && hit_info.Obj_Diaid[0] == 704)
-                {
-                    lightClick2.SetActive(true);
-                    lightClick1.SetActive(false);
-                }*/
 
                 //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력
                 if (hitted_object.transform.tag.Equals("DiaInterClick")
                     && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false
-                    && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance)
+                    && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance
+                    && Vector3.Distance(transform.position, MousePosition) <= 11.5f)
                     DialogueInteraction(hit_info);
             }
         }
@@ -51,15 +56,28 @@ public class DiaPlayer : MonoBehaviour
         dia_hit_colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3.0f);
         if (dia_hit_colliders.Length > 0)
         {
+
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
-                if (dia_hit_colliders[i].tag == "DiaInterCollision" && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false)
+                if (dia_hit_colliders[i].tag == "DiaInterCollision"
+                    && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false)
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
-                }else if(dia_hit_colliders[i].tag == "SceneOver")
+                    if (!hit_info.OnlyOnce[0] && isOnce)
+                    {
+                        isOnce = false;
+                    }
+                }
+                else if (dia_hit_colliders[i].tag == "SceneOver")
                 {
                     diaScene1.SetActive(false);
+                    diaScene2.SetActive(true);
+                    DE.next_flase = 700;
+                    DE.next_true = 699;
+                    fade.Blackout_Func(0.3f);
+                    player.transform.localPosition = new Vector3(-5.16f, -1.19f, 0);
+                    chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
                 }
             }
         }
@@ -76,7 +94,7 @@ public class DiaPlayer : MonoBehaviour
             SceneManager.LoadScene(hit.ChangeSceneName);
         }
 
-        Debug.Log("상호작용 대화 실행");
+        //Debug.Log("상호작용 대화 실행");
 
         int[] hit_Diaid = hit.Obj_Diaid;
         int event_cnt = hit_Diaid.Length;
@@ -94,7 +112,7 @@ public class DiaPlayer : MonoBehaviour
 
         for (int i = event_cnt - 1; i >= 0; i--)
         {
-            if (hit.OnlyOnce[i] && Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
+            if (isOnce && Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
                 continue;
 
             player.col.enabled = false;
@@ -110,13 +128,12 @@ public class DiaPlayer : MonoBehaviour
                 Dialogue_system_manager.GetComponent<TextManager>().SetDiaInMap();
                 Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
 
+                isOnce = true;
+
                 return;
             }
 
         }
-
-
-        Debug.Log("실행 조건 불충분"); //디버깅용 
     }
 
 }

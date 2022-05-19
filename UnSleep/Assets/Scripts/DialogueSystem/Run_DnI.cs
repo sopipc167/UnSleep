@@ -8,6 +8,8 @@ public class Run_DnI : MonoBehaviour
     public GameObject DnI_Parent; //Canvas 내 순서 고정을 위한 DnI 부모 오브젝트
 
     private InteractManager interactManager;
+    private int prevIdx;
+    private GameObject curDnI;
 
     private void Start()
     {
@@ -16,12 +18,21 @@ public class Run_DnI : MonoBehaviour
 
     public void Run_Direc_N_Inter()
     {
-        GameObject DnI = Instantiate(DnI_List[GetIdx()]);
-        DnI.transform.position = DnI_Parent.transform.position;
-        DnI.transform.SetParent(DnI_Parent.transform);
+        int curIdx = GetIdx();
+        if (curIdx != prevIdx)
+        {
+            curDnI = Instantiate(DnI_List[GetIdx()]);
+            prevIdx = curIdx;
+        }
+        else
+        {
+            curDnI.SetActive(true);
+        }
+        curDnI.transform.position = DnI_Parent.transform.position;
+        curDnI.transform.SetParent(DnI_Parent.transform);
 
         //현재 상호작용을 가져와서 시작
-        interactManager.StartInteraction(DnI.GetComponent<StoryInteract>());
+        interactManager.StartInteraction(curDnI.GetComponent<StoryInteract>());
     }
 
     private int GetIdx()

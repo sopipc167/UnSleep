@@ -6,15 +6,34 @@ public enum TargetObjType { Cave, ClockTower, Lake, Cliff, Volcano }
 
 public class TargetObjManager : MonoBehaviour
 {
-    [Header("목표제시 오브젝트")]
-    public TargetObj cave;
-    public TargetObj clockTower;
-    public TargetObj lake;
-    public TargetObj cliff;
-    public TargetObj volcano;
+    [Header("순서: 동굴, 시계, 호수, 절벽, 화산")]
+    public TargetObj[] objs;
 
-    //임시 데이터
-    bool flag;
+    [Header("1초동안 변화할 빛의 양")]
+    public float deltaLight;
+
+    [Header("빛 깜박임 변화정도")]
+    public float maxVal;
+    public float minVal;
+
+    [Header("빛 설정")]
+    public float lightRange;
+    public Color lightColor;
+
+    private bool flag = false;
+
+    private void Awake()
+    {
+        foreach (var item in objs)
+        {
+            item.InitLight(lightRange, lightColor);
+        }
+    }
+
+    public void NextTarget()
+    {
+        flag = true;
+    }
 
     public void SetOrder(params TargetObjType[] list)
     {
@@ -23,36 +42,37 @@ public class TargetObjManager : MonoBehaviour
 
     public IEnumerator SetOrderCoroutine(params TargetObjType[] list)
     {
+        TargetObj targetObj;
+
         foreach (var elem in list)
         {
-            TargetObj targetObj;
             switch (elem)
             {
                 case TargetObjType.Cave:
-                    targetObj = cave;
+                    targetObj = objs[0];
                     break;
                 case TargetObjType.ClockTower:
-                    targetObj = clockTower;
+                    targetObj = objs[1];
                     break;
                 case TargetObjType.Lake:
-                    targetObj = lake;
+                    targetObj = objs[2];
                     break;
                 case TargetObjType.Cliff:
-                    targetObj = cliff;
+                    targetObj = objs[3];
                     break;
                 case TargetObjType.Volcano:
-                    targetObj = volcano;
+                    targetObj = objs[4];
                     break;
                 default:
                     targetObj = null;
                     break;
             }
-            targetObj.SetTarget();
+            targetObj.SetTarget(deltaLight, maxVal, minVal);
 
-            //bool 받아서 코루틴 제어
             yield return new WaitUntil(() => flag);
+            flag = false;
 
-            targetObj.StopTarget();
+            targetObj.StopTarget(deltaLight);
         }
     }
 }

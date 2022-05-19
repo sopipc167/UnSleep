@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     public Animator animator;
     public Collider2D col;
 
+
     void Start()
     {
         Speed = speed;
