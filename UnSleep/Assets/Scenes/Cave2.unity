@@ -2716,7 +2716,7 @@ MonoBehaviour:
   - {fileID: 4319539325857605542, guid: 1e57b597d80ae314389887569d29d3ba, type: 3}
   - {fileID: 3957688650877883899, guid: 9ee72fa9f46ed6543a1137c2add65fcc, type: 3}
   - {fileID: 8341947327793805809, guid: abf00bc6177259d408f63aa9e4842771, type: 3}
-  - {fileID: 6839919989510768662, guid: 10bdec1f36b176f41bf83807e7f4c0e4, type: 3}
+  - {fileID: 8892467651073443846, guid: ede15348dcea0b5438b46f39686e4e05, type: 3}
   - {fileID: 6839919989510768662, guid: 10bdec1f36b176f41bf83807e7f4c0e4, type: 3}
   - {fileID: 7856341462439007048, guid: dc67851e5c728534a8a95f0969d00c22, type: 3}
   - {fileID: 7856341462439007048, guid: dc67851e5c728534a8a95f0969d00c22, type: 3}
@@ -3350,11 +3350,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 2012
+      value: 5610
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 7
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled

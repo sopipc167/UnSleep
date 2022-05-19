@@ -28,12 +28,12 @@ public class Dialogue //대사 단위
 [System.Serializable]
 public class DialogueEvent //대화묶음 단위
 {
-    public string Eventname; //대화 이벤트 이름 
+    public int SceneNum; //실행 씬 넘버 (1 - DialogueTest 2 - MentalWorld 3 - ClockTower 4 - Volcano 5 - Lake 6 - Cliff 7 - Cave
     public string Place; //장소
     public int DiaKey; //대화 묶음
     public int[] Condition; //대화 발생 조건
 
-    public bool isStory; //스토리일 경우 true, 맵일 경우 false
+    //public bool isStory; //스토리일 경우 true, 맵일 경우 false
 
     public string BGM;
 

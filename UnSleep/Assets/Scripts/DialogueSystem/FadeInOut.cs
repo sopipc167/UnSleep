@@ -80,6 +80,33 @@ public class FadeInOut : MonoBehaviour
 
     }
 
+    public void Fade_Out()
+    {
+        start = 1f;
+        end = 0f;
+
+        if (FADEINOUT.activeSelf == false)
+        {
+            FADEINOUT.SetActive(true);
+
+        }
+        StartCoroutine("fadeout");
+    }
+
+    public void Fade_In()
+    {
+        start = 0f;
+        end = 1f;
+
+
+        if (FADEINOUT.activeSelf == false)
+        {
+            FADEINOUT.SetActive(true);
+
+        }
+        StartCoroutine("fadein");
+    }
+
     IEnumerator fadeout()
     {
 

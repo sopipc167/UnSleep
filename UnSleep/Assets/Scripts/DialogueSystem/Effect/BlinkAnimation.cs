@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BlinkAnimation : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class BlinkAnimation : MonoBehaviour
     public void BlinkOpen()
     {
         Blink_Enable();
+        upper.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
+        lower.GetComponent<Image>().color = new Color(0, 0, 0, 1f);
         ani.SetTrigger("BlinkOpen");
         Invoke("Blink_Disable", 3f);
 
@@ -26,9 +29,12 @@ public class BlinkAnimation : MonoBehaviour
 
     public void BlinkClose()
     {
+        upper.GetComponent<Image>().color = new Color(0, 0, 0, 0f);
+        lower.GetComponent<Image>().color = new Color(0, 0, 0, 0f);
+
         Blink_Enable();
         ani.SetTrigger("BlinkClose");
-        Invoke("Blink_Disable", 3f);
+        //Invoke("Blink_Disable", 5f);
     }
 
     public void Blink_Disable()
