@@ -9,7 +9,7 @@ public class PuzzleClear : MonoBehaviour
     private SceneType sceneType;
     [SerializeField] private Animator ani;
 
-    public void ClearPuzzle(SceneType type = SceneType.MenTal, float startDelay = 0f, float endDelay = 2f)
+    public void ClearPuzzle(SceneType type = SceneType.Mental, float startDelay = 0f, float endDelay = 2f)
     {
         sceneType = type;
         this.startDelay = startDelay;

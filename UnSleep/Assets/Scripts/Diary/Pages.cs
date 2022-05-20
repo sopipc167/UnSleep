@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Pages : MonoBehaviour
 {
@@ -173,7 +172,7 @@ public class Pages : MonoBehaviour
             Dialogue_Proceeder.instance.CurrentEpiID = epi;
             Debug.Log(Dialogue_Proceeder.instance.CurrentDiaID);
         }
-        SceneManager.LoadScene("DialogueTest");
+        SceneChanger.ChangeScene(SceneType.Dialogue);
     }
 
     IEnumerator Typing(Text typingText, string message, float speed)

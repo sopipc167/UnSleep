@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CliffRemoveManager : MonoBehaviour
 {
@@ -170,7 +169,7 @@ public class CliffRemoveManager : MonoBehaviour
         }
             
         //conflict merge할때 여기 실수로 제꺼랑 스까해서 덮었네요 원상복구함
-        clearCanvas.ClearPuzzle(SceneType.MenTal, 1f);
+        clearCanvas.ClearPuzzle(SceneType.Mental, 1f);
     }
 
     

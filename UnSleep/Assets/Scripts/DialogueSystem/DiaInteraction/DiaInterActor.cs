@@ -9,38 +9,47 @@ public class DiaInterActor : MonoBehaviour
     public Collider[] dia_hit_colliders;
     private DiaInterInfo hit_info;
 
+    private TextManager textManager;
+    private Camera mainCam;
+
+    private void Awake()
+    {
+        textManager = Dialogue_system_manager.GetComponent<TextManager>();
+        mainCam = Camera.main;
+    }
+
     // Update is called once per frame
     void Update()
     {
         //*****************클릭*******************
         if (Input.GetMouseButtonDown(0))
         {
-            Ray dia_ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitted_object;
-            if (Physics.Raycast(dia_ray, out hitted_object))
+            Ray dia_ray = mainCam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(dia_ray, out RaycastHit hitted_object))
             {
                 hit_info = hitted_object.transform.GetComponent<DiaInterInfo>();
                 //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력 + 220405추가 선택지 UI도 꺼져있어야 함
-                if (hitted_object.transform.tag.Equals("DiaInterClick") 
-                    && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false
-                    && Dialogue_system_manager.GetComponent<TextManager>().SelectUI.activeSelf == false
+                if (hitted_object.transform.CompareTag("DiaInterClick")
+                    && textManager.DiaUI.activeSelf == false
+                    && textManager.SelectUI.activeSelf == false
                     && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance)
                     DialogueInteraction(hit_info);
             }
         }
+    }
 
-
+    private void FixedUpdate()
+    {
         //***************충돌*********************
         dia_hit_colliders = Physics.OverlapSphere(transform.position, 3.0f);
         if (dia_hit_colliders.Length > 0)
         {
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
-                if (dia_hit_colliders[i].tag == "DiaInterCollision" && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false)
+                if (dia_hit_colliders[i].CompareTag("DiaInterCollision") && textManager.DiaUI.activeSelf == false)
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
-
                 }
             }
         }
@@ -81,15 +90,15 @@ public class DiaInterActor : MonoBehaviour
                 continue;
 
             //실행 조건 가져옴
-            int[] conditions = Dialogue_system_manager.GetComponent<TextManager>().ReturnDiaConditions(hit_Diaid[i]);
+            int[] conditions = textManager.ReturnDiaConditions(hit_Diaid[i]);
 
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
                 Debug.Log("상호작용 대화 실행");
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
-                Dialogue_system_manager.GetComponent<TextManager>().SetDiaInMap();
-                Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
+                textManager.SetDiaInMap();
+                textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
 
                 return;
             }

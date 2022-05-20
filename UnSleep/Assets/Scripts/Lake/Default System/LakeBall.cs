@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LakeBall : LakeMovement
 {
@@ -214,7 +213,7 @@ public class LakeBall : LakeMovement
 
     public void OnClickRestart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.RestartScene();
     }
 
     public void BallUIOn()
@@ -267,7 +266,7 @@ public class LakeBall : LakeMovement
     {
         //LakeManager.currentPhase = level;
         TestLake.isOpen = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.RestartScene();
     }
     public void OnClickExit()
     {

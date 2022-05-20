@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TitleManager : MonoBehaviour
@@ -24,13 +23,13 @@ public class TitleManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene("Diary");
+        SceneChanger.ChangeScene(SceneType.Diary);
     }
 
     public void NewGame()
     {
         SaveDataManager.Instance.SaveEpiProgress(-1);
-        SceneManager.LoadScene("Prologue");
+        SceneChanger.ChangeScene(SceneType.Prologue);
     }
 
     public void SettingGame()

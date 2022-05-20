@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
 
@@ -288,7 +287,7 @@ public class TextManager : MonoBehaviour
                         {
                             dp.End = "E"; //음... 왜 string으로 했지? 조만간 윤지랑 얘기해서 bool로 바꿔버리자
                             SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID); //현재 에피소드 완료 저장
-                            SceneManager.LoadScene("Diary");
+                            SceneChanger.ChangeScene(SceneType.Diary);
                         }
 
                         if (DiaDic[Dia_Id].SceneNum == DiaDic[Dia_Id + 1].SceneNum) //씬 변화가 없음 
@@ -370,14 +369,14 @@ public class TextManager : MonoBehaviour
 
                             if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 2) //스토리->정신세계
                             {
-                                StartCoroutine(LoadStoryMental("Mental_World_Map"));
+                                StartCoroutine(LoadStoryMental(SceneType.Mental));
                                 //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
                                 //SceneManager.LoadScene("Mental_World_Map");
                             }
                             else if (DiaDic[Dia_Id].SceneNum == 2 && DiaDic[Dia_Id + 1].SceneNum == 1) //정신세계(퍼즐)->스토리
                             {
                                 
-                                StartCoroutine(LoadStoryMental("DialogueTest"));
+                                StartCoroutine(LoadStoryMental(SceneType.Dialogue));
                                 //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
                                 //SceneManager.LoadScene("DialogueTest");
 
@@ -851,7 +850,7 @@ public class TextManager : MonoBehaviour
 
             //퍼즐 끝났니?
             if (Dia_Id == 8024 || Dia_Id == 8026 || Dia_Id == 8030 || Dia_Id == 8034 || Dia_Id == 8039)
-                puzzleClear.ClearPuzzle(SceneType.MenTal, 1f); //땜빵으로 대사 넘길때까지 전 딜레이 해놧어요
+                puzzleClear.ClearPuzzle(SceneType.Mental, 1f); //땜빵으로 대사 넘길때까지 전 딜레이 해놧어요
 
             dp.UpdateCurrentDiaIDPlus1();
         }
@@ -935,11 +934,11 @@ public class TextManager : MonoBehaviour
     }
 
 
-    IEnumerator LoadStoryMental(string sceneName)
+    IEnumerator LoadStoryMental(SceneType type)
     {
-        if (sceneName.Equals("Mental_World_Map"))
+        if (type == SceneType.Mental)
             STEManager.BlinkClose();
-        else if (sceneName.Equals("DialogueTest"))
+        else if (type == SceneType.Dialogue)
             STEManager.FadeIn();
 
         yield return new WaitForSeconds(4f);
@@ -948,7 +947,7 @@ public class TextManager : MonoBehaviour
         
         dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
         dp.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
-        SceneManager.LoadScene(sceneName);
+        SceneChanger.ChangeScene(type);
     }
 
 

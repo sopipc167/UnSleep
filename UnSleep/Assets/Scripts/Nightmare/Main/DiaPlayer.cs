@@ -22,10 +22,19 @@ public class DiaPlayer : MonoBehaviour
 
     public bool isOnce;
 
+    private TextManager textManager;
+    private Camera mainCam;
+
+    private void Awake()
+    {
+        textManager = Dialogue_system_manager.GetComponent<TextManager>();
+        mainCam = Camera.main;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (!Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex)
+        if (!textManager.Increasediaindex)
         {
             player.isStop = false;
         }
@@ -34,7 +43,7 @@ public class DiaPlayer : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             MousePosition = Input.mousePosition;
-            MousePosition = Camera.main.ScreenToWorldPoint(MousePosition);
+            MousePosition = mainCam.ScreenToWorldPoint(MousePosition);
 
             RaycastHit2D hitted_object = Physics2D.Raycast(MousePosition, transform.forward);
             if (hitted_object)
@@ -43,15 +52,17 @@ public class DiaPlayer : MonoBehaviour
 
 
                 //1. 클릭 상호작용 태그(DiaInterClick)이고 2. 대화 UI가 꺼져있고 3.상호작용 반경 내에 있으면 클릭 상호작용 대사 출력
-                if (hitted_object.transform.tag.Equals("DiaInterClick")
-                    && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false
+                if (hitted_object.transform.CompareTag("DiaInterClick")
+                    && textManager.DiaUI.activeSelf == false
                     && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance
                     && Vector3.Distance(transform.position, MousePosition) <= 11.5f)
                     DialogueInteraction(hit_info);
             }
         }
+    }
 
-
+    private void FixedUpdate()
+    {
         //***************충돌*********************
         dia_hit_colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3.0f);
         if (dia_hit_colliders.Length > 0)
@@ -59,8 +70,8 @@ public class DiaPlayer : MonoBehaviour
 
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
-                if (dia_hit_colliders[i].tag == "DiaInterCollision"
-                    && Dialogue_system_manager.GetComponent<TextManager>().DiaUI.activeSelf == false)
+                if (dia_hit_colliders[i].CompareTag("DiaInterCollision")
+                    && textManager.DiaUI.activeSelf == false)
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
@@ -69,7 +80,7 @@ public class DiaPlayer : MonoBehaviour
                         isOnce = false;
                     }
                 }
-                else if (dia_hit_colliders[i].tag == "SceneOver")
+                else if (dia_hit_colliders[i].CompareTag("SceneOver"))
                 {
                     diaScene1.SetActive(false);
                     diaScene2.SetActive(true);
@@ -90,7 +101,6 @@ public class DiaPlayer : MonoBehaviour
 
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
-            Debug.Log("씬 전환");
             SceneManager.LoadScene(hit.ChangeSceneName);
         }
 
@@ -119,14 +129,14 @@ public class DiaPlayer : MonoBehaviour
             player.isStop = true;
 
             //실행 조건 가져옴
-            int[] conditions = Dialogue_system_manager.GetComponent<TextManager>().ReturnDiaConditions(hit_Diaid[i]);
+            int[] conditions = textManager.ReturnDiaConditions(hit_Diaid[i]);
 
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
-                Dialogue_system_manager.GetComponent<TextManager>().SetDiaInMap();
-                Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
+                textManager.SetDiaInMap();
+                textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
 
                 isOnce = true;
 

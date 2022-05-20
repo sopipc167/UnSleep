@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GotoMentaWorld_Script : MonoBehaviour
 {
@@ -14,7 +13,6 @@ public class GotoMentaWorld_Script : MonoBehaviour
     public void GotoMentalWorld()
     {
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneManager.LoadScene("Mental_World_Map");
-
+        SceneChanger.ChangeScene(SceneType.Mental);
     }
 }

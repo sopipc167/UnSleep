@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CliffTest : MonoBehaviour
 {
@@ -19,7 +17,7 @@ public class CliffTest : MonoBehaviour
 
     public void OnClickButton(int phase)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.RestartScene();
     }
 
     public void OnClickExitButton()

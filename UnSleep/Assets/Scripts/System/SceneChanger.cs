@@ -10,7 +10,7 @@ public enum SceneType
 {
     Volcano,
     Dialogue,
-    MenTal,
+    Mental,
     Clock,
     Diary,
     Lake,
@@ -35,7 +35,7 @@ public class SceneChanger
         {
             case SceneType.Volcano: return "Volcano";
             case SceneType.Dialogue: return "DialogueTest";
-            case SceneType.MenTal: return "Mental_World_Map";
+            case SceneType.Mental: return "Mental_World_Map";
             case SceneType.Clock: return "ClockTower";
             case SceneType.Diary: return "Diray";
             case SceneType.Lake: return "Lake";
@@ -45,5 +45,10 @@ public class SceneChanger
             case SceneType.Prologue: return "Prologue";
             default: return string.Empty;
         }
+    }
+
+    public static void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

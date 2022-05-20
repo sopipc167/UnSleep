@@ -16,9 +16,6 @@ public class SettingsMenu : MonoBehaviour
     //   4. Resolution type 설정 int 변수 1개
     //   5. Screen type 설정 int 변수 1개
 
-    [Header("참조")]
-    public SoundManager soundManager;
-
     [Header("소리 UI")]
     public Slider masterVolume;
     public Slider bgmVolume;
@@ -34,8 +31,14 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown screenTypeDropdown;
     public Dropdown resolutionDropdown;
 
+    private SoundManager soundManager;
     private List<string> options = new List<string>();
     private Resolution[] resolutions;
+
+    private void Awake()
+    {
+        soundManager = SoundManager.Instance;
+    }
 
     private void Start()
     {
