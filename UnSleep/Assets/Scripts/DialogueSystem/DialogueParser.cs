@@ -39,8 +39,8 @@ public class DialogueParser : MonoBehaviour
 
             DialogueEvent diaE = new DialogueEvent(); //DialogueEvent 변수 하나 만들어서 정보 저장 후 리스트에 추가
 
-            if (!row[0].Equals(""))
-            diaE.SceneNum = int.Parse(row[0]); //대화 이벤트 이름
+            if(!row[0].Equals(""))
+                diaE.SceneNum = int.Parse(row[0]); //대화 이벤트 이름
 
             diaE.Place = row[1]; //내용이 있으면 장소로. 추후 맵 오브젝트에 투명 오브젝트를 배치하여 각 장소의 위치를 지정하여 스폰
 
