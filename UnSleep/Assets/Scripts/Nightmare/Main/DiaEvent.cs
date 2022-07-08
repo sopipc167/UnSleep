@@ -167,6 +167,14 @@ public class DiaEvent : MonoBehaviour
                     ob[5].transform.DOScaleY(2.5f, 0.5f);
                 }
             }
+            else if(TM.con == "BearMove")
+            {
+
+            }
+            else if(TM.con == "PlayerMove")
+            {
+
+            }
         }
     }
 
@@ -182,6 +190,11 @@ public class DiaEvent : MonoBehaviour
     {
         isFirst = false;
         diaIndex = dp.CurrentDiaIndex;
+    }
+
+    public void Moveing(float speed, int direction)
+    {
+
     }
 
     public void nextLevel()

@@ -25,8 +25,10 @@ public class Pages : MonoBehaviour
 
     public string[] PageString;
     public Sprite[] PageSprite;
-    public Text[] pageText; // 0->후일담1 / 1->캐릭터설명1 / 2->제목1 / 3->요약1 / 4->후일담2 / 5->캐릭터설명2 / 6->제목2 / 7->요약2
-    public Image[] pageImage; // 0->캐릭터1 / 1->썸네일1 / 2->캐릭터2 / 3->썸네일2
+    public Text[] pageText; 
+    // 0->후일담1 / 1->캐릭터설명1 / 2->제목1 / 3->요약1 / 4->후일담2 / 5->캐릭터설명2 / 6->제목2 / 7->요약2
+    public Image[] pageImage; 
+    // 0->캐릭터1 / 1->썸네일1 / 2->캐릭터2 / 3->썸네일2
 
     public bool isChange;
     int isNext = 1;
@@ -47,7 +49,6 @@ public class Pages : MonoBehaviour
             "아무래도 어제 불안하고  초조했던 것은 잠을 제대로 자지 못해서 그런 것 같다. 오늘은  평소와 다르게 아침밥을 먹고 학교에 갔다. " +
             "한결 놓인 마음으로 시험을 볼 수 있었다. 다행히도 시험에 아는 문제들이 많이 보였다. 이번 수학 시험은 전보다 점수가 올랐다. 얼마나  기뻤는지 모른다.";
     }
-    //message 데이터 전달 방식 정리 필요
 
 
     void Update()
@@ -67,81 +68,90 @@ public class Pages : MonoBehaviour
 
         if (isEnd)
         {
-            StartCoroutine(Typing(txt, message, speed));
+            StartCoroutine(Typing(txt, message, speed)); //후일담 타이핑 효과
             isEnd = false;
         }
 
-        if (!isChange && book.bookPages.Length - 2 > book.currentPage)
+        if (!isChange && book.bookPages.Length - 2 > book.currentPage) //오른쪽으로 넘길 경우(페이지 업데이트)
         {
-            Debug.Log("Change");
-            if (isNext < 0)
-                j = 4;
-            else
-                j = 0;
+            Debug.Log("isChange");
+            Debug.Log("text: " + text + "image: " + image + "isNext: " + isNext); 
 
-            //error
-            for (int i = j; i < j + 4; i++)
-            {
-                pageText[i].text = PageString[text];
-                text++;
-            }
-
-            if (isNext < 0)
-                j = 2;
-            else
-                j = 0;
-
-            for (int i = j; i < j + 2; i++)
-            {
-                pageImage[i].sprite = PageSprite[image];
-                image++;
-            }
-
-            isNext *= -1;
-            isChange = true;
-            Debug.Log(isChange);
+            ChangePage();
+            isChange = true; 
+            //Book_test.cs 361줄에서(오른쪽으로 넘기려고 클릭하면) isChange -> false
         }
         else
         {
             isChange = true;
         }
 
-        if (!isBack && book.currentPage > 2 && book.currentPage <= book.bookPages.Length - 4)
+        if (!isBack && book.currentPage <= book.bookPages.Length - 2) //왼쪽으로 넘길 경우(페이지 전으로 돌리기)
         {
-            Debug.Log("Back");
-            isNext *= -1;
-            text -= 12;
-            image -= 6;
+            Debug.Log("isBack " + text);
 
-            if (isNext < 0)
-                j = 4;
-            else
-                j = 0;
+            //페이지를 전과 같이 돌려놓기 위해서
+            //isNext *= -1;
+            text -= 8;
+            image -= 4;
 
-            for (int i = j; i < j + 4; i++)
-            {
-                pageText[i].text = PageString[text];
-                text++;
-            }
+            ChangePage();
 
-            if (isNext < 0)
-                j = 2;
-            else
-                j = 0;
-
-            for (int i = j; i < j + 2; i++)
-            {
-                pageImage[i].sprite = PageSprite[image];
-                image++;
-            }
-
-            isNext *= -1;
             isBack = true;
         }
         else
         {
             isBack = true;
         }
+    }
+
+    public void ChangePage()
+    {
+        //page1-2 or page3-4 둘 중 어떤 묶음을 바꿀 것인지 결정
+        //현재 페이지 말고 다음 페이지 기준
+        if (isNext < 0) //isNext == -1 -> page3-4 / isNext == 1 -> page1-2
+            j = 4;
+        else
+            j = 0;
+
+        for (int i = j; i < j + 4; i++) //text 변경
+        {
+            pageText[i].text = PageString[text];
+            text++;
+        }
+
+        //page1-2 or page3-4 둘 중 어떤 묶음을 바꿀 것인지 결정
+        if (isNext < 0) //isNext == -1 -> page3-4 / isNext == 1 -> page1-2
+            j = 2;
+        else
+            j = 0;
+
+        for (int i = j; i < j + 2; i++) //image 변경
+        {
+            pageImage[i].sprite = PageSprite[image];
+            image++;
+        }
+
+        isNext *= -1; //묶음을 바꾸고 다음 묶음으로 바꾸기
+    }
+
+    public void FlipCheck(bool isRight)
+    {
+
+        if (isRight && book.bookPages.Length - 2 > book.currentPage && book.currentPage > 0)
+        {
+            isNext *= -1;
+            text -= 4;
+            image -= 2;
+        }
+        else if (!isRight && book.bookPages.Length - 2 >= book.currentPage && book.currentPage > 2)
+        {
+            isNext *= -1;
+            text += 4;
+            image += 2;
+        }
+
+        Debug.Log("FlipCheck: " + text + isRight);
     }
 
     public void Flipping()
@@ -154,6 +164,7 @@ public class Pages : MonoBehaviour
         isEnd = true;
     }
 
+    /*
     public void Enter()
     {
         btn.GetComponent<Image>().color = Color.white;
@@ -163,6 +174,7 @@ public class Pages : MonoBehaviour
     {
         btn.GetComponent<Image>().color = tmp;
     }
+    */
 
     public void Click()
     {

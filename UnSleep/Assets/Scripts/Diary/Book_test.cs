@@ -42,8 +42,8 @@ public class Book_test : MonoBehaviour
         }
     }
 
-    public Image ClippingPlane; // 넘기는 페이지 뒤 보여주는 구간(?)
-    public Image NextPageClip; // 다음 페이지 보여주는 구간(?)
+    public Image ClippingPlane; // 넘기는 페이지 뒷 페이지
+    public Image NextPageClip; // 다음 페이지
     public Image Shadow; // 오른쪽에서 왼쪽으로 넘어갈 때 그림자
     public Image ShadowLTR; // 왼쪽에서 오른쪽으로 넘어갈 때 그림자
     public Image Left;  // 넘기는 페이지 앞 이미지
@@ -356,7 +356,7 @@ public class Book_test : MonoBehaviour
 
     public void DragRightPageToPoint(Vector3 point)
     {
-        Debug.Log("오른쪽 넘김");
+        //Debug.Log("오른쪽 넘김");
         if (currentPage >= bookPages.Length) return;
         if (currentPage > 0) pages.isChange = false;
         if (auto.isFlipping) interactable = false;
@@ -432,6 +432,7 @@ public class Book_test : MonoBehaviour
     }
     public void DragLeftPageToPoint(Vector3 point)
     {
+        //Debug.Log("왼쪽 넘김");
         if (currentPage <= 0) return;
         if (currentPage > 2) pages.isBack = false;
         if (auto.isFlipping) interactable = false;
@@ -571,7 +572,7 @@ public class Book_test : MonoBehaviour
             //Mask_L.transform.SetAsFirstSibling();
         }
 
-        if(currentPage > 0)
+        if (currentPage > 0)
         {
             pages.epi = epiID[epiIndex];
             Debug.Log("epi: " + epiID[epiIndex]);
@@ -603,6 +604,7 @@ public class Book_test : MonoBehaviour
                     Right.gameObject.SetActive(false);
                     pageDragging = false;
 
+                    pages.FlipCheck(true);
                     Debug.Log("TWEENBACK_r_END");
                 }
                 ));
@@ -627,6 +629,7 @@ public class Book_test : MonoBehaviour
                     Right.gameObject.SetActive(false);
                     pageDragging = false;
 
+                    pages.FlipCheck(false);
                     Debug.Log("TWEENBACK_l_END");
                 }
                 ));
