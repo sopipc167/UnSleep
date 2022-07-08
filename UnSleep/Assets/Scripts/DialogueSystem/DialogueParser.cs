@@ -163,7 +163,6 @@ public class DialogueParser : MonoBehaviour
     public string[] getPuzzle()
     {
         string[] puzzlelist = PuzzleCell.Split(new char[] { '|' });
-        Debug.Log(puzzlelist);
 
         return puzzlelist;
     }
