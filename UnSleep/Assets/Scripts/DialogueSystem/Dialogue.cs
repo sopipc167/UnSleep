@@ -28,7 +28,7 @@ public class Dialogue //대사 단위
 [System.Serializable]
 public class DialogueEvent //대화묶음 단위
 {
-    public int SceneNum; //실행 씬 넘버 (1 - DialogueTest 2 - MentalWorld 3 - ClockTower 4 - Volcano 5 - Lake 6 - Cliff 7 - Cave
+    public int SceneNum; //실행 씬 넘버 (0 - 테이블의 끝을 알림, 1 - DialogueTest 2 - MentalWorld 3 - ClockTower 4 - Volcano 5 - Lake 6 - Cliff 7 - Cave 8- 악몽(7세, 층간)
     public string Place; //장소
     public int DiaKey; //대화 묶음
     public int[] Condition; //대화 발생 조건
