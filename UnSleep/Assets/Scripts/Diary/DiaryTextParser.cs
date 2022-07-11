@@ -25,17 +25,12 @@ public class DiaryTextParser : MonoBehaviour
 {
 
     public TextAsset diarytable; //일기장 텍스트 csv 파일 참조
-    public List<DiaryText> diaryTexts; //여기에 정보가 담겨있음
+    //public List<DiaryText> diaryTexts; //여기에 정보가 담겨있음
      
 
-    void Start()
+    public List<DiaryText> ParseDiaryText()
     {
-        ParseDiaryText();
-    }
-
-    public void ParseDiaryText()
-    {
-        diaryTexts = new List<DiaryText>();
+        List<DiaryText> diaryTexts = new List<DiaryText>();
 
         string[] row = diarytable.text.Split(new char[] { '\n' }); //개행문자 단위로 싹둑
 
@@ -74,6 +69,8 @@ public class DiaryTextParser : MonoBehaviour
 
             diaryTexts.Add(dt);
         }
+
+        return diaryTexts;
     }
 
 

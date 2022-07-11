@@ -17,7 +17,8 @@ public class YourInfo
 [Serializable]
 public class EpiProgress
 {
-    public int[] progress; //20개 에피소드의 진행도를 표시. 0: 미완료 1: 완료 
+    //public int[] progress; //20개 에피소드의 진행도를 표시. 0: 미완료 1: 완료 
+    public int progress; // 가장 마지막에 클리어한 에피소드 (진행도)
 }
 
 [Serializable]
@@ -36,9 +37,11 @@ public class SystemOption
 
 public class SaveDataManager : MonoBehaviour
 {
-    private EpiProgress EP;
-    public int[] epiProgress;
+  
+    //public int[] epiProgress;
+    public int LastClear; // 가장 마지막에 클리어한 에피소드 (진행도)
     private static SaveDataManager instance = null;
+
 
     private void Awake()
     {
@@ -67,7 +70,7 @@ public class SaveDataManager : MonoBehaviour
 
     private void Start()
     {
-
+        LastClear = LoadEpiProgress();
     }
 
     public void SaveSystemOption(float vm, float vb, float vs, bool mm, bool mb, bool ms, int g, int r, int s)
@@ -151,12 +154,15 @@ public class SaveDataManager : MonoBehaviour
 
         if (epi_num == -1) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
         {
-            ep.progress = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            LastClear = -1;
+            //ep.progress = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         }
         else
         {
-            ep = LoadEpiProgress();
-            ep.progress[epi_num] = 1; //진행사항 세이브 
+            //ep = LoadEpiProgress();
+            //ep.progress[epi_num] = 1; //진행사항 세이브 
+            ep.progress = epi_num;
+            LastClear = epi_num;
         }
 
 
@@ -168,7 +174,7 @@ public class SaveDataManager : MonoBehaviour
 
     }
 
-    public EpiProgress LoadEpiProgress()
+    public int LoadEpiProgress()
     {
        if (!FileExist()) {
             Debug.Log("No file");
@@ -177,8 +183,8 @@ public class SaveDataManager : MonoBehaviour
         Debug.Log("File exist");
         var data = SaveLoad.LoadJsonFileAES<EpiProgress>(Application.dataPath, "EpiProgressData", "aes256=32CharA49AScdg5135=48Fk63");
 
-        epiProgress = data.progress;
-        return data;
+        //epiProgress = data.progress;
+        return data.progress;
     }
 
     public bool FileExist()
