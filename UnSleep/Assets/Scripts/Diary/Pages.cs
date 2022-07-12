@@ -37,7 +37,7 @@ public class Pages : MonoBehaviour
     public bool isChange;
     int isNext = 1;
     int j = 0;
-    int text = 0;
+    //int text = 0;
     int image = 0;
     public bool isBack;
 
@@ -81,10 +81,10 @@ public class Pages : MonoBehaviour
         if (!isChange && book.bookPages.Length - 2 > book.currentPage) //오른쪽으로 넘길 경우(페이지 업데이트)
         {
             Debug.Log("isChange");
-            Debug.Log("text: " + text + "image: " + image + "isNext: " + isNext);
+            //Debug.Log("text: " + text + "image: " + image + "isNext: " + isNext);
 
             //ChangePage();
-            Re_ChangePage();
+            Re_ChangePage(true);
             isChange = true; 
             //Book_test.cs 361줄에서(오른쪽으로 넘기려고 클릭하면) isChange -> false
         }
@@ -95,15 +95,15 @@ public class Pages : MonoBehaviour
 
         if (!isBack && book.currentPage <= book.bookPages.Length - 2) //왼쪽으로 넘길 경우(페이지 전으로 돌리기)
         {
-            Debug.Log("isBack " + text);
+            //Debug.Log("isBack " + text);
 
             //페이지를 전과 같이 돌려놓기 위해서
             //isNext *= -1;
-            text -= 8;
+            //text -= 8;
             image -= 4;
 
             //ChangePage();
-            Re_ChangePage();
+            Re_ChangePage(false);
 
             isBack = true;
         }
@@ -113,7 +113,9 @@ public class Pages : MonoBehaviour
         }
     }
 
-    public void ChangePage()
+    // Re_ChangePage()로 대체
+    /*
+         public void ChangePage()
     {
         //page1-2 or page3-4 둘 중 어떤 묶음을 바꿀 것인지 결정
         //현재 페이지 말고 다음 페이지 기준
@@ -142,32 +144,42 @@ public class Pages : MonoBehaviour
 
         isNext *= -1; //묶음을 바꾸고 다음 묶음으로 바꾸기
     }
+     */
 
-    public void Re_ChangePage()
+
+    public void Re_ChangePage(bool Next) //True면 다음 페이지, False면 이전 페이지
     {
         // 일기장 내용을 에피소드 별로 관리 -> 현재 보고 있는 페이지가 어디 에피소드인지 알면 쉬워짐
         // Book_test의 CurrentPage/2 를 현재 페이지라고 할 수 있음 (2씩 올라가더라)
         // 홀수 장인 경우 page1-2를 보고 있을 것이고, 짝수 장인 경우 page3-4를 보고 있을 것이다.
         // CurrentPage/2: 홀수 = page3-4 갱신, 짝수 = page1-2 갱신
 
-        int curPage = book.currentPage/2; //현재 보고 있는 페이지
-        int curEpi = curPage; // 에피소드 id는 0부터 시작해서 페이지 숫자보다 -1
+        int curPage = book.currentPage/2; //현재 보고 있던 페이지
+        int curEpi = curPage-1; // epiID는 0부터 시작 
+        if (Next)
+            curEpi++;
+        else
+            curEpi--;
 
-        if (curPage%2==0)
+        if (curEpi < 0) curEpi = 0; //오류 방지
+
+
+        if (curPage%2==0) // page1-2 갱신
         {
+            isNext = 1;
             pageText[0].text = diaryText[curEpi].afterstory; // 후일담
             pageText[1].text = diaryText[curEpi].characs[0].intro; //캐릭터설명? -> 따로 빼서 수정할 것
             pageText[2].text = diaryText[curEpi].epi_title; // 제목
             pageText[3].text = diaryText[curEpi].epi_intro; // 요약
         }
-        else
+        else // page3-4 갱신
         {
+            isNext = -1;
             pageText[4].text = diaryText[curEpi].afterstory; // 후일담
             pageText[5].text = diaryText[curEpi].characs[0].intro; //캐릭터설명? -> 따로 빼서 수정할 것
             pageText[6].text = diaryText[curEpi].epi_title; // 제목
             pageText[7].text = diaryText[curEpi].epi_intro; // 요약
         }
-
     }
 
     public void FlipCheck(bool isRight)
@@ -176,17 +188,17 @@ public class Pages : MonoBehaviour
         if (isRight && book.bookPages.Length - 2 > book.currentPage && book.currentPage > 0)
         {
             isNext *= -1;
-            text -= 4;
+            //text -= 4;
             image -= 2;
         }
         else if (!isRight && book.bookPages.Length - 2 >= book.currentPage && book.currentPage > 2)
         {
             isNext *= -1;
-            text += 4;
+            //text += 4;
             image += 2;
         }
 
-        Debug.Log("FlipCheck: " + text + isRight);
+        //Debug.Log("FlipCheck: " + text + isRight);
     }
 
     public void Flipping()
