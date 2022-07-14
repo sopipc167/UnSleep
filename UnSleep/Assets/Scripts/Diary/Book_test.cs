@@ -686,13 +686,14 @@ public class Book_test : MonoBehaviour
     }
 
 
-    public Image[] updateBookPages() // 들어오는 값: 마지막으로 클리어한 에피소드 id
+    public Image[] updateBookPages() 
     {
         //bookPage 페이지 구성 규칙: INTRO + IMAGE1234 * n//2 + IMAGE12 * n%2 + END
         //어차피 에피소드 갱신은 씬 생성 이전 혹은 동시에 이루어지므로 
         //생성 시 매번 BookPage 배열의 페이지 구성을 update한 채로 생성
         //리스트로 만든 다음에 Array로 변환하여 리턴 -> 원 코드를 해치지 않는 선에서 구현 가능
-        int lastclear = SaveDataManager.Instance.LastClear;
+
+        int lastclear = SaveDataManager.Instance.Progress + 1; //표시할 페이지 수
         List<Image> pageList = new List<Image>();
 
         pageList.Add(INTRO);

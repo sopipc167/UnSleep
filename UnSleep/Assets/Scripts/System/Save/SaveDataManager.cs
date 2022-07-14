@@ -39,7 +39,7 @@ public class SaveDataManager : MonoBehaviour
 {
   
     //public int[] epiProgress;
-    public int LastClear; // 가장 마지막에 클리어한 에피소드 (진행도)
+    public int Progress; // 해당 숫자 에피소드를 하면 되는 상황 (Progress - 1 이 곧 진행도)
     private static SaveDataManager instance = null;
 
 
@@ -70,7 +70,7 @@ public class SaveDataManager : MonoBehaviour
 
     private void Start()
     {
-        LastClear = LoadEpiProgress();
+        Progress = LoadEpiProgress();
     }
 
     public void SaveSystemOption(float vm, float vb, float vs, bool mm, bool mb, bool ms, int g, int r, int s)
@@ -154,7 +154,7 @@ public class SaveDataManager : MonoBehaviour
 
         if (epi_num == -1) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
         {
-            LastClear = -1;
+            Progress = -1;
             //ep.progress = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         }
         else
@@ -162,7 +162,7 @@ public class SaveDataManager : MonoBehaviour
             //ep = LoadEpiProgress();
             //ep.progress[epi_num] = 1; //진행사항 세이브 
             ep.progress = epi_num;
-            LastClear = epi_num;
+            Progress = epi_num;
         }
 
 

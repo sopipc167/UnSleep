@@ -23,12 +23,13 @@ public class Pages : MonoBehaviour
     public float AnimationFrame;
     public float BetweenTime;
 
-    public string[] PageString;
-    public Sprite[] PageSprite;
-    public Text[] pageText; 
-    // 0->후일담1 / 1->캐릭터설명1 / 2->제목1 / 3->요약1 / 4->후일담2 / 5->캐릭터설명2 / 6->제목2 / 7->요약2
-    public Image[] pageImage;
-    // 0->캐릭터1 / 1->썸네일1 / 2->캐릭터2 / 3->썸네일2
+    [Header ("페이지 요소")]
+    public Text[] pageText;
+    // 0->후일담1 / 1->제목1 / 2->요약1 / 3->후일담2 / 4->제목2 / 5->요약2
+
+    public Button ImgButton12;
+    public Button ImgButton34;
+   
 
     public DiaryTextParser diaryTextParser; //일기장 텍스트 파싱하는 애
     public List<DiaryText> diaryText; //파싱된 데이터가 담김
@@ -36,14 +37,21 @@ public class Pages : MonoBehaviour
 
     public bool isChange;
     int isNext = 1;
-    int j = 0;
+    //int j = 0;
     //int text = 0;
-    int image = 0;
+    //int image = 0;
     public bool isBack;
 
     public Cover cover;
 
     public int epi;
+
+    [Header("편지봉투")]
+    public DiarySpriteManager DspriteManager; //일러스트 때려 넣을 애
+    public GameObject charInfo; // 프리팹
+    public GameObject CH12; //12페이지의 CH
+    public GameObject CH34; //34페이지의 CH
+
 
     void Start()
     {
@@ -80,11 +88,11 @@ public class Pages : MonoBehaviour
 
         if (!isChange && book.bookPages.Length - 2 > book.currentPage) //오른쪽으로 넘길 경우(페이지 업데이트)
         {
-            Debug.Log("isChange");
+            //Debug.Log("isChange");
             //Debug.Log("text: " + text + "image: " + image + "isNext: " + isNext);
-
             //ChangePage();
             Re_ChangePage(true);
+
             isChange = true; 
             //Book_test.cs 361줄에서(오른쪽으로 넘기려고 클릭하면) isChange -> false
         }
@@ -95,14 +103,14 @@ public class Pages : MonoBehaviour
 
         if (!isBack && book.currentPage <= book.bookPages.Length - 2) //왼쪽으로 넘길 경우(페이지 전으로 돌리기)
         {
-            //Debug.Log("isBack " + text);
-
-            //페이지를 전과 같이 돌려놓기 위해서
-            //isNext *= -1;
-            //text -= 8;
+            /*
+            Debug.Log("isBack " + text);
+            페이지를 전과 같이 돌려놓기 위해서
+            isNext *= -1;
+            text -= 8;
             image -= 4;
-
-            //ChangePage();
+            ChangePage();
+            */
             Re_ChangePage(false);
 
             isBack = true;
@@ -166,20 +174,22 @@ public class Pages : MonoBehaviour
 
         if (curPage%2==0) // page1-2 갱신
         {
-            isNext = 1;
             pageText[0].text = diaryText[curEpi].afterstory; // 후일담
-            pageText[1].text = diaryText[curEpi].characs[0].intro; //캐릭터설명? -> 따로 빼서 수정할 것
-            pageText[2].text = diaryText[curEpi].epi_title; // 제목
-            pageText[3].text = diaryText[curEpi].epi_intro; // 요약
+            pageText[1].text = diaryText[curEpi].epi_title; // 제목
+            pageText[2].text = diaryText[curEpi].epi_intro; // 요약
+
+            generateCh(curEpi, diaryText[curEpi].characs, true); // 편지봉투 내 등장인물 설명생성
         }
         else // page3-4 갱신
         {
-            isNext = -1;
-            pageText[4].text = diaryText[curEpi].afterstory; // 후일담
-            pageText[5].text = diaryText[curEpi].characs[0].intro; //캐릭터설명? -> 따로 빼서 수정할 것
-            pageText[6].text = diaryText[curEpi].epi_title; // 제목
-            pageText[7].text = diaryText[curEpi].epi_intro; // 요약
+            pageText[3].text = diaryText[curEpi].afterstory; // 후일담
+            pageText[4].text = diaryText[curEpi].epi_title; // 제목
+            pageText[5].text = diaryText[curEpi].epi_intro; // 요약
+
+            generateCh(curEpi, diaryText[curEpi].characs, false); // 편지봉투 내 등장인물 설명생성
         }
+
+        
     }
 
     public void FlipCheck(bool isRight)
@@ -189,13 +199,13 @@ public class Pages : MonoBehaviour
         {
             isNext *= -1;
             //text -= 4;
-            image -= 2;
+            //image -= 2;
         }
         else if (!isRight && book.bookPages.Length - 2 >= book.currentPage && book.currentPage > 2)
         {
             isNext *= -1;
             //text += 4;
-            image += 2;
+            //image += 2;
         }
 
         //Debug.Log("FlipCheck: " + text + isRight);
@@ -226,11 +236,10 @@ public class Pages : MonoBehaviour
     public void Click()
     {
         cPage = book.currentPage;
-        Debug.Log(epi);
+       
         if (Dialogue_Proceeder.instance != null)
         {
-            Dialogue_Proceeder.instance.CurrentEpiID = epi;
-            Debug.Log(Dialogue_Proceeder.instance.CurrentDiaID);
+            Dialogue_Proceeder.instance.CurrentEpiID = cPage/2 -1 ;
         }
         SceneManager.LoadScene("DialogueTest");
     }
@@ -242,5 +251,100 @@ public class Pages : MonoBehaviour
             typingText.text = message.Substring(0, i + 1);
             yield return new WaitForSeconds(speed);
         }
+    }
+
+    public void generateCh(int epinum, CharacIntro[] characs, bool onetwo) //에피소드 별 등장인물 정보에 따라 생성. 마지막 bool은 페이지1-2면 true. 
+    {
+        
+
+
+        // 인물 수에 따른 생성 위치, 각도 상수
+        Dictionary<int, CHPosAngle[]> posDict
+            = new Dictionary<int, CHPosAngle[]>()
+        {
+                {1 ,  new CHPosAngle[] { new CHPosAngle(80f, 0f, 0f) }},
+                {2 ,  new CHPosAngle[] { new CHPosAngle(-30f, 0f, 10f), new CHPosAngle(150f, 0f, -10f)}},
+                {3 ,  new CHPosAngle[] { new CHPosAngle(-70f, 0f, 10f), new CHPosAngle(80f, 0f, 0f), new CHPosAngle(200f, 0f, -10f)}},
+                {4 ,  new CHPosAngle[] { new CHPosAngle(-140f, 0f, 10f), new CHPosAngle(0f, 0f, 5f), new CHPosAngle(115f, 0f, -5f), new CHPosAngle(250f, 0f, -10f)}},
+                {5 ,  new CHPosAngle[] { new CHPosAngle(-165f, 0f, 10f), new CHPosAngle(-45f, 0f, 5f), new CHPosAngle(77f, 0f, 0f), new CHPosAngle(190f, 0f, -5f), new CHPosAngle(300f, 0f, -10f)}},
+                {6 ,  new CHPosAngle[] { new CHPosAngle(-175f, 0f, 10f), new CHPosAngle(-55f, 0f, 5f), new CHPosAngle(30f, 0f, 0f), new CHPosAngle(80f, 0f, 0f), new CHPosAngle(2000f, 0f, -5f), new CHPosAngle(315f, 0f, -10f)}}
+        };
+
+        int chCnt = characs.Length; //인물 수
+        Transform CH;
+
+        //12페이지의 CH와 34페이지의 CH를 구분
+        if (onetwo)
+            CH = CH12.transform;
+        else
+            CH = CH34.transform;
+
+
+        // 이미 있는건 삭제
+        Transform[] childList = CH.GetComponentsInChildren<Transform>();
+        if (childList != null)
+        {
+            for (int i = 1; i < childList.Length; i++) // 0부터 시작하면 부모 오브젝트도 삭제됨
+            {
+                if (childList[i] != CH)
+                    Destroy(childList[i].gameObject);
+            }
+        }
+
+        // 이미지 지정 - 해당 에피소드의 스프라이트를 들고 온다.
+        DiarySprite CHsprite = DspriteManager.GetDiarySprite(epinum);
+
+        // 들고 온 김에 시작 버튼 일러스트도 갈아낀다.
+        if (onetwo)
+            ImgButton12.GetComponent<Image>().sprite = CHsprite.startSpr;
+        else
+            ImgButton34.GetComponent<Image>().sprite = CHsprite.startSpr;
+
+
+        if (epinum == SaveDataManager.Instance.Progress) //이제 가야하는 에피소드면 회색빛을...
+        {
+            if (onetwo)
+                ImgButton12.GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+            else
+                ImgButton34.GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+        }
+        else
+        {
+            if (onetwo)
+                ImgButton12.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+            else
+                ImgButton34.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+        }
+
+
+        // 인물 수에 따라 CH에 생성시킨다. 
+        for (int i = 0; i < chCnt; i++)
+        {
+            // 프리팹 생성, 부모 지정
+            GameObject element = Instantiate(charInfo, CH);
+
+            // 좌표, 각도 지정
+            element.transform.localPosition = posDict[chCnt][i].pos;
+            element.transform.Rotate(0, 0, posDict[chCnt][i].angle);
+
+            // text 갱신
+            element.transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>().text = characs[i].name;
+            element.transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>().text = characs[i].intro;
+
+            // sprite 갱신
+            element.GetComponent<Image>().sprite = CHsprite.charSpr[i];
+        }
+
+    }
+}
+
+public class CHPosAngle
+{
+    public Vector2 pos; // 생성 위치 
+    public float angle; // -30 ~ 30의 각도
+    public CHPosAngle(float x, float y, float ang) //생성자
+    {
+        pos = new Vector2(x, y);
+        angle = ang;
     }
 }
