@@ -159,10 +159,15 @@ public class SaveDataManager : MonoBehaviour
         }
         else
         {
-            //ep = LoadEpiProgress();
-            //ep.progress[epi_num] = 1; //진행사항 세이브 
+            int lastclear = LoadEpiProgress();
+
+
+            if (epi_num <= lastclear) // 이미 클리어한거 또 클리어한 경우
+                return;
+            
             ep.progress = epi_num;
             Progress = epi_num;
+            
         }
 
 

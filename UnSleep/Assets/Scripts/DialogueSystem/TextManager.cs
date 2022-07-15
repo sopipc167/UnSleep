@@ -288,8 +288,8 @@ public class TextManager : MonoBehaviour
                         
                         if (!DiaDic.ContainsKey(Dia_Id + 1)) //다음 대사가 없으면
                         {
-                            dp.End = "E"; //음... 왜 string으로 했지? 조만간 윤지랑 얘기해서 bool로 바꿔버리자
-                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID); //현재 에피소드 완료 저장
+                            dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
+                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID+1); //현재 에피소드 완료 저장
                             SceneManager.LoadScene("Diary");
                         }
 

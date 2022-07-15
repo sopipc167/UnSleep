@@ -587,8 +587,8 @@ public class Book_test : MonoBehaviour
 
         if (currentPage > 0)
         {
-            pages.epi = epiID[epiIndex];
-            Debug.Log("epi: " + epiID[epiIndex]);
+            //pages.epi = epiID[epiIndex];
+            //Debug.Log("epi: " + epiID[epiIndex]);
         }
         Debug.Log("Flip_END");
     }

@@ -10,6 +10,9 @@ public class DiarySprite
 
     // 시작 버튼
     public Sprite startSpr;
+
+    // 시작 버튼 (흑백)
+    public Sprite startSprB;
 }
 public class DiarySpriteManager : MonoBehaviour
 {

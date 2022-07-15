@@ -44,7 +44,7 @@ public class Pages : MonoBehaviour
 
     public Cover cover;
 
-    public int epi;
+    //public int epi;
 
     [Header("편지봉투")]
     public DiarySpriteManager DspriteManager; //일러스트 때려 넣을 애
@@ -69,7 +69,7 @@ public class Pages : MonoBehaviour
     {
         if (Dialogue_Proceeder.instance != null)
         {
-            if (string.Equals(Dialogue_Proceeder.instance.End, "E") && !isStart)
+            if (Dialogue_Proceeder.instance.End && !isStart)
             {
                 Debug.Log("isEnd = true");
                 auto.Mode = FlipMode.RightToLeft;
@@ -77,6 +77,8 @@ public class Pages : MonoBehaviour
                 Invoke("Flipping", 1);
                 isStart = true;
                 Invoke("StartTyping", 1);
+
+                Dialogue_Proceeder.instance.End = false;
             }
         }
 
@@ -240,6 +242,8 @@ public class Pages : MonoBehaviour
         if (Dialogue_Proceeder.instance != null)
         {
             Dialogue_Proceeder.instance.CurrentEpiID = cPage/2 -1 ;
+            Dialogue_Proceeder.instance.isInit = true;
+            Dialogue_Proceeder.instance.SetCurrentDiaID();
         }
         SceneManager.LoadScene("DialogueTest");
     }
@@ -294,26 +298,20 @@ public class Pages : MonoBehaviour
         // 이미지 지정 - 해당 에피소드의 스프라이트를 들고 온다.
         DiarySprite CHsprite = DspriteManager.GetDiarySprite(epinum);
 
-        // 들고 온 김에 시작 버튼 일러스트도 갈아낀다.
-        if (onetwo)
-            ImgButton12.GetComponent<Image>().sprite = CHsprite.startSpr;
-        else
-            ImgButton34.GetComponent<Image>().sprite = CHsprite.startSpr;
-
-
-        if (epinum == SaveDataManager.Instance.Progress) //이제 가야하는 에피소드면 회색빛을...
+        // 이미지 들고 온 김에 시작 버튼 일러스트도 갈아낀다.
+        if (epinum == SaveDataManager.Instance.Progress) // 클리어X 에피소드는 흑백 일러스트로
         {
             if (onetwo)
-                ImgButton12.GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+                ImgButton12.GetComponent<Image>().sprite = CHsprite.startSprB;
             else
-                ImgButton34.GetComponent<Image>().color = new Color32(50, 50, 50, 255);
+                ImgButton34.GetComponent<Image>().sprite = CHsprite.startSprB;
         }
         else
         {
             if (onetwo)
-                ImgButton12.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                ImgButton12.GetComponent<Image>().sprite = CHsprite.startSpr;
             else
-                ImgButton34.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+                ImgButton34.GetComponent<Image>().sprite = CHsprite.startSpr;
         }
 
 
