@@ -86,7 +86,7 @@ public class TextManager : MonoBehaviour
     public GameObject UI_Objects; //대화UI 레이아웃 변경 주관하는 녀석
 
 
-    [SerializeField] Dictionary<int, DialogueEvent> DiaDic = new Dictionary<int, DialogueEvent>(); //대화묶음 딕셔너리
+    [SerializeField] public Dictionary<int, DialogueEvent> DiaDic = new Dictionary<int, DialogueEvent>(); //대화묶음 딕셔너리
 
     [SerializeField] private Dictionary<int, Sprite[]> PorDic = new Dictionary<int, Sprite[]>(); //초상화 딕셔너리
 
@@ -467,6 +467,9 @@ public class TextManager : MonoBehaviour
         if (isSeven)
             con = CONTENT;
 
+
+        if (LAYOUT == 7)
+            Increasediaindex = false;
 
 
         if (SE != null) //효과음 있으면 효과음 재생

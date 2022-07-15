@@ -11,9 +11,9 @@ public class Pages : MonoBehaviour
 
     public Text txt;
     public float speed = 0.2f;
-    public bool isEnd;
-    public bool isStart;
-    public string message;
+    public bool isEnd; // 에피소드 끝나서 왔을 때
+    public bool isStart; // isEnd쪽을 한번만 실행하려고 만든거 
+    //public string message;
 
     public static int cPage;
     public Book_test book;
@@ -35,12 +35,12 @@ public class Pages : MonoBehaviour
     public List<DiaryText> diaryText; //파싱된 데이터가 담김
     
 
-    public bool isChange;
+    public bool isChange; // 오른쪽 넘기기 - 한번만 실행하게 
     int isNext = 1;
     //int j = 0;
     //int text = 0;
     //int image = 0;
-    public bool isBack;
+    public bool isBack; // 왼쪽 넘기기 - 한번만 실행하게 
 
     public Cover cover;
 
@@ -59,9 +59,6 @@ public class Pages : MonoBehaviour
 
         isBack = true;
         tmp = btn.GetComponent<Image>().color;
-        message = "피곤한 상태로 잠에 들었더니 잠을 푹 잘 수 있었다. 잠을 푹  자니 불안한 마음이 조금은 사라졌다. " +
-            "아무래도 어제 불안하고  초조했던 것은 잠을 제대로 자지 못해서 그런 것 같다. 오늘은  평소와 다르게 아침밥을 먹고 학교에 갔다. " +
-            "한결 놓인 마음으로 시험을 볼 수 있었다. 다행히도 시험에 아는 문제들이 많이 보였다. 이번 수학 시험은 전보다 점수가 올랐다. 얼마나  기뻤는지 모른다.";
     }
 
 
@@ -82,9 +79,16 @@ public class Pages : MonoBehaviour
             }
         }
 
-        if (isEnd)
+        if (isEnd) //에피소드 끝나서 왔을 때
         {
-            StartCoroutine(Typing(txt, message, speed)); //후일담 타이핑 효과
+            int after;
+            if ((book.currentPage / 2) % 2 == 0)
+                after = 0;
+            else
+                after = 3;
+
+            //후일담 타이핑 효과 - 표시 페이지까지 장수에 비례해서 딜레이 넣도록 수정 할거얌
+            StartCoroutine(Typing(pageText[after], diaryText[SaveDataManager.Instance.Progress-2].afterstory, speed, 5f)); 
             isEnd = false;
         }
 
@@ -176,7 +180,10 @@ public class Pages : MonoBehaviour
 
         if (curPage%2==0) // page1-2 갱신
         {
-            pageText[0].text = diaryText[curEpi].afterstory; // 후일담
+            if (curEpi < SaveDataManager.Instance.Progress)
+                pageText[0].text = diaryText[curEpi].afterstory; // 후일담
+            else
+                pageText[0].text = "";
             pageText[1].text = diaryText[curEpi].epi_title; // 제목
             pageText[2].text = diaryText[curEpi].epi_intro; // 요약
 
@@ -184,7 +191,10 @@ public class Pages : MonoBehaviour
         }
         else // page3-4 갱신
         {
-            pageText[3].text = diaryText[curEpi].afterstory; // 후일담
+            if (curEpi < SaveDataManager.Instance.Progress)
+                pageText[3].text = diaryText[curEpi].afterstory; // 후일담
+            else
+                pageText[3].text = "";
             pageText[4].text = diaryText[curEpi].epi_title; // 제목
             pageText[5].text = diaryText[curEpi].epi_intro; // 요약
 
@@ -248,8 +258,10 @@ public class Pages : MonoBehaviour
         SceneManager.LoadScene("DialogueTest");
     }
 
-    IEnumerator Typing(Text typingText, string message, float speed)
+    IEnumerator Typing(Text typingText, string message, float speed, float delay) // 시작 딜레이 추가. 
     {
+        yield return new WaitForSeconds(delay);
+
         for(int i = 0; i < message.Length; i++)
         {
             typingText.text = message.Substring(0, i + 1);
@@ -259,9 +271,6 @@ public class Pages : MonoBehaviour
 
     public void generateCh(int epinum, CharacIntro[] characs, bool onetwo) //에피소드 별 등장인물 정보에 따라 생성. 마지막 bool은 페이지1-2면 true. 
     {
-        
-
-
         // 인물 수에 따른 생성 위치, 각도 상수
         Dictionary<int, CHPosAngle[]> posDict
             = new Dictionary<int, CHPosAngle[]>()

@@ -4993,8 +4993,8 @@ MonoBehaviour:
   Mode: 1
   AutoFlip: 0
   ControledBook: {fileID: 176287270}
-  PageFlipTime: 0.5
-  TimeBetweenPages: 0.5
+  PageFlipTime: 0.1
+  TimeBetweenPages: 0.1
   AnimationFramesCount: 40
   DelayBeforeStarting: 0
   isFlipping: 0
@@ -6122,7 +6122,6 @@ MonoBehaviour:
   speed: 0.05
   isEnd: 0
   isStart: 0
-  message: 
   book: {fileID: 176287270}
   auto: {fileID: 3828804443288343237}
   DelayTime: 0
