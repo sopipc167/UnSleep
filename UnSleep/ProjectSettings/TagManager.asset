@@ -27,6 +27,9 @@ TagManager:
   - Hand
   - MapTrigger
   - SceneOver
+  - SceneOver_2
+  - Chair
+  - Gome
   layers:
   - Default
   - TransparentFX

@@ -68,7 +68,6 @@ public class Pages : MonoBehaviour
         {
             if (Dialogue_Proceeder.instance.End && !isStart)
             {
-                Debug.Log("isEnd = true");
                 auto.Mode = FlipMode.RightToLeft;
                 cover.isBack = true;
                 Invoke("Flipping", 1);
@@ -94,11 +93,11 @@ public class Pages : MonoBehaviour
 
         if (!isChange && book.bookPages.Length - 2 > book.currentPage) //오른쪽으로 넘길 경우(페이지 업데이트)
         {
+
             //Debug.Log("isChange");
             //Debug.Log("text: " + text + "image: " + image + "isNext: " + isNext);
             //ChangePage();
             Re_ChangePage(true);
-
             isChange = true; 
             //Book_test.cs 361줄에서(오른쪽으로 넘기려고 클릭하면) isChange -> false
         }
@@ -109,6 +108,7 @@ public class Pages : MonoBehaviour
 
         if (!isBack && book.currentPage <= book.bookPages.Length - 2) //왼쪽으로 넘길 경우(페이지 전으로 돌리기)
         {
+
             /*
             Debug.Log("isBack " + text);
             페이지를 전과 같이 돌려놓기 위해서
@@ -118,6 +118,7 @@ public class Pages : MonoBehaviour
             ChangePage();
             */
             Re_ChangePage(false);
+
 
             isBack = true;
         }
@@ -206,7 +207,7 @@ public class Pages : MonoBehaviour
 
     public void FlipCheck(bool isRight)
     {
-
+        // 페이지 넘기기에 실패했을 경우 실행되는 함수
         if (isRight && book.bookPages.Length - 2 > book.currentPage && book.currentPage > 0)
         {
             isNext *= -1;
@@ -219,8 +220,6 @@ public class Pages : MonoBehaviour
             //text += 4;
             //image += 2;
         }
-
-        //Debug.Log("FlipCheck: " + text + isRight);
     }
 
     public void Flipping()
