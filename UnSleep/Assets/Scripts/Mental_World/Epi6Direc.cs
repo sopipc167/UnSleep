@@ -16,6 +16,10 @@ public class Epi6Direc : MonoBehaviour
     void Update()
     {
         if (Dialogue_Proceeder.instance.CurrentDiaID == 604 && !mwpuzzle.activeSelf)
+        {
             mwpuzzle.SetActive(true);
+            Debug.Log("엥?");
+        }
+            
     }
 }

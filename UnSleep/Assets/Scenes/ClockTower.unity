@@ -25317,7 +25317,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!1 &2102172742
 GameObject:

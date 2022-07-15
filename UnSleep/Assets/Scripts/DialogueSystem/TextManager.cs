@@ -282,8 +282,10 @@ public class TextManager : MonoBehaviour
                     }
                     else //대화 묶음 넘어갈 때
                     {
+                        
 
                         dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
+                        
                         if (!DiaDic.ContainsKey(Dia_Id + 1)) //다음 대사가 없으면
                         {
                             dp.End = "E"; //음... 왜 string으로 했지? 조만간 윤지랑 얘기해서 bool로 바꿔버리자
@@ -294,9 +296,9 @@ public class TextManager : MonoBehaviour
                         if (DiaDic[Dia_Id].SceneNum == DiaDic[Dia_Id + 1].SceneNum) //씬 변화가 없음 
                         {
                             dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
-                            dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                             
-                            
+
+
                             if (Increasediaindex && !isSeven && STEManager != null && DiaDic[Dia_Id].SceneNum == 1)
                                 STEManager.FadeInOut();
 
@@ -367,7 +369,7 @@ public class TextManager : MonoBehaviour
 
                         else //씬 변화가 있음
                         {
-
+                            dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                             if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 2) //스토리->정신세계
                             {
                                 StartCoroutine(LoadStoryMental("Mental_World_Map"));
@@ -385,7 +387,9 @@ public class TextManager : MonoBehaviour
                             }
                             else // 그 밖의 경우에는 단순 대화 종료. (ex) 스토리 맵 -> 동굴 이동 전 대기 상태
                             {
+
                                 dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
+                              
                                 DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기. 
                             }
                         }
