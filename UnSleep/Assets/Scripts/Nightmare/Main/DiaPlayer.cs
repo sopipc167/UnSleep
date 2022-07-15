@@ -14,6 +14,7 @@ public class DiaPlayer : MonoBehaviour
     public GameObject diaScene1;
     public GameObject diaScene2;
     public GameObject diaScene3;
+    public GameObject diaScene4;
 
     public TextManager TM;
     public FadeInOut fade;
@@ -21,6 +22,7 @@ public class DiaPlayer : MonoBehaviour
     public DiaEvent DE;
 
     public bool isOnce;
+    public Gome gome;
 
     // Update is called once per frame
     void Update()
@@ -78,6 +80,17 @@ public class DiaPlayer : MonoBehaviour
                     fade.Blackout_Func(0.3f);
                     player.transform.localPosition = new Vector3(-5.16f, -1.19f, 0);
                     chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
+                }
+                else if(dia_hit_colliders[i].tag == "SceneOver_2")
+                {
+                    DE.next_flase = 710;
+                    DE.next_true = 709;
+                    diaScene2.SetActive(false);
+                    diaScene3.SetActive(true);
+                }
+                else if(dia_hit_colliders[i].tag == "Gome")
+                {
+                    gome.touchPlayer();
                 }
             }
         }
