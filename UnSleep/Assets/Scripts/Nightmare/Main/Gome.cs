@@ -7,17 +7,19 @@ public class Gome : MonoBehaviour
     public GameObject target;
     public Vector3 targetPos;
     float speed = 4.5f;
+    public float smooth;
     public bool isStart;
     public bool isMinigame;
     public Animator anim;
     public DiaEvent dia;
+    public bool isFollow;
 
     void Start()
     {
         targetPos = transform.position;
     }
 
-    void Update()
+    void LateUpdate()
     {
         if (isStart)
         {
@@ -25,11 +27,16 @@ public class Gome : MonoBehaviour
             {
                 anim.SetBool("isMove", false);
                 isStart = false;
+                isFollow = false;
                 dia.block.enabled = false;
             }
             else
             {
                 anim.SetBool("isMove", true);
+
+                if (isFollow)
+                    targetPos = target.transform.position;
+
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
         }

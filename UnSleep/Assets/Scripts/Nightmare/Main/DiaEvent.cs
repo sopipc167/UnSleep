@@ -70,8 +70,8 @@ public class DiaEvent : MonoBehaviour
     {
         dp = Dialogue_Proceeder.instance;
         EventNum = 100;
-        next_flase = 700;
-        next_true = 699;
+        //next_flase = 700;
+        //next_true = 699;
     }
 
 
@@ -111,9 +111,15 @@ public class DiaEvent : MonoBehaviour
                 ob[4].SetActive(true);
                 ob[5].SetActive(true);
             }
-            else if(EventNum == 7)
+            else if (EventNum == 7)
             {
                 suprise.enabled = false;
+            }
+            else if (EventNum == 8)
+            {
+                gome.target = player.gameObject;
+                gome.isFollow = true;
+                gome.isStart = true;
             }
 
             isFirst = true;
@@ -231,6 +237,7 @@ public class DiaEvent : MonoBehaviour
                     changeEndPoint(ob_lst, 1, tPos[1].position);
                     changeDirection(ob_lst, 1, -1);
                     changeIsMove(ob_lst, 1, true);
+                    EventNum = 8;
                 }
 
                 block.enabled = true;
@@ -265,6 +272,7 @@ public class DiaEvent : MonoBehaviour
                     player.isSeven = true;
                     isMini = true;
                 }
+                EventNum = 8;
             }
             else if(TM.con == "LightOn")
             {

@@ -30,6 +30,7 @@ public class DiaPlayer : MonoBehaviour
         if (!Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex)
         {
             player.isStop = false;
+            gome.isStart = true;
         }
 
         //*****************클릭*******************
@@ -130,6 +131,7 @@ public class DiaPlayer : MonoBehaviour
 
             player.col.enabled = false;
             player.isStop = true;
+            gome.isStart = false;
 
             //실행 조건 가져옴
             int[] conditions = Dialogue_system_manager.GetComponent<TextManager>().ReturnDiaConditions(hit_Diaid[i]);
