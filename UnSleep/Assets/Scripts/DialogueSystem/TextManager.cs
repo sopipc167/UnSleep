@@ -86,7 +86,7 @@ public class TextManager : MonoBehaviour
     public GameObject UI_Objects; //대화UI 레이아웃 변경 주관하는 녀석
 
 
-    [SerializeField] Dictionary<int, DialogueEvent> DiaDic = new Dictionary<int, DialogueEvent>(); //대화묶음 딕셔너리
+    [SerializeField] public Dictionary<int, DialogueEvent> DiaDic = new Dictionary<int, DialogueEvent>(); //대화묶음 딕셔너리
 
     [SerializeField] private Dictionary<int, Sprite[]> PorDic = new Dictionary<int, Sprite[]>(); //초상화 딕셔너리
 
@@ -288,8 +288,8 @@ public class TextManager : MonoBehaviour
                         
                         if (!DiaDic.ContainsKey(Dia_Id + 1)) //다음 대사가 없으면
                         {
-                            dp.End = "E"; //음... 왜 string으로 했지? 조만간 윤지랑 얘기해서 bool로 바꿔버리자
-                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID); //현재 에피소드 완료 저장
+                            dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
+                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID+1); //현재 에피소드 완료 저장
                             SceneManager.LoadScene("Diary");
                         }
 
@@ -467,6 +467,9 @@ public class TextManager : MonoBehaviour
         if (isSeven)
             con = CONTENT;
 
+
+        if (LAYOUT == 7)
+            Increasediaindex = false;
 
 
         if (SE != null) //효과음 있으면 효과음 재생
