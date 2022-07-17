@@ -81,13 +81,19 @@ public class Pages : MonoBehaviour
         if (isEnd) //에피소드 끝나서 왔을 때
         {
             int after;
-            if ((book.currentPage / 2) % 2 == 0)
+            int targetEpi = cPage / 2 - 1;
+
+            pageText[0].text = "";
+            pageText[3].text = "";
+
+
+            if (targetEpi % 2 == 0)
                 after = 0;
             else
                 after = 3;
 
             //후일담 타이핑 효과 - 표시 페이지까지 장수에 비례해서 딜레이 넣도록 수정 할거얌
-            StartCoroutine(Typing(pageText[after], diaryText[SaveDataManager.Instance.Progress-2].afterstory, speed, 5f)); 
+            StartCoroutine(Typing(pageText[after], diaryText[targetEpi].afterstory, speed, 0f)); 
             isEnd = false;
         }
 
@@ -253,8 +259,17 @@ public class Pages : MonoBehaviour
             Dialogue_Proceeder.instance.CurrentEpiID = cPage/2 -1 ;
             Dialogue_Proceeder.instance.isInit = true;
             Dialogue_Proceeder.instance.SetCurrentDiaID();
+
+
+            if (Dialogue_Proceeder.instance.CurrentEpiID == 1 || Dialogue_Proceeder.instance.CurrentEpiID == 6)
+                SceneManager.LoadScene("Nightmare");
+            else if (Dialogue_Proceeder.instance.CurrentEpiID == 10)
+                SceneManager.LoadScene("Nightmare_27");
+            else
+                SceneManager.LoadScene("DialogueTest");
         }
-        SceneManager.LoadScene("DialogueTest");
+
+        
     }
 
     IEnumerator Typing(Text typingText, string message, float speed, float delay) // 시작 딜레이 추가. 
