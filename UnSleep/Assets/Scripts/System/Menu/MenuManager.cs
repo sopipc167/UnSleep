@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
@@ -38,5 +39,22 @@ public class MenuManager : MonoBehaviour
         {
             MenuCanvas.SetActive(false);
         }
+    }
+
+    public void Resume()
+    {
+        PAUSE = !PAUSE;
+    }
+
+    public void GoDiary()
+    {
+        PAUSE = !PAUSE;
+        SceneManager.LoadScene("Diary");
+        
+    }
+
+    public void Exit_()
+    {
+        Application.Quit();
     }
 }
