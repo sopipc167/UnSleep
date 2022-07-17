@@ -482,12 +482,6 @@ public class TextManager : MonoBehaviour
             Increasediaindex = false;
         }
 
-        /*
-        if (isSeven)
-        {
-            Debug.Log("con4: " + con);
-            con = CONTENT;
-
 
         if (LAYOUT == 7)
             Increasediaindex = false;
