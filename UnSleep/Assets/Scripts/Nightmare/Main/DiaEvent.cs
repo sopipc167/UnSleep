@@ -129,12 +129,12 @@ public class DiaEvent : MonoBehaviour
                 Fade.color = tmp;
                 BA.BlinkOpen();
             }
-            else if(TM.con == "BlinkClose")
+            /*else if(TM.con == "BlinkClose")
             {
                 EventNum = 3;
                 Debug.Log("Black");
                 BA.BlinkClose();
-            }
+            }*/
             else if(TM.con == "ChairMove")
             {
                 EventNum = 4;
