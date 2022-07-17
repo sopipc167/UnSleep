@@ -103,6 +103,7 @@ public class TextManager : MonoBehaviour
     //7세
     public bool isSeven;
     public string con;
+    public bool isEnd;
 
     void Awake()
     {
@@ -232,7 +233,7 @@ public class TextManager : MonoBehaviour
                 {
                     dp.CurrentDiaIndex++;
                     StartCoroutine(Update_Dialogue_Goodbye());
-
+                    
                 }
                 else
                 {
@@ -265,7 +266,10 @@ public class TextManager : MonoBehaviour
                             dp.CurrentDiaIndex++;
 
                         if (isSeven)
+                        {
                             con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
+                            Debug.Log("con1: " + con);
+                        }
 
 
                         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].isSelect) //선택지인 경우
@@ -352,8 +356,19 @@ public class TextManager : MonoBehaviour
 
 
 
+                            /*
                             if (isSeven)
+                            {
                                 con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
+                                Debug.Log("con2: " + con);
+                            }
+                            */
+
+                            if (isSeven)
+                            {
+                                Debug.Log("isEnd");
+                                isEnd = true;
+                            }
 
 
                             if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].isSelect) //선택지인 경우
@@ -403,8 +418,12 @@ public class TextManager : MonoBehaviour
     public void Get_Content()
     {
         if (isSeven)
+        {
             con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
+            Debug.Log("con3: " + con);
+        }
     }
+   
 
     public void Set_Select_System()
     {
@@ -463,11 +482,13 @@ public class TextManager : MonoBehaviour
             Increasediaindex = false;
         }
 
-
+        /*
         if (isSeven)
+        {
+            Debug.Log("con4: " + con);
             con = CONTENT;
-
-
+        }
+        */
 
         if (SE != null) //효과음 있으면 효과음 재생
         {
@@ -762,6 +783,7 @@ public class TextManager : MonoBehaviour
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
         //Invoke("Set_Dialogue_System", 0.5f);
+        Get_Content();
         Set_Dialogue_System();
         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange != 5)
             DiaUI.SetActive(true);

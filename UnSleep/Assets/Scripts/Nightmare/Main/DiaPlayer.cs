@@ -16,7 +16,7 @@ public class DiaPlayer : MonoBehaviour
     public GameObject diaScene3;
     public GameObject diaScene4;
 
-    public TextManager TM;
+    //public TextManager TM;
     public FadeInOut fade;
     public GameObject chair;
     public DiaEvent DE;
@@ -78,8 +78,7 @@ public class DiaPlayer : MonoBehaviour
                     diaScene2.SetActive(true);
                     DE.next_flase = 700;
                     DE.next_true = 699;
-                    fade.Blackout_Func(0.3f);
-                    player.transform.localPosition = new Vector3(-5.16f, -1.19f, 0);
+                    //player.transform.localPosition = new Vector3(-5.05f, -1.38f, 0);
                     chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
                 }
                 else if(dia_hit_colliders[i].tag == "SceneOver_2")
@@ -112,7 +111,6 @@ public class DiaPlayer : MonoBehaviour
 
         int[] hit_Diaid = hit.Obj_Diaid;
         int event_cnt = hit_Diaid.Length;
-
 
         //뒷쪽 이벤트가 흐름 상 조건의 개수가 많거나, 뒷 순번의 조건을 가지고 있기 때문에
         //뒤부터 검증
