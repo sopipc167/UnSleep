@@ -9,7 +9,7 @@ public class TitleManager : MonoBehaviour
     public GameObject continueBtn;
 
 
-    void Start()
+    void Awake()
     {
         if (!SaveDataManager.Instance.FileExist()) //세이브 파일 없으면  
         {
