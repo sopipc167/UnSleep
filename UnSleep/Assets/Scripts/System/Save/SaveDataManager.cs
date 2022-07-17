@@ -92,7 +92,7 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(systemOption);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.dataPath, "SystemOptionData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "SystemOptionData", AEStextdata);
 
     }
 
@@ -102,14 +102,14 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(systemOption);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.dataPath, "SystemOptionData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "SystemOptionData", AEStextdata);
 
     }
 
 
     public YourInfo LoadSystemOption()
     {
-        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.dataPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
+        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.streamingAssetsPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
         return data;
     }
 
@@ -127,7 +127,7 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(info);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.dataPath, "YourInfoData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "YourInfoData", AEStextdata);
 
     }
 
@@ -138,13 +138,13 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(info);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.dataPath, "YourInfoData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "YourInfoData", AEStextdata);
     }
 
 
     public YourInfo LoadYourInfo()
     {
-        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.dataPath, "YourInfoData", "aes256=32CharA49AScdg5135=48Fk63");
+        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.streamingAssetsPath, "YourInfoData", "aes256=32CharA49AScdg5135=48Fk63");
         return data;
     }
 
@@ -175,7 +175,7 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(ep);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.dataPath, "EpiProgressData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "EpiProgressData", AEStextdata);
 
     }
 
@@ -186,7 +186,7 @@ public class SaveDataManager : MonoBehaviour
             SaveEpiProgress(0); //초회 세이브 파일 생성. 
         }
         Debug.Log("File exist");
-        var data = SaveLoad.LoadJsonFileAES<EpiProgress>(Application.dataPath, "EpiProgressData", "aes256=32CharA49AScdg5135=48Fk63");
+        var data = SaveLoad.LoadJsonFileAES<EpiProgress>(Application.streamingAssetsPath, "EpiProgressData", "aes256=32CharA49AScdg5135=48Fk63");
 
         //epiProgress = data.progress;
         return data.progress;
@@ -194,6 +194,6 @@ public class SaveDataManager : MonoBehaviour
 
     public bool FileExist()
     {
-        return File.Exists(Path.Combine(Application.dataPath, "EpiProgressData.json"));
+        return File.Exists(Path.Combine(Application.streamingAssetsPath, "EpiProgressData.json"));
     }
 }
