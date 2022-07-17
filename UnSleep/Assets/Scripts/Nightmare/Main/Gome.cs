@@ -6,7 +6,8 @@ public class Gome : MonoBehaviour
 {
     public GameObject target;
     public Vector3 targetPos;
-    float speed = 4.5f;
+    public Vector3 targetPos_tmp;
+    public float speed = 4.5f;
     public float smooth;
     public bool isStart;
     public bool isMinigame;
@@ -39,6 +40,10 @@ public class Gome : MonoBehaviour
 
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
+        }
+        else
+        {
+            anim.SetBool("isMove", false);
         }
     }
 

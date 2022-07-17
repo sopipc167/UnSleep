@@ -139,8 +139,9 @@ public class DiaEvent : MonoBehaviour
 
             if (TM.con == "Shadow")
             {
-                EventNum = 1;
                 Shadow(true);
+                TM.con = null;
+                EventNum = 1;
             }
             else if(TM.con == "LightOff")
             {
@@ -248,12 +249,14 @@ public class DiaEvent : MonoBehaviour
                 }
                 else if(isMade_p && !ob_lst[1].isMove)
                 {
+                    Debug.Log("player Move");
                     changeEndPoint(ob_lst, 1, tPos[1].position);
                     changeDirection(ob_lst, 1, -1);
                     changeIsMove(ob_lst, 1, true);
-                    //EventNum = 8;
+                    EventNum = 8;
                 }
 
+                TM.con = null;
                 block.enabled = true;
                 player.animator.SetBool("isMove", true);
                 player.isSeven = true;
@@ -261,13 +264,14 @@ public class DiaEvent : MonoBehaviour
             else if(TM.con == "SceneOver")
             {
                 next_flase = 711;
-                next_true = 710;
+                next_true = 711;
                 dia_p.diaScene3.SetActive(false);
                 dia_p.diaScene4.SetActive(true);
                 Vector3 targetPos = player.transform.position;
                 targetPos.x -= 2.5f;
                 gome.ChangeTarget(targetPos);
                 block.enabled = true;
+                gome.isFollow = false;
                 gome.isStart = true;
             }
             else if(TM.con == "MiniGame")
@@ -284,12 +288,14 @@ public class DiaEvent : MonoBehaviour
                     block.enabled = true;
                     player.isSeven = true;
                     isMini = true;
+                    gome.speed = 2.5f;
                 }
-                //EventNum = 8;
+                EventNum = 8;
             }
             else if(TM.con == "LightOn")
             {
                 ob[7].SetActive(true);
+                gome.isStart = false;
             }
             else if(TM.con == "Suprise")
             {
@@ -359,6 +365,7 @@ public class DiaEvent : MonoBehaviour
         Debug.Log("changeEndPoint");
     }
 
+    /*
     IEnumerator fade()
     {
         fadeinout.Blackout_Func(0.5f);
@@ -366,6 +373,7 @@ public class DiaEvent : MonoBehaviour
         Dialogue_Proceeder.instance.AddCompleteCondition(999);
         Dia[37].SetActive(true);
     }
+    */
 
     void Setting()
     {
@@ -383,11 +391,13 @@ public class DiaEvent : MonoBehaviour
     {
         if (isOn)
         {
-            ob[0].SetActive(true);
+            Debug.Log("shadow_true");
+            ob[0].SetActive(isOn);
         }
         else if(!isOn)
         {
-            ob[0].SetActive(false);
+            Debug.Log("shadow_false");
+            ob[0].SetActive(isOn);
             FirstDia.SetActive(false);
             SecondDia.SetActive(true);
         }
