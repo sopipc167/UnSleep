@@ -72,6 +72,8 @@ public class DiaEvent : MonoBehaviour
         EventNum = 100;
         //next_flase = 700;
         //next_true = 699;
+        diaIndex = dp.CurrentDiaIndex;
+        diaGroupIndex = TM.Dia_Id;
     }
 
 
@@ -79,12 +81,15 @@ public class DiaEvent : MonoBehaviour
     {
         diaGroupIndex = TM.Dia_Id;
 
-        if ((diaGroupIndex != dp.CurrentDiaIndex || diaIndex != dp.CurrentDiaID)&& !isFirst)
+        if ((diaGroupIndex != dp.CurrentDiaID || diaIndex != dp.CurrentDiaIndex || TM.isEnd) && !isFirst)
         {
+            Debug.Log("diaNext: " + EventNum);
             if (EventNum == 0)
                 nextLevel();
             else if (EventNum == 1)
+            {
                 Shadow(false);
+            }
             else if (EventNum == 2)
                 Sound(100);
             else if (EventNum == 3)
@@ -122,6 +127,7 @@ public class DiaEvent : MonoBehaviour
                 gome.isStart = true;
             }
 
+            TM.isEnd = false;
             isFirst = true;
             EventNum = 100;
         }
@@ -167,6 +173,14 @@ public class DiaEvent : MonoBehaviour
                 tmp.a = 0;
                 Fade.color = tmp;
                 BA.BlinkOpen();
+                TM.con = null;
+            }
+            else if(TM.con == "BlinkClose")
+            {
+                BA.isSeven_Close = true;
+                BA.BlinkClose();
+                TM.con = null;
+                EventNum = 3;
             }
             else if(TM.con == "ChairMove")
             {
@@ -237,13 +251,12 @@ public class DiaEvent : MonoBehaviour
                     changeEndPoint(ob_lst, 1, tPos[1].position);
                     changeDirection(ob_lst, 1, -1);
                     changeIsMove(ob_lst, 1, true);
-                    EventNum = 8;
+                    //EventNum = 8;
                 }
 
                 block.enabled = true;
                 player.animator.SetBool("isMove", true);
                 player.isSeven = true;
-                TM.con = null;
             }
             else if(TM.con == "SceneOver")
             {
@@ -252,7 +265,7 @@ public class DiaEvent : MonoBehaviour
                 dia_p.diaScene3.SetActive(false);
                 dia_p.diaScene4.SetActive(true);
                 Vector3 targetPos = player.transform.position;
-                targetPos.x -= 1;
+                targetPos.x -= 2.5f;
                 gome.ChangeTarget(targetPos);
                 block.enabled = true;
                 gome.isStart = true;
@@ -272,7 +285,7 @@ public class DiaEvent : MonoBehaviour
                     player.isSeven = true;
                     isMini = true;
                 }
-                EventNum = 8;
+                //EventNum = 8;
             }
             else if(TM.con == "LightOn")
             {
@@ -283,42 +296,40 @@ public class DiaEvent : MonoBehaviour
                 suprise.enabled = true;
                 EventNum = 7;
             }
+        }
 
-
-            if (ob_lst.Count != 0)
+        if (ob_lst.Count != 0)
+        {
+            for (int i = 0; i < ob_lst.Count; i++)
             {
-                for (int i = 0; i < ob_lst.Count; i++)
+                ob_move tmp = ob_lst[i];
+                if (tmp.isMove)
                 {
-                    ob_move tmp = ob_lst[i];
-                    if (tmp.isMove)
+                    if ((tmp.ob.transform.position.x >= tmp.endPoint.x && tmp.direction > 0)
+                        || (tmp.ob.transform.position.x <= tmp.endPoint.x && tmp.direction < 0))
                     {
-                        if((tmp.ob.transform.position.x >= tmp.endPoint.x && tmp.direction > 0)
-                            || (tmp.ob.transform.position.x <= tmp.endPoint.x && tmp.direction < 0))
+                        if (i == 0)
                         {
-                            Debug.Log("false");
-                            if(i == 0)
-                            {
-                                anim_b.SetBool("isMove", false);
-                            }
-                            else if(i == 1)
-                            {
-                                player.targetPos = tmp.endPoint;
-                                player.isSeven = false;
-                                player.animator.SetBool("isMove", false);
-                            }
+                            anim_b.SetBool("isMove", false);
+                        }
+                        else if (i == 1)
+                        {
+                            player.targetPos = tmp.endPoint;
+                            player.isSeven = false;
+                            player.animator.SetBool("isMove", false);
+                        }
 
-                            block.enabled = false;
-                            changeIsMove(ob_lst, i, false);
-                        }
+                        block.enabled = false;
+                        changeIsMove(ob_lst, i, false);
+                    }
+                    else
+                    {
+                        //tmp.ob.transform.position += new Vector3(tmp.speed * Time.deltaTime * tmp.direction, 0, 0);
+                        tmp.ob.transform.position = Vector3.MoveTowards(tmp.ob.transform.position, tmp.endPoint, tmp.speed * Time.deltaTime);
+                        if (tmp.image_dir == 1)
+                            tmp.ob.transform.eulerAngles = new Vector3(0, 0, 0);
                         else
-                        {
-                            //tmp.ob.transform.position += new Vector3(tmp.speed * Time.deltaTime * tmp.direction, 0, 0);
-                            tmp.ob.transform.position = Vector3.MoveTowards(tmp.ob.transform.position, tmp.endPoint, tmp.speed * Time.deltaTime);
-                            if (tmp.image_dir == 1)
-                                tmp.ob.transform.eulerAngles = new Vector3(0, 0, 0);
-                            else
-                                tmp.ob.transform.eulerAngles = new Vector3(0, 180, 0);
-                        }
+                            tmp.ob.transform.eulerAngles = new Vector3(0, 180, 0);
                     }
                 }
             }
@@ -374,7 +385,7 @@ public class DiaEvent : MonoBehaviour
         {
             ob[0].SetActive(true);
         }
-        else
+        else if(!isOn)
         {
             ob[0].SetActive(false);
             FirstDia.SetActive(false);
