@@ -1036,13 +1036,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 146873866}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -88.74, y: -5.7700005, z: 55.539997}
-  m_LocalScale: {x: 1.0649196, y: 0.7669143, z: 0.5442}
+  m_LocalRotation: {x: -0, y: -0.20876914, z: -0, w: 0.97796494}
+  m_LocalPosition: {x: -88.81906, y: -5.7700005, z: 55.661854}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1232863185}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -24.1, z: 0}
 --- !u!114 &146873868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,7 +1057,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 
   OnlyOnce: 
-  Interaction_distance: 6
+  Interaction_distance: 10
   isChangeScene: 1
   ChangeSceneName: Volcano
 --- !u!65 &146873869
@@ -1071,8 +1071,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.6102144, y: 0.9999998, z: 3.0252576}
-  m_Center: {x: -0.30510727, y: 0, z: -0.22828075}
+  m_Size: {x: 6.2078853, y: 8.529327, z: 17.367867}
+  m_Center: {x: 0.0933013, y: 1.3496284, z: -0.5147476}
 --- !u!23 &146873870
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1092,7 +1092,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10650, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 39abff4bb617ed94ca3f418c7959002e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1731,13 +1731,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187437773}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 56.739998, y: 22.400002, z: 113.119995}
+  m_LocalRotation: {x: 0.06531104, y: -0.25159413, z: -0.2426244, w: 0.9346487}
+  m_LocalPosition: {x: 54.89502, y: 22.58294, z: 112.43358}
   m_LocalScale: {x: 1.0649196, y: 0.7669143, z: 0.5442}
   m_Children: []
   m_Father: {fileID: 1232863185}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -30.132, z: -29.104}
 --- !u!114 &187437775
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 
   OnlyOnce: 
-  Interaction_distance: 6
+  Interaction_distance: 10
   isChangeScene: 1
   ChangeSceneName: Cliff2
 --- !u!65 &187437776
@@ -1766,8 +1766,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 2.4443493, z: 2.913563}
-  m_Center: {x: 0, y: 0.7221753, z: -0.95678204}
+  m_Size: {x: 10.079981, y: 11.678917, z: 47.666527}
+  m_Center: {x: 1.2289517, y: 0.000000014775651, z: 0.000000055970826}
 --- !u!23 &187437777
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3450,7 +3450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 
   OnlyOnce: 
-  Interaction_distance: 5
+  Interaction_distance: 10
   isChangeScene: 1
   ChangeSceneName: Cave2
 --- !u!65 &390736086
@@ -3464,8 +3464,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 8.557469, y: 17.52961, z: 26.435446}
-  m_Center: {x: 1.303448, y: 0.7229808, z: 1.6780041}
+  m_Size: {x: 12.122767, y: 17.52961, z: 27.900658}
+  m_Center: {x: 0.18090375, y: 0.7229808, z: 0.945398}
 --- !u!23 &390736087
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5581,6 +5581,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 504139735}
     m_Modifications:
+    - target: {fileID: 445457889501347878, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 637818273}
+    - target: {fileID: 445457889501347878, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Log_Off1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1996679086123944264, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: Log_animator
+      value: 
+      objectReference: {fileID: 637818274}
+    - target: {fileID: 1996679086123944264, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: manager
+      value: 
+      objectReference: {fileID: 637818273}
     - target: {fileID: 3233963774659547708, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -5589,6 +5605,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4589673104055367138, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: interactionObjParent
+      value: 
+      objectReference: {fileID: 637818272}
     - target: {fileID: 8332860866770900275, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -5718,6 +5738,27 @@ GameObject:
 --- !u!1 &637818271 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8528798682089432713, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+  m_PrefabInstance: {fileID: 637818267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &637818272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8270347335940360003, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+  m_PrefabInstance: {fileID: 637818267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &637818273 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+  m_PrefabInstance: {fileID: 637818267}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205842433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b1a151f129719549aa2f59ccbeb4371, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &637818274 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4935520206359486885, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
   m_PrefabInstance: {fileID: 637818267}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &642954551
@@ -6192,7 +6233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 
   OnlyOnce: 
-  Interaction_distance: 4
+  Interaction_distance: 10
   isChangeScene: 1
   ChangeSceneName: ClockTower
 --- !u!65 &690699129
@@ -6206,8 +6247,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 6.007195, y: 18.129013, z: 3.5263684}
+  m_Center: {x: -0.1692874, y: 8.564507, z: 1.2631843}
 --- !u!23 &690699130
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16710,7 +16751,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 57.08915, y: 1, z: 56.736794}
+  m_Size: {x: 57.08915, y: 5, z: 56.736794}
   m_Center: {x: -3.0240135, y: 0, z: 6.6930046}
 --- !u!23 &1392638207
 MeshRenderer:

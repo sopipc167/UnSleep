@@ -38,4 +38,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prologue.unity
     guid: e88672c1da32c3645a8a933fb798e8e8
+  - enabled: 1
+    path: Assets/Scenes/Nightmare.unity
+    guid: ab7c4b723fcb267468f78057dab2a057
+  - enabled: 1
+    path: Assets/Scenes/Nightmare_27.unity
+    guid: 840c0d785e990a54796bd3a647316322
   m_configObjects: {}

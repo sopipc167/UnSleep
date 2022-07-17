@@ -1517,7 +1517,7 @@ PrefabInstance:
       objectReference: {fileID: 787462184}
     - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: Increasediaindex
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682909620384, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalPosition.x
