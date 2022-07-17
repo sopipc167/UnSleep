@@ -78,6 +78,7 @@ public class DiaPlayer : MonoBehaviour
                     diaScene2.SetActive(true);
                     DE.next_flase = 700;
                     DE.next_true = 699;
+                    DE.ob[7].SetActive(true);
                     //player.transform.localPosition = new Vector3(-5.05f, -1.38f, 0);
                     chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
                 }
