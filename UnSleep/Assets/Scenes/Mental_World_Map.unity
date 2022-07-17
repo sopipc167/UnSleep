@@ -16696,7 +16696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 
   OnlyOnce: 
-  Interaction_distance: 20
+  Interaction_distance: 30
   isChangeScene: 1
   ChangeSceneName: Lake
 --- !u!65 &1392638206

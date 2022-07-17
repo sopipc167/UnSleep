@@ -8,7 +8,7 @@ public class Envelope : MonoBehaviour
 {
     public Image En;
     public Image En_F;
-    public Image CH;
+    public GameObject CH;
     public Image En_B;
 
     public bool Click;
@@ -59,4 +59,5 @@ public class Envelope : MonoBehaviour
             Click = false;
         }
     }
+
 }

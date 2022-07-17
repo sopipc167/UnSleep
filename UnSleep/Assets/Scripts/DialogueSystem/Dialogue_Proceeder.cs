@@ -11,12 +11,12 @@ public class Dialogue_Proceeder : MonoBehaviour
     public int CurrentDiaIndex = 0; // 현재 대화 id index
 
     public List<int> Complete_Condition = new List<int>(); //완료 조건 리스트
-    public string End; //일기장 펄럭펄럭용. 에피소드 끝 -> 일기장 전환시 "E"로 설정.
+    public bool End; //일기장 펄럭펄럭용. 에피소드 끝 -> 일기장 전환시 "E"로 설정.
 
     public DialogueParser dialogueParser; //음... 참조가 필요하겠군,,
     public string CurrentPuzzle; // 이제 가야하는 퍼즐 명
     private string[] PuzzleList; // 이 에피소드에서 가야하는 퍼즐
-    public bool isInit = true; // 에피소드 시작 시점에 False로 바뀐다. 에피소드 완료 시 다시 True로 바뀌도록 해야 함
+    public bool isInit = false; // 에피소드 시작 시점에 False로 바뀐다. 에피소드 완료 시 다시 True로 바뀌도록 해야 함
   
     void Awake()
     {
@@ -36,16 +36,8 @@ public class Dialogue_Proceeder : MonoBehaviour
     private void Start()
     {
         if (isInit && dialogueParser != null) // 일기장 -> 스토리 씬 이동한 시점에만 실행
-        {
-            SetCurrentDiaID(); //처음에 시작 대화 묶음 id 세팅
-            if (CurrentEpiID != 0 && CurrentEpiID != 6 && CurrentEpiID != 10) //퍼즐이 없는 공포에피 제외
-            {
-                //파싱 -> Awake에서 이루어짐. 파싱이 끝난 후에 가져오기 위해 Start에 작성
-                PuzzleList = dialogueParser.getPuzzle(); //파서에서 퍼즐 이름 배열을 받아옴
-                CurrentPuzzle = PuzzleList[0]; //첫번째꺼로 세팅
-                Debug.Log("여기");
-            }
-            isInit = false;
+        {     
+            initEpi();
         }
     }
 
@@ -109,6 +101,17 @@ public class Dialogue_Proceeder : MonoBehaviour
             return false; 
     }
 
+    public void initEpi()
+    {
+        if (CurrentEpiID != 0 && CurrentEpiID != 6 && CurrentEpiID != 10) //퍼즐이 없는 공포에피 제외
+        {
+            //파싱 -> Awake에서 이루어짐. 파싱이 끝난 후에 가져오기 위해 Start에 작성
+            PuzzleList = dialogueParser.getPuzzle(); //파서에서 퍼즐 이름 배열을 받아옴
+            CurrentPuzzle = PuzzleList[0]; //첫번째꺼로 세팅
+            
+        }
+        isInit = false;
+    }
 
     public void SetCurrentDiaID() //<------------ 일기장 -> 스토리 진입 시 호출------------->
     {

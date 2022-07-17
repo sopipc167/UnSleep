@@ -513,7 +513,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8981367824822005313, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8981367825371397378, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
       propertyPath: m_Name
@@ -609,23 +609,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8981367825561185012, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8981367825936133279, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8981367826176304487, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8981367826464682966, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8981367826692272907, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee97d129e0f179948982ac38fcb8164e, type: 3}
@@ -767,7 +767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 0
+      value: 901
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -775,7 +775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaIndex
@@ -785,6 +785,14 @@ PrefabInstance:
       propertyPath: dialogueParser
       value: 
       objectReference: {fileID: 375356360}
+    - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
+      propertyPath: isInit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
+      propertyPath: End
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1507,6 +1515,10 @@ PrefabInstance:
       propertyPath: goodbyeText
       value: 
       objectReference: {fileID: 787462184}
+    - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: Increasediaindex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8528798682909620384, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
