@@ -152,9 +152,9 @@ public class SaveDataManager : MonoBehaviour
     {
         EpiProgress ep = new EpiProgress();
 
-        if (epi_num == -1) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
+        if (epi_num == 0) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
         {
-            Progress = -1;
+            Progress = 0;
             //ep.progress = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         }
         else
@@ -183,7 +183,7 @@ public class SaveDataManager : MonoBehaviour
     {
        if (!FileExist()) {
             Debug.Log("No file");
-            SaveEpiProgress(-1); //초회 세이브 파일 생성. 
+            SaveEpiProgress(0); //초회 세이브 파일 생성. 
         }
         Debug.Log("File exist");
         var data = SaveLoad.LoadJsonFileAES<EpiProgress>(Application.dataPath, "EpiProgressData", "aes256=32CharA49AScdg5135=48Fk63");
