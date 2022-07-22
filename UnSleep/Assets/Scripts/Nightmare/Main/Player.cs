@@ -37,6 +37,9 @@ public class Player : MonoBehaviour
 
     public DiaEvent dia;
 
+    public BoxCollider2D Seven;
+    public BoxCollider2D Noise;
+
     void Start()
     {
         Speed = speed;
