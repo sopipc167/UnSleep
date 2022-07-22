@@ -54,6 +54,7 @@ public class Dialogue_Proceeder : MonoBehaviour
     public void UpdateCurrentDiaIDPlus1() //현재 대화 id 갱신
     {
         CurrentDiaID++;
+        CurrentDiaIndex = 0;
     }
 
     public void AddCompleteCondition(int complete) //대화 종료시 완료 조건 리스트에 대화 id 추가
