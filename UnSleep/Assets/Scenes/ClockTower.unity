@@ -4964,7 +4964,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!1 &458087261
 GameObject:
@@ -9170,7 +9170,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!1001 &757477606
 PrefabInstance:
@@ -9862,7 +9862,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!1 &806192962
 GameObject:
@@ -15955,7 +15955,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!1 &1294063857 stripped
 GameObject:
@@ -16426,11 +16426,11 @@ MonoBehaviour:
   - {fileID: 1739427639}
   - {fileID: 1406949974}
   - {fileID: 1055417379}
-  puzzleClear: {fileID: 0}
-  blinkPanel: {fileID: 0}
+  puzzleClear: {fileID: 1830968749}
+  blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!224 &1344607434 stripped
 RectTransform:
@@ -18780,7 +18780,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!224 &1604284924 stripped
 RectTransform:
@@ -20798,7 +20798,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!224 &1749566323 stripped
 RectTransform:
@@ -25317,7 +25317,7 @@ MonoBehaviour:
   blinkPanel: {fileID: 1952474063}
   pointA: {fileID: 0}
   pointB: {fileID: 0}
-  ClearUI: {fileID: 0}
+  ClearUI: {fileID: 2123197891}
   textManager: {fileID: 0}
 --- !u!1 &2102172742
 GameObject:

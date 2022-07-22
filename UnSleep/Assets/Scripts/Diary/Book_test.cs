@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-//using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -42,8 +42,19 @@ public class Book_test : MonoBehaviour
         }
     }
 
-    public Image ClippingPlane; // 넘기는 페이지 뒤 보여주는 구간(?)
-    public Image NextPageClip; // 다음 페이지 보여주는 구간(?)
+    // Image1~4는 6개의 고정된 오브젝트의 이미지를 중복해서 가져와서 사용
+    // 인스펙터에는 여기다가만 넣어두고, 얘를 리스트에 넣어서 사용
+    public Image INTRO;
+    public Image IMG1;
+    public Image IMG2;
+    public Image IMG3;
+    public Image IMG4;
+    public Image END;
+
+
+
+    public Image ClippingPlane; // 넘기는 페이지 뒷 페이지
+    public Image NextPageClip; // 다음 페이지
     public Image Shadow; // 오른쪽에서 왼쪽으로 넘어갈 때 그림자
     public Image ShadowLTR; // 왼쪽에서 오른쪽으로 넘어갈 때 그림자
     public Image Left;  // 넘기는 페이지 앞 이미지
@@ -79,6 +90,7 @@ public class Book_test : MonoBehaviour
     public int[] epiID;
     public int epiIndex;
 
+
     void Start()
     {
         if (!canvas) canvas = GetComponentInParent<Canvas>(); //캔버스
@@ -87,6 +99,7 @@ public class Book_test : MonoBehaviour
 
         Left.gameObject.SetActive(false);
         Right.gameObject.SetActive(false);
+        bookPages = updateBookPages();
         UpdateImages();
         CalcCurllCriticalPoints(); // 필요한 좌표 대입
 
@@ -356,7 +369,7 @@ public class Book_test : MonoBehaviour
 
     public void DragRightPageToPoint(Vector3 point)
     {
-        Debug.Log("오른쪽 넘김");
+        //Debug.Log("오른쪽 넘김");
         if (currentPage >= bookPages.Length) return;
         if (currentPage > 0) pages.isChange = false;
         if (auto.isFlipping) interactable = false;
@@ -432,6 +445,7 @@ public class Book_test : MonoBehaviour
     }
     public void DragLeftPageToPoint(Vector3 point)
     {
+        //Debug.Log("왼쪽 넘김");
         if (currentPage <= 0) return;
         if (currentPage > 2) pages.isBack = false;
         if (auto.isFlipping) interactable = false;
@@ -571,10 +585,10 @@ public class Book_test : MonoBehaviour
             //Mask_L.transform.SetAsFirstSibling();
         }
 
-        if(currentPage > 0)
+        if (currentPage > 0)
         {
-            pages.epi = epiID[epiIndex];
-            Debug.Log("epi: " + epiID[epiIndex]);
+            //pages.epi = epiID[epiIndex];
+            //Debug.Log("epi: " + epiID[epiIndex]);
         }
         Debug.Log("Flip_END");
     }
@@ -603,6 +617,7 @@ public class Book_test : MonoBehaviour
                     Right.gameObject.SetActive(false);
                     pageDragging = false;
 
+                    pages.FlipCheck(true);
                     Debug.Log("TWEENBACK_r_END");
                 }
                 ));
@@ -627,6 +642,7 @@ public class Book_test : MonoBehaviour
                     Right.gameObject.SetActive(false);
                     pageDragging = false;
 
+                    pages.FlipCheck(false);
                     Debug.Log("TWEENBACK_l_END");
                 }
                 ));
@@ -668,4 +684,37 @@ public class Book_test : MonoBehaviour
         RightSpot.transform.SetAsLastSibling();
         LeftSpot.transform.SetAsLastSibling();
     }
+
+
+    public Image[] updateBookPages() 
+    {
+        //bookPage 페이지 구성 규칙: INTRO + IMAGE1234 * n//2 + IMAGE12 * n%2 + END
+        //어차피 에피소드 갱신은 씬 생성 이전 혹은 동시에 이루어지므로 
+        //생성 시 매번 BookPage 배열의 페이지 구성을 update한 채로 생성
+        //리스트로 만든 다음에 Array로 변환하여 리턴 -> 원 코드를 해치지 않는 선에서 구현 가능
+
+        int lastclear = SaveDataManager.Instance.Progress + 1; //표시할 페이지 수
+        List<Image> pageList = new List<Image>();
+
+        pageList.Add(INTRO);
+        
+        for (int i = 0; i < lastclear/2; i++)
+        {
+            pageList.Add(IMG1);
+            pageList.Add(IMG2);
+            pageList.Add(IMG3);
+            pageList.Add(IMG4);
+        }
+
+        if (lastclear%2 == 1)
+        {
+            pageList.Add(IMG1);
+            pageList.Add(IMG2);
+        }
+
+        pageList.Add(END);
+
+        return pageList.ToArray();
+    }
+
 }

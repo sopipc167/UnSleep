@@ -33,7 +33,9 @@ public class Player : MonoBehaviour
 
     public Animator animator;
     public Collider2D col;
+    public bool isSeven;
 
+    public DiaEvent dia;
 
     void Start()
     {
@@ -55,7 +57,9 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !Ob_M.isFull  && !isStop)
+        {
             TransTargetPos();
+        }
 
         Vector3 tmp = transform.position;
         if (isMiniGame)
@@ -70,7 +74,7 @@ public class Player : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, tmp, Time.deltaTime * speed_M);
 
         }
-        else
+        else if(!isSeven)
         {
             if (targetPos.y > -0.92f)
             {

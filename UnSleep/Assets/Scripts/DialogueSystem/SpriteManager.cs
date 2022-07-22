@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class SpriteManager : MonoBehaviour
 {
-    private readonly string url = "Assets/Sprites/BackGround/";
+    private readonly string url = "/BackGround/";
 
 
     public void LoadImage(Image target, string name, string extension = ".png")
     {
-        byte[] byteTexture = System.IO.File.ReadAllBytes(url + name + extension);
+        byte[] byteTexture = System.IO.File.ReadAllBytes(Application.streamingAssetsPath + url + name + extension);
         Texture2D texture = new Texture2D(0, 0);
         texture.LoadImage(byteTexture);
 

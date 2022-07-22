@@ -8,6 +8,8 @@ public class BlinkAnimation : MonoBehaviour
     private Animator ani;
     public GameObject upper;
     public GameObject lower;
+    public bool isSeven_Close;
+    public Image Fade;
 
     void Awake()
     {
@@ -34,13 +36,23 @@ public class BlinkAnimation : MonoBehaviour
 
         Blink_Enable();
         ani.SetTrigger("BlinkClose");
-        //Invoke("Blink_Disable", 5f);
+        if (isSeven_Close)
+        {
+            Invoke("Blink_Disable", 3f);
+        }
     }
 
     public void Blink_Disable()
     {
         upper.SetActive(false);
         lower.SetActive(false);
+        if (isSeven_Close)
+        {
+            Color tmp = Fade.color;
+            tmp.a = 255;
+            Fade.color = tmp;
+            isSeven_Close = false;
+        }
     }
 
     public void Blink_Enable()

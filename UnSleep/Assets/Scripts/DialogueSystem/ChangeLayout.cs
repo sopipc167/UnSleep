@@ -53,6 +53,14 @@ public class ChangeLayout : MonoBehaviour
             speaker2.DOAnchorPos(new Vector2(460, -1043), 1);
             LastLayout = 4;
         }
+        else if (layoutnum == 7)
+        {
+            LINE.DOAnchorPos(new Vector2(0, -581), 1);
+            NAME.DOAnchorPos(new Vector2(0, -593), 1);
+            speaker1.DOAnchorPos(new Vector2(-460, -1043), 1);
+            speaker2.DOAnchorPos(new Vector2(460, -1043), 1);
+            LastLayout = 7;
+        }
     }
 
 }
