@@ -1,24 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Character : MonoBehaviour
 {
-    public GameObject Ex;
-    public Image img;
+    public Image Ex;
 
+    void Start()
+    {
+        
+    }
+
+    void Update()
+    {
+
+    }
 
     public void Enter()
     {
-        Ex.SetActive(true);
-        img.color = new Color32(255, 255, 255, 255);
+        Ex.gameObject.SetActive(true);
     }
 
     public void Exit()
     {
-        img.color = new Color32(156, 156, 156, 255);
-        Ex.SetActive(false);
+        Ex.gameObject.SetActive(false);
     }
 }

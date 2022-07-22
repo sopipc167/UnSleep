@@ -44,7 +44,6 @@ public class CurrentMapInfo : MonoBehaviour
     private GraphicRaycaster gr;
     private GameObject grresult;
 
-    public GameObject BackToSaveBtn;
     public GameObject BackButton;
     public Text Saving;
 
@@ -139,12 +138,7 @@ public class CurrentMapInfo : MonoBehaviour
 
 
         if (route == 999)
-        {
             audioLeftRight.FadeoutCave();
-            BackButton.SetActive(false);
-            BackToSaveBtn.SetActive(false);
-        }
-            
 
         if (isTalk)
         {

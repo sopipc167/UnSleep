@@ -55,9 +55,8 @@ public class Auto : MonoBehaviour
                         StartCoroutine(FlipRTL(xc, xl, h, frameTime, dx));
                     yield return new WaitForSeconds(BtweenTime);
                 }
-                ControledBook.interactable = true;
                 break;
-                
+                ControledBook.interactable = true;
             case FlipMode.LeftToRight:
                 while (ControledBook.currentPage > currentPage)
                 {
@@ -65,7 +64,7 @@ public class Auto : MonoBehaviour
                         StartCoroutine(FlipLTR(xc, xl, h, frameTime, dx));
                     yield return new WaitForSeconds(BtweenTime);
                 }
-                ControledBook.interactable = true;
+
                 AutoFlip = false;
                 break;
         }

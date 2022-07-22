@@ -17,8 +17,7 @@ public class YourInfo
 [Serializable]
 public class EpiProgress
 {
-    //public int[] progress; //20개 에피소드의 진행도를 표시. 0: 미완료 1: 완료 
-    public int progress; // 가장 마지막에 클리어한 에피소드 (진행도)
+    public int[] progress; //20개 에피소드의 진행도를 표시. 0: 미완료 1: 완료 
 }
 
 [Serializable]
@@ -37,11 +36,9 @@ public class SystemOption
 
 public class SaveDataManager : MonoBehaviour
 {
-  
-    //public int[] epiProgress;
-    public int Progress; // 해당 숫자 에피소드를 하면 되는 상황 (Progress - 1 이 곧 진행도)
+    private EpiProgress EP;
+    public int[] epiProgress;
     private static SaveDataManager instance = null;
-
 
     private void Awake()
     {
@@ -70,7 +67,7 @@ public class SaveDataManager : MonoBehaviour
 
     private void Start()
     {
-        Progress = LoadEpiProgress();
+
     }
 
     public void SaveSystemOption(float vm, float vb, float vs, bool mm, bool mb, bool ms, int g, int r, int s)
@@ -92,7 +89,7 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(systemOption);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "SystemOptionData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.dataPath, "SystemOptionData", AEStextdata);
 
     }
 
@@ -102,14 +99,14 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(systemOption);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "SystemOptionData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.dataPath, "SystemOptionData", AEStextdata);
 
     }
 
 
     public YourInfo LoadSystemOption()
     {
-        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.streamingAssetsPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
+        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.dataPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
         return data;
     }
 
@@ -127,7 +124,7 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(info);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "YourInfoData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.dataPath, "YourInfoData", AEStextdata);
 
     }
 
@@ -138,13 +135,13 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(info);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "YourInfoData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.dataPath, "YourInfoData", AEStextdata);
     }
 
 
     public YourInfo LoadYourInfo()
     {
-        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.streamingAssetsPath, "YourInfoData", "aes256=32CharA49AScdg5135=48Fk63");
+        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.dataPath, "YourInfoData", "aes256=32CharA49AScdg5135=48Fk63");
         return data;
     }
 
@@ -152,22 +149,14 @@ public class SaveDataManager : MonoBehaviour
     {
         EpiProgress ep = new EpiProgress();
 
-        if (epi_num == 0) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
+        if (epi_num == -1) //세이브 데이터가 없을 시 0. 게임 최초 실행 시 실행. 세이브 데이터 초기화 용도로도 가능
         {
-            Progress = 0;
-            //ep.progress = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            ep.progress = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         }
         else
         {
-            int lastclear = LoadEpiProgress();
-
-
-            if (epi_num <= lastclear) // 이미 클리어한거 또 클리어한 경우
-                return;
-            
-            ep.progress = epi_num;
-            Progress = epi_num;
-            
+            ep = LoadEpiProgress();
+            ep.progress[epi_num] = 1; //진행사항 세이브 
         }
 
 
@@ -175,25 +164,25 @@ public class SaveDataManager : MonoBehaviour
         var textdata = SaveLoad.ObjectToJson(ep);
         var AEStextdata = AES256.Encrypt256(textdata, "aes256=32CharA49AScdg5135=48Fk63");
 
-        SaveLoad.CreateJsonFile(Application.streamingAssetsPath, "EpiProgressData", AEStextdata);
+        SaveLoad.CreateJsonFile(Application.dataPath, "EpiProgressData", AEStextdata);
 
     }
 
-    public int LoadEpiProgress()
+    public EpiProgress LoadEpiProgress()
     {
        if (!FileExist()) {
             Debug.Log("No file");
-            SaveEpiProgress(0); //초회 세이브 파일 생성. 
+            SaveEpiProgress(-1); //초회 세이브 파일 생성. 
         }
         Debug.Log("File exist");
-        var data = SaveLoad.LoadJsonFileAES<EpiProgress>(Application.streamingAssetsPath, "EpiProgressData", "aes256=32CharA49AScdg5135=48Fk63");
+        var data = SaveLoad.LoadJsonFileAES<EpiProgress>(Application.dataPath, "EpiProgressData", "aes256=32CharA49AScdg5135=48Fk63");
 
-        //epiProgress = data.progress;
-        return data.progress;
+        epiProgress = data.progress;
+        return data;
     }
 
     public bool FileExist()
     {
-        return File.Exists(Path.Combine(Application.streamingAssetsPath, "EpiProgressData.json"));
+        return File.Exists(Path.Combine(Application.dataPath, "EpiProgressData.json"));
     }
 }

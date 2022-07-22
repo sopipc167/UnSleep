@@ -8,8 +8,7 @@ public class DialogueParser : MonoBehaviour
 {
     private TextAsset csvData; //csv파일, 일단은 인스펙터에서 넣기
     public static bool ParsingisFinish = false; //나중에 파싱 로딩할 때 끊김 방지용
-    private string CharIdCell; //등장주요인물
-    private string PuzzleCell; //등장퍼즐
+    private string CharIdCell;
 
     //7세
     public string con;
@@ -29,9 +28,6 @@ public class DialogueParser : MonoBehaviour
         string[] data = csvData.text.Split(new char[] { '\n' }); //개행문자 단위로 자름 (가로 한 줄)
         string[] HeadRow = data[0].Split(new char[] { ',' });
         CharIdCell = HeadRow[1];
-        PuzzleCell = HeadRow[3];
-
-
 
         for (int i = 2; i < data.Length-1; i++) //1부터 마지막 줄 까지의 라인을 파싱 
         {
@@ -158,13 +154,6 @@ public class DialogueParser : MonoBehaviour
         }
 
         return int_charId;
-    }
-
-    public string[] getPuzzle()
-    {
-        string[] puzzlelist = PuzzleCell.Split(new char[] { '|' });
-
-        return puzzlelist;
     }
 
     /*

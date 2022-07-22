@@ -7,7 +7,7 @@ public class FadeInOut : MonoBehaviour
 {
     public GameObject FADEINOUT;
     public float FadeTime = 1f;
-    public Image FADE_panel;
+    Image FADE_panel;
     float start = 1f;
     float end = 0f;
     float time = 0f;
@@ -26,7 +26,6 @@ public class FadeInOut : MonoBehaviour
             FADEINOUT.SetActive(true);
 
         }
-        //FADE_panel = FADEINOUT.GetComponent<Image>();
         start = 1f;
         end = 0f;
 
