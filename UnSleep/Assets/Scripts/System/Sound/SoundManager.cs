@@ -44,35 +44,21 @@ public class SoundManager : MonoBehaviour
 
     [Header("오디오 믹서")]
     public AudioMixer mainMixer;
-    public AudioMixerGroup bgmMixGroup;
-    public AudioMixerGroup seMixGroup;
-    private bool[] isMuted = { false, false, false };
+    public AudioSource bgmSource;
+    public AudioSource seSource;
+
+    private readonly bool[] isMuted = { false, false, false };
+    private IEnumerator bgmCoroutine;
 
     //bgm
-    private AudioSource bgmSource;
     private bool isChanging = false;
 
     //se
     private readonly Dictionary<string, AudioClip> seDic = new Dictionary<string, AudioClip>();
-    private AudioSource seSource;
 
     void Start()
     {
-        //bgm
-        GameObject bgmObj = new GameObject("BGM Source", typeof(AudioSource));
-        bgmObj.transform.SetParent(transform);
-        bgmSource = bgmObj.GetComponent<AudioSource>();
-        bgmSource.outputAudioMixerGroup = bgmMixGroup;
-        bgmSource.loop = true;
-        bgmSource.playOnAwake = true;
-
-        //se
-        GameObject seObj = new GameObject("SE Source", typeof(AudioSource));
-        seObj.transform.SetParent(transform);
-        seSource = seObj.GetComponent<AudioSource>();
-        seSource.outputAudioMixerGroup = seMixGroup;
-        seSource.loop = false;
-        seSource.playOnAwake = false;
+        // 믹서 볼륨 세팅
     }
 
 
@@ -119,14 +105,16 @@ public class SoundManager : MonoBehaviour
 
     public void ChangeBGM(AudioClip clip, float volume = 1f, float outDelay = 5f, float inDelay = 5f)
     {
-        StopAllCoroutines();
-        StartCoroutine(ChangeBGMCoroutine(clip, volume, outDelay, inDelay));
+        if (bgmCoroutine != null) StopCoroutine(bgmCoroutine);
+        bgmCoroutine = ChangeBGMCoroutine(clip, volume, outDelay, inDelay);
+        StartCoroutine(bgmCoroutine);
     }
 
     public void ChangeBGM(string name, float volume = 1f, float outDelay = 5f, float inDelay = 5f)
     {
-        StopAllCoroutines();
-        StartCoroutine(ChangeBGMCoroutine(name, volume, outDelay, inDelay));
+        if (bgmCoroutine != null) StopCoroutine(bgmCoroutine);
+        bgmCoroutine = ChangeBGMCoroutine(name, volume, outDelay, inDelay);
+        StartCoroutine(bgmCoroutine);
     }
 
     public void PauseBGM()
@@ -147,22 +135,25 @@ public class SoundManager : MonoBehaviour
 
     public void FadeOutBGM(float volume = 0.001f, float delay = 5f)
     {
-        StopAllCoroutines();
-        StartCoroutine(FadeOutBGMCoroutine(delay, volume));
+        if (bgmCoroutine != null) StopCoroutine(bgmCoroutine);
+        bgmCoroutine = FadeOutBGMCoroutine(delay, volume);
+        StartCoroutine(bgmCoroutine);
     }
 
     public void FadeInBGM(AudioClip clip, float volume = 1f, float delay = 5f)
     {
-        StopAllCoroutines();
+        if (bgmCoroutine != null) StopCoroutine(bgmCoroutine);
         PlayBGM(clip, 0f);
-        StartCoroutine(FadeInBGMCoroutine(delay, volume));
+        bgmCoroutine = FadeInBGMCoroutine(delay, volume);
+        StartCoroutine(bgmCoroutine);
     }
 
     public void FadeInBGM(string name, float volume = 1f, float delay = 5f)
     {
-        StopAllCoroutines();
+        if (bgmCoroutine != null) StopCoroutine(bgmCoroutine);
         PlayBGM(name, 0f);
-        StartCoroutine(FadeInBGMCoroutine(delay, volume));
+        bgmCoroutine = FadeInBGMCoroutine(delay, volume);
+        StartCoroutine(bgmCoroutine);
     }
 
     #endregion
@@ -189,12 +180,11 @@ public class SoundManager : MonoBehaviour
         seSource.PlayOneShot(clip, volume);
     }
 
+
     public void StopSE()
     {
         seSource.Stop();
-        //seStero.Stop();
     }
-
     #endregion
 
 
@@ -255,6 +245,7 @@ public class SoundManager : MonoBehaviour
         bgmSource.volume = volume;
         if (bgmSource.volume < 0.01f) bgmSource.volume = 0f;
 
+        bgmCoroutine = null;
         isChanging = false;
     }
 
@@ -271,6 +262,7 @@ public class SoundManager : MonoBehaviour
         }
         bgmSource.volume = volume;
 
+        bgmCoroutine = null;
         isChanging = false;
     }
 

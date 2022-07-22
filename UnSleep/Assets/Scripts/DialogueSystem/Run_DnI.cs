@@ -8,7 +8,7 @@ public class Run_DnI : MonoBehaviour
     public GameObject DnI_Parent; //Canvas 내 순서 고정을 위한 DnI 부모 오브젝트
 
     private InteractManager interactManager;
-    private int prevIdx;
+    private int prevIdx = -1;
     private GameObject curDnI;
 
     private void Start()
@@ -21,7 +21,7 @@ public class Run_DnI : MonoBehaviour
         int curIdx = GetIdx();
         if (curIdx != prevIdx)
         {
-            curDnI = Instantiate(DnI_List[GetIdx()]);
+            curDnI = Instantiate(DnI_List[curIdx]);
             prevIdx = curIdx;
         }
         else

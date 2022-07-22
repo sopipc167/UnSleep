@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다른 오브젝트간의 상호작용을 관장하는 스크립트
 {
@@ -336,10 +335,10 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 Dialogue_Proceeder.instance.AddCompleteCondition(43);
                 Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
                 textManager.Set_Dialogue_System();
-                puzzleClear.ClearPuzzle(SceneType.MenTal, 10f);
+                puzzleClear.ClearPuzzle(SceneType.Mental, 10f);
             }
             else 
-                puzzleClear.ClearPuzzle(SceneType.MenTal, 5f);
+                puzzleClear.ClearPuzzle(SceneType.Mental, 5f);
         }
         else
         {
@@ -469,6 +468,6 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     public void GotoNext()
     {
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.RestartScene();
     }
 }

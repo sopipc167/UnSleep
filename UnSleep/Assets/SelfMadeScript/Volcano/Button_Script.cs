@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Button_Script : MonoBehaviour //버튼이 하는일에 대한 스크립트
 {
@@ -11,6 +10,6 @@ public class Button_Script : MonoBehaviour //버튼이 하는일에 대한 스�
     }
     public void Restart() //게임 재시작
     {
-        SceneManager.LoadScene("Volcano");
+        SceneChanger.ChangeScene(SceneType.Volcano);
     }
 }

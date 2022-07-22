@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LakeBall : LakeMovement
 {
@@ -30,6 +29,9 @@ public class LakeBall : LakeMovement
 
     [Header("수직방향 공 회전가속도"), Range(0.05f, 0.5f)]
     public float lineRotationAcceleration;
+
+    [Header("SE")]
+    public AudioClip wallSound;
 
     internal bool canWarp = true;
     internal int duckCnt = 0;
@@ -139,6 +141,7 @@ public class LakeBall : LakeMovement
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            SoundManager.Instance.PlaySE(wallSound);
             if (ballManager.isRight)
             {
                 ballManager.isRight = false;
@@ -214,7 +217,7 @@ public class LakeBall : LakeMovement
 
     public void OnClickRestart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.RestartScene();
     }
 
     public void BallUIOn()
@@ -267,7 +270,7 @@ public class LakeBall : LakeMovement
     {
         //LakeManager.currentPhase = level;
         TestLake.isOpen = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.RestartScene();
     }
     public void OnClickExit()
     {
