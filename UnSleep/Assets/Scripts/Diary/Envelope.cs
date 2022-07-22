@@ -8,7 +8,7 @@ public class Envelope : MonoBehaviour
 {
     public Image En;
     public Image En_F;
-    public Image CH;
+    public GameObject CH;
     public Image En_B;
 
     public bool Click;
@@ -39,6 +39,7 @@ public class Envelope : MonoBehaviour
         if (!Click)
         {
             En.gameObject.SetActive(false);
+            En_F.gameObject.SetActive(true);
             En_B.gameObject.SetActive(true);
             CH.gameObject.SetActive(true);
 
@@ -51,10 +52,12 @@ public class Envelope : MonoBehaviour
         {
             En.gameObject.SetActive(true);
             En_B.gameObject.SetActive(false);
+            En_F.gameObject.SetActive(false);
             CH.gameObject.SetActive(false);
 
             isOut = false;
             Click = false;
         }
     }
+
 }

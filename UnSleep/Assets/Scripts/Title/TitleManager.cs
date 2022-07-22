@@ -8,7 +8,7 @@ public class TitleManager : MonoBehaviour
     public GameObject continueBtn;
 
 
-    void Start()
+    void Awake()
     {
         if (!SaveDataManager.Instance.FileExist()) //세이브 파일 없으면  
         {
@@ -28,8 +28,8 @@ public class TitleManager : MonoBehaviour
 
     public void NewGame()
     {
-        SaveDataManager.Instance.SaveEpiProgress(-1);
-        SceneChanger.ChangeScene(SceneType.Prologue);
+        SaveDataManager.Instance.SaveEpiProgress(0);
+        SceneManager.LoadScene("Prologue");
     }
 
     public void SettingGame()

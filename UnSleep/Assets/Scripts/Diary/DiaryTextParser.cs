@@ -25,17 +25,12 @@ public class DiaryTextParser : MonoBehaviour
 {
 
     public TextAsset diarytable; //일기장 텍스트 csv 파일 참조
-    public List<DiaryText> diaryTexts; //여기에 정보가 담겨있음
+    //public List<DiaryText> diaryTexts; //여기에 정보가 담겨있음
      
 
-    void Start()
+    public List<DiaryText> ParseDiaryText()
     {
-        ParseDiaryText();
-    }
-
-    public void ParseDiaryText()
-    {
-        diaryTexts = new List<DiaryText>();
+        List<DiaryText> diaryTexts = new List<DiaryText>();
 
         string[] row = diarytable.text.Split(new char[] { '\n' }); //개행문자 단위로 싹둑
 
@@ -43,28 +38,24 @@ public class DiaryTextParser : MonoBehaviour
         {
             
             string[] line = row[i].Split(new char[] { ',' });
+
             DiaryText dt = new DiaryText();
 
             dt.epi_id = int.Parse(line[0]);
-            dt.epi_title = line[1];
-            dt.epi_intro = line[2];
-            dt.afterstory = line[3];
+            dt.epi_title = line[1].Replace("`", ","); ;
+            dt.epi_intro = line[2].Replace("`", ","); ;
+            dt.afterstory = line[3].Replace("`", ","); ;
 
             List<CharacIntro> CIlist = new List<CharacIntro>();
             for (int j = 0; j < line.Length; j+=2)
             {
 
-
-     
-
                 if (j + 4 >= line.Length || line[4 + j].Equals("")) 
                     break;
 
-
-
                 CharacIntro ci = new CharacIntro();
                 ci.name = line[4 + j];
-                ci.intro = line[5 + j];
+                ci.intro = line[5 + j].Replace("`", ","); ;
 
                 CIlist.Add(ci);
             }
@@ -74,6 +65,8 @@ public class DiaryTextParser : MonoBehaviour
 
             diaryTexts.Add(dt);
         }
+
+        return diaryTexts;
     }
 
 
