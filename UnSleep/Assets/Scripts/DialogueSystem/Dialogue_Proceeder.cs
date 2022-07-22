@@ -105,7 +105,7 @@ public class Dialogue_Proceeder : MonoBehaviour
 
     public void initEpi()
     {
-        if (CurrentEpiID != 0 && CurrentEpiID != 6 && CurrentEpiID != 10) //퍼즐이 없는 공포에피 제외
+        if (CurrentEpiID != 6 && CurrentEpiID != 10) //퍼즐이 없는 공포에피 제외
         {
             //파싱 -> Awake에서 이루어짐. 파싱이 끝난 후에 가져오기 위해 Start에 작성
             PuzzleList = dialogueParser.getPuzzle(); //파서에서 퍼즐 이름 배열을 받아옴

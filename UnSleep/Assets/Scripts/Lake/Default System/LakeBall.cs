@@ -30,6 +30,9 @@ public class LakeBall : LakeMovement
     [Header("수직방향 공 회전가속도"), Range(0.05f, 0.5f)]
     public float lineRotationAcceleration;
 
+    [Header("SE")]
+    public AudioClip wallSound;
+
     internal bool canWarp = true;
     internal int duckCnt = 0;
 
@@ -138,6 +141,7 @@ public class LakeBall : LakeMovement
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            SoundManager.Instance.PlaySE(wallSound);
             if (ballManager.isRight)
             {
                 ballManager.isRight = false;

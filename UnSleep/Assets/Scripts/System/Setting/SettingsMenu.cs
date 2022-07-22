@@ -5,10 +5,6 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    // 싱글톤을 참조해야 하는데 (SoundManager)
-    // 설정도 항상 언제든 나올 수 있으니까 싱글톤에 들어가겠죠..?
-    // 일단 해당 클래스는 싱글톤으로 안 만들고 그냥 냅둘게요
-
     // ::이후 저장되어야 할 데이터 목록::
     //   1. Audio volume 설정 float 변수 3개
     //   2. Audio isMute 설정 bool 변수 3개

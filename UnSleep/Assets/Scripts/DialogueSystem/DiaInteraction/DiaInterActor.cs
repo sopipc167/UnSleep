@@ -120,7 +120,7 @@ public class DiaInterActor : MonoBehaviour
     private IEnumerator GoToPuzzleCoroutine(string sceneName)
     {
         goToPuzzle.SetActive(true);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.7f);
         SceneManager.LoadScene(sceneName);
     }
 }
