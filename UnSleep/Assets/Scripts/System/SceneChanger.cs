@@ -37,7 +37,7 @@ public class SceneChanger
             case SceneType.Dialogue: return "DialogueTest";
             case SceneType.Mental: return "Mental_World_Map";
             case SceneType.Clock: return "ClockTower";
-            case SceneType.Diary: return "Diray";
+            case SceneType.Diary: return "Diary";
             case SceneType.Lake: return "Lake";
             case SceneType.Cave: return "Cave2";
             case SceneType.Cliff: return "Cliff2";
