@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using UnityEngine.SceneManagement;
 
 public class TextManager : MonoBehaviour
 {
@@ -393,7 +393,7 @@ public class TextManager : MonoBehaviour
                             else if (DiaDic[Dia_Id].SceneNum == 2 && DiaDic[Dia_Id + 1].SceneNum == 1) //정신세계(퍼즐)->스토리
                             {
 
-                                StartCoroutine(LoadStoryMental("DialogueTest"));
+                                StartCoroutine(LoadStoryMental(SceneType.Dialogue));
                                 //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
                                 //SceneManager.LoadScene("DialogueTest");
 

@@ -7,6 +7,7 @@ public class DiaInterActor : MonoBehaviour
 {
     public GameObject Dialogue_system_manager;
     public Collider[] dia_hit_colliders;
+    public GameObject goToPuzzle;
     private DiaInterInfo hit_info;
 
     private TextManager textManager;
@@ -63,10 +64,16 @@ public class DiaInterActor : MonoBehaviour
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
             //Debug.Log("씬 전환");
-            SceneManager.LoadScene(hit.ChangeSceneName);
+
+            // 현재 가야하는 퍼즐이어야만 이동 가능
+            if (hit.ChangeSceneName.Equals(Dialogue_Proceeder.instance.CurrentPuzzle))
+            {
+                StartCoroutine(GoToPuzzleCoroutine(hit.ChangeSceneName));
+                return;
+            }
         }
 
-       // Debug.Log(hit.gameObject.name);
+        // Debug.Log(hit.gameObject.name);
 
 
 
@@ -80,10 +87,10 @@ public class DiaInterActor : MonoBehaviour
         // A = id : 1901, 조건 : 1900
         // B = id : 1905, 조건 : 1903, 1904
         // C = id : 1906, 조건 : 1903, 1904, 1905
-        
+
         // 완료 = {1900, 1901, 1902, 1903, 1904}인 상황일 때 -> C 불충족 B 충족 -> B 실행
         // 완료 = {1900, 1901, 1902, 1903, 1904, 1905}인 상황일 때 -> C 충족 -> C 실행
-        
+
         for (int i = event_cnt - 1; i >= 0; i--)
         {
             if (hit.OnlyOnce[i] && Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
@@ -109,6 +116,13 @@ public class DiaInterActor : MonoBehaviour
         //Debug.Log("실행 조건 불충분"); //디버깅용 
     }
 
+
+    private IEnumerator GoToPuzzleCoroutine(string sceneName)
+    {
+        goToPuzzle.SetActive(true);
+        yield return new WaitForSeconds(1.2f);
+        SceneManager.LoadScene(sceneName);
+    }
 }
 
 
