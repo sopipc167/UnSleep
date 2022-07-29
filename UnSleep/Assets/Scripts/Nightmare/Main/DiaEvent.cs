@@ -6,6 +6,8 @@ using DG.Tweening;
 
 public class DiaEvent : MonoBehaviour
 {
+    public GameObject Dialogue_system_manager;
+
     public TextManager TM;
     public GameObject[] ob;
     public GameObject[] Dia;
@@ -32,6 +34,11 @@ public class DiaEvent : MonoBehaviour
     public Player player;
 
     private Dialogue_Proceeder dp;
+
+    public bool isOver;
+    public Text gameOver;
+    public bool isFollow;
+    public bool isEnd;
 
     public struct ob_move
     {
@@ -122,9 +129,11 @@ public class DiaEvent : MonoBehaviour
             }
             else if (EventNum == 8)
             {
-                gome.target = player.gameObject;
+                gome.targetPos = player.transform.position;
                 gome.isFollow = true;
                 gome.isStart = true;
+                player.isStop = false;
+                isFollow = true;
             }
 
             TM.isEnd = false;
@@ -207,12 +216,14 @@ public class DiaEvent : MonoBehaviour
                     isBearAppear = true;
                     Move(5, new Vector3(-7.18f, -1.32f, 0), new Vector3(0, 0, 0));
                     ob[5].SetActive(true);
+                    Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
                 }
                 else
                 {
                     Move(5, new Vector3(-7.18f, -0.29f, 0), new Vector3(0, 0, 0));
                     ob[5].transform.DOScaleX(-2.5f, 0.5f);
                     ob[5].transform.DOScaleY(2.5f, 0.5f);
+                    Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
                 }
             }
             else if(TM.con == "BearMove")
@@ -222,20 +233,22 @@ public class DiaEvent : MonoBehaviour
                     Vector3 targetPos = player.transform.position;
                     targetPos.x -= 3;
                     ob_move bear = new ob_move(ob[5], true, 3.5f, 1, targetPos, 1);
+                    gome.ChangeTarget(targetPos);
                     ob_lst.Add(bear);
                     Dia[37].SetActive(true);
                     isMade_b = true;
+                    gome.isStart = true;
                 }
                 else if(isMade_b && !ob_lst[0].isMove)
                 {
                     Vector3 targetPos = player.transform.position;
                     targetPos.x -= 3;
-                    changeEndPoint(ob_lst, 0, targetPos);
-                    changeIsMove(ob_lst, 0, true);
+                    gome.ChangeTarget(targetPos);
+                    gome.isStart = true;
                 }
 
-                block.enabled = true;
                 anim_b.SetBool("isMove", true);
+                block.enabled = true;
                 TM.con = null;
             }
             else if(TM.con == "PlayerMove")
@@ -264,7 +277,7 @@ public class DiaEvent : MonoBehaviour
             else if(TM.con == "SceneOver")
             {
                 next_flase = 711;
-                next_true = 711;
+                next_true = 710;
                 dia_p.diaScene3.SetActive(false);
                 dia_p.diaScene4.SetActive(true);
                 Vector3 targetPos = player.transform.position;
@@ -280,7 +293,7 @@ public class DiaEvent : MonoBehaviour
                 {
                     gome.isMinigame = true;
                     Vector3 targetPos = player.transform.localPosition;
-                    targetPos.x -= 2;
+                    targetPos.x -= 4;
                     changeEndPoint(ob_lst, 1, targetPos);
                     changeDirection(ob_lst, 1, 1);
                     changeIsMove(ob_lst, 1, true);
@@ -290,6 +303,10 @@ public class DiaEvent : MonoBehaviour
                     isMini = true;
                     gome.speed = 2.5f;
                 }
+                //EventNum = 8;
+            }
+            else if(TM.con == "Eight")
+            {
                 EventNum = 8;
             }
             else if(TM.con == "LightOn")
@@ -316,6 +333,7 @@ public class DiaEvent : MonoBehaviour
                     {
                         if (i == 0)
                         {
+                            Debug.Log("Gome");
                             anim_b.SetBool("isMove", false);
                         }
                         else if (i == 1)
@@ -327,6 +345,7 @@ public class DiaEvent : MonoBehaviour
 
                         block.enabled = false;
                         changeIsMove(ob_lst, i, false);
+                        moveEnd();
                     }
                     else
                     {
@@ -340,6 +359,11 @@ public class DiaEvent : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void moveEnd()
+    {
+        Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
     }
 
     public void changeIsMove(List<ob_move> lst, int index, bool value)
@@ -365,15 +389,6 @@ public class DiaEvent : MonoBehaviour
         Debug.Log("changeEndPoint");
     }
 
-    /*
-    IEnumerator fade()
-    {
-        fadeinout.Blackout_Func(0.5f);
-        yield return new WaitForSeconds(1.5f);
-        Dialogue_Proceeder.instance.AddCompleteCondition(999);
-        Dia[37].SetActive(true);
-    }
-    */
 
     void Setting()
     {
@@ -439,5 +454,28 @@ public class DiaEvent : MonoBehaviour
                 audioSource.Stop();
                 return;
         }
+    }
+
+    public void GameOver_s()
+    {
+        if (!isOver && isFollow)
+        {
+            StartCoroutine(GameOver());
+        }
+    }
+
+    IEnumerator GameOver()
+    {
+        isOver = true;
+        player.targetPos = player.transform.position;
+        player.isStop = true;
+        gome.isStart = false;
+        fadeinout.Fade_In();
+        yield return new WaitForSeconds(2.5f);
+        Color tmp = gameOver.color;
+        tmp.a = 1;
+        gameOver.color = tmp;
+        gameOver.DOText(gameOver.text, 0.5f);
+        isOver = false;
     }
 }

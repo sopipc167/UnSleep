@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+
     public SpriteRenderer sprite;
     public float speed;
     public float Speed;
@@ -42,6 +44,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         Speed = speed;
         targetPos = new Vector3(0.26f, 0.07f, 0);
 
@@ -162,6 +165,11 @@ public class Player : MonoBehaviour
         if(collision.gameObject.tag == "Monster")
         {
             sprite.enabled = false;
+        }
+
+        if(collision.gameObject.tag == "Gome")
+        {
+            dia.GameOver_s();
         }
     }
 
