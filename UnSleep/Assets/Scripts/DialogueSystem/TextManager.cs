@@ -368,6 +368,9 @@ public class TextManager : MonoBehaviour
                             {
                                 Debug.Log("isEnd");
                                 isEnd = true;
+                                Player.instance.isStop = false;
+                                Player.instance.col.enabled = true;
+                                Gome.instance.isStart = true;
                             }
 
 
@@ -484,7 +487,10 @@ public class TextManager : MonoBehaviour
 
 
         if (LAYOUT == 7)
+        {
+            Debug.Log("LayOut OUt");
             Increasediaindex = false;
+        }
 
 
         if (SE != null) //효과음 있으면 효과음 재생

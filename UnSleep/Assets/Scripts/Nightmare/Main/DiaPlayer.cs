@@ -27,11 +27,6 @@ public class DiaPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex)
-        {
-            player.isStop = false;
-            gome.isStart = true;
-        }
 
         //*****************클릭*******************
         if (Input.GetMouseButtonDown(0))

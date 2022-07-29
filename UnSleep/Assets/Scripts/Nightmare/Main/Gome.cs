@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Gome : MonoBehaviour
 {
+    public static Gome instance;
     public GameObject target;
     public Vector3 targetPos;
     public Vector3 targetPos_tmp;
@@ -17,6 +18,7 @@ public class Gome : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         targetPos = transform.position;
     }
 
@@ -30,6 +32,7 @@ public class Gome : MonoBehaviour
                 isStart = false;
                 isFollow = false;
                 dia.block.enabled = false;
+                dia.moveEnd();
             }
             else
             {
