@@ -5,19 +5,12 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    // 싱글톤을 참조해야 하는데 (SoundManager)
-    // 설정도 항상 언제든 나올 수 있으니까 싱글톤에 들어가겠죠..?
-    // 일단 해당 클래스는 싱글톤으로 안 만들고 그냥 냅둘게요
-
     // ::이후 저장되어야 할 데이터 목록::
     //   1. Audio volume 설정 float 변수 3개
     //   2. Audio isMute 설정 bool 변수 3개
     //   3. Graphic 설정 int 변수 1개
     //   4. Resolution type 설정 int 변수 1개
     //   5. Screen type 설정 int 변수 1개
-
-    [Header("참조")]
-    public SoundManager soundManager;
 
     [Header("소리 UI")]
     public Slider masterVolume;
@@ -34,8 +27,14 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown screenTypeDropdown;
     public Dropdown resolutionDropdown;
 
+    private SoundManager soundManager;
     private List<string> options = new List<string>();
     private Resolution[] resolutions;
+
+    private void Awake()
+    {
+        soundManager = SoundManager.Instance;
+    }
 
     private void Start()
     {

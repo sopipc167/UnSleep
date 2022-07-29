@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CliffUIManager : MonoBehaviour
 {
@@ -135,6 +134,6 @@ public class CliffUIManager : MonoBehaviour
     //아래는 Button function
     public void OnClickRestart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.RestartScene();
     }
 }

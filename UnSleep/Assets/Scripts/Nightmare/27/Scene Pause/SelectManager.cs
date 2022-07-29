@@ -31,7 +31,7 @@ public class SelectManager : MonoBehaviour
             case CharacterType.Colleague:
                 if (manager.IsClear(type))
                 {
-                    currentText.text = "아니, 도문씨 여기서 뭘 하고 있나요? 이런 쇠사슬에 같이 엉켜 있으니까 몸이 안 움직이죠.. 읏차..자, 이제 몸을 움직여보세요.";
+                    currentText.text = "아니, 도문씨 여기서 뭘 하고 있나요? 이런 쇠사슬에 같이 엉켜 있으니까 몸이 안 움직이죠..\n읏차.. 자, 이제 몸을 움직여보세요.";
                     return false;
                 }
                 else

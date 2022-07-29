@@ -24,7 +24,7 @@ public class TitleManager : MonoBehaviour
 
     public void ContinueGame()
     {
-        SceneManager.LoadScene("Diary");
+        SceneChanger.ChangeScene(SceneType.Diary);
     }
 
     public void NewGame()

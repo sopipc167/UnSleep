@@ -9,7 +9,7 @@ public class PuzzleClear : MonoBehaviour
     private SceneType sceneType;
     [SerializeField] private Animator ani;
 
-    public void ClearPuzzle(SceneType type = SceneType.MenTal, float startDelay = 0f, float endDelay = 2f)
+    public void ClearPuzzle(SceneType type = SceneType.Mental, float startDelay = 0f, float endDelay = 2f)
     {
         sceneType = type;
         this.startDelay = startDelay;
@@ -32,6 +32,7 @@ public class PuzzleClear : MonoBehaviour
         ani.SetBool("isStart", true);
         yield return new WaitForSeconds(endDelay);
 
+        Dialogue_Proceeder.instance.ClearPuzzle();
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1(); //씬 이동 후 다음 대사를 말하기 위해 하나 슬쩍 넣었습니다
         SceneChanger.ChangeScene(sceneType);
     }

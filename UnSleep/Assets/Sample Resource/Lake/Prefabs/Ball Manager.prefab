@@ -872,6 +872,9 @@ MonoBehaviour:
   temp: {fileID: 0}
   ButtonCanvas: {fileID: 0}
   MemoCanvas: {fileID: 0}
+  puzzleClear: {fileID: 0}
+  nextCanvas: {fileID: 0}
+  textManager: {fileID: 0}
   ballManager: {fileID: 6785903058882358409}
   rightButton: {fileID: 6785903057343144902}
   leftButton: {fileID: 6785903057714904966}
@@ -879,6 +882,7 @@ MonoBehaviour:
   RearButton: {fileID: 6785903056890755085}
   lineAcceleration: 0.00203
   lineRotationAcceleration: 0.365
+  wallSound: {fileID: 8300000, guid: ad4eca733ae9fb94c938c875e42af9d0, type: 3}
 --- !u!1 &6785903057714904966
 GameObject:
   m_ObjectHideFlags: 0

@@ -171,7 +171,7 @@ public class Clear_Condition : MonoBehaviour
         }
         else
         {
-            puzzleClear.ClearPuzzle(SceneType.MenTal, 0f);
+            puzzleClear.ClearPuzzle(SceneType.Mental, 0f);
 
         }
     }

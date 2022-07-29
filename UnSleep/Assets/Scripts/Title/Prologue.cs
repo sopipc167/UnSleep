@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 
 public class Prologue : MonoBehaviour
 {
@@ -50,7 +49,7 @@ public class Prologue : MonoBehaviour
         else
         {
             Saveinfo();
-            SceneManager.LoadScene("Diary");
+            SceneChanger.ChangeScene(SceneType.Diary);
             //Test();
         }
     }

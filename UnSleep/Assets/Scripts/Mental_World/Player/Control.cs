@@ -71,5 +71,6 @@ public class Control : MonoBehaviour
         } while (transform.position != destination);
 
         animator.SetBool("Running", false);
+        coroutine = null;
     }
 }

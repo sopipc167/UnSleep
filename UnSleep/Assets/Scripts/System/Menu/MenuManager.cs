@@ -5,39 +5,62 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    #region 싱글톤 클래스
+    private static MenuManager instance;
 
-    private static MenuManager instance = null;
-    private bool PAUSE = false;
-
-    public GameObject MenuCanvas;
+    public static MenuManager Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                var obj = FindObjectOfType<MenuManager>();
+                if (obj != null)
+                {
+                    instance = obj;
+                }
+                else
+                {
+                    MenuManager newObj = Resources.Load<MenuManager>("Singleton/MenuManager");
+                    instance = Instantiate(newObj);
+                }
+            }
+            return instance;
+        }
+    }
 
     private void Awake()
     {
-        if (instance == null)
+        if (Instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            Destroy(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        DontDestroyOnLoad(gameObject);
     }
+    #endregion
+
+    private bool PAUSE = false;
+    private bool isSettingOn = false;
+
+    public GameObject MenuCanvas;
+    public GameObject settingCanvas;
+
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            PAUSE = !PAUSE;
-        }
-
-        if (PAUSE)
-        {
-            MenuCanvas.SetActive(true);
-        }
-        else
-        {
-            MenuCanvas.SetActive(false);
+            if (isSettingOn)
+            {
+                OnClickSettingOff();
+            }
+            else
+            {
+                PAUSE = !PAUSE;
+                if (PAUSE) MenuCanvas.SetActive(true);
+                else MenuCanvas.SetActive(false);
+            }
         }
     }
 
@@ -50,11 +73,23 @@ public class MenuManager : MonoBehaviour
     {
         PAUSE = !PAUSE;
         SceneManager.LoadScene("Diary");
-        
     }
 
     public void Exit_()
     {
         Application.Quit();
+    }
+
+    public void OnClickSettingOn()
+    {
+        isSettingOn = true;
+        settingCanvas.SetActive(true);
+        MenuCanvas.SetActive(false);
+    }
+    public void OnClickSettingOff()
+    {
+        isSettingOn = false;
+        settingCanvas.SetActive(false);
+        MenuCanvas.SetActive(true);
     }
 }

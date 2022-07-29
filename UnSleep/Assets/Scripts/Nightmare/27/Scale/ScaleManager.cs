@@ -11,6 +11,16 @@ public class ScaleManager : MonoBehaviour
 
     private ScaleRotation scaleRotation;
     private int weight = -10;
+    private int Weight
+    {
+        get => weight;
+        set
+        {
+            if (value < -15) weight = -15;
+            else if (value > 15) weight = 15;
+            else weight = value;
+        }
+    }
 
     private readonly string unbalance = "불균형";
 
@@ -22,32 +32,32 @@ public class ScaleManager : MonoBehaviour
 
     public void ResetData()
     {
-        weight = -7;
+        Weight = -7;
         scaleText.text = unbalance;
         scaleRotation.RotateScale(-5);
     }
 
     public void AddWeight(int value)
     {
-        weight += value;
+        Weight += value;
 
-        if (weight > 5)
+        if (Weight > 5)
         {
             scaleText.text = unbalance;
             scaleRotation.RotateScale(5);
         }
-        else if (weight < -5)
+        else if (Weight < -5)
         {
             scaleText.text = unbalance;
             scaleRotation.RotateScale(-5);
         }
         else
         {
-            scaleText.text = weight.ToString();
-            scaleRotation.RotateScale(weight);
+            scaleText.text = Weight.ToString();
+            scaleRotation.RotateScale(Weight);
         }
 
-        if (weight == 0)
+        if (Weight == 0)
         {
             //clear
             manager.CharacterClear(manager.currentType);

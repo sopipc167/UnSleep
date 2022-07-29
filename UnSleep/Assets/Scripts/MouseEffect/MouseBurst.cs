@@ -1,9 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MouseBurst : MonoBehaviour
 {
+    private static MouseBurst instance = null;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private ParticleSystem ps;
     private Ray ray;
     private Camera mainCam;
@@ -22,6 +37,13 @@ public class MouseBurst : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
+            if (SceneManager.GetActiveScene().Equals("Mental_World_Map")) return;
+
+            if (mainCam == null)
+            {
+                mainCam = Camera.main;
+                distance = -mainCam.transform.position.z;
+            }
             ray = mainCam.ScreenPointToRay(Input.mousePosition);
             transform.position = ray.GetPoint(distance);
             ps.Play();
