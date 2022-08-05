@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;
 
@@ -297,8 +298,8 @@ public class DiaEvent : MonoBehaviour
                     changeEndPoint(ob_lst, 1, targetPos);
                     changeDirection(ob_lst, 1, 1);
                     changeIsMove(ob_lst, 1, true);
-                    player.animator.SetBool("isMove", true);
                     block.enabled = true;
+                    player.animator.SetBool("isMove", true);
                     player.isSeven = true;
                     isMini = true;
                     gome.speed = 2.5f;
@@ -476,6 +477,28 @@ public class DiaEvent : MonoBehaviour
         tmp.a = 1;
         gameOver.color = tmp;
         gameOver.DOText(gameOver.text, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
+        //프로시더에서 완료된 대화묶음 지우기
+        if (dp.Complete_Condition.Contains(744))
+        {
+            Debug.Log("749");
+            int i = 0;
+
+            if (dp.Complete_Condition.Contains(749))
+                i = 749;
+            else
+                i = 742;
+
+            while (dp.Complete_Condition.Contains(i))
+            {
+                Debug.Log(i);
+                dp.RemoveCompleteCondition(i);
+                i++;
+            }
+        }
         isOver = false;
     }
 }

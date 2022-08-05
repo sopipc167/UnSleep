@@ -103,6 +103,7 @@ public class TextManager : MonoBehaviour
     public bool isSeven;
     public string con;
     public bool isEnd;
+    public MovieEffect movie;
 
     void Awake()
     {
@@ -365,6 +366,9 @@ public class TextManager : MonoBehaviour
 
                             if (isSeven)
                             {
+                                if (movie.isFramein)
+                                    movie.MovieFrameout();
+
                                 Debug.Log("isEnd");
                                 isEnd = true;
                                 Player.instance.isStop = false;

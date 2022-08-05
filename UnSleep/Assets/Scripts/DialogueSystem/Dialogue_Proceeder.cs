@@ -72,6 +72,7 @@ public class Dialogue_Proceeder : MonoBehaviour
             Complete_Condition.Remove(complete);
     }
 
+
     public bool Satisfy_Condition(int[] condition) //input: 조건 배열
     {
         if (condition[0] == 0) //조건 란이 공란 -> 크기 1짜리 int 배열. 내용은 0. 

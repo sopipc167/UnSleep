@@ -93,7 +93,9 @@ public class Player : MonoBehaviour
 
 
             if (transform.position == targetPos)
+            {
                 animator.SetBool("isMove", false);
+            }
 
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         }

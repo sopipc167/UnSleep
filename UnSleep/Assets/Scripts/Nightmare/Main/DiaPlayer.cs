@@ -27,6 +27,8 @@ public class DiaPlayer : MonoBehaviour
     private TextManager textManager;
     private Camera mainCam;
 
+    public MovieEffect movie;
+
     private void Awake()
     {
         textManager = Dialogue_system_manager.GetComponent<TextManager>();
@@ -65,7 +67,7 @@ public class DiaPlayer : MonoBehaviour
         dia_hit_colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3.0f);
         if (dia_hit_colliders.Length > 0)
         {
-
+            
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
                 if (dia_hit_colliders[i].CompareTag("DiaInterCollision")
@@ -77,6 +79,8 @@ public class DiaPlayer : MonoBehaviour
                     {
                         isOnce = false;
                     }
+                    if (!movie.isFramein)
+                        movie.MovieFrameIn();
                 }
                 else if (dia_hit_colliders[i].CompareTag("SceneOver"))
                 {

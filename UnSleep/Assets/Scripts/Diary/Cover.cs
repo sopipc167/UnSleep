@@ -168,6 +168,8 @@ public class Cover : MonoBehaviour
 
             DragSpot_L.gameObject.SetActive(false);
             DragSpot_R.gameObject.SetActive(true);
+            book.LeftSpot.gameObject.SetActive(false);
+            book.RightSpot.gameObject.SetActive(false);
         }
         else
         {
@@ -185,6 +187,8 @@ public class Cover : MonoBehaviour
 
             DragSpot_L.gameObject.SetActive(true);
             DragSpot_R.gameObject.SetActive(false);
+            book.LeftSpot.gameObject.SetActive(true);
+            book.RightSpot.gameObject.SetActive(true);
             shadowManager.gameObject.SetActive(false);
             back = false;
         }
