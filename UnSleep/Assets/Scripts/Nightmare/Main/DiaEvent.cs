@@ -256,14 +256,14 @@ public class DiaEvent : MonoBehaviour
             {
                 if (!isMade_p)
                 {
-                    Debug.Log("플레이어 리스트 추가");
+                    //Debug.Log("플레이어 리스트 추가");
                     ob_move domoon = new ob_move(ob[6], true, 5.0f, 1, tPos[0].position, 1);
                     ob_lst.Add(domoon);
                     isMade_p = true;
                 }
                 else if(isMade_p && !ob_lst[1].isMove)
                 {
-                    Debug.Log("player Move");
+                    //Debug.Log("player Move");
                     changeEndPoint(ob_lst, 1, tPos[1].position);
                     changeDirection(ob_lst, 1, -1);
                     changeIsMove(ob_lst, 1, true);
@@ -298,9 +298,14 @@ public class DiaEvent : MonoBehaviour
                     changeEndPoint(ob_lst, 1, targetPos);
                     changeDirection(ob_lst, 1, 1);
                     changeIsMove(ob_lst, 1, true);
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
                     block.enabled = true;
                     player.animator.SetBool("isMove", true);
                     player.isSeven = true;
+                    Debug.Log(player.isSeven);
                     isMini = true;
                     gome.speed = 2.5f;
                 }
@@ -334,7 +339,6 @@ public class DiaEvent : MonoBehaviour
                     {
                         if (i == 0)
                         {
-                            Debug.Log("Gome");
                             anim_b.SetBool("isMove", false);
                         }
                         else if (i == 1)
