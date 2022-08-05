@@ -298,10 +298,6 @@ public class DiaEvent : MonoBehaviour
                     changeEndPoint(ob_lst, 1, targetPos);
                     changeDirection(ob_lst, 1, 1);
                     changeIsMove(ob_lst, 1, true);
-<<<<<<< HEAD
-=======
-
->>>>>>> main
                     block.enabled = true;
                     player.animator.SetBool("isMove", true);
                     player.isSeven = true;
