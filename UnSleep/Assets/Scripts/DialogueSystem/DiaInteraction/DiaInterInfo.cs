@@ -17,11 +17,11 @@ public class DiaInterInfo : MonoBehaviour
     public bool isChangeScene; //이 오브젝트와 상호작용으로 씬 전환을 하는 경우
     public string ChangeSceneName; //전환되는 씬 이름을 적어주세요
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.green;
-        Gizmos.DrawSphere(transform.position, Interaction_distance);
-        //Scene 화면의 Gizmos 누르면 상호작용 범위가 구로 표시됩니다. 
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.green;
+    //    Gizmos.DrawSphere(transform.position, Interaction_distance);
+    //    //Scene 화면의 Gizmos 누르면 상호작용 범위가 구로 표시됩니다. 
+    //}
 
 }

@@ -25,12 +25,21 @@ public class RandPosText : MonoBehaviour
     private struct WL
     {
         public string line;
-        public int weight;
+        private int weight;
+        public int Weight {
+            get => weight;
+            set
+            {
+                if (value > 15) value = 15;
+                if (value < -15) value = -15;
+                weight = value;
+            }
+        }
     }
 
     WL[] ws = new WL[4];
 
-    //Knuth Shuffle Algorithm
+    // Knuth Shuffle Algorithm
     private void Shuffle(WL[] deck)
     {
         int size = deck.Length;
@@ -48,17 +57,17 @@ public class RandPosText : MonoBehaviour
     { 
         if (isMe)
         {
-            ws[0].weight = 10;
-            ws[1].weight = 5;
-            ws[2].weight = 2;
-            ws[3].weight = 1;
+            ws[0].Weight = 10;
+            ws[1].Weight = 5;
+            ws[2].Weight = 2;
+            ws[3].Weight = 1;
         }
         else
         {
-            ws[0].weight = -10;
-            ws[1].weight = -5;
-            ws[2].weight = -2;
-            ws[3].weight = -1;
+            ws[0].Weight = -10;
+            ws[1].Weight = -5;
+            ws[2].Weight = -2;
+            ws[3].Weight = -1;
         }
 
         switch (type)
@@ -67,8 +76,8 @@ public class RandPosText : MonoBehaviour
                 if (isMe)
                 {
                     ws[0].line = "일부러 나 창피하라고 그렇게 말한 거 아니야?";
-                    ws[1].line = "상사가 너랑 나를 비교할 때 네가 짓는 미묘한 미소를 봤어.";
-                    ws[2].line = "네 옆에 있으니 내 자신이 보잘것없고 초라해보여.";
+                    ws[1].line = "상사가 너랑 나를 비교할 때\n네가 짓는 미묘한 미소를 봤어.";
+                    ws[2].line = "네 옆에 있으니 내 자신이\n보잘것없고 초라해보여.";
                     ws[3].line = "사회 생활이란 게 원래 다 이런 건가?";
                 }
                 else
@@ -83,8 +92,8 @@ public class RandPosText : MonoBehaviour
                 if (isMe)
                 {
                     ws[0].line = "요즘 우리 관계에 대한 의문이 들어.";
-                    ws[1].line = "우린 서로 연락도 뜸해지고 같이 있는 시간도 줄었어.";
-                    ws[2].line = "직장생활을 하다 보니 시간과 체력이 너무 부족해.";
+                    ws[1].line = "우린 서로 연락도 뜸해지고\n같이 있는 시간도 줄었어.";
+                    ws[2].line = "직장생활을 하다 보니\n시간과 체력이 너무 부족해.";
                     ws[3].line = "예전만큼 잘해주지 못해서 미안해.";
                 }
                 else
@@ -98,16 +107,16 @@ public class RandPosText : MonoBehaviour
             case CharacterType.Friends:
                 if (isMe)
                 {
-                    ws[0].line = "나도 현실에서 잘하고 싶은데 재준이는 어떻게 저렇게 잘나갈까.";
-                    ws[1].line = "포기했던 내 꿈을 계속 이어가는 장현이를 보니 후회가 돼.";
-                    ws[2].line = "실패할 것 같아 꿈을 포기했는데 현실을 좇은 내 인생은 성공했나?";
-                    ws[3].line = "지금부터라도 조금씩 취미로라도 그림을 그려봐야지.";
+                    ws[0].line = "나도 현실에서 잘하고 싶은데\n재준이는 어떻게 저렇게 잘나갈까.";
+                    ws[1].line = "포기했던 내 꿈을 계속 이어가는\n장현이를 보니 후회가 돼.";
+                    ws[2].line = "실패할 것 같아 꿈을 포기했는데\n현실을 좇은 내 인생은 성공했나?";
+                    ws[3].line = "지금부터라도 조금씩\n취미로라도 그림을 그려봐야지.";
                 }
                 else
                 {
                     ws[0].line = "요즘 일이 술술 잘 풀려서 너무 행복해.";
-                    ws[1].line = "지금까지 고생했던 게 드디어 빛을 보고 있는 것 같아.";
-                    ws[2].line = "그렇지만 나이를 먹는 만큼 개인적인 걱정도 늘어가고 있어.";
+                    ws[1].line = "지금까지 고생했던 게 드디어\n빛을 보고 있는 것 같아.";
+                    ws[2].line = "그렇지만 나이를 먹는 만큼\n개인적인 걱정도 늘어가고 있어.";
                     ws[3].line = "힘들 때는 우리에게 의지해도 돼.";
                 }
                 break;
@@ -119,7 +128,7 @@ public class RandPosText : MonoBehaviour
 
         for (int i = 0; i < 4; ++i)
         {
-            weightedLines[i].SetValue(ws[i].line, ws[i].weight);
+            weightedLines[i].SetValue(ws[i].line, ws[i].Weight);
             buttons[i].RefreshSize();
         }
     }

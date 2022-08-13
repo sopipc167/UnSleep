@@ -257,19 +257,9 @@ public class Pages : MonoBehaviour
         if (Dialogue_Proceeder.instance != null)
         {
             Dialogue_Proceeder.instance.CurrentEpiID = cPage/2 -1 ;
-            Dialogue_Proceeder.instance.isInit = true;
             Dialogue_Proceeder.instance.SetCurrentDiaID();
-
-
-            if (Dialogue_Proceeder.instance.CurrentEpiID == 1 || Dialogue_Proceeder.instance.CurrentEpiID == 6)
-                SceneManager.LoadScene("Nightmare");
-            else if (Dialogue_Proceeder.instance.CurrentEpiID == 10)
-                SceneManager.LoadScene("Nightmare_27");
-            else
-                SceneManager.LoadScene("DialogueTest");
+            Dialogue_Proceeder.instance.InitEpi();
         }
-
-        
     }
 
     IEnumerator Typing(Text typingText, string message, float speed, float delay) // 시작 딜레이 추가. 

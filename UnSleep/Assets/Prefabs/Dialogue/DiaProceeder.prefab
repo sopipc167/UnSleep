@@ -45,5 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentEpiID: 0
   CurrentDiaID: 0
+  CurrentDiaIndex: 0
   Complete_Condition: 
-  End: 
+  End: 0
+  CurrentPuzzle: 

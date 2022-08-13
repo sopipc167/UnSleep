@@ -3095,7 +3095,7 @@ GameObject:
   - component: {fileID: 2057091860467170982}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3172,6 +3172,7 @@ MonoBehaviour:
   UI_Objects: {fileID: 6401566963517359663}
   isSeven: 0
   con: 
+  isEnd: 0
 --- !u!114 &8528798682782122516
 MonoBehaviour:
   m_ObjectHideFlags: 0
