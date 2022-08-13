@@ -45,7 +45,10 @@ public class SoundManager : MonoBehaviour
     [Header("오디오 믹서")]
     public AudioMixer mainMixer;
     public AudioSource bgmSource;
-    public AudioSource seSource;
+    public AudioSource seSource1;
+    public AudioSource seSource2;
+    private AudioSource seSource;
+    private int seState = 0;
 
     private readonly bool[] isMuted = { false, false, false };
     private IEnumerator bgmCoroutine;
@@ -170,20 +173,19 @@ public class SoundManager : MonoBehaviour
             if (currentClip == null) return;
             seDic[name] = currentClip;
         }
-
-        seSource.PlayOneShot(currentClip, volume);
+        CheckAndPlaySE(currentClip, volume);
     }
 
     public void PlaySE(AudioClip clip, float volume = 1f)
     {
         if (clip == null) return;
-        seSource.PlayOneShot(clip, volume);
+        CheckAndPlaySE(clip, volume);
     }
 
 
     public void StopSE()
     {
-        seSource.Stop();
+        StartCoroutine(FadeOutSECoroutine(0.5f));
     }
     #endregion
 
@@ -280,6 +282,38 @@ public class SoundManager : MonoBehaviour
         yield return new WaitUntil(() => !isChanging);
         PlayBGM(clip, 0f);
         StartCoroutine(FadeInBGMCoroutine(inDelay, volume));
+    }
+
+    // 10초 이상인 SE가 2개일 리는 없다는 가정임.
+    private void CheckAndPlaySE(AudioClip clip, float volume)
+    {
+        seSource = seSource1;
+        if (seState == 1) seSource = seSource2;
+
+        // 7초 이상인 SE라면 현재 상태에 check
+        if (clip.length > 10f)
+        {
+            if (seSource == seSource1) seState = 1;
+            else seState = 2;
+        }
+        seSource.PlayOneShot(clip, volume);
+    }
+
+    private IEnumerator FadeOutSECoroutine(float delay, float volume = 0.001f)
+    {
+        AudioSource curSource = seSource1;
+        if (seState == 2) curSource = seSource2;
+
+        float tmp = 1f / delay;
+        while (curSource.volume > volume)
+        {
+            curSource.volume -= Time.deltaTime * tmp;
+            yield return null;
+        }
+        curSource.Stop();
+        curSource.volume = 1f;
+        if (curSource == seSource1) seState = 1;
+        else seState = 2;
     }
 
     #endregion

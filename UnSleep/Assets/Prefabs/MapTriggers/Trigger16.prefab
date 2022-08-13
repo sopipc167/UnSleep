@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 997071519546148657}
   - component: {fileID: 997071519546148656}
   - component: {fileID: 997071519546148663}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: nullpos
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -124,9 +124,9 @@ GameObject:
   - component: {fileID: 997071520125585548}
   - component: {fileID: 997071520125585544}
   - component: {fileID: 997071520125585551}
-  - component: {fileID: 997071520125585550}
   - component: {fileID: 997071520125585549}
-  m_Layer: 0
+  - component: {fileID: 8922427423723922081}
+  m_Layer: 12
   m_Name: 5640
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997071520125585539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -48.1, y: -1.09, z: 23.6}
+  m_LocalPosition: {x: -79.8, y: -1.6, z: -19.83}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 997071520732935415}
@@ -196,19 +196,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &997071520125585550
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997071520125585539}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &997071520125585549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,9 +210,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: e7150000
   OnlyOnce: 01
-  Interaction_distance: 10
+  Interaction_distance: 25
   isChangeScene: 0
   ChangeSceneName: 
+--- !u!135 &8922427423723922081
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997071520125585539}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &997071520186489174
 GameObject:
   m_ObjectHideFlags: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 997071520186489170}
   - component: {fileID: 997071520186489169}
   - component: {fileID: 997071520186489168}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 501
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997071520186489174}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 17.663652, y: 1, z: 21.539125}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 997071520732935415}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trigger16
   m_TagString: MapTrigger
   m_Icon: {fileID: 0}
@@ -384,9 +384,9 @@ GameObject:
   - component: {fileID: 5686658076874068422}
   - component: {fileID: 4454198096700425509}
   - component: {fileID: 5150585606604477977}
-  - component: {fileID: 4964233570428538997}
   - component: {fileID: 6948298090284815558}
-  m_Layer: 0
+  - component: {fileID: 4217899642257429404}
+  m_Layer: 12
   m_Name: 5670
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4019948184087861009}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 49.7, y: -10.2, z: 63.9}
+  m_LocalPosition: {x: 49.7, y: -10.2, z: 78.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 997071520732935415}
@@ -456,19 +456,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4964233570428538997
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4019948184087861009}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6948298090284815558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -486,3 +473,16 @@ MonoBehaviour:
   Interaction_distance: 10
   isChangeScene: 0
   ChangeSceneName: 
+--- !u!135 &4217899642257429404
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4019948184087861009}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 10
+  m_Center: {x: 0, y: 0, z: 0}

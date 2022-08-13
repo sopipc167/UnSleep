@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 45972580649700778}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trigger2
   m_TagString: MapTrigger
   m_Icon: {fileID: 0}
@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 45972581196931087}
   - component: {fileID: 45972581196931084}
   - component: {fileID: 45972581196931085}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 501
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}

@@ -10,8 +10,12 @@ public class DiaInterActor : MonoBehaviour
     public GameObject goToPuzzle;
     private DiaInterInfo hit_info;
 
+    public LayerMask diaInterMask;
+
     private TextManager textManager;
     private Camera mainCam;
+
+    internal bool isInteracting = false;
 
     private void Awake()
     {
@@ -42,16 +46,15 @@ public class DiaInterActor : MonoBehaviour
     private void FixedUpdate()
     {
         //***************충돌*********************
-        dia_hit_colliders = Physics.OverlapSphere(transform.position, 3.0f);
+        dia_hit_colliders = Physics.OverlapSphere(transform.position, 3.0f, diaInterMask);
         if (dia_hit_colliders.Length > 0)
         {
+            if (textManager.DiaUI.activeSelf) return;
+
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
-                if (dia_hit_colliders[i].CompareTag("DiaInterCollision") && textManager.DiaUI.activeSelf == false)
-                {
-                    hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
-                    DialogueInteraction(hit_info);
-                }
+                hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
+                DialogueInteraction(hit_info);
             }
         }
     }
@@ -61,6 +64,9 @@ public class DiaInterActor : MonoBehaviour
         if (hit == null)
             return;
 
+        hit.gameObject.layer = 0;
+        Debug.Log(hit.gameObject.name);
+
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
             //Debug.Log("씬 전환");
@@ -68,6 +74,7 @@ public class DiaInterActor : MonoBehaviour
             // 현재 가야하는 퍼즐이어야만 이동 가능
             if (hit.ChangeSceneName.Equals(Dialogue_Proceeder.instance.CurrentPuzzle))
             {
+                isInteracting = true;
                 StartCoroutine(GoToPuzzleCoroutine(hit.ChangeSceneName));
                 return;
             }
@@ -102,6 +109,7 @@ public class DiaInterActor : MonoBehaviour
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
+                isInteracting = true;
                 Debug.Log("상호작용 대화 실행");
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
                 textManager.SetDiaInMap();
@@ -109,7 +117,6 @@ public class DiaInterActor : MonoBehaviour
 
                 return;
             }
-
         }
 
 

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6557286793494593262}
   - component: {fileID: 4356542404255141528}
   - component: {fileID: 696293260957315206}
-  - component: {fileID: 5471127241715093005}
   - component: {fileID: 3666863180261716067}
-  m_Layer: 0
+  - component: {fileID: 968298478048034594}
+  m_Layer: 12
   m_Name: 4560
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1496800557789875911}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 41.8, y: 33.8, z: 50.3}
+  m_LocalPosition: {x: 52.44, y: 64, z: 53.4}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 5383263394641205939}
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5471127241715093005
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1496800557789875911}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3666863180261716067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,9 +97,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: a1110000
   OnlyOnce: 01
-  Interaction_distance: 10
+  Interaction_distance: 25
   isChangeScene: 0
   ChangeSceneName: 
+--- !u!135 &968298478048034594
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496800557789875911}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5383263394094511890
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 5383263394094511894}
   - component: {fileID: 5383263394094511893}
   - component: {fileID: 5383263394094511892}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 501
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383263394094511890}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 17.663652, y: 1, z: 21.539125}
@@ -237,9 +237,9 @@ GameObject:
   - component: {fileID: 5383263394570479304}
   - component: {fileID: 5383263394570479308}
   - component: {fileID: 5383263394570479307}
-  - component: {fileID: 5383263394570479306}
   - component: {fileID: 5383263394570479305}
-  m_Layer: 0
+  - component: {fileID: 4078679475709635430}
+  m_Layer: 12
   m_Name: 4530
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -254,7 +254,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5383263394570479303}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.5, y: 19.1, z: -37.2}
+  m_LocalPosition: {x: -4.4, y: 22.7, z: -56.13}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 5383263394641205939}
@@ -309,19 +309,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5383263394570479306
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5383263394570479303}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2, z: 2}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5383263394570479305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,9 +323,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 9e110000
   OnlyOnce: 01
-  Interaction_distance: 10
+  Interaction_distance: 15
   isChangeScene: 0
   ChangeSceneName: 
+--- !u!135 &4078679475709635430
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5383263394570479303}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5383263394641205938
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5383263394641205939}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trigger14
   m_TagString: MapTrigger
   m_Icon: {fileID: 0}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 5383263396138789237}
   - component: {fileID: 5383263396138789236}
   - component: {fileID: 5383263396138789235}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: nullpos
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}

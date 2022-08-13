@@ -18096,6 +18096,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1451823526}
+    - target: {fileID: 5703343808980061989, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.size
       value: 6

@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3654961273486578137}
   - component: {fileID: 3654961273486578138}
   - component: {fileID: 3654961273486578139}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 501
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3654961273486578141}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27.176664, y: 4.001549, z: 26.152393}
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3654961274012580988}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trigger5
   m_TagString: MapTrigger
   m_Icon: {fileID: 0}
@@ -271,9 +271,9 @@ GameObject:
   - component: {fileID: 1696389628076548722}
   - component: {fileID: 7687695300006305403}
   - component: {fileID: 3229384289212555849}
-  - component: {fileID: 5014441708628730064}
   - component: {fileID: 3953113588727282128}
-  m_Layer: 0
+  - component: {fileID: 8666659010864729225}
+  m_Layer: 12
   m_Name: 1960
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -288,7 +288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4036740308197741150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 40.3, y: 40.2, z: 47}
+  m_LocalPosition: {x: 52.44, y: 64, z: 53.4}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 3654961274012580988}
@@ -343,19 +343,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5014441708628730064
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4036740308197741150}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0.9924879, y: 0.3552084, z: -0.17036247}
 --- !u!114 &3953113588727282128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -370,9 +357,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 75070000
   OnlyOnce: 01
-  Interaction_distance: 10
+  Interaction_distance: 25
   isChangeScene: 0
   ChangeSceneName: 
+--- !u!135 &8666659010864729225
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4036740308197741150}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4747708048127799422
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,9 +384,9 @@ GameObject:
   - component: {fileID: 691756717229197100}
   - component: {fileID: 7038694034434577125}
   - component: {fileID: 4653949344994025436}
-  - component: {fileID: 1516816783505231338}
   - component: {fileID: 8321429335436918632}
-  m_Layer: 0
+  - component: {fileID: 9036906608437466362}
+  m_Layer: 12
   m_Name: 1930
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -400,8 +400,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4747708048127799422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.4, y: 22.7, z: -39.7}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.4, y: 22.7, z: -56.13}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 3654961274012580988}
@@ -456,19 +456,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1516816783505231338
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4747708048127799422}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: -0.31385612, y: 0, z: 0.9008827}
 --- !u!114 &8321429335436918632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -483,6 +470,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 78070000
   OnlyOnce: 01
-  Interaction_distance: 10
+  Interaction_distance: 15
   isChangeScene: 0
   ChangeSceneName: 
+--- !u!135 &9036906608437466362
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4747708048127799422}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
