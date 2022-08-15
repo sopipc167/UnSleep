@@ -71,9 +71,11 @@ public class Portrait : MonoBehaviour
         }
         else if (cha_id == 1001) //도문 
         {
-            if (epi_id <= 0)
+            if (epi_id == 0)
                 return 0;
-            else if (epi_id <= 2)
+            else if (epi_id == 1)
+                return 140;
+            else if (epi_id == 2)
                 return 20;
             else if (epi_id <= 5)
                 return 40;
