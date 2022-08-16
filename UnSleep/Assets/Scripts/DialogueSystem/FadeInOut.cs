@@ -129,6 +129,7 @@ public class FadeInOut : MonoBehaviour
             yield return null;
 
         }
+        color.a = 0f;
         isPlaying = false;
         FADEINOUT.SetActive(false);
 
@@ -150,6 +151,7 @@ public class FadeInOut : MonoBehaviour
             yield return null;
 
         }
+        color.a = 1f;
         isPlaying = false;
     }
 
