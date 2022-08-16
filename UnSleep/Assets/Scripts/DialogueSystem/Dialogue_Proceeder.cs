@@ -107,8 +107,6 @@ public class Dialogue_Proceeder : MonoBehaviour
         string sceneName;
         if (CurrentEpiID == 1 || CurrentEpiID == 6)
             sceneName = "Nightmare";
-        else if (CurrentEpiID == 10)
-            sceneName = "Nightmare_27";
         else
             sceneName = "DialogueTest";
 
