@@ -329,7 +329,7 @@ public class TextManager : MonoBehaviour
                                   {
                                       if (dp.Satisfy_Condition(DiaDic[Dia_Id + 1].Condition)) //씬 변경 없이 다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
                                       {
-                                          dp.CurrentDiaIndex = 0; //대사 인덱스 초기화화
+                                          dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                                           Dia_Id += 1; //다음 대화 묶음으로
 
 
@@ -347,6 +347,18 @@ public class TextManager : MonoBehaviour
                                       }
                                   }
                               }
+                            else if (DiaDic[Dia_Id].SceneNum == 8)
+                            {
+                                // Nightmare 씬에서 대화 묶음 끝났을 때 처리가 필요하면 여기에 
+                                // 아마 층간소음에서는 대화 종료 후 현재 상황에 따라서 미니게임 진행 등을 시작하면 될 것
+
+                                // 아래 코드는 테이블 확인용 임시 코드.
+                                // 그냥 원래 스토리에서 진행되듯 넘어가는 코드입니다.
+                                // 층간 작업하실 때 지우고 쓰시면 됨. 
+                                Dia_Id++;
+                                dp.UpdateCurrentDiaID(Dia_Id);
+                                dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
+                            }
                             else //맵모드 + 동굴 + 7세까지 처리. 머지할때 잘 보고 하기
                             {
 
@@ -562,7 +574,7 @@ public class TextManager : MonoBehaviour
                 if (float.TryParse(NAME, out result)) //주요인물이면 +n 하여 우측 이미지로 접근. n은 emotion_cnt로 리턴 받음. Portrait 스크립트도 참고
                     Speaker2.sprite = PorDic[int.Parse(NAME.ToString())][EMOTION + emotion_cnt(int.Parse(NAME.ToString()))];
                 else
-                    Speaker2.sprite = PorDic[9999][EMOTION + 21]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
+                    Speaker2.sprite = PorDic[9999][EMOTION + 23]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
 
 
                 showSpeaker2When1 = true; //스피커2에 이미지가 들어있으므로 회색처리해도 됨
