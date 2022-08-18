@@ -326,14 +326,14 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             if (gameboardint == 0)
             {
                 Dialogue_Proceeder.instance.AddCompleteCondition(41);
-                Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+                //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
                 Next.SetActive(true);
                 textManager.Set_Dialogue_System();
             }
             else if (gameboardint == 5)
             {
                 Dialogue_Proceeder.instance.AddCompleteCondition(43);
-                Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+                //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
                 textManager.Set_Dialogue_System();
                 puzzleClear.ClearPuzzle(SceneType.Mental, 10f);
             }
@@ -467,7 +467,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
 
     public void GotoNext()
     {
-        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+        //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
         SceneChanger.RestartScene();
     }
 }
