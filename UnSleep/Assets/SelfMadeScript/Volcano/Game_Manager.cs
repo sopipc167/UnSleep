@@ -449,7 +449,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     {
         while (Bomb_List.Count > 0) //폭탄 리스트가 빌때 까지
         {
-            SoundManager.Instance.PlaySE("boom");
+            SoundManager.Instance.PlaySE("Boom");
             Explode(Bomb_List[0].getObj().GetComponent<BombBehavior>().BombArr, (int)Bomb_List[0].getPos().x, (int)Bomb_List[0].getPos().y);//계속 Explode함수를 호출
             Bomb_List.RemoveAt(0); //폭탄하나 폭발 했으면 리스트에서 삭제
             yield return new WaitForSeconds(0.5f);//한박자 쉼

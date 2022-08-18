@@ -32,7 +32,12 @@ public class CaveDone : MonoBehaviour
         int CurDiaId = Dialogue_Proceeder.instance.CurrentDiaID;
 
         if (CurEpiId == 19)
-            CurDiaId--; //잘 있어요만 전환 후 대사가 없음
+        {
+            //CurDiaId--; //잘 있어요만 전환 후 대사가 없음
+            //Dialogue_Proceeder.instance.AddCompleteCondition(8024);
+            //Dialogue_Proceeder.instance.CurrentDiaID--;
+        }
+            
 
         if (CurEpiId == 7)
         {

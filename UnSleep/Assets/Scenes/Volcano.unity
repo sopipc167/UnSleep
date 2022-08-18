@@ -20796,8 +20796,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMixer: {fileID: 24100000, guid: 5a0802918797cff4fab3f368be281031, type: 2}
-  bgmMixGroup: {fileID: -8324439749789551844, guid: 5a0802918797cff4fab3f368be281031, type: 2}
-  seMixGroup: {fileID: 7541804814219547774, guid: 5a0802918797cff4fab3f368be281031, type: 2}
+  bgmSource: {fileID: 0}
+  seSource1: {fileID: 0}
+  seSource2: {fileID: 0}
 --- !u!4 &1800811898
 Transform:
   m_ObjectHideFlags: 0
