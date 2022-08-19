@@ -29,12 +29,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lake.unity
     guid: bfb6f3e27025bc5498ebc777fcd958a0
-  - enabled: 1
-    path: Assets/Scenes/Cave.unity
-    guid: 0ea3694b805f6134d99084ad4767a47c
-  - enabled: 1
-    path: Assets/Scenes/Cliff.unity
-    guid: e7c7ae4a5a1008b4c9a975d301248c58
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Nightmare.unity
     guid: ab7c4b723fcb267468f78057dab2a057

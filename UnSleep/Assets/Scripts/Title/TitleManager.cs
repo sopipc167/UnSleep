@@ -21,6 +21,11 @@ public class TitleManager : MonoBehaviour
         //<-------------설정 로드 및 반영 들어가야함 ----------->
     }
 
+    private void Start()
+    {
+        SoundManager.Instance.PlayBGM("betterdays");
+    }
+
 
     public void ContinueGame()
     {

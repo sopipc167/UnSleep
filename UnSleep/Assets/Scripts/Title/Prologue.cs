@@ -32,6 +32,7 @@ public class Prologue : MonoBehaviour
         yourInfo = new YourInfo();
         coroutine = StartCoroutine(OnType(0.05f, scripts[Ansidx]));
         StartCoroutine(TurnOnAnsw());
+        SoundManager.Instance.PlayBGM("slowmotion");
     }
 
 

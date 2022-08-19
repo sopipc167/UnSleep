@@ -157,8 +157,11 @@ public class TextManager : MonoBehaviour
         if (DiaDic[Dia_Id].dialogues[0].BG != null)
             Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[0].BG);
 
+
+        SoundManager.Instance.FadeOutBGM();
         if (DiaDic[Dia_Id].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
+        
 
 
 
@@ -335,10 +338,11 @@ public class TextManager : MonoBehaviour
 
                                           dp.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
 
+                                        
                                           //BGM 전환
                                           if (DiaDic[Dia_Id].BGM != null)
                                               SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-
+                                        
 
                                       }
                                       else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
@@ -484,6 +488,7 @@ public class TextManager : MonoBehaviour
         int LAYOUT = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange; //레이아웃 변화
         string CONTENT = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;//상호작용명(int가 될 수 있음)
         string SE = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].SE; //효과음
+        //string BGM = DiaDic[Dia_Id].BGM; // 배경음악 (스토리)
 
         UI_Objects.GetComponent<ChangeLayout>().LayoutChange(LAYOUT); //전달. 저쪽에서 알아서 할거임
 
@@ -519,7 +524,13 @@ public class TextManager : MonoBehaviour
                 SoundManager.Instance.PlaySE(SE);
 
         }
+        /*
+        if (BGM != null)
+        {
+            //SoundManager.Instance.PlayBGM(BGM);
 
+        }
+        */
 
         if (NAME.Equals(string.Empty)) //나레이션 -> 이름, 초상화 Off
         {

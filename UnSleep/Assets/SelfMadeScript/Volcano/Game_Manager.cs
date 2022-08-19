@@ -135,7 +135,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     public void Start()
     {
         GameBoard = GameObject.Find("GameBoard");
-        //SoundManager.Instance.PlayBGM("Clean and Dance - An Jone");
+        SoundManager.Instance.PlayBGM("Clean and Dance - An Jone");
 
         Swap_List.Clear();
         if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
@@ -359,6 +359,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     {
                         if (i == 2 && j == 2) //자기 자신인 경우 그냥 폭발
                         {
+                            if (Map[p, q].activeSelf == false)
+                                continue;
                             Map[p, q].GetComponent<BombBehavior>().IsActive = false;
                             Map[p, q].GetComponent<BombBehavior>().StartCoroutine("Blast"); 
                             gameboardArray[gameboardint, q, p] = 8;
