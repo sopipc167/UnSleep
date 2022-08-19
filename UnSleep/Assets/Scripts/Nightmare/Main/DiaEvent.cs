@@ -348,6 +348,19 @@ public class DiaEvent : MonoBehaviour
                 Dia[37].SetActive(true);
                 Dia[38].SetActive(true);
             }
+            else if(TM.con == "Gome")
+            {
+                Vector3 target = player.transform.position;
+                target.x -= 3;
+                gome.ChangeTarget(target);
+                gome.isFollow = false;
+                gome.isStart = true;
+                //EventNum = 8;
+            }
+            else if(TM.con == "GameOver")
+            {
+                StartCoroutine(GameOver());
+            }
         }
 
         if (ob_lst.Count != 0)

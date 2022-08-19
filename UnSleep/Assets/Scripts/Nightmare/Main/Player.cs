@@ -54,6 +54,7 @@ public class Player : MonoBehaviour
         {
             targetPos = dia.playerPos[PlayerPrefs.GetInt("savePoint")].position;
             transform.position = targetPos;
+            isSeven = false;
         }
 
         if (isMiniGame)
