@@ -107,9 +107,9 @@ public class SaveDataManager : MonoBehaviour
     }
 
 
-    public YourInfo LoadSystemOption()
+    public SystemOption LoadSystemOption()
     {
-        var data = SaveLoad.LoadJsonFileAES<YourInfo>(Application.streamingAssetsPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
+        var data = SaveLoad.LoadJsonFileAES<SystemOption>(Application.streamingAssetsPath, "SystemOptionData", "aes256=32CharA49AScdg5135=48Fk63");
         return data;
     }
 
