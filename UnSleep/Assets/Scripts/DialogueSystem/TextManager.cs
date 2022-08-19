@@ -104,6 +104,8 @@ public class TextManager : MonoBehaviour
     public string con;
     public bool isEnd;
     public MovieEffect movie;
+    public int movie_cnt;
+    public DiaPlayer dia_p;
 
     void Awake()
     {
@@ -366,9 +368,6 @@ public class TextManager : MonoBehaviour
 
                             if (isSeven)
                             {
-                                if (movie.isFramein)
-                                    movie.MovieFrameout();
-
                                 Debug.Log("isEnd");
                                 isEnd = true;
                                 Player.instance.isStop = false;
@@ -405,6 +404,9 @@ public class TextManager : MonoBehaviour
                                 //SceneManager.LoadScene("DialogueTest");
 
 
+                            }
+                            else if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 9) {
+                                StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
                             }
                             else // 그 밖의 경우에는 단순 대화 종료. (ex) 스토리 맵 -> 동굴 이동 전 대기 상태
                             {
@@ -491,7 +493,6 @@ public class TextManager : MonoBehaviour
 
         if (LAYOUT == 7)
         {
-            Debug.Log("LayOut OUt");
             Increasediaindex = false;
         }
 
@@ -971,7 +972,7 @@ public class TextManager : MonoBehaviour
     {
         if (type == SceneType.Mental)
             STEManager.BlinkClose();
-        else if (type == SceneType.Dialogue)
+        else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)
             STEManager.FadeIn();
 
         yield return new WaitForSeconds(4f);

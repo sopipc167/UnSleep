@@ -7,7 +7,7 @@ public class DiaPlayer : MonoBehaviour
 {
     public GameObject Dialogue_system_manager;
     public Collider2D[] dia_hit_colliders;
-    private DiaInterInfo hit_info;
+    public DiaInterInfo hit_info;
     public Player player;
     Vector3 MousePosition;
 
@@ -102,6 +102,11 @@ public class DiaPlayer : MonoBehaviour
                 else if(dia_hit_colliders[i].tag == "Gome")
                 {
                     gome.touchPlayer();
+                }
+                else if(dia_hit_colliders[i].tag == "Chair")
+                {
+                    DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
+                    DE.chair.enabled = false;
                 }
             }
         }

@@ -43,9 +43,9 @@ TagManager:
   - FogOfWarSecond
   - Tilemap
   - Shape
-  - Player
+  - DiaInterCollision
   - PostProcessing
-  - 
+  - canMove
   - 
   - 
   - 

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7812996207131761884}
   - component: {fileID: 1249663013655945429}
   - component: {fileID: 6284364405853723879}
-  - component: {fileID: 4499518161524039294}
   - component: {fileID: 5565279372730107774}
-  m_Layer: 0
+  - component: {fileID: 3456180375967482932}
+  m_Layer: 12
   m_Name: 1830
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4891751605966761200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4, y: 22.7, z: -39.7}
+  m_LocalPosition: {x: -4.4, y: 22.7, z: -56.13}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 5286830339387081426}
@@ -83,19 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4499518161524039294
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4891751605966761200}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5565279372730107774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,9 +97,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Obj_Diaid: 0f070000
   OnlyOnce: 01
-  Interaction_distance: 10
+  Interaction_distance: 15
   isChangeScene: 0
   ChangeSceneName: 
+--- !u!135 &3456180375967482932
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4891751605966761200}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 15
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5286830338401120528
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5286830339387081426}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trigger4
   m_TagString: MapTrigger
   m_Icon: {fileID: 0}
@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 5286830339912822647}
   - component: {fileID: 5286830339912822644}
   - component: {fileID: 5286830339912822645}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: 501
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5286830339912822643}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 27.856802, y: 2.7252884, z: 29.645638}

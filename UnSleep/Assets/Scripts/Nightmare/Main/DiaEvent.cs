@@ -74,6 +74,14 @@ public class DiaEvent : MonoBehaviour
     public Image suprise;
     public Image block;
 
+    public MovieEffect movieFrame;
+
+    public CameraManager cm;
+    public BoxCollider2D chair;
+
+    public Transform[] playerPos;
+    public Transform[] gomePos;
+
     void Start()
     {
         dp = Dialogue_Proceeder.instance;
@@ -153,7 +161,7 @@ public class DiaEvent : MonoBehaviour
                 TM.con = null;
                 EventNum = 1;
             }
-            else if(TM.con == "LightOff")
+            else if (TM.con == "LightOff")
             {
                 ob[7].SetActive(false);
             }
@@ -186,31 +194,31 @@ public class DiaEvent : MonoBehaviour
                 BA.BlinkOpen();
                 TM.con = null;
             }
-            else if(TM.con == "BlinkClose")
+            else if (TM.con == "BlinkClose")
             {
                 BA.isSeven_Close = true;
                 BA.BlinkClose();
                 TM.con = null;
                 EventNum = 3;
             }
-            else if(TM.con == "ChairMove")
+            else if (TM.con == "ChairMove")
             {
                 EventNum = 4;
             }
-            else if(TM.con == "BearDis")
+            else if (TM.con == "BearDis")
             {
-                if(diaGroupIndex == 738)
+                if (diaGroupIndex == 738)
                 {
                     ob[5].SetActive(false);
                 }
                 else
                     EventNum = 5;
             }
-            else if(TM.con == "WindowOpen")
+            else if (TM.con == "WindowOpen")
             {
                 EventNum = 6;
             }
-            else if(TM.con == "BearBig")
+            else if (TM.con == "BearBig")
             {
                 if (!isBearAppear)
                 {
@@ -222,12 +230,12 @@ public class DiaEvent : MonoBehaviour
                 else
                 {
                     Move(5, new Vector3(-7.18f, -0.29f, 0), new Vector3(0, 0, 0));
-                    ob[5].transform.DOScaleX(-2.5f, 0.5f);
-                    ob[5].transform.DOScaleY(2.5f, 0.5f);
+                    ob[5].transform.DOScaleX(-2.3f, 0.5f);
+                    ob[5].transform.DOScaleY(2.3f, 0.5f);
                     Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
                 }
             }
-            else if(TM.con == "BearMove")
+            else if (TM.con == "BearMove")
             {
                 if (!isMade_b)
                 {
@@ -239,20 +247,20 @@ public class DiaEvent : MonoBehaviour
                     Dia[37].SetActive(true);
                     isMade_b = true;
                     gome.isStart = true;
+                    anim_b.SetBool("isMove", true);
+                    block.enabled = true;
                 }
-                else if(isMade_b && !ob_lst[0].isMove)
+                else if (isMade_b && !ob_lst[0].isMove)
                 {
                     Vector3 targetPos = player.transform.position;
-                    targetPos.x -= 3;
-                    gome.ChangeTarget(targetPos);
-                    gome.isStart = true;
+                    targetPos.x -= 9;
+                    Move(5, targetPos, new Vector3(0, 0, 0));
+                    gome.targetPos = targetPos;
                 }
 
-                anim_b.SetBool("isMove", true);
-                block.enabled = true;
                 TM.con = null;
             }
-            else if(TM.con == "PlayerMove")
+            else if (TM.con == "PlayerMove")
             {
                 if (!isMade_p)
                 {
@@ -261,12 +269,14 @@ public class DiaEvent : MonoBehaviour
                     ob_lst.Add(domoon);
                     isMade_p = true;
                 }
-                else if(isMade_p && !ob_lst[1].isMove)
+                else if (isMade_p && !ob_lst[1].isMove)
                 {
                     //Debug.Log("player Move");
-                    changeEndPoint(ob_lst, 1, tPos[1].position);
+                    chair.enabled = true;
+                    changeEndPoint(ob_lst, 1, tPos[2].position);
                     changeDirection(ob_lst, 1, -1);
                     changeIsMove(ob_lst, 1, true);
+                    cm.isChoose = false;
                     EventNum = 8;
                 }
 
@@ -275,7 +285,7 @@ public class DiaEvent : MonoBehaviour
                 player.animator.SetBool("isMove", true);
                 player.isSeven = true;
             }
-            else if(TM.con == "SceneOver")
+            else if (TM.con == "SceneOver")
             {
                 next_flase = 711;
                 next_true = 710;
@@ -288,7 +298,7 @@ public class DiaEvent : MonoBehaviour
                 gome.isFollow = false;
                 gome.isStart = true;
             }
-            else if(TM.con == "MiniGame")
+            else if (TM.con == "MiniGame")
             {
                 if (!isMini)
                 {
@@ -307,19 +317,36 @@ public class DiaEvent : MonoBehaviour
                 }
                 //EventNum = 8;
             }
-            else if(TM.con == "Eight")
+            else if (TM.con == "Eight")
             {
                 EventNum = 8;
             }
-            else if(TM.con == "LightOn")
+            else if (TM.con == "LightOn")
             {
                 ob[7].SetActive(true);
                 gome.isStart = false;
             }
-            else if(TM.con == "Suprise")
+            else if (TM.con == "Suprise")
             {
                 suprise.enabled = true;
                 EventNum = 7;
+            }
+            else if (TM.con == "FrameOut")
+            {
+                movieFrame.MovieFrameout();
+            }
+            else if(TM.con == "Choose")
+            {
+                fadeinout.Blackout_Func(0.7f);
+                player.isSeven = true;
+                player.targetPos = tPos[1].position;
+                Move(6, tPos[1].position, new Vector3(0, 180, 0));
+                cm.isChoose = true;
+                player.isSeven = false;
+                TM.con = null;
+                PlayerPrefs.SetInt("savePoint", 1);
+                Dia[37].SetActive(true);
+                Dia[38].SetActive(true);
             }
         }
 
@@ -479,12 +506,13 @@ public class DiaEvent : MonoBehaviour
         gameOver.DOText(gameOver.text, 0.5f);
         yield return new WaitForSeconds(0.5f);
 
+        PlayerPrefs.SetInt("isGameOver", 1);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+
 
         //프로시더에서 완료된 대화묶음 지우기
         if (dp.Complete_Condition.Contains(744))
         {
-            Debug.Log("749");
             int i = 0;
 
             if (dp.Complete_Condition.Contains(749))
@@ -494,7 +522,6 @@ public class DiaEvent : MonoBehaviour
 
             while (dp.Complete_Condition.Contains(i))
             {
-                Debug.Log(i);
                 dp.RemoveCompleteCondition(i);
                 i++;
             }

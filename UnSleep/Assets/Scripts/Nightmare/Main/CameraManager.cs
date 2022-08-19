@@ -32,6 +32,8 @@ public class CameraManager : MonoBehaviour
     public float min;
     public float max;
 
+    public bool isChoose;
+
     void Start()
     {
         if (isThree)
@@ -52,7 +54,10 @@ public class CameraManager : MonoBehaviour
         {
             if(target.transform.position.x >= -0.6 && target.transform.position.x <= 19.45)
             {
-                targetPos = new Vector3(target.transform.position.x, 0, -10);
+                if (!isChoose)
+                    targetPos = new Vector3(target.transform.position.x, 0, -10);
+                else
+                    targetPos = new Vector3(target.transform.position.x + 5.5f, 0, -10);
             }
         }
         else if (isMiniGame)

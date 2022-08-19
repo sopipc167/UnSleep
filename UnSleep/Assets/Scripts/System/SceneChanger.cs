@@ -18,6 +18,8 @@ public enum SceneType
     Cliff,
     Title,
     Prologue,
+    Nightmare,
+    Nightmare27
 }
 
 public class SceneChanger
@@ -43,6 +45,8 @@ public class SceneChanger
             case SceneType.Cliff: return "Cliff2";
             case SceneType.Title: return "Title";
             case SceneType.Prologue: return "Prologue";
+            case SceneType.Nightmare: return "Nightmare";
+            case SceneType.Nightmare27: return "Nightmare_27";
             default: return string.Empty;
         }
     }

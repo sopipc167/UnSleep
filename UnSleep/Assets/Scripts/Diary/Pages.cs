@@ -59,15 +59,14 @@ public class Pages : MonoBehaviour
 
         isBack = true;
         tmp = btn.GetComponent<Image>().color;
-    }
 
-
-    void Update()
-    {
         if (Dialogue_Proceeder.instance != null)
         {
             if (Dialogue_Proceeder.instance.End && !isStart)
             {
+                StartCoroutine(EndEffect());
+
+                /*
                 auto.Mode = FlipMode.RightToLeft;
                 cover.isBack = true;
                 Invoke("Flipping", 1);
@@ -75,8 +74,15 @@ public class Pages : MonoBehaviour
                 Invoke("StartTyping", 1);
 
                 Dialogue_Proceeder.instance.End = false;
+                */
             }
         }
+    }
+
+
+    void Update()
+    {
+
 
         if (isEnd) //에피소드 끝나서 왔을 때
         {
@@ -92,7 +98,7 @@ public class Pages : MonoBehaviour
             else
                 after = 3;
 
-            //후일담 타이핑 효과 - 표시 페이지까지 장수에 비례해서 딜레이 넣도록 수정 할거얌
+            //후일담 타이핑 효과 - 표시 페이지까지 장수에 비례해서 딜레이 넣도록 수정 할거얌 -> 현재 페이지까지 출력 후 isEnd를 true로 바꿔주는 식으로 수정 완
             StartCoroutine(Typing(pageText[after], diaryText[targetEpi].afterstory, speed, 0f)); 
             isEnd = false;
         }
@@ -257,26 +263,17 @@ public class Pages : MonoBehaviour
         if (Dialogue_Proceeder.instance != null)
         {
             Dialogue_Proceeder.instance.CurrentEpiID = cPage/2 -1 ;
-            Dialogue_Proceeder.instance.isInit = true;
             Dialogue_Proceeder.instance.SetCurrentDiaID();
-
-
-            if (Dialogue_Proceeder.instance.CurrentEpiID == 1 || Dialogue_Proceeder.instance.CurrentEpiID == 6)
-                SceneManager.LoadScene("Nightmare");
-            else if (Dialogue_Proceeder.instance.CurrentEpiID == 10)
-                SceneManager.LoadScene("Nightmare_27");
-            else
-                SceneManager.LoadScene("DialogueTest");
+            Dialogue_Proceeder.instance.InitEpi();
         }
-
-        
     }
 
     IEnumerator Typing(Text typingText, string message, float speed, float delay) // 시작 딜레이 추가. 
     {
-        yield return new WaitForSeconds(delay);
+        typingText.text = "";
+        yield return new WaitForSeconds(0.5f);
 
-        for(int i = 0; i < message.Length; i++)
+        for (int i = 0; i < message.Length; i++)
         {
             typingText.text = message.Substring(0, i + 1);
             yield return new WaitForSeconds(speed);
@@ -356,6 +353,26 @@ public class Pages : MonoBehaviour
             element.GetComponent<Image>().sprite = CHsprite.charSpr[i];
         }
 
+    }
+
+    IEnumerator EndEffect()
+    {
+        // 후일담 출력 관련 설정
+        auto.Mode = FlipMode.RightToLeft;
+        cover.isBack = true;
+
+
+        // 플립 끝날 때까지 대기
+        yield return StartCoroutine(auto.FlipToCurrentPage(DelayTime, AnimationFrame, BetweenTime, cPage));
+        //Invoke("Flipping", 1);
+
+
+        // 플립 끝나면 후일담 출력 시작
+        isStart = true;
+        isEnd = true;
+        //Invoke("StartTyping", 1);
+
+        Dialogue_Proceeder.instance.End = false;
     }
 }
 
