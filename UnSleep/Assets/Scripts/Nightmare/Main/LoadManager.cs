@@ -16,7 +16,7 @@ public class LoadManager : MonoBehaviour
         if (PlayerPrefs.GetInt("isGameOver") == 1)
         {
             Debug.Log("savePoint " + PlayerPrefs.GetInt("savePoint"));
-            player.isSeven = true;
+            //player.isSeven = true;
             player.targetPos = playerPos[PlayerPrefs.GetInt("savePoint")].position;
             player.transform.position = playerPos[PlayerPrefs.GetInt("savePoint")].position;
             gome.SetActive(true);
