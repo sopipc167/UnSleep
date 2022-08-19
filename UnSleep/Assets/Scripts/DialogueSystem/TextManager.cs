@@ -104,6 +104,8 @@ public class TextManager : MonoBehaviour
     public string con;
     public bool isEnd;
     public MovieEffect movie;
+    public int movie_cnt;
+    public DiaPlayer dia_p;
 
     void Awake()
     {
@@ -366,9 +368,6 @@ public class TextManager : MonoBehaviour
 
                             if (isSeven)
                             {
-                                if (movie.isFramein)
-                                    movie.MovieFrameout();
-
                                 Debug.Log("isEnd");
                                 isEnd = true;
                                 Player.instance.isStop = false;
@@ -491,7 +490,6 @@ public class TextManager : MonoBehaviour
 
         if (LAYOUT == 7)
         {
-            Debug.Log("LayOut OUt");
             Increasediaindex = false;
         }
 

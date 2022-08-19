@@ -46,7 +46,15 @@ public class Player : MonoBehaviour
     {
         instance = this;
         Speed = speed;
-        targetPos = new Vector3(0.26f, 0.07f, 0);
+        if (PlayerPrefs.GetInt("isGameOver") == 0)
+        {
+            targetPos = new Vector3(0.26f, 0.07f, 0);
+        }
+        else if(PlayerPrefs.GetInt("isGameOver") == 1)
+        {
+            targetPos = dia.playerPos[PlayerPrefs.GetInt("savePoint")].position;
+            transform.position = targetPos;
+        }
 
         if (isMiniGame)
         {
