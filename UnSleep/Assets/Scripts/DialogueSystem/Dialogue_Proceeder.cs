@@ -64,6 +64,11 @@ public class Dialogue_Proceeder : MonoBehaviour
             Complete_Condition.Remove(complete);
     }
 
+    public void RemoveAllCompleteCondition()
+    {
+        Complete_Condition.Clear();
+    }
+
 
     public bool Satisfy_Condition(int[] condition) //input: 조건 배열
     {
@@ -168,7 +173,7 @@ public class Dialogue_Proceeder : MonoBehaviour
             case 4: CurrentDiaID = 1801; break;
 
             case 5: CurrentDiaID = 1901; break;
-            case 6: CurrentDiaID = 1901; break;
+            case 6: CurrentDiaID = 2001; break;
             case 7: CurrentDiaID = 2001; break;
             case 8: CurrentDiaID = 2301; break;
             case 9: CurrentDiaID = 2401; break;

@@ -162,7 +162,6 @@ public class CliffRemoveManager : MonoBehaviour
 
         if (Dialogue_Proceeder.instance.CurrentEpiID == 19) //잘 있어요 용 조건 추가. 일단 미개하게 집어넣고 추후 수정이 필요하겠습니다
         {
-            Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
             Dialogue_Proceeder.instance.AddCompleteCondition(61);
             textManager.Set_Dialogue_Goodbye();
             return;

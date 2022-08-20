@@ -12,6 +12,7 @@ public class ClocktowerStageManager : MonoBehaviour
     void Start()
     {
         setLevel();
+        SoundManager.Instance.PlayBGM("scifi");
     }
 
     private void setLevel() //씬 전환 시 레벨 셋팅

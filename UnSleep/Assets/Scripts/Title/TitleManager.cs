@@ -18,7 +18,13 @@ public class TitleManager : MonoBehaviour
         }
 
         SaveDataManager.Instance.LoadEpiProgress(); //세이브 파일 가져오기
-        //<-------------설정 로드 및 반영 들어가야함 ----------->
+       
+
+    }
+
+    private void Start()
+    {
+        SoundManager.Instance.PlayBGM("betterdays");
     }
 
 

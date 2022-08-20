@@ -296,6 +296,7 @@ public class SoundManager : MonoBehaviour
             if (seSource == seSource1) seState = 1;
             else seState = 2;
         }
+       
         seSource.PlayOneShot(clip, volume);
     }
 

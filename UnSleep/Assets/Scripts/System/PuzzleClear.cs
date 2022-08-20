@@ -33,7 +33,8 @@ public class PuzzleClear : MonoBehaviour
         yield return new WaitForSeconds(endDelay);
 
         Dialogue_Proceeder.instance.ClearPuzzle();
-        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1(); //씬 이동 후 다음 대사를 말하기 위해 하나 슬쩍 넣었습니다
+        if (Dialogue_Proceeder.instance.CurrentEpiID != 19)
+            Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1(); //씬 이동 후 다음 대사를 말하기 위해 하나 슬쩍 넣었습니다
         SceneChanger.ChangeScene(sceneType);
     }
 }

@@ -123,6 +123,8 @@ public class Book_test : MonoBehaviour
         ShadowLTR.rectTransform.pivot = new Vector2(0, (pageWidth / 2) / shadowPageHeight);
 
         epiIndex = -1;
+
+        SoundManager.Instance.PlayBGM("EsthersWaltz");
     }
 
     void UpdateImages()

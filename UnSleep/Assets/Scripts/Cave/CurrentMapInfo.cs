@@ -67,6 +67,7 @@ public class CurrentMapInfo : MonoBehaviour
         i = 0;
         j = 0;
         SetMapInfo(i, j);
+        SoundManager.Instance.PlayBGM("Forest Lullabye");
     }
 
     // Update is called once per frame
