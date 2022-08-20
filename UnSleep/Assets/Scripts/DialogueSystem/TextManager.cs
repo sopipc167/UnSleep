@@ -585,7 +585,7 @@ public class TextManager : MonoBehaviour
                 if (float.TryParse(NAME, out result)) //주요인물이면 +n 하여 우측 이미지로 접근. n은 emotion_cnt로 리턴 받음. Portrait 스크립트도 참고
                     Speaker2.sprite = PorDic[int.Parse(NAME.ToString())][EMOTION + emotion_cnt(int.Parse(NAME.ToString()))];
                 else
-                    Speaker2.sprite = PorDic[9999][EMOTION + 23]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
+                    Speaker2.sprite = PorDic[9999][EMOTION + 25]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
 
 
                 showSpeaker2When1 = true; //스피커2에 이미지가 들어있으므로 회색처리해도 됨

@@ -64,6 +64,11 @@ public class Dialogue_Proceeder : MonoBehaviour
             Complete_Condition.Remove(complete);
     }
 
+    public void RemoveAllCompleteCondition()
+    {
+        Complete_Condition.Clear();
+    }
+
 
     public bool Satisfy_Condition(int[] condition) //input: 조건 배열
     {

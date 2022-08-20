@@ -101,6 +101,7 @@ public class Pages : MonoBehaviour
             //후일담 타이핑 효과 - 표시 페이지까지 장수에 비례해서 딜레이 넣도록 수정 할거얌 -> 현재 페이지까지 출력 후 isEnd를 true로 바꿔주는 식으로 수정 완
             StartCoroutine(Typing(pageText[after], diaryText[targetEpi].afterstory, speed, 0f)); 
             isEnd = false;
+            Dialogue_Proceeder.instance.RemoveAllCompleteCondition();
         }
 
         if (!isChange && book.bookPages.Length - 2 > book.currentPage) //오른쪽으로 넘길 경우(페이지 업데이트)
