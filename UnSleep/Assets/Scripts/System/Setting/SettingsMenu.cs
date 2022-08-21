@@ -31,27 +31,57 @@ public class SettingsMenu : MonoBehaviour
     private List<string> options = new List<string>();
     private Resolution[] resolutions;
 
+    private SystemOption data;
+
     private void Awake()
     {
         soundManager = SoundManager.Instance;
     }
 
+    private void OnDisable()
+    {
+        data.volume_master = masterVolume.value;
+        data.volume_bgm = bgmVolume.value;
+        data.volume_se = seVolume.value;
+        data.mute_master = masterMute.isOn;
+        data.mute_bgm = bgmMute.isOn;
+        data.mute_se = seMute.isOn;
+        SaveDataManager.Instance.SaveSystemOption(data);
+    }
+
     private void Start()
     {
+        data = SaveDataManager.Instance.LoadSystemOption();
+        if (data == null)
+        {
+            data = new SystemOption();
+            data.volume_master = 0.5f;
+            data.volume_bgm = 0.5f;
+            data.volume_se = 0.5f;
+            data.mute_master = false;
+            data.mute_bgm = false;
+            data.mute_se = false;
+            data.graphic = 0;
+            data.screenType = 0;
+            data.resolutionType = 0;
+        }
+
         //Audio
         masterVolume.onValueChanged.AddListener(value => soundManager.SetVolume(SoundType.Master, value));
-        masterVolume.value = 0.7f;
+        masterVolume.value = data.volume_master;
         bgmVolume.onValueChanged.AddListener(value => soundManager.SetVolume(SoundType.BGM, value));
-        bgmVolume.value = 0.7f;
+        bgmVolume.value = data.volume_bgm;
         seVolume.onValueChanged.AddListener(value => soundManager.SetVolume(SoundType.SE, value));
-        seVolume.value = 0.7f;
+        seVolume.value = data.volume_se;
+        print(data.volume_master);
+        print(masterVolume.value);
 
         masterMute.onValueChanged.AddListener(value => SetMute(SoundType.Master, value));
-        masterMute.isOn = false;
+        masterMute.isOn = data.mute_master;
         bgmMute.onValueChanged.AddListener(value => SetMute(SoundType.BGM, value));
-        bgmMute.isOn = false;
+        bgmMute.isOn = data.mute_bgm;
         seMute.onValueChanged.AddListener(value => SetMute(SoundType.SE, value));
-        seMute.isOn = false;
+        seMute.isOn = data.mute_se;
 
         //Graphics
         qualityDropdown.ClearOptions();
@@ -63,7 +93,7 @@ public class SettingsMenu : MonoBehaviour
         options.Add("Very Low");
         qualityDropdown.AddOptions(options);
         qualityDropdown.onValueChanged.AddListener(value => SetQuality(value));
-        qualityDropdown.value = 0;
+        qualityDropdown.value = data.graphic;
 
         //Screen - screen type
         screenTypeDropdown.ClearOptions();
@@ -73,7 +103,7 @@ public class SettingsMenu : MonoBehaviour
         options.Add("Window");
         screenTypeDropdown.AddOptions(options);
         screenTypeDropdown.onValueChanged.AddListener(value => SetScreen(value));
-        screenTypeDropdown.value = 0;
+        screenTypeDropdown.value = data.screenType;
 
         //Screen - resolution
         options.Clear();
@@ -88,7 +118,7 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
 
         resolutionDropdown.onValueChanged.AddListener(value => SetResolution(value));
-        resolutionDropdown.value = 0;
+        resolutionDropdown.value = data.resolutionType;
 
         SetScreen(screenTypeDropdown.value);
     }
@@ -101,26 +131,14 @@ public class SettingsMenu : MonoBehaviour
         }
         else
         {
-            switch (type)
-            {
-                case SoundType.Master:
-                    soundManager.Unmute(type, masterVolume.value);
-                    break;
-                case SoundType.BGM:
-                    soundManager.Unmute(type, bgmVolume.value);
-                    break;
-                case SoundType.SE:
-                    soundManager.Unmute(type, seVolume.value);
-                    break;
-                default:
-                    break;
-            }
+            soundManager.Unmute(type);
         }
     }
 
     public void SetQuality(int qualityIdx)
     {
         QualitySettings.SetQualityLevel(5 - qualityIdx);
+        data.graphic = 5 - qualityIdx;
     }
 
     public void SetResolution(int resolutionIdx)
@@ -128,6 +146,7 @@ public class SettingsMenu : MonoBehaviour
         Resolution resolution;
         resolution = resolutions[resolutions.Length - 1 - resolutionIdx];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        data.resolutionType = resolutionIdx;
     }
 
     public void SetScreen(int screenIdx)
@@ -167,5 +186,6 @@ public class SettingsMenu : MonoBehaviour
                 break;
         }
 #endif
+        data.screenType = screenIdx;
     }
 }
