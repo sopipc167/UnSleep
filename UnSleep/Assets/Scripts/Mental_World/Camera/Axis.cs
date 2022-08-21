@@ -17,28 +17,8 @@ public class Axis : MonoBehaviour
     private float gapX;
     private float gapY;
 
-    private Camera mainCam;
-    private float scroll;
-
-    private void Awake()
-    {
-        mainCam = GetComponent<Camera>();
-    }
-
     void LateUpdate()
     {
-        // 줌 인/아웃 기능
-        scroll = Input.GetAxis("Mouse ScrollWheel") * 5;
-        if (mainCam.fieldOfView < 40f)
-        {
-            mainCam.fieldOfView = 40f;
-        }
-        else if (mainCam.fieldOfView > 60f)
-        {
-            mainCam.fieldOfView = 60f;
-        }
-        mainCam.fieldOfView -= scroll;
-
         // 카메라 거리 유지 : Distance만큼 재우미랑 거리 유지
         axisVec = playerPos.position;
         axisVec += -transform.forward * distance;

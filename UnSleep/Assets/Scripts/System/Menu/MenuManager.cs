@@ -67,8 +67,6 @@ public class MenuManager : MonoBehaviour
     public void Resume()
     {
         PAUSE = !PAUSE;
-        if (PAUSE) MenuCanvas.SetActive(true);
-        else MenuCanvas.SetActive(false);
     }
 
     public void GoDiary()
@@ -90,15 +88,8 @@ public class MenuManager : MonoBehaviour
     }
     public void OnClickSettingOff()
     {
-        if (PAUSE)
-        {
-            isSettingOn = false;
-            settingCanvas.SetActive(false);
-            MenuCanvas.SetActive(true);
-        }
-        else
-        {
-            settingCanvas.SetActive(false);
-        }
+        isSettingOn = false;
+        settingCanvas.SetActive(false);
+        MenuCanvas.SetActive(true);
     }
 }

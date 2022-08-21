@@ -10536,18 +10536,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1828949890}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
 --- !u!114 &702994732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11211,26 +11199,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 385066615653951997, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1376858110164936025, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2295938342685556705, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6474163060442432777, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7384250958547889754, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8436695915588366389, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
       propertyPath: m_LocalPosition.x
       value: 960
@@ -11278,18 +11246,6 @@ PrefabInstance:
     - target: {fileID: 8436695915588366391, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
       propertyPath: m_Name
       value: MenuManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 8436695916218826504, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8572175004528080297, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8878594283449789260, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
@@ -11375,11 +11331,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1828949890 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7384250958547889754, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
-  m_PrefabInstance: {fileID: 1719710458}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &464092085899391558
 PrefabInstance:
   m_ObjectHideFlags: 0

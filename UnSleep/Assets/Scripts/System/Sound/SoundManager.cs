@@ -222,9 +222,10 @@ public class SoundManager : MonoBehaviour
         isMuted[(int)type] = true;
     }
 
-    public void Unmute(SoundType type)
+    public void Unmute(SoundType type, float originVolume)
     {
         isMuted[(int)type] = false;
+        SetVolume(type, originVolume);
     }
 
     #endregion
