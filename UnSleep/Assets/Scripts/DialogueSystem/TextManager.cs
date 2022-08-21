@@ -343,9 +343,14 @@ public class TextManager : MonoBehaviour
                                         
                                           //BGM 전환
                                           if (DiaDic[Dia_Id].BGM != null && DiaDic[Dia_Id].SceneNum == 1)
-                                              SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-                                        
-
+                                           {
+                                            if (DiaDic[Dia_Id].BGM.Equals("stop"))
+                                                SoundManager.Instance.FadeOutBGM();
+                                            else
+                                                SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
+                                           }
+                                              
+                                  
                                       }
                                       else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
                                       {
