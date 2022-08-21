@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 3727792029292744003}
   - component: {fileID: 3281906607188932098}
   - component: {fileID: 8216794015469220770}
-  m_Layer: 0
+  - component: {fileID: 3210862097618762923}
+  m_Layer: 13
   m_Name: Glass Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf7d17001744cd641b33f5f94fdd2852, type: 2}
+  - {fileID: 2100000, guid: 5d85bba5ded8ebc40bdfd1ef49f39ff6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -111,3 +112,20 @@ MonoBehaviour:
   scale: 3
   minCyclePerSecond: 0.3
   maxCyclePerSecond: 0.5
+--- !u!114 &3210862097618762923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662611245991399805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 0bd80e06e5b97ed4e83022c101265220, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
