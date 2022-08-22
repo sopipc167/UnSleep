@@ -35,6 +35,7 @@ public class Epi6Direc : MonoBehaviour
 
         yield return new WaitForSeconds(5f);
 
+        
         mwpuzzle.SetActive(true);
 
         

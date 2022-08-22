@@ -16,6 +16,7 @@ public class MWPuzzleText : MonoBehaviour
 
     private PlayableDirector playableDirector;
     private TextManager textManager;
+    private Camera mainCamera; // 끌 때 지정해두지 않으면 다시 킬 때 못찾음
 
     
    
@@ -24,6 +25,8 @@ public class MWPuzzleText : MonoBehaviour
         textManager = GameObject.Find("Canvas").transform.GetChild(0).transform.GetChild(0).GetComponent<TextManager>();
         playableDirector = GetComponent<PlayableDirector>();
         playableDirector.Play();
+        mainCamera = Camera.main.GetComponent<Camera>();
+        mainCamera.enabled = false;
         StartCoroutine(printLineCine());
     }
 
@@ -57,6 +60,7 @@ public class MWPuzzleText : MonoBehaviour
 
     public void DisableMWPuzzle()
     {
+        mainCamera.enabled = true;
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
         textManager.SetDiaInMap();
         this.gameObject.SetActive(false);

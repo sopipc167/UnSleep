@@ -178,7 +178,7 @@ public class TextManager : MonoBehaviour
             //스토리 -> 정신세계 전환 시 시네마틱 인트로 재생
             if (DiaDic[Dia_Id - 1].SceneNum == 1 && DiaDic[Dia_Id].SceneNum == 2)
             {
-                GameObject.Find("Cinematic").transform.GetChild(0).gameObject.SetActive(true);
+                GameObject.Find("Cinematic").transform.GetChild(2).gameObject.SetActive(true);
             }
             //정신세계 -> 스토리 전환 시 눈뜨면서 시작
 
