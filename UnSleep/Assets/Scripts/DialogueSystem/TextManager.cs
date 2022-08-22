@@ -376,21 +376,13 @@ public class TextManager : MonoBehaviour
 
 
 
-                            /*
-                            if (isSeven)
-                            {
-                                con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
-                                Debug.Log("con2: " + con);
-                            }
-                            */
-
                             if (isSeven)
                             {
                                 Debug.Log("isEnd");
                                 isEnd = true;
                                 Player.instance.isStop = false;
                                 Player.instance.col.enabled = true;
-                                Gome.instance.isStart = true;
+                                //Gome.instance.isStart = true;
                             }
 
 

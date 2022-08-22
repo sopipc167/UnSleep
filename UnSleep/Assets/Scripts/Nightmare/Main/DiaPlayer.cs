@@ -145,6 +145,7 @@ public class DiaPlayer : MonoBehaviour
             player.col.enabled = false;
             player.isStop = true;
             gome.isStart = false;
+            Debug.Log("player stop");
 
             //실행 조건 가져옴
             int[] conditions = textManager.ReturnDiaConditions(hit_Diaid[i]);

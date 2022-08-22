@@ -473,25 +473,25 @@ public class DiaEvent : MonoBehaviour
         switch (soundNum)
         {
             case 0:
-                Debug.Log("Sound0");
+                //Debug.Log("Sound0");
                 audioSource.panStereo = 1;
                 audioSource.volume = 0.3f;
                 audioSource.Play();
                 return;
             case 1:
-                Debug.Log("Sound1");
+                //Debug.Log("Sound1");
                 audioSource.panStereo = 1;
                 audioSource.volume = 0.7f;
                 audioSource.Play();
                 return;
             case 2:
-                Debug.Log("Sound2");
+                //Debug.Log("Sound2");
                 audioSource.panStereo = 0.7f;
                 audioSource.volume = 0.7f;
                 audioSource.Play();
                 return;
             default:
-                Debug.Log("Stop");
+                //Debug.Log("Stop");
                 audioSource.Stop();
                 return;
         }
