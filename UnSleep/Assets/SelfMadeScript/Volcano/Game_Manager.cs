@@ -131,11 +131,12 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
 
 
     public TextManager textManager;
+    public AudioClip volBGM;
 
     public void Start()
     {
         GameBoard = GameObject.Find("GameBoard");
-        SoundManager.Instance.PlayBGM("Clean and Dance - An Jone");
+        SoundManager.Instance.FadeInBGM(volBGM);
 
         Swap_List.Clear();
         if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
@@ -332,13 +333,18 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             }
             else if (gameboardint == 5)
             {
+                SoundManager.Instance.FadeOutBGM();
                 Dialogue_Proceeder.instance.AddCompleteCondition(43);
                 //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
                 textManager.Set_Dialogue_System();
                 puzzleClear.ClearPuzzle(SceneType.Mental, 10f);
             }
-            else 
+            else
+            {
+                SoundManager.Instance.FadeOutBGM();
                 puzzleClear.ClearPuzzle(SceneType.Mental, 5f);
+            }
+                
         }
         else
         {

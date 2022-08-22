@@ -166,7 +166,8 @@ public class CliffRemoveManager : MonoBehaviour
             textManager.Set_Dialogue_Goodbye();
             return;
         }
-            
+
+        SoundManager.Instance.FadeOutBGM();
         //conflict merge할때 여기 실수로 제꺼랑 스까해서 덮었네요 원상복구함
         clearCanvas.ClearPuzzle(SceneType.Mental, 1f);
     }

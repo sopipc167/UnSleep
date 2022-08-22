@@ -127,6 +127,7 @@ public class DiaInterActor : MonoBehaviour
     private IEnumerator GoToPuzzleCoroutine(string sceneName)
     {
         goToPuzzle.SetActive(true);
+        SoundManager.Instance.FadeOutBGM();
         //yield return new WaitForSeconds(1.7f);
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(sceneName);

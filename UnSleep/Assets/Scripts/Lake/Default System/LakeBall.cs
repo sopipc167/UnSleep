@@ -196,6 +196,8 @@ public class LakeBall : LakeMovement
 
         Stop();
 
+        SoundManager.Instance.FadeOutBGM();
+
         if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
         {
             if (Dialogue_Proceeder.instance.CurrentDiaID == 8032)

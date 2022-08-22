@@ -6722,6 +6722,7 @@ MonoBehaviour:
   fire: {fileID: 41632736}
   stage: {fileID: 1609673976}
   textManager: {fileID: 1160803971}
+  volBGM: {fileID: 8300000, guid: 1404dcab5057814488cf52119281a892, type: 3}
 --- !u!4 &579336557
 Transform:
   m_ObjectHideFlags: 0

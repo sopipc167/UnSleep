@@ -28,6 +28,7 @@ public class CaveDone : MonoBehaviour
 
     public void GotoNextc()
     {
+        SoundManager.Instance.FadeOutBGM();
         int CurEpiId = Dialogue_Proceeder.instance.CurrentEpiID;
         int CurDiaId = Dialogue_Proceeder.instance.CurrentDiaID;
 

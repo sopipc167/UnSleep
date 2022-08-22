@@ -153,18 +153,15 @@ public class TextManager : MonoBehaviour
         }
 
 
-
-
         //배경 전환
         if (DiaDic[Dia_Id].dialogues[0].BG != null)
             Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[0].BG);
 
-
-        SoundManager.Instance.FadeOutBGM();
-        if (DiaDic[Dia_Id].BGM != null)
+     
+        if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-        
 
+      
 
 
         if (!DiaDic.ContainsKey(Dia_Id-1)) //처음 시작 시
@@ -342,10 +339,15 @@ public class TextManager : MonoBehaviour
 
                                         
                                           //BGM 전환
-                                          if (DiaDic[Dia_Id].BGM != null)
-                                              SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-                                        
-
+                                          if (DiaDic[Dia_Id].BGM != null && DiaDic[Dia_Id].SceneNum == 1)
+                                           {
+                                            if (DiaDic[Dia_Id].BGM.Equals("stop"))
+                                                SoundManager.Instance.FadeOutBGM();
+                                            else
+                                                SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
+                                           }
+                                              
+                                  
                                       }
                                       else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
                                       {
@@ -408,13 +410,14 @@ public class TextManager : MonoBehaviour
                             dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                             if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 2) //스토리->정신세계
                             {
+                                SoundManager.Instance.FadeOutBGM();
                                 StartCoroutine(LoadStoryMental(SceneType.Mental));
                                 //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
                                 //SceneManager.LoadScene("Mental_World_Map");
                             }
                             else if (DiaDic[Dia_Id].SceneNum == 2 && DiaDic[Dia_Id + 1].SceneNum == 1) //정신세계(퍼즐)->스토리
                             {
-
+                                SoundManager.Instance.FadeOutBGM();
                                 StartCoroutine(LoadStoryMental(SceneType.Dialogue));
                                 //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
                                 //SceneManager.LoadScene("DialogueTest");
@@ -993,6 +996,9 @@ public class TextManager : MonoBehaviour
 
     IEnumerator LoadStoryMental(SceneType type)
     {
+        Increasediaindex = false;
+        yield return new WaitForSeconds(2f);
+
         if (type == SceneType.Mental)
             STEManager.BlinkClose();
         else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)
