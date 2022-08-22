@@ -79,7 +79,7 @@ public class DiaPlayer : MonoBehaviour
                     {
                         isOnce = false;
                     }
-                    if (!movie.isFramein)
+                    if (!movie.isFramein && !hit_info.OnlyOnce[0])
                         movie.MovieFrameIn();
                 }
                 else if (dia_hit_colliders[i].CompareTag("SceneOver"))
