@@ -263,6 +263,7 @@ public class Pages : MonoBehaviour
        
         if (Dialogue_Proceeder.instance != null)
         {
+            SoundManager.Instance.FadeOutBGM();
             Dialogue_Proceeder.instance.CurrentEpiID = cPage/2 -1 ;
             Dialogue_Proceeder.instance.SetCurrentDiaID();
             Dialogue_Proceeder.instance.InitEpi();

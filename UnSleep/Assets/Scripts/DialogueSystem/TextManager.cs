@@ -153,18 +153,15 @@ public class TextManager : MonoBehaviour
         }
 
 
-
-
         //배경 전환
         if (DiaDic[Dia_Id].dialogues[0].BG != null)
             Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[0].BG);
 
-
-        //SoundManager.Instance.FadeOutBGM();
-        if (DiaDic[Dia_Id].BGM != null)
+     
+        if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-        
 
+      
 
 
         if (!DiaDic.ContainsKey(Dia_Id-1)) //처음 시작 시
@@ -999,6 +996,9 @@ public class TextManager : MonoBehaviour
 
     IEnumerator LoadStoryMental(SceneType type)
     {
+        Increasediaindex = false;
+        yield return new WaitForSeconds(2f);
+
         if (type == SceneType.Mental)
             STEManager.BlinkClose();
         else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)
