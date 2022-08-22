@@ -153,15 +153,15 @@ public class TextManager : MonoBehaviour
         }
 
 
-
-
         //배경 전환
         if (DiaDic[Dia_Id].dialogues[0].BG != null)
             Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[0].BG);
 
-        if (DiaDic[Dia_Id].BGM != null)
+     
+        if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
 
+      
 
 
         if (!DiaDic.ContainsKey(Dia_Id-1)) //처음 시작 시
@@ -175,7 +175,7 @@ public class TextManager : MonoBehaviour
             //스토리 -> 정신세계 전환 시 시네마틱 인트로 재생
             if (DiaDic[Dia_Id - 1].SceneNum == 1 && DiaDic[Dia_Id].SceneNum == 2)
             {
-                GameObject.Find("Cinematic").transform.GetChild(0).gameObject.SetActive(true);
+                GameObject.Find("Cinematic").transform.GetChild(2).gameObject.SetActive(true);
             }
             //정신세계 -> 스토리 전환 시 눈뜨면서 시작
 
@@ -331,17 +331,23 @@ public class TextManager : MonoBehaviour
                                   {
                                       if (dp.Satisfy_Condition(DiaDic[Dia_Id + 1].Condition)) //씬 변경 없이 다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
                                       {
-                                          dp.CurrentDiaIndex = 0; //대사 인덱스 초기화화
+                                          dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                                           Dia_Id += 1; //다음 대화 묶음으로
 
 
                                           dp.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
 
+                                        
                                           //BGM 전환
-                                          if (DiaDic[Dia_Id].BGM != null)
-                                              SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-
-
+                                          if (DiaDic[Dia_Id].BGM != null && DiaDic[Dia_Id].SceneNum == 1)
+                                           {
+                                            if (DiaDic[Dia_Id].BGM.Equals("stop"))
+                                                SoundManager.Instance.FadeOutBGM();
+                                            else
+                                                SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
+                                           }
+                                              
+                                  
                                       }
                                       else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
                                       {
@@ -349,6 +355,18 @@ public class TextManager : MonoBehaviour
                                       }
                                   }
                               }
+                            else if (DiaDic[Dia_Id].SceneNum == 8)
+                            {
+                                // Nightmare 씬에서 대화 묶음 끝났을 때 처리가 필요하면 여기에 
+                                // 아마 층간소음에서는 대화 종료 후 현재 상황에 따라서 미니게임 진행 등을 시작하면 될 것
+
+                                // 아래 코드는 테이블 확인용 임시 코드.
+                                // 그냥 원래 스토리에서 진행되듯 넘어가는 코드입니다.
+                                // 층간 작업하실 때 지우고 쓰시면 됨. 
+                                Dia_Id++;
+                                dp.UpdateCurrentDiaID(Dia_Id);
+                                dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
+                            }
                             else //맵모드 + 동굴 + 7세까지 처리. 머지할때 잘 보고 하기
                             {
 
@@ -392,13 +410,14 @@ public class TextManager : MonoBehaviour
                             dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                             if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 2) //스토리->정신세계
                             {
+                                SoundManager.Instance.FadeOutBGM();
                                 StartCoroutine(LoadStoryMental(SceneType.Mental));
                                 //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
                                 //SceneManager.LoadScene("Mental_World_Map");
                             }
                             else if (DiaDic[Dia_Id].SceneNum == 2 && DiaDic[Dia_Id + 1].SceneNum == 1) //정신세계(퍼즐)->스토리
                             {
-
+                                SoundManager.Instance.FadeOutBGM();
                                 StartCoroutine(LoadStoryMental(SceneType.Dialogue));
                                 //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
                                 //SceneManager.LoadScene("DialogueTest");
@@ -471,6 +490,7 @@ public class TextManager : MonoBehaviour
         int LAYOUT = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange; //레이아웃 변화
         string CONTENT = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;//상호작용명(int가 될 수 있음)
         string SE = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].SE; //효과음
+        //string BGM = DiaDic[Dia_Id].BGM; // 배경음악 (스토리)
 
         UI_Objects.GetComponent<ChangeLayout>().LayoutChange(LAYOUT); //전달. 저쪽에서 알아서 할거임
 
@@ -505,7 +525,13 @@ public class TextManager : MonoBehaviour
                 SoundManager.Instance.PlaySE(SE);
 
         }
+        /*
+        if (BGM != null)
+        {
+            //SoundManager.Instance.PlayBGM(BGM);
 
+        }
+        */
 
         if (NAME.Equals(string.Empty)) //나레이션 -> 이름, 초상화 Off
         {
@@ -560,7 +586,7 @@ public class TextManager : MonoBehaviour
                 if (float.TryParse(NAME, out result)) //주요인물이면 +n 하여 우측 이미지로 접근. n은 emotion_cnt로 리턴 받음. Portrait 스크립트도 참고
                     Speaker2.sprite = PorDic[int.Parse(NAME.ToString())][EMOTION + emotion_cnt(int.Parse(NAME.ToString()))];
                 else
-                    Speaker2.sprite = PorDic[9999][EMOTION + 21]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
+                    Speaker2.sprite = PorDic[9999][EMOTION + 25]; //엑스트라에 더해지는 값은 엑스트라 이미지 총 개수. 늘어날때마다 수정해주기
 
 
                 showSpeaker2When1 = true; //스피커2에 이미지가 들어있으므로 회색처리해도 됨
@@ -970,6 +996,9 @@ public class TextManager : MonoBehaviour
 
     IEnumerator LoadStoryMental(SceneType type)
     {
+        Increasediaindex = false;
+        yield return new WaitForSeconds(2f);
+
         if (type == SceneType.Mental)
             STEManager.BlinkClose();
         else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)

@@ -131,11 +131,12 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
 
 
     public TextManager textManager;
+    public AudioClip volBGM;
 
     public void Start()
     {
         GameBoard = GameObject.Find("GameBoard");
-        //SoundManager.Instance.PlayBGM("Clean and Dance - An Jone");
+        SoundManager.Instance.FadeInBGM(volBGM);
 
         Swap_List.Clear();
         if (Dialogue_Proceeder.instance.CurrentEpiID == 19)
@@ -326,19 +327,24 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             if (gameboardint == 0)
             {
                 Dialogue_Proceeder.instance.AddCompleteCondition(41);
-                Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+                //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
                 Next.SetActive(true);
                 textManager.Set_Dialogue_System();
             }
             else if (gameboardint == 5)
             {
+                SoundManager.Instance.FadeOutBGM();
                 Dialogue_Proceeder.instance.AddCompleteCondition(43);
-                Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+                //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
                 textManager.Set_Dialogue_System();
                 puzzleClear.ClearPuzzle(SceneType.Mental, 10f);
             }
-            else 
+            else
+            {
+                SoundManager.Instance.FadeOutBGM();
                 puzzleClear.ClearPuzzle(SceneType.Mental, 5f);
+            }
+                
         }
         else
         {
@@ -359,6 +365,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     {
                         if (i == 2 && j == 2) //자기 자신인 경우 그냥 폭발
                         {
+                            if (Map[p, q].activeSelf == false)
+                                continue;
                             Map[p, q].GetComponent<BombBehavior>().IsActive = false;
                             Map[p, q].GetComponent<BombBehavior>().StartCoroutine("Blast"); 
                             gameboardArray[gameboardint, q, p] = 8;
@@ -449,7 +457,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     {
         while (Bomb_List.Count > 0) //폭탄 리스트가 빌때 까지
         {
-            SoundManager.Instance.PlaySE("boom");
+            SoundManager.Instance.PlaySE("Boom");
             Explode(Bomb_List[0].getObj().GetComponent<BombBehavior>().BombArr, (int)Bomb_List[0].getPos().x, (int)Bomb_List[0].getPos().y);//계속 Explode함수를 호출
             Bomb_List.RemoveAt(0); //폭탄하나 폭발 했으면 리스트에서 삭제
             yield return new WaitForSeconds(0.5f);//한박자 쉼
@@ -467,7 +475,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
 
     public void GotoNext()
     {
-        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+        //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
         SceneChanger.RestartScene();
     }
 }

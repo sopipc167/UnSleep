@@ -451,7 +451,7 @@ AudioSource:
   m_GameObject: {fileID: 145180965}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 7541804814219547774, guid: 5a0802918797cff4fab3f368be281031, type: 2}
   m_audioClip: {fileID: 8300000, guid: 45b786b3e08e0a84a9aa0981b7f99152, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -949,6 +949,50 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5703343810847793918, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
   m_PrefabInstance: {fileID: 189118169}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &351912781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 351912782}
+  - component: {fileID: 351912783}
+  m_Layer: 0
+  m_Name: BGM
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &351912782
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351912781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1431780522}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &351912783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351912781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c5ba3d907cc48a42bbd61b084192bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  caveBgm: {fileID: 8300000, guid: 7f2dc632f7c243c4cb5846c4de5812fd, type: 3}
 --- !u!114 &557623185 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3390130911827811946, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
@@ -2012,6 +2056,7 @@ Transform:
   - {fileID: 600203266}
   - {fileID: 2089577697}
   - {fileID: 145180971}
+  - {fileID: 351912782}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

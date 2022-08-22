@@ -172,6 +172,7 @@ public class Clear_Condition : MonoBehaviour
         else
         {
             puzzleClear.ClearPuzzle(SceneType.Mental, 0f);
+            SoundManager.Instance.FadeOutBGM();
 
         }
     }

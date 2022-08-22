@@ -120,14 +120,16 @@ public class DiaInterActor : MonoBehaviour
         }
 
 
-        //Debug.Log("실행 조건 불충분"); //디버깅용 
+        Debug.Log("실행 조건 불충분"); //디버깅용 
     }
 
 
     private IEnumerator GoToPuzzleCoroutine(string sceneName)
     {
         goToPuzzle.SetActive(true);
-        yield return new WaitForSeconds(1.7f);
+        SoundManager.Instance.FadeOutBGM();
+        //yield return new WaitForSeconds(1.7f);
+        yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(sceneName);
     }
 }

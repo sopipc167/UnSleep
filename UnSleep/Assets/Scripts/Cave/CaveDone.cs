@@ -28,11 +28,17 @@ public class CaveDone : MonoBehaviour
 
     public void GotoNextc()
     {
+        SoundManager.Instance.FadeOutBGM();
         int CurEpiId = Dialogue_Proceeder.instance.CurrentEpiID;
         int CurDiaId = Dialogue_Proceeder.instance.CurrentDiaID;
 
         if (CurEpiId == 19)
-            CurDiaId--; //잘 있어요만 전환 후 대사가 없음
+        {
+            //CurDiaId--; //잘 있어요만 전환 후 대사가 없음
+            //Dialogue_Proceeder.instance.AddCompleteCondition(8024);
+            //Dialogue_Proceeder.instance.CurrentDiaID--;
+        }
+            
 
         if (CurEpiId == 7)
         {

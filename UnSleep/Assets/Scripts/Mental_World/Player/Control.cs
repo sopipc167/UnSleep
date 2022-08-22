@@ -22,9 +22,12 @@ public class Control : MonoBehaviour
     private Ray ray;
 
     private Vector3 destination;
+    private float sinValue = 0f;
+    private float curY;
 
     private Animator animator;
     private IEnumerator coroutine = null;
+
 
     void Start()
     {
@@ -44,9 +47,8 @@ public class Control : MonoBehaviour
             ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 500f, canMoveMask))
             {
-                // 좌표 저장, 실제 충돌보다 5만큼 더 위에 있게
                 destination = hit.point;
-                destination.y += 5f;
+                curY = destination.y + 3f;
 
                 // 화면 기준 좌, 우 클릭에 따라 잠재우미 좌우반전
                 if (cam.ScreenToViewportPoint(Input.mousePosition).x < 0.5f)
@@ -69,8 +71,11 @@ public class Control : MonoBehaviour
 
     private IEnumerator MovePlayerCoroutine()
     {
+        // 1초에 2 ~ 4 움직이게
         do
         {
+            sinValue += Mathf.PI * 2 * Time.deltaTime;
+            destination.y = curY + Mathf.Sin(sinValue);
             transform.position = Vector3.MoveTowards(transform.position, destination, speed * Time.deltaTime);
             yield return null;
         } while (Vector3.Distance(transform.position, destination) > 0.1f && !actor.isInteracting);

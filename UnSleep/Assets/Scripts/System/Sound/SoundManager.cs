@@ -222,10 +222,9 @@ public class SoundManager : MonoBehaviour
         isMuted[(int)type] = true;
     }
 
-    public void Unmute(SoundType type, float originVolume)
+    public void Unmute(SoundType type)
     {
         isMuted[(int)type] = false;
-        SetVolume(type, originVolume);
     }
 
     #endregion
@@ -296,6 +295,7 @@ public class SoundManager : MonoBehaviour
             if (seSource == seSource1) seState = 1;
             else seState = 2;
         }
+       
         seSource.PlayOneShot(clip, volume);
     }
 
