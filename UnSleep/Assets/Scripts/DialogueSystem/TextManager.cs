@@ -365,6 +365,8 @@ public class TextManager : MonoBehaviour
                                 // 층간 작업하실 때 지우고 쓰시면 됨. 
                                 Dia_Id++;
                                 dp.UpdateCurrentDiaID(Dia_Id);
+                                Increasediaindex = false;
+                                DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기.
                                 dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                             }
                             else //맵모드 + 동굴 + 7세까지 처리. 머지할때 잘 보고 하기
