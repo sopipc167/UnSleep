@@ -137,11 +137,12 @@ public class TextManager : MonoBehaviour
     private void Start()
     {
         //씬 시작 시 Dialogue_Proceeder에게서 정보 받아온다
-
         Dia_Id = dp.CurrentDiaID; //현재 대화 묶음 id
-                                                              //Complete_Condition = dp.Dia_Complete_Condition; //현재 완수한 대화 조건
-
+       
         GoToPrevButton.interactable = false;
+
+
+
 
         if (dp.Satisfy_Condition(DiaDic[Dia_Id].Condition))
             Set_Dialogue_System();
@@ -152,23 +153,21 @@ public class TextManager : MonoBehaviour
 
         }
 
-
         //배경 전환
         if (DiaDic[Dia_Id].dialogues[0].BG != null)
             Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[0].BG);
 
-     
+
         if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
 
-      
 
 
-        if (!DiaDic.ContainsKey(Dia_Id-1)) //처음 시작 시
 
+        if (!DiaDic.ContainsKey(Dia_Id - 1)) //처음 시작 시
         {
-            if (!isSeven)
-                STEManager.WaitBlackOut(3f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
+            if (!isSeven && STEManager != null)
+                STEManager.WaitBlackOut(2f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
         }
         else //에피소드 중간에 씬 전환 후 첫 시작
         {
@@ -185,7 +184,11 @@ public class TextManager : MonoBehaviour
             }
         }
 
+    }
 
+
+    private void LateStart()
+    {
 
     }
 
@@ -225,7 +228,7 @@ public class TextManager : MonoBehaviour
 
 
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Increasediaindex)
         {
             if (goodbyeUI.activeSelf && !isGoodbye && dp.CurrentEpiID == 19)
             {
@@ -295,6 +298,7 @@ public class TextManager : MonoBehaviour
                         if (!DiaDic.ContainsKey(Dia_Id + 1)) //다음 대사가 없으면
                         {
                             dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
+                            dp.CurrentDiaIndex = 0;
                             SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID+1); //현재 에피소드 완료 저장
                             SceneManager.LoadScene("Diary");
                         }
@@ -997,10 +1001,14 @@ public class TextManager : MonoBehaviour
     IEnumerator LoadStoryMental(SceneType type)
     {
         Increasediaindex = false;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
 
         if (type == SceneType.Mental)
+        {
             STEManager.BlinkClose();
+            SoundManager.Instance.ChangeBGM("deepblue");
+        }
+            
         else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)
             STEManager.FadeIn();
 
@@ -1010,6 +1018,7 @@ public class TextManager : MonoBehaviour
 
         dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
         dp.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
+        Increasediaindex = true;
         SceneChanger.ChangeScene(type);
     }
 
