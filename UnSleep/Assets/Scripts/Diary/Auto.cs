@@ -37,6 +37,12 @@ public class Auto : MonoBehaviour
         }
     }
 
+    public void ending_AutoFilp()
+    {
+        AutoFlip = true;
+        StartCoroutine(FlipToEnd());
+    }
+
     public IEnumerator FlipToCurrentPage(float DelayTime, float AnimationFrame, float BtweenTime, int currentPage)
     {
         yield return new WaitForSeconds(DelayTime);
@@ -89,8 +95,9 @@ public class Auto : MonoBehaviour
                         StartCoroutine(FlipRTL(xc, xl, h, frameTime, dx));
                     yield return new WaitForSeconds(TimeBetweenPages);
                 }
-                break;
                 ControledBook.interactable = true;
+                break;
+                
             case FlipMode.LeftToRight:
                 while (ControledBook.currentPage > 0)
                 {
