@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     public BoxCollider2D Seven;
     public BoxCollider2D Noise;
 
+    public bool isAuto;
+
     void Start()
     {
         instance = this;
@@ -71,7 +73,7 @@ public class Player : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && !Ob_M.isFull  && !isStop)
+        if (Input.GetMouseButtonDown(0) && !Ob_M.isFull && !isStop)
         {
             TransTargetPos();
         }
@@ -89,7 +91,7 @@ public class Player : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, tmp, Time.deltaTime * speed_M);
 
         }
-        else if(!isSeven)
+        else if (!isSeven)
         {
             if (targetPos.y > -0.92f)
             {
@@ -104,16 +106,23 @@ public class Player : MonoBehaviour
             if (transform.position == targetPos)
             {
                 animator.SetBool("isMove", false);
+                if (isAuto)
+                {
+                    dia.moveEnd();
+                    isAuto = false;
+                }
             }
 
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         }
+
 
         if (Ob_M.isStopM)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(5.98f, 0.07f, 0), Time.deltaTime * speed);
         }
     }
+
 
     void TransTargetPos()
     {

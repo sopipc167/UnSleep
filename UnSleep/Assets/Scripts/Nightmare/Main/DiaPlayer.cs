@@ -16,7 +16,6 @@ public class DiaPlayer : MonoBehaviour
     public GameObject diaScene3;
     public GameObject diaScene4;
 
-    //public TextManager TM;
     public FadeInOut fade;
     public GameObject chair;
     public DiaEvent DE;
@@ -35,7 +34,7 @@ public class DiaPlayer : MonoBehaviour
         mainCam = Camera.main;
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
@@ -55,8 +54,9 @@ public class DiaPlayer : MonoBehaviour
                 if (hitted_object.transform.CompareTag("DiaInterClick")
                     && textManager.DiaUI.activeSelf == false
                     && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance
-                    && Vector3.Distance(transform.position, MousePosition) <= 11.5f)
+                    && Vector3.Distance(transform.position, MousePosition) <= 11.5f) {
                     DialogueInteraction(hit_info);
+                }
             }
         }
     }
@@ -79,23 +79,22 @@ public class DiaPlayer : MonoBehaviour
                     {
                         isOnce = false;
                     }
-                    if (!movie.isFramein && !hit_info.OnlyOnce[0])
-                        movie.MovieFrameIn();
+
                 }
                 else if (dia_hit_colliders[i].CompareTag("SceneOver"))
                 {
                     diaScene1.SetActive(false);
                     diaScene2.SetActive(true);
-                    DE.next_flase = 700;
-                    DE.next_true = 699;
+                    DE.next_flase = 701;
+                    DE.next_true = 700;
                     DE.ob[7].SetActive(true);
                     //player.transform.localPosition = new Vector3(-5.05f, -1.38f, 0);
                     chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
                 }
                 else if(dia_hit_colliders[i].tag == "SceneOver_2")
                 {
-                    DE.next_flase = 710;
-                    DE.next_true = 709;
+                    DE.next_flase = 708;
+                    DE.next_true = 707;
                     diaScene2.SetActive(false);
                     diaScene3.SetActive(true);
                 }
@@ -108,6 +107,23 @@ public class DiaPlayer : MonoBehaviour
                     DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
                     DE.chair.enabled = false;
                 }
+            }
+        }
+    }
+
+    public void Next(string now_name, string next_name)
+    {
+        for(int i = 0; i < dia_hit_colliders.Length; i++)
+        {
+            if(dia_hit_colliders[i].name == now_name)
+            {
+                dia_hit_colliders[i].gameObject.SetActive(false);
+                Debug.Log("now_name: " + i);
+            }
+            else if(dia_hit_colliders[i].name == next_name)
+            {
+                dia_hit_colliders[i].gameObject.SetActive(true);
+                Debug.Log("next_name: " + i);
             }
         }
     }
