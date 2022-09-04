@@ -169,8 +169,8 @@ public class SaveDataManager : MonoBehaviour
             int lastclear = LoadEpiProgress();
 
 
-            if (epi_num <= lastclear) // 이미 클리어한거 또 클리어한 경우
-                return;
+            //if (epi_num <= lastclear) // 이미 클리어한거 또 클리어한 경우
+            //    return;
             
             ep.progress = epi_num;
             Progress = epi_num;
