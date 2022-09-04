@@ -65,16 +65,6 @@ public class Pages : MonoBehaviour
             if (Dialogue_Proceeder.instance.End && !isStart)
             {
                 StartCoroutine(EndEffect());
-
-                /*
-                auto.Mode = FlipMode.RightToLeft;
-                cover.isBack = true;
-                Invoke("Flipping", 1);
-                isStart = true;
-                Invoke("StartTyping", 1);
-
-                Dialogue_Proceeder.instance.End = false;
-                */
             }
         }
     }
@@ -88,9 +78,6 @@ public class Pages : MonoBehaviour
         {
             int after;
             int targetEpi = cPage / 2 - 1;
-
-            pageText[0].text = "";
-            pageText[3].text = "";
 
 
             if (targetEpi % 2 == 0)
@@ -365,8 +352,21 @@ public class Pages : MonoBehaviour
 
 
         // 플립 끝날 때까지 대기
-        yield return StartCoroutine(auto.FlipToCurrentPage(DelayTime, AnimationFrame, BetweenTime, cPage));
+        //yield return StartCoroutine(auto.FlipToCurrentPage(DelayTime, AnimationFrame, BetweenTime, cPage));
         //Invoke("Flipping", 1);
+
+        int targetEpi = cPage / 2 - 1;
+
+        StartCoroutine(auto.FlipToCurrentPage(DelayTime, AnimationFrame, BetweenTime, cPage));
+        float autoPlayTime = 0.53f * (targetEpi);
+        yield return new WaitForSeconds(autoPlayTime);
+        Debug.Log("빈칸");
+
+        int pIdx = targetEpi % 2 == 0 ? 0 : 3;
+        pageText[pIdx].text = "";
+
+        yield return new WaitForSeconds(1f);
+        Debug.Log("출력");
 
 
         // 플립 끝나면 후일담 출력 시작

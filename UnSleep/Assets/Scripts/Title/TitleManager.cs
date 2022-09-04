@@ -7,24 +7,20 @@ using UnityEngine.UI;
 public class TitleManager : MonoBehaviour
 {
     public GameObject continueBtn;
+    public AudioClip titleBGM;
 
 
-    void Awake()
+    private void Start()
     {
-        if (!SaveDataManager.Instance.FileExist()) //세이브 파일 없으면  
+        SaveDataManager.Instance.LoadEpiProgress(); //세이브 파일 가져오기
+
+        if (SaveDataManager.Instance.Progress == 0) //세이브 파일 없으면  
         {
             continueBtn.GetComponent<Image>().color = new Color(1f, 1f, 1f, 0.5f);
             continueBtn.GetComponent<Button>().enabled = false;
         }
 
-        SaveDataManager.Instance.LoadEpiProgress(); //세이브 파일 가져오기
-       
-
-    }
-
-    private void Start()
-    {
-        SoundManager.Instance.PlayBGM("betterdays");
+        SoundManager.Instance.PlayBGM(titleBGM);
     }
 
 

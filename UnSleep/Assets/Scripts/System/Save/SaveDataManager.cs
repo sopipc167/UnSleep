@@ -48,6 +48,7 @@ public class SaveDataManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            Progress = LoadEpiProgress();
             DontDestroyOnLoad(this.gameObject);
         }
         else
@@ -70,7 +71,7 @@ public class SaveDataManager : MonoBehaviour
 
     private void Start()
     {
-        Progress = LoadEpiProgress();
+        
     }
 
     public void SaveSystemOption(float vm, float vb, float vs, bool mm, bool mb, bool ms, int g, int r, int s)
