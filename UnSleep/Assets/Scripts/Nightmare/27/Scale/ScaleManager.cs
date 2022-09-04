@@ -8,6 +8,7 @@ public class ScaleManager : MonoBehaviour
     [Header("참조")]
     public RelationshipManager manager;
     public Text scaleText;
+    private Animator ani;
 
     private ScaleRotation scaleRotation;
     private int weight = -10;
@@ -23,11 +24,13 @@ public class ScaleManager : MonoBehaviour
     }
 
     private readonly string unbalance = "불균형";
+    private readonly string balance = "균형";
 
     // Start is called before the first frame update
     void Awake()
     {
         scaleRotation = GetComponent<ScaleRotation>();
+        ani = GetComponent<Animator>();
     }
 
     public void ResetData()
@@ -59,10 +62,20 @@ public class ScaleManager : MonoBehaviour
 
         if (Weight == 0)
         {
-            //clear
-            manager.CharacterClear(manager.currentType);
-            manager.StartScenePause();
+            StartCoroutine(ClearCoroutine());
         }
+    }
+
+    private IEnumerator ClearCoroutine()
+    {
+        scaleText.text = balance;
+        ani.SetBool("end", true);
+        yield return new WaitForSeconds(0.5f);
+        scaleRotation.RotateScale(Weight, 1.5f);
+        yield return new WaitForSeconds(1.5f);
+        manager.CharacterClear(manager.currentType);
+        manager.StartScenePause();
+        ani.SetBool("end", false);
     }
 
     public void OnClickBackToA()
