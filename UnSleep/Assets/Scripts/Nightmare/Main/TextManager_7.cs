@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
-public class TextManager : MonoBehaviour
+public class TextManager_7 : MonoBehaviour
 {
+    public DiaEvent diaEvent;
+
     [Header("UI 위치")]
     public GameObject DiaUI; //대화UI
     public GameObject SelectUI; //선택지UI
@@ -106,7 +108,6 @@ public class TextManager : MonoBehaviour
     public MovieEffect movie;
     public int movie_cnt;
     public DiaPlayer dia_p;
-    public DiaEvent diaEvent;
 
     void Awake()
     {
@@ -140,7 +141,7 @@ public class TextManager : MonoBehaviour
         //씬 시작 시 Dialogue_Proceeder에게서 정보 받아온다
 
         Dia_Id = dp.CurrentDiaID; //현재 대화 묶음 id
-                                                              //Complete_Condition = dp.Dia_Complete_Condition; //현재 완수한 대화 조건
+                                  //Complete_Condition = dp.Dia_Complete_Condition; //현재 완수한 대화 조건
 
         GoToPrevButton.interactable = false;
 
@@ -158,14 +159,14 @@ public class TextManager : MonoBehaviour
         if (DiaDic[Dia_Id].dialogues[0].BG != null)
             Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[0].BG);
 
-     
+
         if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id].BGM != null)
             SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
 
-      
 
 
-        if (!DiaDic.ContainsKey(Dia_Id-1)) //처음 시작 시
+
+        if (!DiaDic.ContainsKey(Dia_Id - 1)) //처음 시작 시
 
         {
             if (!isSeven)
@@ -268,13 +269,10 @@ public class TextManager : MonoBehaviour
                         if (DiaUI.activeSelf && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
                             dp.CurrentDiaIndex++;
 
-
                         if (isSeven)
                         {
                             con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
-                            if(con != null)
-                                diaEvent.content = con;
-                            Debug.Log("con1: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
+                            Debug.Log("con1: " + con + "Dia_Id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaIndex);
                         }
 
 
@@ -299,7 +297,7 @@ public class TextManager : MonoBehaviour
                         if (!DiaDic.ContainsKey(Dia_Id + 1)) //다음 대사가 없으면
                         {
                             dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
-                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID+1); //현재 에피소드 완료 저장
+                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID + 1); //현재 에피소드 완료 저장
                             SceneManager.LoadScene("Diary");
                         }
 
@@ -320,45 +318,45 @@ public class TextManager : MonoBehaviour
 
                             if (DiaDic[Dia_Id].SceneNum == 1) //스토리모드
                             {
-                              if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
-                              {
-                                  //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록.
-                                  //선택지 개수를 동적으로 바꾼다면 수정해야 함
-                                  if (dp.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
-                                      Dia_Id++;
-                                  else
-                                      Dia_Id += 2;
-                                  dp.UpdateCurrentDiaID(Dia_Id);
-                                  SelectA = false;
-                                  }
-                                  else
-                                  {
-                                      if (dp.Satisfy_Condition(DiaDic[Dia_Id + 1].Condition)) //씬 변경 없이 다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
-                                      {
-                                          dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
-                                          Dia_Id += 1; //다음 대화 묶음으로
+                                if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
+                                {
+                                    //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록.
+                                    //선택지 개수를 동적으로 바꾼다면 수정해야 함
+                                    if (dp.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
+                                        Dia_Id++;
+                                    else
+                                        Dia_Id += 2;
+                                    dp.UpdateCurrentDiaID(Dia_Id);
+                                    SelectA = false;
+                                }
+                                else
+                                {
+                                    if (dp.Satisfy_Condition(DiaDic[Dia_Id + 1].Condition)) //씬 변경 없이 다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
+                                    {
+                                        dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
+                                        Dia_Id += 1; //다음 대화 묶음으로
 
 
-                                          dp.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
+                                        dp.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
 
-                                        
-                                          //BGM 전환
-                                          if (DiaDic[Dia_Id].BGM != null && DiaDic[Dia_Id].SceneNum == 1)
-                                           {
+
+                                        //BGM 전환
+                                        if (DiaDic[Dia_Id].BGM != null && DiaDic[Dia_Id].SceneNum == 1)
+                                        {
                                             if (DiaDic[Dia_Id].BGM.Equals("stop"))
                                                 SoundManager.Instance.FadeOutBGM();
                                             else
                                                 SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-                                           }
-                                              
-                                  
-                                      }
-                                      else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
-                                      {
-                                          Increasediaindex = false;
-                                      }
-                                  }
-                              }
+                                        }
+
+
+                                    }
+                                    else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
+                                    {
+                                        Increasediaindex = false;
+                                    }
+                                }
+                            }
                             else if (DiaDic[Dia_Id].SceneNum == 8)
                             {
                                 // Nightmare 씬에서 대화 묶음 끝났을 때 처리가 필요하면 여기에 
@@ -422,7 +420,8 @@ public class TextManager : MonoBehaviour
 
 
                             }
-                            else if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 9) {
+                            else if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 9)
+                            {
                                 StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
                             }
                             else // 그 밖의 경우에는 단순 대화 종료. (ex) 스토리 맵 -> 동굴 이동 전 대기 상태
@@ -442,11 +441,10 @@ public class TextManager : MonoBehaviour
 
     public void Get_Content()
     {
-        if (isSeven)
+        con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
+        if (isSeven && con != null)
         {
-            con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
-            if(con != null)
-                diaEvent.content = con;
+            diaEvent.content = con;
             Debug.Log("con3: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
         }
     }

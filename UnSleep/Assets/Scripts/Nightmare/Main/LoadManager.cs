@@ -10,25 +10,53 @@ public class LoadManager : MonoBehaviour
     public GameObject gome;
     public Gome gome_script;
     public Player player;
+    public DiaEvent DE;
+    public GameObject Scene1;
+    public GameObject Scene4;
+    public GameObject GameOver_749;
+
 
     void Start()
     {
+        Debug.Log("savePoint " + PlayerPrefs.GetInt("savePoint"));
+
+        
+
         if (PlayerPrefs.GetInt("isGameOver") == 1)
         {
-            Debug.Log("savePoint " + PlayerPrefs.GetInt("savePoint"));
-            //player.isSeven = true;
-            player.targetPos = playerPos[PlayerPrefs.GetInt("savePoint")].position;
-            player.transform.position = playerPos[PlayerPrefs.GetInt("savePoint")].position;
+            Scene1.SetActive(false);
+            player.isSeven = true;
+            player.targetPos = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
+            player.transform.position = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
             gome.SetActive(true);
-            gome.transform.eulerAngles = new Vector3(0, 0, 0);
             gome.transform.DOScaleX(-2.3f, 0.1f);
             gome.transform.DOScaleY(2.3f, 0.1f);
-            gome_script.targetPos = gomePos[PlayerPrefs.GetInt("savePoint")].position;
-            gome_script.transform.position = gomePos[PlayerPrefs.GetInt("savePoint")].position;
+            gome_script.targetPos = DE.gomePos[PlayerPrefs.GetInt("savePoint")].position;
+            gome_script.transform.position = DE.gomePos[PlayerPrefs.GetInt("savePoint")].position;
             player.isSeven = false;
-            PlayerPrefs.SetInt("isGameOver", 0);
+            if(PlayerPrefs.GetInt("savePoint") == 1)
+            {
+                DE.Dia[37].SetActive(true);
+                DE.Dia[38].SetActive(true);
+                player.transform.eulerAngles = new Vector3(0, 180, 0);
+                gome.transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if(PlayerPrefs.GetInt("savePoint") == 2)
+            {
+                Scene4.SetActive(true);
+                GameOver_749.SetActive(true);
+                player.transform.eulerAngles = new Vector3(0, 0, 0);
+                gome.transform.eulerAngles = new Vector3(0, 180, 0);
+            }
+            //DE.MovePoint = 2;
+        }
+        else if(PlayerPrefs.GetInt("isGameOver") == 2) 
+        { 
+
         }
 
+
+        PlayerPrefs.SetInt("isGameOver", 0);
     }
 
     void Update()
