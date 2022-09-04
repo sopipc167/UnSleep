@@ -1024,7 +1024,14 @@ public class TextManager : MonoBehaviour
         SceneChanger.ChangeScene(type);
     }
 
+    public Dictionary<int, DialogueEvent> getDiaDic()
+    {
+        return DiaDic;
+    }
 
-
+    public void StartLoadStoryMental()
+    {
+        StartCoroutine(LoadStoryMental(SceneType.Mental));
+    }
 
 }
