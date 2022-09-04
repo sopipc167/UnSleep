@@ -16,6 +16,7 @@ public class Epi6Direc : MonoBehaviour
         mwpuzzle = GameObject.Find("Cinematic").transform.GetChild(1).gameObject;
         fadeInOut = GameObject.Find("Canvas").transform.GetChild(1).GetComponent<FadeInOut>();
         fadePanel = mwpuzzle.transform.GetChild(6).GetChild(1).GetComponent<Image>();
+        
     }
 
     // Update is called once per frame
