@@ -541,6 +541,7 @@ MonoBehaviour:
   interactable: 1
   enableShadowEffect: 1
   currentPage: 0
+  pageFlipSE: {fileID: 8300000, guid: ab2a4c9ad3c10474296735a6ea38eed6, type: 3}
   INTRO: {fileID: 1884501981733173479}
   IMG1: {fileID: 2210820223938006731}
   IMG2: {fileID: 4206720485618532734}
@@ -3371,7 +3372,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1205495200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5075,7 +5076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2101930841
 RectTransform:
   m_ObjectHideFlags: 0

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FadeInOut : MonoBehaviour
 {
     public GameObject FADEINOUT;
-    public float FadeTime = 1f;
+    public float FadeTime = 2f;
     public Image FADE_panel;
     float start = 1f;
     float end = 0f;
