@@ -19,6 +19,9 @@ public class RelationshipManager : MonoBehaviour
     [Header("게임 화면 B")]
     public GameObject dialogueCanvas;
 
+    [Header("클리어 버튼")]
+    public GameObject claerButton;
+
 
     internal CharacterType currentType;
 
@@ -39,6 +42,9 @@ public class RelationshipManager : MonoBehaviour
         scaleTextCanvas.SetActive(false);
         selectedCanvas.gameObject.SetActive(false);
         dialogueCanvas.SetActive(false);
+
+        if (AllClear()) claerButton.SetActive(true);
+        Debug.Log("sd");
     }
 
     public void StartSceneA(Sprite sprite)
@@ -62,12 +68,12 @@ public class RelationshipManager : MonoBehaviour
     public void StartSceneB()
     {
         selectedCanvas.gameObject.SetActive(false);
-        dialogueCanvas.gameObject.SetActive(true);
+        dialogueCanvas.SetActive(true);
     }
 
     public void BackToSceneA()
     {
-        dialogueCanvas.gameObject.SetActive(false);
+        dialogueCanvas.SetActive(false);
         selectedCanvas.gameObject.SetActive(true);
     }
 
@@ -98,5 +104,17 @@ public class RelationshipManager : MonoBehaviour
             case CharacterType.Friends: return clearFlags[2];
             default: return false;
         }
+    }
+
+    private bool AllClear()
+    {
+        if (clearFlags[0] && clearFlags[1] && clearFlags[2]) return true;
+        else return false;
+    }
+
+    public void OnClickClear()
+    {
+        // 씬이동
+        
     }
 }

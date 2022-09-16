@@ -93,8 +93,8 @@ public class DiaPlayer : MonoBehaviour
                 }
                 else if(dia_hit_colliders[i].tag == "SceneOver_2")
                 {
-                    DE.next_flase = 708;
-                    DE.next_true = 707;
+                    DE.next_flase = 707;
+                    DE.next_true = 706;
                     diaScene2.SetActive(false);
                     diaScene3.SetActive(true);
                 }

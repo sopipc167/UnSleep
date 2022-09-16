@@ -56,8 +56,6 @@ public class PuzzleTutorial : MonoBehaviour
         ShowPage(_showPage - 1);
     }
 
-
-
     private void Awake()
     {
         GameObject[] content;

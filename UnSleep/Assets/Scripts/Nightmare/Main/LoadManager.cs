@@ -19,6 +19,7 @@ public class LoadManager : MonoBehaviour
     void Start()
     {
         Debug.Log("savePoint " + PlayerPrefs.GetInt("savePoint"));
+        Debug.Log("isGameOver " + PlayerPrefs.GetInt("isGameOver"));
 
         
 
@@ -38,6 +39,7 @@ public class LoadManager : MonoBehaviour
             {
                 DE.Dia[37].SetActive(true);
                 DE.Dia[38].SetActive(true);
+                DE.Dia[39].SetActive(true);
                 player.transform.eulerAngles = new Vector3(0, 180, 0);
                 gome.transform.eulerAngles = new Vector3(0, 0, 0);
             }
@@ -49,10 +51,6 @@ public class LoadManager : MonoBehaviour
                 gome.transform.eulerAngles = new Vector3(0, 180, 0);
             }
             //DE.MovePoint = 2;
-        }
-        else if(PlayerPrefs.GetInt("isGameOver") == 2) 
-        { 
-
         }
 
 

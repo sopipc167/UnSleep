@@ -125,11 +125,6 @@ public class DiaEvent : MonoBehaviour
             {
                 moveEnd();
             }
-            else if(EventNum == 10)
-            {
-                ob[8].SetActive(true);
-                ob[7].SetActive(false);
-            }
 
             TM.isEnd = false;
             isFirst = true;
@@ -153,9 +148,9 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "LightOff")
             {
-                Debug.Log("걍 잘까...?"); 
-                EventNum = 10;
-                content = null;
+                Debug.Log("Light흐림");
+                ob[8].SetActive(true);
+                ob[7].SetActive(false);
             }
             else if (content == "BearUp")
             {
@@ -265,8 +260,6 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "SceneOver")
             {
-                //next_flase = 712;
-                //next_true = 711;
                 dia_p.diaScene3.SetActive(false);
                 dia_p.diaScene4.SetActive(true);
                 Vector3 targetPos = player.transform.position;
@@ -289,6 +282,7 @@ public class DiaEvent : MonoBehaviour
                 Debug.Log("con: Eight");
                 PlayerPrefs.SetInt("savePoint", 2);
                 EventNum = 8;
+                content = null;
             }
             else if (content == "LightOn")
             {
@@ -313,6 +307,7 @@ public class DiaEvent : MonoBehaviour
                 PlayerPrefs.SetInt("savePoint", 1);
                 Dia[37].SetActive(true);
                 Dia[38].SetActive(true);
+                Dia[39].SetActive(true);
             }
             else if (content == "Gome")
             {
