@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FadeInOut : MonoBehaviour
 {
     public GameObject FADEINOUT;
-    public float FadeTime = 2f;
+    public float FadeTime;
     public Image FADE_panel;
     float start = 1f;
     float end = 0f;
@@ -77,12 +77,7 @@ public class FadeInOut : MonoBehaviour
             FADEINOUT.SetActive(true);
 
         }
-        StartCoroutine("fadein");
-
-        start = 1f;
-        end = 0f;
-        StartCoroutine("fadeout");
-
+        StartCoroutine("fadeinout");
     }
 
     public void Fade_Out()
@@ -112,6 +107,16 @@ public class FadeInOut : MonoBehaviour
         StartCoroutine("fadein");
     }
 
+    IEnumerator fadeinout()
+    {
+        start = 0f;
+        end = 1f;
+        yield return StartCoroutine("fadein");
+
+        start = 1f;
+        end = 0f;
+        yield return StartCoroutine("fadeout");
+    }
     IEnumerator fadeout()
     {
 
