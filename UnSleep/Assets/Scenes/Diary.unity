@@ -7402,7 +7402,7 @@ MonoBehaviour:
   isStart: 0
   book: {fileID: 176287270}
   auto: {fileID: 3828804443288343237}
-  DelayTime: 0
+  DelayTime: 1
   AnimationFrame: 40
   BetweenTime: 0.5
   pageText:
