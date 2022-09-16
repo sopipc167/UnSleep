@@ -10,6 +10,9 @@ public class NightMareManager : MonoBehaviour
     public GameObject player;
     public Player player_s;
 
+    //층간소음
+    public GameObject openning;
+
     //층간소음 Scene1
     public GameObject[] Scene1;
 
@@ -38,6 +41,9 @@ public class NightMareManager : MonoBehaviour
         //TestCode
         switch (Case)
         {
+            case 0:
+                startNoise();
+                break;
             case 1:
                 startScene1();
                 break;
@@ -63,6 +69,11 @@ public class NightMareManager : MonoBehaviour
                 endSeven();
                 break;
         }
+    }
+
+    public void startNoise()
+    {
+        openning.SetActive(true);
     }
 
 
