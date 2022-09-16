@@ -358,7 +358,7 @@ public class Pages : MonoBehaviour
         int targetEpi = cPage / 2 - 1;
 
         StartCoroutine(auto.FlipToCurrentPage(DelayTime, AnimationFrame, BetweenTime, cPage));
-        float autoPlayTime = 0.53f * (targetEpi);
+        float autoPlayTime = 0.53f * (targetEpi) + 1f; // 1페이지당 0.53f, 표지 딜레이 1f 
         yield return new WaitForSeconds(autoPlayTime);
         Debug.Log("빈칸");
 
