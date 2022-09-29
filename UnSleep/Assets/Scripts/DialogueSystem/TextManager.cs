@@ -612,11 +612,11 @@ public class TextManager : MonoBehaviour
         if (DiaDic[Dia_Id].SceneNum == 1)
         {
             float delay = (dp.CurrentDiaIndex == 0) ? 1.2f : 0f;
-            type_coroutine = StartCoroutine(OnType(0.05f, CONTEXT, delay));
+            type_coroutine = StartCoroutine(OnType(0.03f, CONTEXT, delay));
         }
         else
         {
-            type_coroutine = StartCoroutine(OnType(0.05f, CONTEXT));
+            type_coroutine = StartCoroutine(OnType(0.03f, CONTEXT));
 
         }
     }
