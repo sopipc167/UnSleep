@@ -9,6 +9,7 @@ public class Control : MonoBehaviour
     public GameObject Select_UI;
     public GameObject cinematic1;
     public GameObject cinematic2;
+    public GameObject Log_UI;
 
     [Header("잠재우미 속도 설정")]
     public float speed;
@@ -39,7 +40,7 @@ public class Control : MonoBehaviour
     void Update()
     {
         if (Dia_UI.activeSelf || Select_UI.activeSelf ||
-            cinematic1.activeSelf || cinematic2.activeSelf) return;
+            cinematic1.activeSelf || cinematic2.activeSelf || Log_UI.activeSelf) return;
 
         // 마우스 좌클릭 시
         if (Input.GetMouseButtonDown(0))
