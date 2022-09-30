@@ -24,6 +24,7 @@ public class NightmareOpenning : MonoBehaviour
             .OnComplete(() =>
            {
                transform.parent.gameObject.SetActive(false);
+               //NoiseManager.instance.isEndOpenning = true;
            });
 
     }

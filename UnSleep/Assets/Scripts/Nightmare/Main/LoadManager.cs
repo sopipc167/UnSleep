@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class LoadManager : MonoBehaviour
@@ -14,6 +15,7 @@ public class LoadManager : MonoBehaviour
     public GameObject Scene1;
     public GameObject Scene4;
     public GameObject GameOver_749;
+    public Image backGround;
 
 
     void Start()
@@ -26,6 +28,7 @@ public class LoadManager : MonoBehaviour
         if (PlayerPrefs.GetInt("isGameOver") == 1)
         {
             Scene1.SetActive(false);
+            backGround.enabled = false;
             player.isSeven = true;
             player.targetPos = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
             player.transform.position = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
