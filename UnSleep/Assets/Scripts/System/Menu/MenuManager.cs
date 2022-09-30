@@ -74,6 +74,8 @@ public class MenuManager : MonoBehaviour
     public void GoDiary()
     {
         PAUSE = !PAUSE;
+        if (PAUSE) MenuCanvas.SetActive(true);
+        else MenuCanvas.SetActive(false);
         SceneManager.LoadScene("Diary");
     }
 

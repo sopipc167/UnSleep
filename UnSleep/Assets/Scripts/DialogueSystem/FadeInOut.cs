@@ -6,11 +6,8 @@ using UnityEngine.UI;
 public class FadeInOut : MonoBehaviour
 {
     public GameObject FADEINOUT;
-    public float FadeTime = 1f;
+    public float FadeTime;
     public Image FADE_panel;
-    float start = 1f;
-    float end = 0f;
-    float time = 0f;
     bool isPlaying = false;
 
     private void Awake()
@@ -26,9 +23,6 @@ public class FadeInOut : MonoBehaviour
             FADEINOUT.SetActive(true);
 
         }
-        //FADE_panel = FADEINOUT.GetComponent<Image>();
-        start = 1f;
-        end = 0f;
 
 
         StartCoroutine("Blackout_Co", waitsec);
@@ -66,10 +60,7 @@ public class FadeInOut : MonoBehaviour
     {
         if (isPlaying == true) //중복방지 : 재생중이면 실행x
             return;
-        FADE_panel = FADEINOUT.GetComponent<Image>();
-
-        start = 0f;
-        end = 1f;
+        //FADE_panel = FADEINOUT.GetComponent<Image>();
 
 
         if (FADEINOUT.activeSelf == false)
@@ -77,18 +68,11 @@ public class FadeInOut : MonoBehaviour
             FADEINOUT.SetActive(true);
 
         }
-        StartCoroutine("fadein");
-
-        start = 1f;
-        end = 0f;
-        StartCoroutine("fadeout");
-
+        StartCoroutine("fadeinout");
     }
 
     public void Fade_Out()
     {
-        start = 1f;
-        end = 0f;
 
         if (FADEINOUT.activeSelf == false)
         {
@@ -100,8 +84,6 @@ public class FadeInOut : MonoBehaviour
 
     public void Fade_In()
     {
-        start = 0f;
-        end = 1f;
 
 
         if (FADEINOUT.activeSelf == false)
@@ -112,11 +94,21 @@ public class FadeInOut : MonoBehaviour
         StartCoroutine("fadein");
     }
 
+    IEnumerator fadeinout()
+    {
+     
+        yield return StartCoroutine("fadein");
+
+        yield return StartCoroutine("fadeout");
+    }
+
     IEnumerator fadeout()
     {
 
         isPlaying = true;
-        time = 0f;
+        float time = 0f;
+        float start = 1f;
+        float end = 0f;
         Color color = FADE_panel.color;
         color.a = Mathf.Lerp(start, end, time);
 
@@ -138,7 +130,9 @@ public class FadeInOut : MonoBehaviour
     IEnumerator fadein()
     {
         isPlaying = true;
-        time = 0f;
+        float time = 0f;
+        float start = 0f;
+        float end = 1f;
         Color color = FADE_panel.color;
         color.a = Mathf.Lerp(start, end, time);
         

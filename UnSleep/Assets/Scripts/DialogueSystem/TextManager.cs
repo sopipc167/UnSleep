@@ -608,7 +608,17 @@ public class TextManager : MonoBehaviour
         if (type_coroutine != null)
             StopCoroutine(type_coroutine);
         LineText.text = "";
-        type_coroutine = StartCoroutine(OnType(0.05f, CONTEXT));
+
+        if (DiaDic[Dia_Id].SceneNum == 1)
+        {
+            float delay = (dp.CurrentDiaIndex == 0) ? 1.2f : 0f;
+            type_coroutine = StartCoroutine(OnType(0.03f, CONTEXT, delay));
+        }
+        else
+        {
+            type_coroutine = StartCoroutine(OnType(0.03f, CONTEXT));
+
+        }
     }
 
     public void CombackfromDnI()
@@ -854,8 +864,10 @@ public class TextManager : MonoBehaviour
     }
 
 
-    IEnumerator OnType(float interval, string Line)
+    IEnumerator OnType(float interval, string Line, float delay = 0f)
     {
+        yield return new WaitForSeconds(delay);
+
         isTyping = true;
         LineText.text = "";
 

@@ -95,11 +95,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: e7050000
+  Obj_Diaid: e6050000
   OnlyOnce: 01
   Interaction_distance: 15
   isChangeScene: 0
   ChangeSceneName: 
+  isNext: 0
 --- !u!135 &2006674238246271764
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -226,6 +227,7 @@ MonoBehaviour:
   Interaction_distance: 4
   isChangeScene: 0
   ChangeSceneName: 
+  isNext: 0
 --- !u!1 &1670557377053002228
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +363,7 @@ MonoBehaviour:
   Interaction_distance: 25
   isChangeScene: 0
   ChangeSceneName: 
+  isNext: 0
 --- !u!135 &6364808023371005121
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -469,11 +472,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: e6050000
+  Obj_Diaid: e5050000
   OnlyOnce: 01
   Interaction_distance: 30
   isChangeScene: 0
   ChangeSceneName: 
+  isNext: 0
 --- !u!135 &617693633804255924
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -600,3 +604,4 @@ MonoBehaviour:
   Interaction_distance: 25
   isChangeScene: 0
   ChangeSceneName: 
+  isNext: 0

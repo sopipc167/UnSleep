@@ -21,6 +21,7 @@ public class Book_test : MonoBehaviour
     public bool interactable = true;
     public bool enableShadowEffect = true;
     public int currentPage = 0;
+    public AudioClip pageFlipSE;
 
     public int TotalPageCount
     {
@@ -437,7 +438,7 @@ public class Book_test : MonoBehaviour
         Mask_L.transform.SetAsFirstSibling();
         if (enableShadowEffect) Shadow.gameObject.SetActive(true);
         UpdateBookRTLToPoint(f);
-
+        SoundManager.Instance.PlaySE(pageFlipSE);
         Debug.Log("DragRightPageToPoint_END");
     }
     public void OnMouseDragRightPage()
@@ -515,7 +516,7 @@ public class Book_test : MonoBehaviour
         Mask_R.transform.SetAsFirstSibling();
         if (enableShadowEffect) ShadowLTR.gameObject.SetActive(true);
         UpdateBookLTRToPoint(f);
-
+        SoundManager.Instance.PlaySE(pageFlipSE);
         Debug.Log("DragLeftPageToPoint_END");
     }
     public void OnMouseDragLeftPage()
@@ -567,6 +568,7 @@ public class Book_test : MonoBehaviour
         Right.transform.SetParent(BookPanel.transform, true);
         RightNext.transform.SetParent(BookPanel.transform, true);
         Debug.Log("FLIP ->" + currentPage);
+        
         UpdateImages();
         Shadow.gameObject.SetActive(false);
         ShadowLTR.gameObject.SetActive(false);
@@ -594,6 +596,7 @@ public class Book_test : MonoBehaviour
             //Debug.Log("epi: " + epiID[epiIndex]);
         }
         Debug.Log("Flip_END");
+        
     }
     public void TweenBack()
     {
