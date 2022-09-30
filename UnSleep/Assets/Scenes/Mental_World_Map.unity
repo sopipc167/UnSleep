@@ -19082,7 +19082,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 2312
+      value: 2014
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -19102,7 +19102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled
@@ -49159,7 +49159,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468922088}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1468922090
 Camera:
   m_ObjectHideFlags: 0
@@ -49522,6 +49522,7 @@ GameObject:
   - component: {fileID: 1475587912}
   - component: {fileID: 1475587917}
   - component: {fileID: 1475587911}
+  - component: {fileID: 1475587913}
   m_Layer: 0
   m_Name: JamJammy
   m_TagString: Player
@@ -49580,6 +49581,14 @@ MonoBehaviour:
   canMoveMask:
     serializedVersion: 2
     m_Bits: 16384
+--- !u!81 &1475587913
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475587909}
+  m_Enabled: 1
 --- !u!4 &1475587914
 Transform:
   m_ObjectHideFlags: 0
@@ -71157,63 +71166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1795709018
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580988, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3654961274012580989, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
-      propertyPath: m_Name
-      value: Trigger5
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 282506ce658539e4da3b1024eb40ff3b, type: 3}
 --- !u!1001 &1805029942
 PrefabInstance:
   m_ObjectHideFlags: 0
