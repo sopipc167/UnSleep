@@ -410,7 +410,8 @@ public class Book_test : MonoBehaviour
             bookPages[currentPage].rectTransform.pivot = new Vector2(0, 0);
             bookPages[currentPage].transform.position = Left.transform.position;
         }
-        Left.transform.SetAsFirstSibling(); 
+        Left.transform.SetAsFirstSibling();
+
 
         Right.gameObject.SetActive(true);
         Right.transform.position = RightNext.transform.position;
@@ -686,6 +687,7 @@ public class Book_test : MonoBehaviour
         Debug.Log("TweenTo_END");
         drag = false;
         auto.isFlipping = false;
+        pages.transform.SetAsFirstSibling();
         RightSpot.transform.SetAsLastSibling();
         LeftSpot.transform.SetAsLastSibling();
     }
