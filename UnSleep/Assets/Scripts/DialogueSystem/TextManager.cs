@@ -108,6 +108,8 @@ public class TextManager : MonoBehaviour
     public DiaPlayer dia_p;
     public DiaEvent diaEvent;
 
+    public List<int> dia_test;
+
     void Awake()
     {
         // Dialogue_Proceeder 사용을 편리하게 하기 위해
@@ -137,13 +139,11 @@ public class TextManager : MonoBehaviour
 
     private void Start()
     {
+
         //씬 시작 시 Dialogue_Proceeder에게서 정보 받아온다
         Dia_Id = dp.CurrentDiaID; //현재 대화 묶음 id
-       
+
         GoToPrevButton.interactable = false;
-
-
-
 
         if (dp.Satisfy_Condition(DiaDic[Dia_Id].Condition))
             Set_Dialogue_System();

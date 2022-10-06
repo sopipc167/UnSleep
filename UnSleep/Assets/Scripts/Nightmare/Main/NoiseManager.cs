@@ -14,6 +14,7 @@ public class NoiseManager : MonoBehaviour
     {
         instance = this;
         Dialogue_Proceeder.instance.UpdateCurrentEpiID(6);
+        Dialogue_Proceeder.instance.UpdateCurrentDiaID(2001);
     }
 
 
