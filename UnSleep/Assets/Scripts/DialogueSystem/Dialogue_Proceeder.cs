@@ -198,6 +198,6 @@ public class Dialogue_Proceeder : MonoBehaviour
     {
 
         if (CurrentEpiID == 7 &&(id == 2009 || id == 2010))
-            Complete_Condition.Add(777);
+            Complete_Condition.Add(7);
     }
 }
