@@ -27,7 +27,6 @@ public class DragManager : MonoBehaviour
     public bool isSnake;
     int k = 0;
 
-
     void Start()
     {
        for(int i = 0; i < 6; i++)
@@ -74,6 +73,16 @@ public class DragManager : MonoBehaviour
         {
             StartCoroutine(Falling());
         }
+    }
+
+    public void GameSetting(bool ray)
+    {
+        for(int i = 0; i < it.Length; i++)
+        {
+            it[i].raycastTarget = ray;
+        }
+        hand.raycastTarget = ray;
+        native.raycastTarget = ray;
     }
 
     IEnumerator Falling()
@@ -196,6 +205,8 @@ public class DragManager : MonoBehaviour
     public void changeState()
     {
         hand.sprite = handState[state];
+        if(state == 3)
+            StartCoroutine(NoiseManager.instance.GameClear());
     }
 
     public void healing()

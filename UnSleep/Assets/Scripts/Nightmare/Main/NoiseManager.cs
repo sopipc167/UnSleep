@@ -1,45 +1,63 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NoiseManager : MonoBehaviour
 {
     static public NoiseManager instance;
-    public bool isEndOpenning;
     public TextManager TM;
+    public string con;
 
-    public int[] diaGroup;
+    public DragManager DM;
+    public Image backGround;
+
+    public NightMareManager NM;
 
     void Start()
     {
         instance = this;
         Dialogue_Proceeder.instance.UpdateCurrentEpiID(6);
         Dialogue_Proceeder.instance.UpdateCurrentDiaID(2001);
+        TM.DiaUI.SetActive(true);
+        TM.Increasediaindex = true;
     }
 
 
     void Update()
     {
-        if (isEndOpenning)
+        if(con == "BackGround_On")
         {
-            isEndOpenning = false;
-            StartDia(diaGroup[0]);
+            backGround.enabled = true;
         }
-
-
+        else if(con == "BackGround_Off")
+        {
+            backGround.enabled = false;
+        }
+        else if(con == "GameStart_1")
+        {
+            DM.GameSetting(true);
+            con = null;
+        }
+        else if(con == "GameStart_2")
+        {
+            StartCoroutine(GameStart(2, 3));
+        }
     }
 
-    public void StartDia(int diaID)
+    IEnumerator GameStart(int lastScene, int currentScene)
     {
-        int[] conditions = TM.ReturnDiaConditions(diaID);
+        NM.Case = lastScene;
+        //페이드인아웃
+        yield return new WaitForSeconds(0.5f);
+        NM.Case = currentScene;
+    }
 
-        if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
-        {
-            Dialogue_Proceeder.instance.UpdateCurrentDiaID(diaID);
-            TM.SetDiaInMap();
-            TM.Increasediaindex = true;
-
-            return;
-        }
+    public IEnumerator GameClear()
+    {
+        DM.GameSetting(false);
+        yield return new WaitForSeconds(0.5f);
+        TM.DiaUI.SetActive(true);
+        TM.Increasediaindex = true;
     }
 }

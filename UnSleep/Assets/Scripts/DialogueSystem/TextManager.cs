@@ -108,7 +108,7 @@ public class TextManager : MonoBehaviour
     public DiaPlayer dia_p;
     public DiaEvent diaEvent;
 
-    public List<int> dia_test;
+    public bool isNoise;
 
     void Awake()
     {
@@ -272,11 +272,16 @@ public class TextManager : MonoBehaviour
                             dp.CurrentDiaIndex++;
 
 
-                        if (isSeven)
+                        if (isSeven || isNoise)
                         {
                             con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
-                            if(con != null)
-                                diaEvent.content = con;
+                            if (con != null)
+                            {
+                                if (isSeven)
+                                    diaEvent.content = con;
+                                else
+                                    NoiseManager.instance.con = con;
+                            }
                             Debug.Log("con1: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
                         }
 
@@ -446,12 +451,17 @@ public class TextManager : MonoBehaviour
 
     public void Get_Content()
     {
-        if (isSeven)
+        if (isSeven || isNoise)
         {
             con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
-            if(con != null)
-                diaEvent.content = con;
-            Debug.Log("con3: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
+            if (con != null)
+            {
+                if (isSeven)
+                    diaEvent.content = con;
+                else
+                    NoiseManager.instance.con = con;
+            }
+            Debug.Log("con3: " + con);
         }
     }
 
