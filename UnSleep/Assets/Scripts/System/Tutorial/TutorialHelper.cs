@@ -28,9 +28,15 @@ public class TutorialHelper : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        Debug.Log(Dialogue_Proceeder.instance.CurrentEpiID);
+        Debug.Log(ID);
+
         // 재시작으로 인한 씬이동은 무시한다.
-        if (ID == SceneManager.GetActiveScene().buildIndex) return;
-        ID = SceneManager.GetActiveScene().buildIndex;
+        if (ID == SceneManager.GetActiveScene().buildIndex * Dialogue_Proceeder.instance.CurrentEpiID) return;
+        ID = SceneManager.GetActiveScene().buildIndex * Dialogue_Proceeder.instance.CurrentEpiID;
+
+        Debug.Log(ID);
 
         // 만약 새로운 정보가 추가됐다면, 퍼즐 처음부터 정보를 띄운다.
         int idx = 0;

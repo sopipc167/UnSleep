@@ -9,6 +9,8 @@ public class Control : MonoBehaviour
     public GameObject Select_UI;
     public GameObject cinematic1;
     public GameObject cinematic2;
+    public GameObject Log_UI;
+    public GameObject goToPuzzle;
     public ParticleSystem clickParticle;
 
     [Header("밟기 가능 레이어마스크")]
@@ -38,7 +40,7 @@ public class Control : MonoBehaviour
 
     void Update()
     {
-        if (Dia_UI.activeSelf || Select_UI.activeSelf ||
+        if (Dia_UI.activeSelf || Select_UI.activeSelf || goToPuzzle.activeSelf ||
             cinematic1.activeSelf || cinematic2.activeSelf || Log_UI.activeSelf) return;
 
         // 마우스 좌클릭 시
