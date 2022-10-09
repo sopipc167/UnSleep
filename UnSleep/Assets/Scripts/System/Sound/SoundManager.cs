@@ -48,21 +48,18 @@ public class SoundManager : MonoBehaviour
     public AudioSource seSource1;
     public AudioSource seSource2;
     private AudioSource seSource;
+
     private int seState = 0;
 
-    private readonly bool[] isMuted = { false, false, false };
     private IEnumerator bgmCoroutine;
 
-    //bgm
+    private bool[] isMute = { false, false, false };
+
+    // bgm
     private bool isChanging = false;
 
-    //se
+    // se
     private readonly Dictionary<string, AudioClip> seDic = new Dictionary<string, AudioClip>();
-
-    void Start()
-    {
-        // 믹서 볼륨 세팅
-    }
 
 
     public void Clear()
@@ -70,21 +67,17 @@ public class SoundManager : MonoBehaviour
         seDic.Clear();
     }
 
-    //BGM
+    // BGM
     #region BGM
 
     public void PlayBGM(AudioClip clip, float volume = 1f)
     {
         if (clip == null) return;
-
+        
         StopAllCoroutines();
         bgmSource.volume = volume;
 
-        if (bgmSource.isPlaying)
-        {
-            bgmSource.Stop();
-        }
-
+        if (bgmSource.isPlaying) bgmSource.Stop();
         bgmSource.clip = clip;
         bgmSource.Play();
     }
@@ -97,11 +90,7 @@ public class SoundManager : MonoBehaviour
         StopAllCoroutines();
         bgmSource.volume = volume;
 
-        if (bgmSource.isPlaying)
-        {
-            bgmSource.Stop();
-        }
-
+        if (bgmSource.isPlaying) bgmSource.Stop();
         bgmSource.clip = currentClip;
         bgmSource.Play();
     }
@@ -122,18 +111,12 @@ public class SoundManager : MonoBehaviour
 
     public void PauseBGM()
     {
-        if (bgmSource.isPlaying)
-        {
-            bgmSource.Pause();
-        }
+        if (bgmSource.isPlaying) bgmSource.Pause();
     }
 
     public void UnPauseBGM()
     {
-        if (!bgmSource.isPlaying)
-        {
-            bgmSource.UnPause();
-        }
+        if (!bgmSource.isPlaying) bgmSource.UnPause();
     }
 
     public void FadeOutBGM(float volume = 0.001f, float delay = 5f)
@@ -145,6 +128,7 @@ public class SoundManager : MonoBehaviour
 
     public void FadeInBGM(AudioClip clip, float volume = 1f, float delay = 5f)
     {
+        if (bgmSource.clip == clip) return;
         if (bgmCoroutine != null) StopCoroutine(bgmCoroutine);
         PlayBGM(clip, 0f);
         bgmCoroutine = FadeInBGMCoroutine(delay, volume);
@@ -195,36 +179,40 @@ public class SoundManager : MonoBehaviour
 
     public void SetVolume(SoundType type, float volume)
     {
-        if (isMuted[(int)type]) return;
-
-        string parameter = string.Empty;
-        switch (type)
-        {
-            case SoundType.Master:
-                parameter = "Master";
-                break;
-            case SoundType.BGM:
-                parameter = "BGM";
-                break;
-            case SoundType.SE:
-                parameter = "SE";
-                break;
-            default:
-                break;
-        }
         if (volume < 0.001f) volume = 0.00000001f;
-        mainMixer.SetFloat(parameter, Mathf.Log10(volume) * 20);
+        mainMixer.SetFloat(type.ToString(), Mathf.Log10(volume) * 20);
     }
 
-    public void SetMute(SoundType type)
+    public void SetMute(SoundType type, bool isOn)
     {
-        SetVolume(type, 0f);
-        isMuted[(int)type] = true;
-    }
+        isMute[(int)type] = isOn;
 
-    public void Unmute(SoundType type)
-    {
-        isMuted[(int)type] = false;
+        if (type != SoundType.SE)
+        {
+            if (isMute[(int)SoundType.Master] || isMute[(int)SoundType.BGM])
+            {
+                bgmSource.mute = true;
+                bgmSource.Stop();
+            }
+            else
+            {
+                bgmSource.mute = false;
+                bgmSource.Play();
+            }
+        }
+        if (type != SoundType.BGM)
+        {
+            if (isMute[(int)SoundType.Master] || isMute[(int)SoundType.SE])
+            {
+                seSource1.mute = true;
+                seSource2.mute = true;
+            }
+            else
+            {
+                seSource1.mute = false;
+                seSource2.mute = false;
+            }
+        }
     }
 
     #endregion
@@ -295,7 +283,7 @@ public class SoundManager : MonoBehaviour
             if (seSource == seSource1) seState = 1;
             else seState = 2;
         }
-       
+
         seSource.PlayOneShot(clip, volume);
     }
 

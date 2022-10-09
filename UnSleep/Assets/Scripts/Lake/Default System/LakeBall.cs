@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LakeBall : LakeMovement
 {
-    [Header("임시데이터")]
+    [Header("테스트용 임시데이터")]
     public GameObject temp;
     public GameObject ButtonCanvas;
     public GameObject MemoCanvas;

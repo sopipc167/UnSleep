@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [System.Serializable]
 public class TutorialInfo
@@ -28,8 +29,8 @@ public class TutorialHelper : MonoBehaviour
     void Start()
     {
         // 재시작으로 인한 씬이동은 무시한다.
-        if (ID == Dialogue_Proceeder.instance.CurrentEpiID) return;
-        ID = Dialogue_Proceeder.instance.CurrentEpiID;
+        if (ID == SceneManager.GetActiveScene().buildIndex) return;
+        ID = SceneManager.GetActiveScene().buildIndex;
 
         // 만약 새로운 정보가 추가됐다면, 퍼즐 처음부터 정보를 띄운다.
         int idx = 0;
@@ -59,6 +60,14 @@ public class TutorialHelper : MonoBehaviour
                 break;
             }
             ++idx;
+        }
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            HowToPuzzle();
         }
     }
 
