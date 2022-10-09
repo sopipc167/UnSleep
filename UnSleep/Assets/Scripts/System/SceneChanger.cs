@@ -8,18 +8,19 @@ using UnityEngine.SceneManagement;
 [SerializeField]
 public enum SceneType
 {
-    Volcano,
-    Dialogue,
-    Mental,
-    Clock,
-    Diary,
-    Lake,
-    Cave,
-    Cliff,
+    None = -1,
     Title,
     Prologue,
+    Diary,
+    Dialogue,
+    Mental,
+    Lake,
+    Volcano,
+    ClockTower,
     Nightmare,
-    Nightmare27
+    Nightmare27,
+    Cave,
+    Cliff,
 }
 
 public class SceneChanger
@@ -38,11 +39,11 @@ public class SceneChanger
             case SceneType.Volcano: return "Volcano";
             case SceneType.Dialogue: return "DialogueTest";
             case SceneType.Mental: return "Mental_World_Map";
-            case SceneType.Clock: return "ClockTower";
+            case SceneType.ClockTower: return "ClockTower";
             case SceneType.Diary: return "Diary";
             case SceneType.Lake: return "Lake";
-            case SceneType.Cave: return "Cave2";
-            case SceneType.Cliff: return "Cliff2";
+            case SceneType.Cave: return "Cave";
+            case SceneType.Cliff: return "Cliff";
             case SceneType.Title: return "Title";
             case SceneType.Prologue: return "Prologue";
             case SceneType.Nightmare: return "Nightmare";

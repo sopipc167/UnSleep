@@ -9,6 +9,7 @@ public class ShowLakeMovement : MonoBehaviour
     public BallManager ballManager;
     public Image[] buttons;
     public Color changeColor;
+    private Color defaultColor = new Color(0.1647059f, 0.1647059f, 0.1647059f);
 
     private Vector3 bPos;
     private Quaternion bRot;
@@ -50,7 +51,7 @@ public class ShowLakeMovement : MonoBehaviour
 
         foreach (var item in buttons)
         {
-            item.color = Color.white;
+            item.color = defaultColor;
         }
 
         ball.transform.localPosition = bPos;
@@ -76,23 +77,23 @@ public class ShowLakeMovement : MonoBehaviour
             foreach (var item in buttons)
             {
                 // 버튼 애니메이션
-                item.color = Color.white;
-                tempColor = Color.white - changeColor;
+                item.color = defaultColor;
+                tempColor = changeColor - defaultColor;
                 tempColor /= 0.7f;
 
-                while (item.color.b > changeColor.b)
-                {
-                    item.color -= tempColor * Time.deltaTime;
-                    yield return null;
-                }
-                item.color = changeColor;
-
-                while (item.color.b < 0.99f)
+                while (changeColor.r - item.color.r > 0.01f)
                 {
                     item.color += tempColor * Time.deltaTime;
                     yield return null;
                 }
-                item.color = Color.white;
+                item.color = changeColor;
+
+                while (item.color.r - defaultColor.r > 0.01f)
+                {
+                    item.color -= tempColor * Time.deltaTime;
+                    yield return null;
+                }
+                item.color = defaultColor;
 
                 // 움직임
                 buttonType = item.gameObject.name[2];

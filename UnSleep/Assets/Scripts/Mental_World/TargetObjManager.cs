@@ -31,26 +31,28 @@ public class TargetObjManager : MonoBehaviour
         SetTarget(Dialogue_Proceeder.instance.CurrentPuzzle);
     }
 
-    public void SetTarget(string targetName)
+    public void SetTarget(SceneType target)
     {
         TargetObj targetObj;
-        switch (targetName)
+        switch (target)
         {
-            case "Cave":
+            case SceneType.Cave:
                 targetObj = objs[0];
                 break;
-            case "ClockTower":
+            case SceneType.ClockTower:
                 targetObj = objs[1];
                 break;
-            case "Lake":
+            case SceneType.Lake:
                 targetObj = objs[2];
                 break;
-            case "Cliff":
+            case SceneType.Cliff:
                 targetObj = objs[3];
                 break;
-            default:
+            case SceneType.Volcano:
                 targetObj = objs[4];
                 break;
+            default:
+                return;
         }
         targetObj.SetTarget(deltaLight, maxVal, minVal);
     }

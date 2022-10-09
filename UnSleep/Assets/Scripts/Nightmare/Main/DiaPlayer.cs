@@ -135,7 +135,7 @@ public class DiaPlayer : MonoBehaviour
 
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
-            SceneManager.LoadScene(hit.ChangeSceneName);
+            SceneChanger.ChangeScene(hit.sceneType);
         }
 
         //Debug.Log("상호작용 대화 실행");

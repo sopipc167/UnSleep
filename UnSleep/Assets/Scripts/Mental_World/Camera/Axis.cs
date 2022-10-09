@@ -10,6 +10,7 @@ public class Axis : MonoBehaviour
     [Header("카메라 회전 설정")]
     public float distance;
     public float rotationSpeed;
+    public float scrollScale;
 
     private Quaternion targetRotation;
     private Quaternion playerRotation;
@@ -18,31 +19,28 @@ public class Axis : MonoBehaviour
     private float gapY;
 
     private Camera mainCam;
-    private float scroll;
 
     private void Awake()
     {
         mainCam = GetComponent<Camera>();
     }
 
-    void LateUpdate()
+    private void Update()
     {
         // 줌 인/아웃 기능
-        scroll = Input.GetAxis("Mouse ScrollWheel") * 5;
-        if (mainCam.fieldOfView < 40f)
+        float scroll = Input.GetAxis("Mouse ScrollWheel") * scrollScale;
+        if (mainCam.fieldOfView - scroll < 40f)
         {
             mainCam.fieldOfView = 40f;
         }
-        else if (mainCam.fieldOfView > 60f)
+        else if (mainCam.fieldOfView - scroll > 80f)
         {
-            mainCam.fieldOfView = 60f;
+            mainCam.fieldOfView = 80f;
         }
-        mainCam.fieldOfView -= scroll;
-
-        // 카메라 거리 유지 : Distance만큼 재우미랑 거리 유지
-        axisVec = playerPos.position;
-        axisVec += -transform.forward * distance;
-        transform.position = axisVec;
+        else
+        {
+            mainCam.fieldOfView -= scroll;
+        }
 
         // 마우스 우클릭 후 좌우로 움직이면 카메라도 움직임
         if (Input.GetMouseButton(1))
@@ -56,13 +54,21 @@ public class Axis : MonoBehaviour
 
             // 회전 값을 변수에 저장
             targetRotation = Quaternion.Euler(new Vector3(gapX, gapY, 0f));
-            playerRotation = targetRotation;
-            playerRotation.x = 0f;
-            playerRotation.z = 0f;
+            playerRotation = Quaternion.Euler(new Vector3(0f, gapY, 0f));
         }
 
-        // 카메라 회전 & 잠재우미 회전
+        // 잠재우미 회전
+        playerPos.rotation = Quaternion.Slerp(playerPos.rotation, playerRotation, rotationSpeed * Time.deltaTime);
+    }
+
+    void LateUpdate()
+    {
+        // 카메라 회전
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-        playerPos.rotation = playerRotation;
+
+        // 카메라 거리 유지 : Distance만큼 재우미랑 거리 유지
+        axisVec = playerPos.position;
+        axisVec -= transform.forward * distance;
+        transform.position = axisVec;
     }
 }

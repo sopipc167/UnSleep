@@ -30,11 +30,14 @@ EditorBuildSettings:
     path: Assets/Scenes/ClockTower.unity
     guid: a5814bb44d3c96b4b8e0303f670ddf1e
   - enabled: 1
-    path: Assets/Scenes/Cave.unity
-    guid: 2cd00ff90de1c794c80fa535d0a38aee
-  - enabled: 1
     path: Assets/Scenes/Cliff.unity
-    guid: dfd9f6375859dd144990b22be94d14a0
+    guid: e7c7ae4a5a1008b4c9a975d301248c58
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Nightmare.unity
     guid: ab7c4b723fcb267468f78057dab2a057

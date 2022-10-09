@@ -4434,7 +4434,6 @@ GameObject:
   - component: {fileID: 3915596696180515229}
   - component: {fileID: 3799416910083189217}
   - component: {fileID: 3331044244070741956}
-  - component: {fileID: 558780929058308275}
   m_Layer: 5
   m_Name: Settings Canvas
   m_TagString: Untagged
@@ -4533,27 +4532,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &558780929058308275
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7384250958547889754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20109763375083748964978ceb9cd3b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  masterVolume: {fileID: 7346833155849431698}
-  bgmVolume: {fileID: 1045217081733562184}
-  seVolume: {fileID: 2090744102585133004}
-  masterMute: {fileID: 8043521910504456105}
-  bgmMute: {fileID: 5977327040054324521}
-  seMute: {fileID: 1377916188246176446}
-  qualityDropdown: {fileID: 2765379344805562120}
-  screenTypeDropdown: {fileID: 424303317254202373}
-  resolutionDropdown: {fileID: 3699719468323309695}
 --- !u!1 &7434256503445089981
 GameObject:
   m_ObjectHideFlags: 0
@@ -5967,6 +5945,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8436695915588366389}
   - component: {fileID: 8436695915588366388}
+  - component: {fileID: 1229336497330041133}
   m_Layer: 0
   m_Name: MenuManager
   m_TagString: Untagged
@@ -6002,8 +5981,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96004a83001df3844a5d866d9ec06b14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuCanvas: {fileID: 8436695916218826504}
-  settingCanvas: {fileID: 7384250958547889754}
+--- !u!114 &1229336497330041133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8436695915588366391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20109763375083748964978ceb9cd3b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volume:
+  - {fileID: 7346833155849431698}
+  - {fileID: 1045217081733562184}
+  - {fileID: 2090744102585133004}
+  isMute:
+  - {fileID: 8043521910504456105}
+  - {fileID: 5977327040054324521}
+  - {fileID: 1377916188246176446}
+  qualityDropdown: {fileID: 2765379344805562120}
+  screenTypeDropdown: {fileID: 424303317254202373}
+  resolutionDropdown: {fileID: 3699719468323309695}
 --- !u!1 &8436695915769455374
 GameObject:
   m_ObjectHideFlags: 0
