@@ -109,6 +109,8 @@ public class TextManager : MonoBehaviour
     public DiaEvent diaEvent;
 
     public bool isNoise;
+    public NoiseManager NM;
+    public TugOfWar TW;
 
     void Awake()
     {
@@ -373,9 +375,25 @@ public class TextManager : MonoBehaviour
                                 // Nightmare 씬에서 대화 묶음 끝났을 때 처리가 필요하면 여기에 
                                 // 아마 층간소음에서는 대화 종료 후 현재 상황에 따라서 미니게임 진행 등을 시작하면 될 것
 
+                                if(con == "GameStart_1")
+                                {
+                                    NM.DM.GameSetting(true);
+                                    con = null;
+                                }
+                                else if(con == "GameStart_2")
+                                {
+                                    if (!NM.isStart)
+                                        NM.coStart(2, 3);
+                                }
+                                else if(con == "GameStart_3_1")
+                                {
+                                    TW.isMouseMove = true;
+                                }
+
+
                                 // 아래 코드는 테이블 확인용 임시 코드.
                                 // 그냥 원래 스토리에서 진행되듯 넘어가는 코드입니다.
-                                // 층간 작업하실 때 지우고 쓰시면 됨. 
+                                // 층간 작업하실 때 지우고 쓰시면 됨.
                                 Dia_Id++;
                                 dp.UpdateCurrentDiaID(Dia_Id);
                                 Increasediaindex = false;

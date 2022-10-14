@@ -13,6 +13,11 @@ public class NoiseManager : MonoBehaviour
     public Image backGround;
 
     public NightMareManager NM;
+    public bool isStart;
+
+    public FadeInOut fadeinout;
+    public Image Fade;
+    public BlinkAnimation BA;
 
     void Start()
     {
@@ -34,23 +39,30 @@ public class NoiseManager : MonoBehaviour
         {
             backGround.enabled = false;
         }
-        else if(con == "GameStart_1")
+        else if(con == "Blink")
         {
-            DM.GameSetting(true);
+            Color tmp = Fade.color;
+            tmp.a = 0;
+            Fade.color = tmp;
+            BA.BlinkOpen();
             con = null;
-        }
-        else if(con == "GameStart_2")
-        {
-            StartCoroutine(GameStart(2, 3));
         }
     }
 
-    IEnumerator GameStart(int lastScene, int currentScene)
+    public void coStart(int cur, int next)
     {
-        NM.Case = lastScene;
-        //페이드인아웃
-        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(GameStart(cur, next));
+    }
+
+    IEnumerator GameStart(int currentScene, int nextScene)
+    {
+        isStart = true;
         NM.Case = currentScene;
+        fadeinout.Blackout_Func(0.5f);
+        yield return new WaitForSeconds(0.3f);
+        NM.Case = nextScene;
+        con = null;
+        isStart = false;
     }
 
     public IEnumerator GameClear()

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class TugOfWar : MonoBehaviour
 {
+    public Image TW;
     public Slider Gauge;
     public GameObject Hand;
     public GameObject Foot;
@@ -24,8 +25,13 @@ public class TugOfWar : MonoBehaviour
     new Vector3 transPos_M;
     new Vector3 targetPos;
     public bool isMove;
+    public bool isMouseMove;
     public float frame;
     public float frameTime;
+
+    public bool isCount;
+    float time;
+    float limit;
 
     void Start()
     {
@@ -41,14 +47,9 @@ public class TugOfWar : MonoBehaviour
                 isOnce = true;
                 Gauge.gameObject.SetActive(true);
                 Hand.gameObject.SetActive(true);
-                //StartCoroutine(Timer());
             }
             if (!isAdd)
             {
-                /*
-                  if (isFoot)
-                    StartCoroutine(Timer());
-                */
                 StartCoroutine(GaugeAdd());
             }
 
@@ -65,12 +66,27 @@ public class TugOfWar : MonoBehaviour
         }
 
         TransMousePos();
-        if (!isMove)
+        if (!isMove && isMouseMove)
         {
             if (transPos_M.y >= 2.0f)
                 StartCoroutine(bgDown());
             else
                 StartCoroutine(bgUp());
+        }
+
+        //Timer
+        if (isCount)
+        {
+            time += Time.deltaTime;
+            limit = ((int)time % 60);
+            if (limit >= 1.5f)
+            {
+                isMouseMove = false;
+                TW.raycastTarget = true;
+                BG.enabled = false;
+                isStart = true;
+                isCount = false;
+            }
         }
     }
 
@@ -84,11 +100,11 @@ public class TugOfWar : MonoBehaviour
     {
         isMove = true;
 
-        if(BG.transform.position.y < 879)
+        if(BG.transform.position.y < 430)
         {
             targetPos = BG.transform.position + new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
-            Debug.Log(BG.transform.position);
+            Debug.Log(BG.transform.position.y);
         }
 
         yield return new WaitForSeconds(frameTime);
@@ -99,11 +115,16 @@ public class TugOfWar : MonoBehaviour
     {
         isMove = true;
 
-        if(BG.transform.position.y > 30)
+        if(BG.transform.position.y > 10)
         {
+            isCount = false;
             targetPos = BG.transform.position - new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
-            Debug.Log(BG.transform.position);
+            Debug.Log(BG.transform.position.y);
+        }
+        else
+        {
+            isCount = true;
         }
 
         yield return new WaitForSeconds(frameTime);
@@ -146,49 +167,6 @@ public class TugOfWar : MonoBehaviour
             footChange[1].SetActive(true);
             isEnd = true; 
             Debug.Log("Success");
-        }
-    }
-
-    IEnumerator Timer()
-    {
-        int i = 0;
-
-        while (!isEnd)
-        {
-            yield return new WaitForSeconds(1.0f);
-            i++;
-            if(i >= 10)
-            {
-                isStart = false;
-                if(Gauge.value < 0.5f)
-                {
-                    if (!isFoot)
-                    {
-                        handChange[0].SetActive(false);
-                        handChange[1].SetActive(true);
-                        yield return new WaitForSeconds(2.0f);
-                        Gauge.value = 0.5f;
-                        transform.localPosition = new Vector3(-121, 150, 0);
-                        Foot.SetActive(true);
-                        isFoot = true;
-                        yield return new WaitForSeconds(0.2f);
-                        isStart = true;
-                        break;
-                    }
-                    else
-                    {
-                        footChange[0].SetActive(false);
-                        footChange[1].SetActive(true);
-                        Debug.Log("Success");
-                        break;
-                    }
-                }
-                else
-                {
-                    Debug.Log("Game Over");
-                    break;
-                }
-            }
         }
     }
 }
