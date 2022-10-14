@@ -334,7 +334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -491,7 +491,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2686,6 +2686,8 @@ MonoBehaviour:
   Native: {fileID: 1160182029}
   NM: {fileID: 1160182031}
   animator: {fileID: 1173366281}
+  Noise_M: {fileID: 1989653625}
+  BG: {fileID: 22456188}
 --- !u!4 &255536011
 Transform:
   m_ObjectHideFlags: 0
@@ -3602,8 +3604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.55638766, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 0.55638766, b: 0, a: 0}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3668,6 +3670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0053afe9b5f03344aeb313caabeb218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TW: {fileID: 337816006}
   Gauge: {fileID: 722727496}
   Hand: {fileID: 1517215010}
   Foot: {fileID: 453542712}
@@ -3686,8 +3689,10 @@ MonoBehaviour:
   BG: {fileID: 1799186725}
   screen: {fileID: 1182236873}
   isMove: 0
+  isMouseMove: 0
   frame: 5
   frameTime: 0.05
+  isCount: 0
 --- !u!1 &349265050
 GameObject:
   m_ObjectHideFlags: 0
@@ -5709,7 +5714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6795,7 +6800,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.2028302, g: 0.60765404, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6870,7 +6875,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8137,7 +8142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -8478,7 +8483,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &814289367
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10076,6 +10081,14 @@ PrefabInstance:
       propertyPath: isNoise
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: NM
+      value: 
+      objectReference: {fileID: 1989653625}
+    - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: TW
+      value: 
+      objectReference: {fileID: 337816009}
     - target: {fileID: 8528798682909620384, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -957.5342
@@ -12349,7 +12362,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.58385885, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -12360,7 +12373,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.1010013, y: 7.9500003}
+  m_Size: {x: 2.933284, y: 7.9500003}
   m_EdgeRadius: 0
 --- !u!1 &1182236869
 GameObject:
@@ -13462,7 +13475,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -16389,13 +16402,9 @@ MonoBehaviour:
   isStop: 0
   isMiniGame: 0
   isThree: 0
-  isFrame: 0
   isStart: 0
   Tug: {fileID: 337816009}
   blood: {fileID: 2078637114}
-  delay: 0
-  min: -100
-  max: 100
   isChoose: 0
 --- !u!1 &1624137026
 GameObject:
@@ -17649,7 +17658,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19563,6 +19572,10 @@ MonoBehaviour:
   DM: {fileID: 1149605571}
   backGround: {fileID: 814289368}
   NM: {fileID: 1077792536}
+  isStart: 0
+  fadeinout: {fileID: 571998039}
+  Fade: {fileID: 22456188}
+  BA: {fileID: 663161619}
 --- !u!4 &1989653626
 Transform:
   m_ObjectHideFlags: 0
@@ -20297,7 +20310,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.754717, g: 0.13846895, b: 0.06763971, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

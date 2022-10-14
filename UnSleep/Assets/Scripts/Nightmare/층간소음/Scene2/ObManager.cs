@@ -34,6 +34,9 @@ public class ObManager : MonoBehaviour
     public NativeMove NM;
     public Animator animator;
 
+    public NoiseManager Noise_M;
+    public Image BG;
+
     void Start()
     {
         Gauge.value = 0;
@@ -66,6 +69,7 @@ public class ObManager : MonoBehaviour
             }
             else
             {
+                StartCoroutine(GameClear());
                 animator.SetTrigger("isEat");
                 player.BackGroundStop();
                 NM.isStop = true;
@@ -117,6 +121,17 @@ public class ObManager : MonoBehaviour
             Gauge.gameObject.SetActive(false);
         else
             Gauge.gameObject.SetActive(true);
+    }
+
+    IEnumerator GameClear()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Noise_M.coStart(4, 5);
+        Color tmp = BG.color;
+        tmp.a = 255;
+        BG.color = tmp;
+        Noise_M.TM.DiaUI.SetActive(true);
+        Noise_M.TM.Increasediaindex = true;
     }
 
     public void Eat()
