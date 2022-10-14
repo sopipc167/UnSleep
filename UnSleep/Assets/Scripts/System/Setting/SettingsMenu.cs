@@ -5,20 +5,9 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    // ::이후 저장되어야 할 데이터 목록::
-    //   1. Audio volume 설정 float 변수 3개
-    //   2. Audio isMute 설정 bool 변수 3개
-    //   3. Graphic 설정 int 변수 1개
-    //   4. Resolution type 설정 int 변수 1개
-    //   5. Screen type 설정 int 변수 1개
-
     [Header("소리 UI")]
-    public Slider masterVolume;
-    public Slider bgmVolume;
-    public Slider seVolume;
-    public Toggle masterMute;
-    public Toggle bgmMute;
-    public Toggle seMute;
+    public Slider[] volume;
+    public Toggle[] isMute;
 
     [Header("그래픽 UI")]
     public Dropdown qualityDropdown;
@@ -28,36 +17,36 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown resolutionDropdown;
 
     private SoundManager soundManager;
-    private List<string> options = new List<string>();
     private Resolution[] resolutions;
 
     private SystemOption data;
 
-    private void Awake()
-    {
-        soundManager = SoundManager.Instance;
-    }
 
-    private void OnDisable()
+    public void Save()
     {
-        data.volume_master = masterVolume.value;
-        data.volume_bgm = bgmVolume.value;
-        data.volume_se = seVolume.value;
-        data.mute_master = masterMute.isOn;
-        data.mute_bgm = bgmMute.isOn;
-        data.mute_se = seMute.isOn;
+        data.volume_master = volume[0].value;
+        data.volume_bgm = volume[1].value;
+        data.volume_se = volume[2].value;
+        data.mute_master = isMute[0].isOn;
+        data.mute_bgm = isMute[1].isOn;
+        data.mute_se = isMute[2].isOn;
+        data.graphic = qualityDropdown.value;
+        data.screenType = screenTypeDropdown.value;
+        data.resolutionType = resolutionDropdown.value;
         SaveDataManager.Instance.SaveSystemOption(data);
     }
 
+
     private void Start()
     {
+        soundManager = SoundManager.Instance;
         data = SaveDataManager.Instance.LoadSystemOption();
         if (data == null)
         {
             data = new SystemOption();
-            data.volume_master = 0.5f;
-            data.volume_bgm = 0.5f;
-            data.volume_se = 0.5f;
+            data.volume_master = 0.7f;
+            data.volume_bgm = 0.7f;
+            data.volume_se = 0.7f;
             data.mute_master = false;
             data.mute_bgm = false;
             data.mute_se = false;
@@ -67,23 +56,31 @@ public class SettingsMenu : MonoBehaviour
         }
 
         //Audio
-        masterVolume.onValueChanged.AddListener(value => soundManager.SetVolume(SoundType.Master, value));
-        masterVolume.value = data.volume_master;
-        bgmVolume.onValueChanged.AddListener(value => soundManager.SetVolume(SoundType.BGM, value));
-        bgmVolume.value = data.volume_bgm;
-        seVolume.onValueChanged.AddListener(value => soundManager.SetVolume(SoundType.SE, value));
-        seVolume.value = data.volume_se;
-        print(data.volume_master);
-        print(masterVolume.value);
+        volume[0].onValueChanged.AddListener((value) => soundManager.SetVolume(SoundType.Master, value));
+        volume[0].value = data.volume_master;
+        volume[1].onValueChanged.AddListener((value) => soundManager.SetVolume(SoundType.BGM, value));
+        volume[1].value = data.volume_bgm;
+        volume[2].onValueChanged.AddListener((value) => soundManager.SetVolume(SoundType.SE, value));
+        volume[2].value = data.volume_se;
 
-        masterMute.onValueChanged.AddListener(value => SetMute(SoundType.Master, value));
-        masterMute.isOn = data.mute_master;
-        bgmMute.onValueChanged.AddListener(value => SetMute(SoundType.BGM, value));
-        bgmMute.isOn = data.mute_bgm;
-        seMute.onValueChanged.AddListener(value => SetMute(SoundType.SE, value));
-        seMute.isOn = data.mute_se;
+        isMute[0].onValueChanged.AddListener(value => soundManager.SetMute(SoundType.Master, value));
+        isMute[0].isOn = data.mute_master;
+        isMute[1].onValueChanged.AddListener(value => soundManager.SetMute(SoundType.BGM, value));
+        isMute[1].isOn = data.mute_bgm;
+        isMute[2].onValueChanged.AddListener(value => soundManager.SetMute(SoundType.SE, value));
+        isMute[2].isOn = data.mute_se;
+
+        // Toggle은 기본 setting이 true이고, 만약 isOn이 true라면 함수호출을 안 함
+        soundManager.SetVolume(SoundType.Master, data.volume_master);
+        soundManager.SetVolume(SoundType.BGM, data.volume_bgm);
+        soundManager.SetVolume(SoundType.SE, data.volume_se);
+        soundManager.SetMute(SoundType.Master, data.mute_master);
+        soundManager.SetMute(SoundType.BGM, data.mute_bgm);
+        soundManager.SetMute(SoundType.SE, data.mute_se);
 
         //Graphics
+        List<string> options = new List<string>();
+
         qualityDropdown.ClearOptions();
         options.Add("Ultra");
         options.Add("Very High");
@@ -123,33 +120,20 @@ public class SettingsMenu : MonoBehaviour
         SetScreen(screenTypeDropdown.value);
     }
 
-    public void SetMute(SoundType type, bool isMute)
+    private void SetQuality(int qualityIdx)
     {
-        if (isMute)
-        {
-            soundManager.SetMute(type);
-        }
-        else
-        {
-            soundManager.Unmute(type);
-        }
+        QualitySettings.SetQualityLevel(qualityDropdown.options.Count - 1 - qualityIdx);
+        data.graphic = qualityDropdown.options.Count - 1 - qualityIdx;
     }
 
-    public void SetQuality(int qualityIdx)
+    private void SetResolution(int resolutionIdx)
     {
-        QualitySettings.SetQualityLevel(5 - qualityIdx);
-        data.graphic = 5 - qualityIdx;
-    }
-
-    public void SetResolution(int resolutionIdx)
-    {
-        Resolution resolution;
-        resolution = resolutions[resolutions.Length - 1 - resolutionIdx];
+        var resolution = resolutions[resolutionDropdown.options.Count - 1 - resolutionIdx];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         data.resolutionType = resolutionIdx;
     }
 
-    public void SetScreen(int screenIdx)
+    private void SetScreen(int screenIdx)
     {
 #if UNITY_STANDALONE_WIN
         switch (screenIdx)

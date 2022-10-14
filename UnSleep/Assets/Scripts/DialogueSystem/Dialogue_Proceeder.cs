@@ -15,8 +15,8 @@ public class Dialogue_Proceeder : MonoBehaviour
     public bool End; //일기장 펄럭펄럭용. 에피소드 끝 -> 일기장 전환시 "E"로 설정.
 
     private DialogueParser dialogueParser; //음... 참조가 필요하겠군,,
-    public string CurrentPuzzle; // 이제 가야하는 퍼즐 명
-    private string[] PuzzleList; // 이 에피소드에서 가야하는 퍼즐
+    public SceneType CurrentPuzzle; // 이제 가야하는 퍼즐 명
+    private SceneType[] PuzzleList; // 이 에피소드에서 가야하는 퍼즐
     private int puzzleIdx;  // 퍼즐리스트 현재 가리키고 있는 인덱스
   
     void Awake()
@@ -160,6 +160,10 @@ public class Dialogue_Proceeder : MonoBehaviour
         {
             CurrentPuzzle = PuzzleList[puzzleIdx];
         }
+        else
+        {
+            CurrentPuzzle = SceneType.None;
+        }
     }
 
     public void SetCurrentDiaID() //<------------ 일기장 -> 스토리 진입 시 호출------------->
@@ -198,6 +202,6 @@ public class Dialogue_Proceeder : MonoBehaviour
     {
 
         if (CurrentEpiID == 7 &&(id == 2009 || id == 2010))
-            Complete_Condition.Add(777);
+            Complete_Condition.Add(7);
     }
 }

@@ -5,13 +5,23 @@ using UnityEngine;
 [RequireComponent(typeof(TowardPlayer))]
 public class TargetObj : MonoBehaviour
 {
+    public Sprite lightOn;
+    public Sprite lightOFF;
+
+    private SpriteRenderer mySprite;
     private Light objLight;
     private ParticleSystem particle;
     private Coroutine endCoroutine;
     private Coroutine setCoroutine;
 
+    private void Awake()
+    {
+        mySprite.sprite = lightOFF;
+    }
+
     public void InitLight(float range, Color color)
     {
+        mySprite = GetComponent<SpriteRenderer>();
         objLight = transform.GetChild(0).GetComponent<Light>();
         particle = transform.GetChild(1).GetComponent<ParticleSystem>();
         objLight.intensity = 0f;
@@ -30,6 +40,7 @@ public class TargetObj : MonoBehaviour
 
     public void StopTarget(float deltaLight)
     {
+        mySprite.sprite = lightOFF;
         if (setCoroutine != null) StopCoroutine(setCoroutine);
         particle.Stop();
         endCoroutine = StartCoroutine(StopTargetCoroutine(deltaLight));
@@ -37,6 +48,7 @@ public class TargetObj : MonoBehaviour
 
     private IEnumerator SetTargetCoroutine(float deltaLight, float maxVal, float minVal)
     {
+        mySprite.sprite = lightOn;
         while (true)
         {
             while (objLight.intensity < maxVal)

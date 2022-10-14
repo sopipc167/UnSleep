@@ -10,7 +10,7 @@ public class TitleManager : MonoBehaviour
     public AudioClip titleBGM;
 
 
-    private void Start()
+    private IEnumerator Start()
     {
         SaveDataManager.Instance.LoadEpiProgress(); //세이브 파일 가져오기
 
@@ -20,6 +20,8 @@ public class TitleManager : MonoBehaviour
             continueBtn.GetComponent<Button>().enabled = false;
         }
 
+        yield return new WaitForSeconds(1f);
+        Debug.Log("시작");
         SoundManager.Instance.PlayBGM(titleBGM);
     }
 

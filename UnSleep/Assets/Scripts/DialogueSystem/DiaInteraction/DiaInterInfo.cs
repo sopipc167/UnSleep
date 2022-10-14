@@ -15,7 +15,7 @@ public class DiaInterInfo : MonoBehaviour
     public float Interaction_distance;
 
     public bool isChangeScene; //이 오브젝트와 상호작용으로 씬 전환을 하는 경우
-    public string ChangeSceneName; //전환되는 씬 이름을 적어주세요
+    public SceneType sceneType; //전환되는 씬 이름을 적어주세요
 
     //7세
     public bool isNext;

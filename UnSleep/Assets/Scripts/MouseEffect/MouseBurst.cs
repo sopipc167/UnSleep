@@ -37,7 +37,10 @@ public class MouseBurst : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            if (SceneManager.GetActiveScene().Equals("Mental_World_Map")) return;
+            Scene scene = SceneManager.GetActiveScene();
+            if (scene.Equals(SceneChanger.GetSceneName(SceneType.Mental)) ||
+                scene.Equals(SceneChanger.GetSceneName(SceneType.Nightmare)) ||
+                scene.Equals(SceneChanger.GetSceneName(SceneType.Nightmare27))) return;
 
             if (mainCam == null)
             {

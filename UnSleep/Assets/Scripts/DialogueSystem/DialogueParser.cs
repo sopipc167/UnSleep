@@ -160,10 +160,15 @@ public class DialogueParser : MonoBehaviour
         return int_charId;
     }
 
-    public string[] getPuzzle()
+    public SceneType[] getPuzzle()
     {
         string[] puzzlelist = PuzzleCell.Split(new char[] { '|' });
-        return puzzlelist;
+        SceneType[] result = new SceneType[puzzlelist.Length];
+        for (int i = 0; i < puzzlelist.Length; ++i)
+        {
+            result[i] = (SceneType)System.Enum.Parse(typeof(SceneType), puzzlelist[i]);
+        }
+        return result;
     }
 
     /*

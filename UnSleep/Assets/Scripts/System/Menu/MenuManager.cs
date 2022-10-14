@@ -42,10 +42,19 @@ public class MenuManager : MonoBehaviour
 
     private bool PAUSE = false;
     private bool isSettingOn = false;
+    private bool onlySetting = false;
 
-    public GameObject MenuCanvas;
-    public GameObject settingCanvas;
+    private GameObject menuCanvas;
+    private GameObject settingCanvas;
+    private SettingsMenu menu;
 
+
+    private void Start()
+    {
+        menuCanvas = transform.GetChild(0).gameObject;
+        settingCanvas = transform.GetChild(1).gameObject;
+        menu = GetComponent<SettingsMenu>();
+    }
 
     void Update()
     {
@@ -58,8 +67,8 @@ public class MenuManager : MonoBehaviour
             else
             {
                 PAUSE = !PAUSE;
-                if (PAUSE) MenuCanvas.SetActive(true);
-                else MenuCanvas.SetActive(false);
+                if (PAUSE) menuCanvas.SetActive(true);
+                else menuCanvas.SetActive(false);
             }
         }
     }
@@ -67,15 +76,15 @@ public class MenuManager : MonoBehaviour
     public void Resume()
     {
         PAUSE = !PAUSE;
-        if (PAUSE) MenuCanvas.SetActive(true);
-        else MenuCanvas.SetActive(false);
+        if (PAUSE) menuCanvas.SetActive(true);
+        else menuCanvas.SetActive(false);
     }
 
     public void GoDiary()
     {
         PAUSE = !PAUSE;
-        if (PAUSE) MenuCanvas.SetActive(true);
-        else MenuCanvas.SetActive(false);
+        if (PAUSE) menuCanvas.SetActive(true);
+        else menuCanvas.SetActive(false);
         SceneManager.LoadScene("Diary");
     }
 
@@ -88,7 +97,8 @@ public class MenuManager : MonoBehaviour
     {
         isSettingOn = true;
         settingCanvas.SetActive(true);
-        MenuCanvas.SetActive(false);
+        if (menuCanvas.activeSelf) menuCanvas.SetActive(false);
+        else onlySetting = true;
     }
     public void OnClickSettingOff()
     {
@@ -96,11 +106,13 @@ public class MenuManager : MonoBehaviour
         {
             isSettingOn = false;
             settingCanvas.SetActive(false);
-            MenuCanvas.SetActive(true);
+            menuCanvas.SetActive(true);
         }
         else
         {
+            if (onlySetting) isSettingOn = false;
             settingCanvas.SetActive(false);
         }
+        menu.Save();
     }
 }

@@ -72,10 +72,10 @@ public class DiaInterActor : MonoBehaviour
             //Debug.Log("씬 전환");
 
             // 현재 가야하는 퍼즐이어야만 이동 가능
-            if (hit.ChangeSceneName.Equals(Dialogue_Proceeder.instance.CurrentPuzzle))
+            if (hit.sceneType == Dialogue_Proceeder.instance.CurrentPuzzle)
             {
                 isInteracting = true;
-                StartCoroutine(GoToPuzzleCoroutine(hit.ChangeSceneName));
+                StartCoroutine(GoToPuzzleCoroutine(hit.sceneType));
                 return;
             }
         }
@@ -124,13 +124,13 @@ public class DiaInterActor : MonoBehaviour
     }
 
 
-    private IEnumerator GoToPuzzleCoroutine(string sceneName)
+    private IEnumerator GoToPuzzleCoroutine(SceneType sceneType)
     {
         goToPuzzle.SetActive(true);
         SoundManager.Instance.FadeOutBGM();
         //yield return new WaitForSeconds(1.7f);
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(SceneChanger.GetSceneName(sceneType));
     }
 }
 
