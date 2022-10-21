@@ -683,7 +683,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 0.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &115871040
 SpriteShapeRenderer:
@@ -901,7 +901,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 3
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &121830720
 SpriteShapeRenderer:
@@ -1119,7 +1119,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &130647449
 SpriteShapeRenderer:
@@ -1590,7 +1590,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &156883325
 SpriteShapeRenderer:
@@ -1890,7 +1890,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &176862578
 SpriteShapeRenderer:
@@ -2190,7 +2190,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &223859584
 SpriteShapeRenderer:
@@ -2568,7 +2568,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &242347057
 SpriteShapeRenderer:
@@ -2870,7 +2870,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &271005367
 SpriteShapeRenderer:
@@ -3088,7 +3088,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 3
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &303575862
 SpriteShapeRenderer:
@@ -3420,7 +3420,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &326261269
 SpriteShapeRenderer:
@@ -3581,7 +3581,7 @@ RectTransform:
   m_GameObject: {fileID: 337816004}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 1166384657}
   m_RootOrder: 4
@@ -3589,7 +3589,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -121, y: 263}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &337816006
 MonoBehaviour:
@@ -3604,7 +3604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.55638766, b: 0, a: 0}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3691,8 +3691,11 @@ MonoBehaviour:
   isMove: 0
   isMouseMove: 0
   frame: 5
-  frameTime: 0.05
+  frameTime: 0.01
   isCount: 0
+  TM: {fileID: 997552215}
+  fadeinout: {fileID: 571998039}
+  BG_2: {fileID: 1848072384}
 --- !u!1 &349265050
 GameObject:
   m_ObjectHideFlags: 0
@@ -4348,7 +4351,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 3
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &371964901
 SpriteShapeRenderer:
@@ -4566,7 +4569,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &401727342
 SpriteShapeRenderer:
@@ -4902,7 +4905,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &420413877
 SpriteShapeRenderer:
@@ -6181,7 +6184,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &510237099
 SpriteShapeRenderer:
@@ -6399,7 +6402,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 0.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &519524348
 SpriteShapeRenderer:
@@ -6699,7 +6702,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 3
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &544983532
 SpriteShapeRenderer:
@@ -7380,7 +7383,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &612665643
 SpriteShapeRenderer:
@@ -7870,7 +7873,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 0.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &708140418
 SpriteShapeRenderer:
@@ -8361,7 +8364,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!50 &791096685
 Rigidbody2D:
@@ -8875,7 +8878,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &864380061
 SpriteShapeRenderer:
@@ -9093,7 +9096,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &903587334
 SpriteShapeRenderer:
@@ -9393,7 +9396,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &918223964
 SpriteShapeRenderer:
@@ -10423,7 +10426,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1014479907
 SpriteShapeRenderer:
@@ -10723,7 +10726,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1049862371
 SpriteShapeRenderer:
@@ -11056,7 +11059,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 3
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1067155328
 SpriteShapeRenderer:
@@ -11593,7 +11596,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1102629085
 SpriteShapeRenderer:
@@ -12020,6 +12023,7 @@ RectTransform:
   - {fileID: 722727495}
   - {fileID: 337816005}
   - {fileID: 1799186724}
+  - {fileID: 1848072383}
   m_Father: {fileID: 1182236873}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12196,7 +12200,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1169540759
 SpriteShapeRenderer:
@@ -12654,7 +12658,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1231995670
 SpriteShapeRenderer:
@@ -13374,7 +13378,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 0.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1264130332
 SpriteShapeRenderer:
@@ -13749,7 +13753,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1280279819
 SpriteShapeRenderer:
@@ -14131,7 +14135,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1323448023
 SpriteShapeRenderer:
@@ -14603,7 +14607,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1352186465
 SpriteShapeRenderer:
@@ -14821,7 +14825,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1383924205
 SpriteShapeRenderer:
@@ -15266,7 +15270,7 @@ MonoBehaviour:
   OnlyOnce: 0101
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1436939748
 SpriteShapeRenderer:
@@ -15541,7 +15545,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1450674416
 SpriteShapeRenderer:
@@ -15759,7 +15763,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1460064815
 SpriteShapeRenderer:
@@ -16030,7 +16034,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1491977881
 SpriteShapeRenderer:
@@ -16800,7 +16804,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1709401862
 SpriteShapeRenderer:
@@ -17140,7 +17144,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1727986060
 SpriteShapeRenderer:
@@ -17513,7 +17517,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1750923794
 SpriteShapeRenderer:
@@ -17850,7 +17854,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1804938156
 SpriteShapeRenderer:
@@ -18068,7 +18072,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1813120957
 SpriteShapeRenderer:
@@ -18322,7 +18326,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1838762462
 SpriteShapeRenderer:
@@ -18446,6 +18450,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1842222696}
+  m_CullTransparentMesh: 0
+--- !u!1 &1848072382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1848072383}
+  - component: {fileID: 1848072385}
+  - component: {fileID: 1848072384}
+  m_Layer: 5
+  m_Name: BG_2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1848072383
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848072382}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1166384657}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 523}
+  m_SizeDelta: {x: 1919.9999, y: 2160.5273}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1848072384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848072382}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: d122dee391b498e4a9775392780ae4ee, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1848072385
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1848072382}
   m_CullTransparentMesh: 0
 --- !u!1 &1857203916
 GameObject:
@@ -18646,7 +18725,7 @@ MonoBehaviour:
   OnlyOnce: 01010101
   Interaction_distance: 2
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1858706971
 SpriteShapeRenderer:
@@ -18924,7 +19003,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1919133138
 SpriteShapeRenderer:
@@ -19142,7 +19221,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &1925415935
 SpriteShapeRenderer:
@@ -19886,7 +19965,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 2.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &2025347315
 SpriteShapeRenderer:
@@ -20104,7 +20183,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 1.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &2032426926
 SpriteShapeRenderer:
@@ -20854,7 +20933,7 @@ MonoBehaviour:
   OnlyOnce: 010101010101
   Interaction_distance: 0.5
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &2116037118
 SpriteShapeRenderer:
@@ -21328,7 +21407,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 3
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1971053207 &2133943095
 SpriteShapeRenderer:

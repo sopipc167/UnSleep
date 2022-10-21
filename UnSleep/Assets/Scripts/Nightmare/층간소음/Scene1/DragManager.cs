@@ -38,7 +38,6 @@ public class DragManager : MonoBehaviour
 
     void Update()
     {
-        //Debug.Log(transPos);
         if (isDrag)
         {
             if (transPos.x < 155 && transPos.x > -205 && transPos.y > -447 && transPos.y < -35)
@@ -102,14 +101,12 @@ public class DragManager : MonoBehaviour
 
     public void PointerUp()
     {
-        Debug.Log("PointerUP");
         if(isDrag)
             isTag = true;
     }
 
     public void IteamDragBegin(int a)
     {
-        //Debug.Log("Begin");
         originPos = it[a].transform.position;
         iteamNum = a;
         if (iteamNum == 5)
@@ -121,7 +118,6 @@ public class DragManager : MonoBehaviour
 
     public void IteamDrag()
     {
-        //Debug.Log("Drag");
         isDrag = true;
         transTargetPos();
         targetPos = Input.mousePosition;
@@ -130,7 +126,6 @@ public class DragManager : MonoBehaviour
 
     public void IteamRelease()
     {
-        //Debug.Log("End");
         if (isDrag && !isTag)
         {
             isDrag = false;

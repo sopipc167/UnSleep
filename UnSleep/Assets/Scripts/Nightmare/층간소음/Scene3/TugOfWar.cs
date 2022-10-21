@@ -33,6 +33,13 @@ public class TugOfWar : MonoBehaviour
     float time;
     float limit;
 
+    public TextManager TM;
+    public FadeInOut fadeinout;
+    public Image BG_2;
+
+
+    int i = 0;
+
     void Start()
     {
         Gauge.value = 0.5f;
@@ -42,12 +49,6 @@ public class TugOfWar : MonoBehaviour
     {
         if (isStart)
         {
-            if (!isOnce)
-            {
-                isOnce = true;
-                Gauge.gameObject.SetActive(true);
-                Hand.gameObject.SetActive(true);
-            }
             if (!isAdd)
             {
                 StartCoroutine(GaugeAdd());
@@ -61,7 +62,8 @@ public class TugOfWar : MonoBehaviour
             {
                 isStart = false;
                 isEnd = true;
-                Debug.Log("Game Over");
+                i++;
+                StartCoroutine(GameOver());
             }
         }
 
@@ -81,13 +83,29 @@ public class TugOfWar : MonoBehaviour
             limit = ((int)time % 60);
             if (limit >= 1.5f)
             {
+                //TugOfWar 실행조건
                 isMouseMove = false;
-                TW.raycastTarget = true;
                 BG.enabled = false;
-                isStart = true;
                 isCount = false;
+                Gauge.gameObject.SetActive(true);
+                Hand.gameObject.SetActive(true);
+                TM.DiaUI.SetActive(true);
+                TM.Increasediaindex = true;
             }
         }
+    }
+
+    IEnumerator GameOver()
+    {
+        fadeinout.Blackout_Func(0.5f);
+        TW.raycastTarget = false;
+        yield return new WaitForSeconds(0.7f);
+        Gauge.value = 0.5f;
+        if(i >= 2)
+            Dialogue_Proceeder.instance.UpdateCurrentDiaID(2006);
+
+        TM.DiaUI.SetActive(true);
+        TM.Increasediaindex = true;
     }
 
     void TransMousePos()
@@ -156,6 +174,7 @@ public class TugOfWar : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             Gauge.value = 0.5f;
             transform.localPosition = new Vector3(-121, 150, 0);
+            i = 0;
             Foot.SetActive(true);
             isFoot = true;
             yield return new WaitForSeconds(0.5f);
@@ -167,6 +186,17 @@ public class TugOfWar : MonoBehaviour
             footChange[1].SetActive(true);
             isEnd = true; 
             Debug.Log("Success");
+            StartCoroutine(Ending());
         }
+    }
+
+    IEnumerator Ending()
+    {
+        fadeinout.Blackout_Func(0.5f);
+        BG_2.enabled = true;
+        yield return new WaitForSeconds(0.5f);
+        Dialogue_Proceeder.instance.UpdateCurrentDiaID(2007);
+        TM.DiaUI.SetActive(true);
+        TM.Increasediaindex = true;
     }
 }

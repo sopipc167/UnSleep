@@ -57,9 +57,11 @@ public class NoiseManager : MonoBehaviour
     IEnumerator GameStart(int currentScene, int nextScene)
     {
         isStart = true;
+        //현재 씬 종료
         NM.Case = currentScene;
         fadeinout.Blackout_Func(0.5f);
         yield return new WaitForSeconds(0.3f);
+        //다음 씬 로드
         NM.Case = nextScene;
         con = null;
         isStart = false;
@@ -67,8 +69,10 @@ public class NoiseManager : MonoBehaviour
 
     public IEnumerator GameClear()
     {
+        //현재 게임 상황 종료(?)
         DM.GameSetting(false);
         yield return new WaitForSeconds(0.5f);
+        //대사창 실행
         TM.DiaUI.SetActive(true);
         TM.Increasediaindex = true;
     }

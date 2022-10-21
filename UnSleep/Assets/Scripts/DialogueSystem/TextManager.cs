@@ -389,6 +389,11 @@ public class TextManager : MonoBehaviour
                                 {
                                     TW.isMouseMove = true;
                                 }
+                                else if(con == "GameStart_3_2")
+                                {
+                                    TW.TW.raycastTarget = true;               
+                                    TW.isStart = true;
+                                }
 
 
                                 // 아래 코드는 테이블 확인용 임시 코드.
