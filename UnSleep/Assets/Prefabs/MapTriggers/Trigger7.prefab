@@ -171,7 +171,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3957004617309600842}
   m_LocalRotation: {x: -0, y: 0.040268295, z: -0, w: 0.9991889}
-  m_LocalPosition: {x: 1.2, y: -3.3, z: 68}
+  m_LocalPosition: {x: 25.6, y: -3.3, z: 87.1}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 7226818315916549422}
@@ -242,7 +242,7 @@ MonoBehaviour:
   OnlyOnce: 01
   Interaction_distance: 10
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!135 &8921667008890744499
 SphereCollider:
@@ -255,8 +255,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 10
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 19.859184
+  m_Center: {x: 3.0464327, y: 0, z: -12.905614}
 --- !u!1 &7226818315916549423
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +403,7 @@ MonoBehaviour:
   OnlyOnce: 
   Interaction_distance: 28
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
 --- !u!1 &7226818316893613804
 GameObject:
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 7226818316893613800}
   - component: {fileID: 7226818316893613801}
   - component: {fileID: 7226818316893613806}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: nullpos
   m_TagString: DiaInterCollision
   m_Icon: {fileID: 0}
@@ -517,5 +517,5 @@ MonoBehaviour:
   OnlyOnce: 
   Interaction_distance: 4
   isChangeScene: 0
-  ChangeSceneName: 
+  sceneType: 0
   isNext: 0
