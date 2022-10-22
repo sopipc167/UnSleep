@@ -233,9 +233,13 @@ public class TextManager : MonoBehaviour
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
         if (Input.GetMouseButtonDown(0) && Increasediaindex)
         {
+            Debug.Log("유효 클릭 조건 DiaUI(true):"+ DiaUI.activeSelf.ToString() +
+                "LogUI(false):"+ LogUI.activeSelf.ToString()+
+                "isPointerOverGameObject(false):"+EventSystem.current.IsPointerOverGameObject().ToString());
+
+
             if (goodbyeUI.activeSelf && !isGoodbye && dp.CurrentEpiID == 19)
             {
-
 
                 if (dp.CurrentDiaIndex < DiaDic[Dia_Id].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
                 {
@@ -254,6 +258,7 @@ public class TextManager : MonoBehaviour
             }
             else if (DiaUI.activeSelf && !LogUI.activeSelf && !EventSystem.current.IsPointerOverGameObject())
             {
+                Debug.Log("유효 클릭 감지");
 
                 if (isTyping)
                 {
@@ -310,7 +315,7 @@ public class TextManager : MonoBehaviour
                         {
                             dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
                             dp.CurrentDiaIndex = 0;
-                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID+1); //현재 에피소드 완료 저장
+                            SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID + 1); //현재 에피소드 완료 저장
                             SceneManager.LoadScene("Diary");
                         }
 
@@ -331,67 +336,67 @@ public class TextManager : MonoBehaviour
 
                             if (DiaDic[Dia_Id].SceneNum == 1) //스토리모드
                             {
-                              if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
-                              {
-                                  //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록.
-                                  //선택지 개수를 동적으로 바꾼다면 수정해야 함
-                                  if (dp.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
-                                      Dia_Id++;
-                                  else
-                                      Dia_Id += 2;
-                                  dp.UpdateCurrentDiaID(Dia_Id);
-                                  SelectA = false;
-                                  }
-                                  else
-                                  {
-                                      if (dp.Satisfy_Condition(DiaDic[Dia_Id + 1].Condition)) //씬 변경 없이 다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
-                                      {
-                                          dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
-                                          Dia_Id += 1; //다음 대화 묶음으로
+                                if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
+                                {
+                                    //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록.
+                                    //선택지 개수를 동적으로 바꾼다면 수정해야 함
+                                    if (dp.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
+                                        Dia_Id++;
+                                    else
+                                        Dia_Id += 2;
+                                    dp.UpdateCurrentDiaID(Dia_Id);
+                                    SelectA = false;
+                                }
+                                else
+                                {
+                                    if (dp.Satisfy_Condition(DiaDic[Dia_Id + 1].Condition)) //씬 변경 없이 다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
+                                    {
+                                        dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
+                                        Dia_Id += 1; //다음 대화 묶음으로
 
 
-                                          dp.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
+                                        dp.UpdateCurrentDiaID(Dia_Id); //Proceeder 업데이트.
 
-                                        
-                                          //BGM 전환
-                                          if (DiaDic[Dia_Id].BGM != null && DiaDic[Dia_Id].SceneNum == 1)
-                                           {
+
+                                        //BGM 전환
+                                        if (DiaDic[Dia_Id].BGM != null && DiaDic[Dia_Id].SceneNum == 1)
+                                        {
                                             if (DiaDic[Dia_Id].BGM.Equals("stop"))
                                                 SoundManager.Instance.FadeOutBGM();
                                             else
                                                 SoundManager.Instance.PlayBGM(DiaDic[Dia_Id].BGM);
-                                           }
-                                              
-                                  
-                                      }
-                                      else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
-                                      {
-                                          Increasediaindex = false;
-                                      }
-                                  }
-                              }
+                                        }
+
+
+                                    }
+                                    else //연출 등의 이유로 잠시 대화를 멈췄다가 재개하는 경우
+                                    {
+                                        Increasediaindex = false;
+                                    }
+                                }
+                            }
                             else if (DiaDic[Dia_Id].SceneNum == 8)
                             {
                                 // Nightmare 씬에서 대화 묶음 끝났을 때 처리가 필요하면 여기에 
                                 // 아마 층간소음에서는 대화 종료 후 현재 상황에 따라서 미니게임 진행 등을 시작하면 될 것
 
-                                if(con == "GameStart_1")
+                                if (con == "GameStart_1")
                                 {
                                     NM.DM.GameSetting(true);
                                     con = null;
                                 }
-                                else if(con == "GameStart_2")
+                                else if (con == "GameStart_2")
                                 {
                                     if (!NM.isStart)
                                         NM.coStart(2, 3);
                                 }
-                                else if(con == "GameStart_3_1")
+                                else if (con == "GameStart_3_1")
                                 {
                                     TW.isMouseMove = true;
                                 }
-                                else if(con == "GameStart_3_2")
+                                else if (con == "GameStart_3_2")
                                 {
-                                    TW.TW.raycastTarget = true;               
+                                    TW.TW.raycastTarget = true;
                                     TW.isStart = true;
                                 }
 
@@ -454,7 +459,8 @@ public class TextManager : MonoBehaviour
 
 
                             }
-                            else if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 9) {
+                            else if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 9)
+                            {
                                 StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
                             }
                             else // 그 밖의 경우에는 단순 대화 종료. (ex) 스토리 맵 -> 동굴 이동 전 대기 상태
@@ -468,6 +474,8 @@ public class TextManager : MonoBehaviour
                     }
                 }
             }
+
+
         }
 
     }
@@ -899,7 +907,7 @@ public class TextManager : MonoBehaviour
 
     IEnumerator OnType(float interval, string Line, float delay = 0f)
     {
-        yield return new WaitForSeconds(delay);
+        yield return new WaitForSecondsRealtime(delay);
 
         isTyping = true;
         LineText.text = "";
@@ -907,7 +915,7 @@ public class TextManager : MonoBehaviour
         foreach (char item in Line)
         {
             LineText.text += item;
-            yield return new WaitForSeconds(interval);
+            yield return new WaitForSecondsRealtime(interval);
         }
         isTyping = false;
     }
@@ -1053,7 +1061,7 @@ public class TextManager : MonoBehaviour
             STEManager.BlinkClose();
             SoundManager.Instance.ChangeBGM("deepblue");
         }
-            
+
         else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)
             STEManager.FadeIn();
 
