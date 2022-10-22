@@ -49,6 +49,7 @@ public class CurrentMapInfo : MonoBehaviour
     public Text Saving;
 
     public GameObject trasparentImg;
+   
 
     // Start is called before the first frame update
     private void Awake()
@@ -73,36 +74,42 @@ public class CurrentMapInfo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (textManager.DiaUI.activeSelf == false &&Input.GetMouseButtonDown(0))
+        if (textManager.DiaUI.activeSelf == false)
         {
-            var ped = new PointerEventData(null);
-            ped.position = Input.mousePosition;
-            List<RaycastResult> results = new List<RaycastResult>();
-            gr.Raycast(ped, results);
+            if (Input.GetMouseButtonDown(0)) {
+                var ped = new PointerEventData(null);
+                ped.position = Input.mousePosition;
+                List<RaycastResult> results = new List<RaycastResult>();
+                gr.Raycast(ped, results);
 
-            if (results.Count > 0)
-            {
-                if (results[0].gameObject.CompareTag("Cavehole"))
+                if (results.Count > 0)
                 {
-                    trasparentImg.SetActive(true);
-                    grresult = results[0].gameObject;
-                    Proceed();
-                    //Debug.Log(results[0].gameObject.name);
-                    objectManager.SetObjectFadeOff();
+                    if (results[0].gameObject.CompareTag("Cavehole"))
+                    {
+                        trasparentImg.SetActive(true);
+                        grresult = results[0].gameObject;
+                        Proceed();
+                        //Debug.Log(results[0].gameObject.name);
+                        objectManager.SetObjectFadeOff();
+
+                    }
 
                 }
+                else
+                {
+                    grresult = null;
+                }
+            }
 
-            }
-            else
-            {
-                grresult = null;
-            }
+            if (i != 0 && j != 0)
+                BackButton.SetActive(true);
+
+        } 
+        else
+        {
+            BackButton.SetActive(false);
         }
 
-        if (i == 0 && j == 0 && BackButton.activeSelf)
-            BackButton.SetActive(false);
-        else if ((i != 0 || j != 0) && !BackButton.activeSelf)
-            BackButton.SetActive(true);
 
     }
 
@@ -181,7 +188,7 @@ public class CurrentMapInfo : MonoBehaviour
         trasparentImg.SetActive(false);
 
 
-
+      
 
     }
 
