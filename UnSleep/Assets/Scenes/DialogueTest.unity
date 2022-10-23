@@ -1162,7 +1162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4074188097942264422, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
       propertyPath: FadeTime
-      value: 1
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 4074188097942264422, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
       propertyPath: fadeValue
