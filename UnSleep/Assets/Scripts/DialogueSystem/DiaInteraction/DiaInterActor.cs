@@ -117,10 +117,14 @@ public class DiaInterActor : MonoBehaviour
 
                 return;
             }
+            else
+            {
+                Debug.Log(conditions);
+            }
         }
 
 
-        Debug.Log("실행 조건 불충분"); //디버깅용 
+        Debug.Log("모든 실행 조건 불충분"); //디버깅용 
     }
 
 
