@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
 
     public bool isMiniGame;
     public float speed_M;
+    public bool isFall;
+    public bool isMonster;
 
     public ObManager Ob_M;
     public Obstruction Ob;
@@ -148,6 +150,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        /*
         if (collision.gameObject.tag == "Drop" && !isEvent)
         {
             StartCoroutine(Event(true, 0.8f));
@@ -164,14 +167,13 @@ public class Player : MonoBehaviour
             StartCoroutine(Event(false, 0.8f));
             Instantiate(appearObject, appearStart.position, Quaternion.Euler(0, 0, 0));
         }
+        */
 
         if(collision.gameObject.tag == "Ob_N")
         {
-            if(Ob_M.Gauge.value >= 0.1f)
-                Ob_M.Gauge.value -= 0.1f;
-            else
-                Ob_M.Gauge.value = 0;
-            StartCoroutine(Stop());
+
+            if(!isFall)
+                StartCoroutine(Stop());
         }
 
         if(collision.gameObject.tag == "Ob_S")
@@ -184,7 +186,9 @@ public class Player : MonoBehaviour
 
         if(collision.gameObject.tag == "Monster")
         {
-            sprite.enabled = false;
+            //sprite.enabled = false;
+            if(!isMonster)
+                StartCoroutine(MonsterEat());
         }
 
         if(collision.gameObject.tag == "Gome")
@@ -203,8 +207,15 @@ public class Player : MonoBehaviour
 
     IEnumerator Stop()
     {
+        isFall = true;
         //Ob.enabled = false;
         isStop = true;
+
+        if (Ob_M.Gauge.value >= 0.1f)
+            Ob_M.Gauge.value -= 0.1f;
+        else
+            Ob_M.Gauge.value = 0;
+        
         animator.SetBool("isStop", true);
         if (!Ob_M.isOne)
         {
@@ -232,6 +243,19 @@ public class Player : MonoBehaviour
         {
             GS[i].SpeedBack();
         }
+
+
+        yield return new WaitForSeconds(0.5f);
+        isFall = false;
+    }
+
+    IEnumerator MonsterEat()
+    {
+        isMonster = true;
+        Ob_M.Eat();
+        yield return new WaitForSeconds(0.55f);
+        Ob_M.animator.SetTrigger("isStop");
+        sprite.enabled = false;
     }
 
     IEnumerator Event(bool isOnce, float runningTime)

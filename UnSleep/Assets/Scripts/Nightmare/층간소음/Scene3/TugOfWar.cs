@@ -24,6 +24,7 @@ public class TugOfWar : MonoBehaviour
     new Vector3 mousePos;
     new Vector3 transPos_M;
     new Vector3 targetPos;
+
     public bool isMove;
     public bool isMouseMove;
     public float frame;
@@ -36,6 +37,11 @@ public class TugOfWar : MonoBehaviour
     public TextManager TM;
     public FadeInOut fadeinout;
     public Image BG_2;
+
+    public RectTransform Background;
+
+    public RectTransform top;
+    public RectTransform bottom;
 
 
     int i = 0;
@@ -70,10 +76,12 @@ public class TugOfWar : MonoBehaviour
         TransMousePos();
         if (!isMove && isMouseMove)
         {
+            
             if (transPos_M.y >= 2.0f)
                 StartCoroutine(bgDown());
             else
                 StartCoroutine(bgUp());
+            
         }
 
         //Timer
@@ -114,15 +122,15 @@ public class TugOfWar : MonoBehaviour
         transPos_M = Camera.main.ScreenToWorldPoint(mousePos);
     }
 
+
     IEnumerator bgUp()
     {
         isMove = true;
 
-        if(BG.transform.position.y < 430)
+        if (BG.transform.position.y < bottom.transform.position.y)
         {
             targetPos = BG.transform.position + new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
-            Debug.Log(BG.transform.position.y);
         }
 
         yield return new WaitForSeconds(frameTime);
@@ -133,12 +141,11 @@ public class TugOfWar : MonoBehaviour
     {
         isMove = true;
 
-        if(BG.transform.position.y > 10)
+        if (BG.transform.position.y > top.transform.position.y)
         {
             isCount = false;
             targetPos = BG.transform.position - new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
-            Debug.Log(BG.transform.position.y);
         }
         else
         {

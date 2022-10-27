@@ -60,6 +60,7 @@ public class ObManager : MonoBehaviour
             speed = 10;
         }
 
+        //Ending
         if (isFull && !isStopM)
         {
             if (Monster.transform.position.x > 6.73f)
@@ -70,7 +71,7 @@ public class ObManager : MonoBehaviour
             else
             {
                 StartCoroutine(GameClear());
-                animator.SetTrigger("isEat");
+                //animator.SetTrigger("isEat");
                 player.BackGroundStop();
                 NM.isStop = true;
                 isStopM = true;
@@ -125,7 +126,7 @@ public class ObManager : MonoBehaviour
 
     IEnumerator GameClear()
     {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(2.5f);
         Noise_M.coStart(4, 5);
         Color tmp = BG.color;
         tmp.a = 255;
@@ -183,5 +184,11 @@ public class ObManager : MonoBehaviour
 
         yield return new WaitForSeconds(3);
         isCreate = false;
+    }
+
+
+    public void Skip()
+    {
+        Gauge.value = 0.95f;
     }
 }

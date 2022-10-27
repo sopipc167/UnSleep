@@ -40,7 +40,7 @@ public class DragManager : MonoBehaviour
     {
         if (isDrag)
         {
-            if (transPos.x < 155 && transPos.x > -205 && transPos.y > -447 && transPos.y < -35)
+            if (transPos.x < 155 && transPos.x > -205 && transPos.y > -447 && transPos.y < -35) //손 위치
             {
                 isTag = true;
                 it[iteamNum].color = new Vector4(255, 255, 255, 255);
@@ -110,52 +110,55 @@ public class DragManager : MonoBehaviour
         originPos = it[a].transform.position;
         iteamNum = a;
         if (iteamNum == 5)
-            iteamAnim[iteamNum].SetTrigger("Stop");
+            iteamAnim[iteamNum].SetTrigger("Stop");//뱀 움직임 멈추기
 
         if (iteamNum == 4)
-            isLeaf = true;
+            isLeaf = true;//잎 떨어지는 것 멈추기
     }
 
     public void IteamDrag()
     {
-        isDrag = true;
-        transTargetPos();
+        isDrag = true; //아이템 드레그중
+        transTargetPos(); //손 위치때문에
         targetPos = Input.mousePosition;
-        it[iteamNum].transform.position = targetPos;
+        it[iteamNum].transform.position = targetPos; //오브젝트가 움직일 때마다 마우스 위치로
     }
 
     public void IteamRelease()
     {
         if (isDrag && !isTag)
         {
-            isDrag = false;
             it[iteamNum].transform.DOMove(originPos, 1).SetEase(Ease.OutQuad);
             if (iteamNum == 4)
                 Invoke("LeafFalling", 1.2f);
+            else if (iteamNum == 5)
+                iteamAnim[iteamNum].SetBool("isStop", false);
+
+            isDrag = false;
         }
-        else if (isTag)
+        else if (isTag) //아이템이 손 위치 안으로 들어왔을 때
         {
             isTag = false;
-            isDrag = false;
+            
             switch (iteamNum)
             {
                 case 0:
                     iteamAnim[iteamNum].SetTrigger("break");
-                    Invoke("Destroy", 0.7f);
+                    StartCoroutine(Destory(0.7f, 0));
                     break;
                 case 1:
                     iteamAnim[iteamNum].SetTrigger("break");
                     it[iteamNum].DOFade(0.5f, 0.7f);
-                    Invoke("Destroy", 0.5f);
+                    StartCoroutine(Destory(0.5f, 1));
                     break;
                 case 2:
                     iteamAnim[iteamNum].SetTrigger("eatSP");
-                    Invoke("Destroy", 1.0f);
+                    StartCoroutine(Destory(1.0f, 2));
                     break;
                 case 3:
                     it[iteamNum].transform.localPosition = new Vector3(-19, -346, 0);
                     it[iteamNum].transform.DOLocalMoveY(-150, 0.5f).SetLoops(5, LoopType.Restart);
-                    Invoke("Destroy", 3.0f);
+                    StartCoroutine(Destory(3.0f, 3));
                     state = 3;
                     Invoke("changeState", 3.0f);
                     break;
@@ -165,10 +168,12 @@ public class DragManager : MonoBehaviour
                     break;
                 case 5:
                     it[iteamNum].DOFade(0, 0.7f);
-                    Invoke("Destroy", 0.5f);
+                    StartCoroutine(Destory(0.5f, 5));
                     isSnake = true;
                     break;
             }
+
+            isDrag = false;
         }
     }    
 
@@ -209,9 +214,11 @@ public class DragManager : MonoBehaviour
         injury.DOFade(0, 0.5f);
     }
 
-    public void Destroy()
+
+    IEnumerator Destory(float w_time, int num)
     {
-        Destroy(it[iteamNum]);
+        yield return new WaitForSeconds(w_time);
+        Destroy(it[num]);
     }
 
     public void Click()

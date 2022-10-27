@@ -19,6 +19,8 @@ public class NightMareManager : MonoBehaviour
     //층간소음 Scene2
     public GameObject Scene2;
     public Slider gauge;
+    public Button skip;
+    public Text skip_text;
 
     //층간소음 Scene3
     public GameObject Scene3;
@@ -27,6 +29,7 @@ public class NightMareManager : MonoBehaviour
     //7세
     public GameObject Seven;
     public Image BackGround;
+    public GameObject loadManager;
 
     //Test
     public int Case;
@@ -98,6 +101,13 @@ public class NightMareManager : MonoBehaviour
     {
         camera.isMiniGame = true;
         Scene2.SetActive(true);
+        gauge.enabled = true;
+
+        //skip버튼
+        skip.enabled = true;
+        skip.image.enabled = true;
+        skip_text.enabled = true;
+
         player_s.isMiniGame = true;
         player.transform.localScale = new Vector3(0.35f, 0.35f, 0);
         player_s.Noise.enabled = true;
@@ -106,6 +116,10 @@ public class NightMareManager : MonoBehaviour
 
     public void endScene2()
     {
+        skip.enabled = false;
+        skip.image.enabled = false;
+        skip_text.enabled = false;
+
         gauge.enabled = false;
         player_s.Noise.enabled = false;
         camera.isMiniGame = false;
@@ -131,6 +145,7 @@ public class NightMareManager : MonoBehaviour
         player_s.Seven.enabled = true;
         player.SetActive(true);
         Seven.SetActive(true);
+        loadManager.SetActive(true);
         Color tmp = BackGround.color;
         tmp.a = 255;
         BackGround.color = tmp;
@@ -138,6 +153,7 @@ public class NightMareManager : MonoBehaviour
 
     public void endSeven()
     {
+        loadManager.SetActive(false);
         player_s.Seven.enabled = false;
         player.SetActive(false);
         Seven.SetActive(false);
