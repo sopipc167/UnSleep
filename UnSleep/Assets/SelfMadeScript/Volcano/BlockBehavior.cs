@@ -35,12 +35,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     private void OnMouseEnter() //마우스가 들어 왔을 경우 1번에 한해
     {
-        if (GM.Raymode && !isMagma) //마우스 입력을 받는 상태이고 마그마 상태가 아니라면 
-        {
-            render.sprite = Selected;
-            panel.SetActive(false);
-        }
-        
+        SpriteChange(true);
     }
     private void OnMouseOver() //마우스가 계속 들어와 있는 경우
     {
@@ -56,10 +51,22 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     private void OnMouseExit() //마우스가 나갈 경우
     {
+        SpriteChange(false);
+    }
+    public void SpriteChange(bool a)
+    {
         if (GM.Raymode && !isMagma) //마우스 입력을 받는 상태이고 마그마 상태가 아니라면 
         {
-            render.sprite = Defalut; 
-            panel.SetActive(false);
+            if (a)
+            {
+                render.sprite = Selected;
+                panel.SetActive(false);
+            }
+            else
+            {
+                render.sprite = Defalut;
+                panel.SetActive(false);
+            }
         }
     }
     public void Selection() //이건 왜있지?

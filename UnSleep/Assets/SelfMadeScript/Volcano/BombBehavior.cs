@@ -73,6 +73,7 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
     }
     private void OnMouseEnter() //마우스 드가면
     {
+        SpriteChange(true);
         if (GM.Raymode) //만약 마우스 입력을 받아야 되는 상태라면
             showArr(true); //폭발범위 보여줘
     }
@@ -102,11 +103,11 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
     }
     private void OnMouseExit() //마우스 나가면
     {
+        SpriteChange(false);
         if (GM.Raymode) //만약 마우스 입력을 받아야 되는 상태라면 
         {
             render.sprite = Defalut;
             showArr(false);
-            Manager.GetComponent<Game_Manager>().Redrawboard(Location.x, Location.y, bombArr, false);
         }
     }
     void spin() //폭발범위 회전함수

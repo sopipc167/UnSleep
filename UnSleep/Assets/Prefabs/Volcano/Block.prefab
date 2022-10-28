@@ -123,14 +123,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e2a691e809f6c4799467f6ec46485d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Defalut: {fileID: -2855053040296084933, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  Selected: {fileID: 6927574346973616954, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
+  Defalut: {fileID: -8369072654305110233, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  Selected: {fileID: -128706605786764371, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
   panel: {fileID: 6469919798200389441}
   Manager: {fileID: 0}
-  a: 0
-  b: 0
-  inarea: 0
-  exploding: 0
   X: {fileID: 6677186955301177315, guid: 5f00fe095fda97e46a67cc17389988d7, type: 3}
   Bom:
   - {fileID: -1513615676985474918, guid: 3eeaad5e1054f8f4eb9bca57951bb25b, type: 3}

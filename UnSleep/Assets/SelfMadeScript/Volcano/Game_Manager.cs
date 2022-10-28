@@ -390,7 +390,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     {
         for (int i = 0; i < 5; i++)
             for (int j = 0; j < 5; j++)
-                if (bombArr[i, j] == 1 && inRange((int)x + j - 2, (int)y + i - 2) && !(i == 2 && j == 2)) //폭발 범위 내에 있는 모든 블럭 확인
+                if (bombArr[i, j] == 1 && inRange((int)x + j - 2, (int)y + i - 2)) //폭발 범위 내에 있는 모든 블럭 확인
                 {
                     if (Map[(int)x + j - 2, (int)y + i - 2].CompareTag("Bomb") && Map[(int)x + j - 2, (int)y + i - 2].GetComponent<BombBehavior>().Inform != val) //만약 활성상태인 폭탄이 범위내에 감지되면 해당 폭탄 스크립트에서 현재 함수를 호출하도록, 그러니까 해당 폭탄도 폭발범위를 표시하도록 함수 호출
                         Map[(int)x + j - 2, (int)y + i - 2].GetComponent<BombBehavior>().showArr(val);
@@ -399,7 +399,6 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                         Map[(int)x + j - 2, (int)y + i - 2].GetComponent<BlockBehavior>().Inarea = val;
                         Map[(int)x + j - 2, (int)y + i - 2].GetComponent<BlockBehavior>().panel.SetActive(val);
                     }
-                    
                 }   
     }
     bool IsComplete(int x, int y) //게임을 클리어 했는지 클리어하지 못했는지 알아봐주는 함수 true 면 클리어
