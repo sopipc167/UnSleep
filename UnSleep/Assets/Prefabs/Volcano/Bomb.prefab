@@ -127,10 +127,6 @@ MonoBehaviour:
   Selected: {fileID: 0}
   panel: {fileID: 6451149535277695020}
   Manager: {fileID: 0}
-  a: 0
-  b: 0
-  inarea: 0
-  exploding: 0
   X: {fileID: 6677186955301177315, guid: 5f00fe095fda97e46a67cc17389988d7, type: 3}
   Bom:
   - {fileID: -1513615676985474918, guid: 3eeaad5e1054f8f4eb9bca57951bb25b, type: 3}
@@ -143,15 +139,14 @@ MonoBehaviour:
   - {fileID: 820297346084128447, guid: 4ffab949072c76544b6a2b8e1b0ed502, type: 3}
   - {fileID: 8386467810719700030, guid: 4ffab949072c76544b6a2b8e1b0ed502, type: 3}
   - {fileID: -479120700110737783, guid: 4ffab949072c76544b6a2b8e1b0ed502, type: 3}
-  RB: {fileID: 3322202512179061994, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  RBS: {fileID: -6549582301733271295, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  BB: {fileID: -8521697939524428050, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  BBS: {fileID: -821842634570317859, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  YB: {fileID: -7115507157485070786, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  YBS: {fileID: 864513427359639642, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  WB: {fileID: 3207196115136994189, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  WBS: {fileID: 4243155775034666095, guid: 4494bbb5028145c408a46e4e80f50c87, type: 3}
-  inform: 0
+  RB: {fileID: 2985865516061220142, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  RBS: {fileID: 257889311097066689, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  BB: {fileID: -8041101531216546297, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  BBS: {fileID: -5996297866423352353, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  YB: {fileID: -1103360543144331476, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  YBS: {fileID: -1858748951882916205, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  WB: {fileID: 5276179727513473566, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
+  WBS: {fileID: 1294152122287129311, guid: c9e7a3c55c319eb4abbdefdf9556215e, type: 3}
 --- !u!1 &6451149535277695020
 GameObject:
   m_ObjectHideFlags: 0
