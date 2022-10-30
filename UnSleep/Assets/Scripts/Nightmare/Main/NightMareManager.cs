@@ -101,7 +101,7 @@ public class NightMareManager : MonoBehaviour
     {
         camera.isMiniGame = true;
         Scene2.SetActive(true);
-        gauge.enabled = true;
+        //gauge.enabled = true;
 
         //skip버튼
         skip.enabled = true;

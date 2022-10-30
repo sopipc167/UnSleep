@@ -399,6 +399,10 @@ public class TextManager : MonoBehaviour
                                     TW.TW.raycastTarget = true;
                                     TW.isStart = true;
                                 }
+                                else if(con == "End")
+                                {
+                                    SceneManager.LoadScene("Diary");
+                                }
 
 
                                 // 아래 코드는 테이블 확인용 임시 코드.
