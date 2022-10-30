@@ -9611,7 +9611,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.95
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16662,7 +16662,7 @@ MonoBehaviour:
   BG: {fileID: 0}
   isStop: 0
   isMiniGame: 0
-  isThree: 1
+  isThree: 0
   isStart: 0
   Tug: {fileID: 337816009}
   blood: {fileID: 2078637114}
