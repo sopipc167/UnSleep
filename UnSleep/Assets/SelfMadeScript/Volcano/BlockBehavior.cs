@@ -6,7 +6,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
 {
     public Sprite Defalut, Selected; //기본스프라이트와 선택 했을 시에 나타나는 스프라이트
     protected SpriteRenderer render; //블록 오브젝트이 렌더러
-    public GameObject panel, Manager; //게임매니저 (매니저를 통해 다른 블록들과 통신한다
+    public GameObject panel, Manager, swp; //게임매니저 (매니저를 통해 다른 블록들과 통신한다
     protected Game_Manager GM;
     protected bool select, isMagma; //블록의 상태를 체크하는 불 변수 각각 선택된 상태인가, 마그마 상태인가
     public bool Select{ get { return select; } set { select = value; } }
@@ -32,6 +32,10 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
         exploding = false;
         if (isMagma) //마그마 상태일 경우 마그마 애니메이션 실행
             StartCoroutine(Mgm());
+    }
+    public void swapsprite()
+    {
+        swp.SetActive(!swp.activeSelf);
     }
     private void OnMouseEnter() //마우스가 들어 왔을 경우 1번에 한해
     {

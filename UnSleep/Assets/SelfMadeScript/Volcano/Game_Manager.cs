@@ -260,8 +260,12 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         Debug.Log(Swap_List.Count);
         if  (snum > 0) //만약 스왑 횟수가 남았는지 판별
         {
-            if (Swap_List.Count == 0) //스왑 리스트에 블럭이 없다면 그냥 블럭 하나 추가
+            if (Swap_List.Count == 0)
+            {
                 Swap_List.Add(a);
+                objBlock.swapsprite();
+            }//스왑 리스트에 블럭이 없다면 그냥 블럭 하나 추가
+                
             else if (Mathf.Abs(objBlock.Location.x - Swap_List[0].GetComponent<BlockBehavior>().Location.x) <= 1
                 && Mathf.Abs(objBlock.Location.y - Swap_List[0].GetComponent<BlockBehavior>().Location.y) <= 1) //스왑 리스트에 이미 블럭이 하나 이상 있는 경우, 현재 클릭한 블럭이 리스트의 블럭과 이웃한 것인지 판별
             {
@@ -274,6 +278,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 Swap_List[0].GetComponent<BlockBehavior>().Location = Swap_List[1].GetComponent<BlockBehavior>().Location;
                 Swap_List[1].transform.position = tmp;
                 Swap_List[1].GetComponent<BlockBehavior>().Location = tmp1;
+                Swap_List[0].GetComponent<BlockBehavior>().swapsprite();
                 Swap_List[0].GetComponent<BlockBehavior>().Select = false;
                 Swap_List[1].GetComponent<BlockBehavior>().Select = false; //여기까지 서로 두 블럭의 위치정보를 스왑하는 과정, 참고로 블럭 스크립트에 갱신된 위치정보를 저장해두는 것도 잊지 말자
                 GameObject ttmp = Map[(int)Swap_List[0].GetComponent<BlockBehavior>().Location.x, (int)Swap_List[0].GetComponent<BlockBehavior>().Location.y]; //스왑용 변수
@@ -288,6 +293,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             {
                 Debug.Log("ERROR");
                 Swap_List[0].GetComponent<BlockBehavior>().Select = false;
+                Swap_List[0].GetComponent<BlockBehavior>().swapsprite();
                 objBlock.Select = false;
                 Swap_List.Clear();
                 return;
