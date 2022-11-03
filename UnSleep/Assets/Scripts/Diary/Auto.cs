@@ -14,6 +14,11 @@ public class Auto : MonoBehaviour
     public bool isFlipping;
     public bool isAutoStart;
 
+    //test
+    public bool isTest;
+
+    public Cover cover;
+
     void Start()
     {
         if (!ControledBook)
@@ -35,6 +40,9 @@ public class Auto : MonoBehaviour
             isAutoStart = true;
             StartCoroutine(FlipToEnd());
         }
+
+        if (isTest)
+            StartCoroutine(FlipToCurrentPage(DelayBeforeStarting, AnimationFramesCount, TimeBetweenPages, 4));
     }
 
     public void ending_AutoFilp()
@@ -45,6 +53,7 @@ public class Auto : MonoBehaviour
 
     public IEnumerator FlipToCurrentPage(float DelayTime, float AnimationFrame, float BtweenTime, int currentPage)
     {
+        Debug.Log("StartFlip");
         yield return new WaitForSeconds(DelayTime);
         float frameTime = PageFlipTime / AnimationFrame;
         float xc = (ControledBook.EndBottomRight.x + ControledBook.EndBottomLeft.x) / 2;
@@ -59,9 +68,11 @@ public class Auto : MonoBehaviour
                 {
                     if (!isFlipping)
                         StartCoroutine(FlipRTL(xc, xl, h, frameTime, dx));
+                    Debug.Log("currentPage_R: " + ControledBook.currentPage);
                     yield return new WaitForSeconds(BtweenTime);
                 }
                 ControledBook.interactable = true;
+                isTest = false;
                 break;
                 
             case FlipMode.LeftToRight:
@@ -69,9 +80,11 @@ public class Auto : MonoBehaviour
                 {
                     if (!isFlipping)
                         StartCoroutine(FlipLTR(xc, xl, h, frameTime, dx));
+                    Debug.Log("currentPage_L: " + ControledBook.currentPage);
                     yield return new WaitForSeconds(BtweenTime);
                 }
                 ControledBook.interactable = true;
+                isTest = false;
                 AutoFlip = false;
                 break;
         }
@@ -141,5 +154,15 @@ public class Auto : MonoBehaviour
             x += dx;
         }
         ControledBook.ReleasePage();
+    }
+
+    public void GoCurrentPage()
+    {
+        //Test
+        int cPage = ControledBook.bookPages.Length - 2;
+        
+        Mode = FlipMode.RightToLeft;
+        cover.isBack = true;
+        StartCoroutine(FlipToCurrentPage(1.0f, 40, 0.1f, cPage));
     }
 }

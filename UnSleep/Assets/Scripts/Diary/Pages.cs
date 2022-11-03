@@ -44,6 +44,8 @@ public class Pages : MonoBehaviour
 
     public Cover cover;
 
+    public bool isTest;
+
     //public int epi;
 
     [Header("편지봉투")]
@@ -72,7 +74,12 @@ public class Pages : MonoBehaviour
 
     void Update()
     {
-
+        if (isTest)
+        {
+            Debug.Log("Cpage: " + cPage);
+            Flipping();
+            isTest = false;
+        }
 
         if (isEnd) //에피소드 끝나서 왔을 때
         {

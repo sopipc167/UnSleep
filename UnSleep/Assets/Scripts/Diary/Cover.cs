@@ -35,6 +35,8 @@ public class Cover : MonoBehaviour
     public bool isBack;
     public bool back;
 
+    public bool isOpen;
+
     void Start()
     {
         coverWidth = coverManager.rect.width;
@@ -84,7 +86,7 @@ public class Cover : MonoBehaviour
             isEnd = false;
         }
 
-        if (isBack)
+        if (isBack) //표지 auto 열림
         {
             back = true;
             StartCoroutine(TweenTo());
@@ -129,6 +131,7 @@ public class Cover : MonoBehaviour
         }
     }
 
+
     public IEnumerator TweenTo()
     {
         isTween = true;
@@ -149,16 +152,16 @@ public class Cover : MonoBehaviour
             steps = (int)(duration / 0.015f);
         }
 
-        if ((point.x > 0 || isEnd )&& !back)
+        if ((point.x > 0 || isEnd )&& !back) //엔딩연출 오토
         {
-            Debug.Log(back);
+            //표지 닫힘
+            Debug.Log("back: "+ back);
             float displacement = (1000 - point.x) / steps;
             float p = point.x + displacement;
             for (int i = 0; i < steps - 1; i++)
             {
                 UpdateCover(p + displacement);
                 p += displacement;
-                //Debug.Log(p + "TweenTo");
 
                 yield return new WaitForSeconds(frameTime);
                 point.x = p;
@@ -173,6 +176,7 @@ public class Cover : MonoBehaviour
         }
         else
         {
+            //표지 열림
             float displacement = ((-850) - point.x) / steps;
             float p = point.x + displacement;
             for (int i = 0; i < steps - 1; i++)
