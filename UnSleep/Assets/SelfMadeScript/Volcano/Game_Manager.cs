@@ -128,6 +128,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     bool raymode; //마우스 입력상태를 on/off 할수 있게 만드는 불 변수
     public bool Raymode { get { return raymode; } private set { } }
     List<bombs> Bomb_List = new List<bombs>(); //폭탄이 터질때 다음 폭탄들을 저장해주는 리스트
+    List<GameObject> MapList = new List<GameObject>();// 맵 오브젝트 리스트
 
 
     public TextManager textManager;
@@ -203,6 +204,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     Map[i, j] = newB; //오브젝트 배열에 해당 위치의 오브젝트 저장
                     newB.transform.position = new Vector3((i - 7) * 5.2f - 16f, (j - 5) * 5.2f - 3f, -1); //해당 상대 위치를 월드 좌표에 맞춰서 이동시킴
                     newB.GetComponent<BlockBehavior>().IsMagma = true; //마그마상태 on
+                    newB.GetComponent<BlockBehavior>().blockNum = MapList.Count;
+                    MapList.Add(newB);
                 }
                 if (gameboardArray[gameboardint, j, i] == 0)
                 {
@@ -211,6 +214,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     newB.GetComponent<BlockBehavior>().Location = new Vector2(i, j);
                     Map[i,j] = newB;
                     newB.transform.position = new Vector3((i - 7) *5.2f - 16f, (j - 5)*5.2f - 3f, -1);
+                    newB.GetComponent<BlockBehavior>().blockNum = MapList.Count;
+                    MapList.Add(newB);
                 }
                 else if (gameboardArray[gameboardint, j, i] == 1)
                 {
@@ -220,6 +225,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     Map[i,j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 0;
                     newB.transform.position = new Vector3((i - 7) * 5.2f - 16f, (j - 5) * 5.2f - 3f, -1);
+                    newB.GetComponent<BlockBehavior>().blockNum = MapList.Count;
+                    MapList.Add(newB);
                 }
                 else if (gameboardArray[gameboardint, j, i] == 2)
                 {
@@ -229,6 +236,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     Map[i, j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 1;
                     newB.transform.position = new Vector3((i - 7) * 5.2f - 16f, (j - 5) * 5.2f - 3f, -1);
+                    newB.GetComponent<BlockBehavior>().blockNum = MapList.Count;
+                    MapList.Add(newB);
                 }
                 else if (gameboardArray[gameboardint, j, i] == 3)
                 {
@@ -238,6 +247,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     Map[i, j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 2;
                     newB.transform.position = new Vector3((i - 7) * 5.2f - 16f, (j - 5) * 5.2f - 3f, -1);
+                    newB.GetComponent<BlockBehavior>().blockNum = MapList.Count;
+                    MapList.Add(newB);
                 }
                 else if (gameboardArray[gameboardint, j, i] == 4)
                 {
@@ -247,6 +258,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                     Map[i, j] = newB;
                     newB.GetComponent<BombBehavior>().Bombtype = 3;
                     newB.transform.position = new Vector3((i - 7) * 5.2f - 16f, (j - 5) * 5.2f - 3f, -1);
+                    newB.GetComponent<BlockBehavior>().blockNum = MapList.Count;
+                    MapList.Add(newB);
                 }
             }
         }
@@ -254,26 +267,43 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         GameBoard.transform.position = GameBoard.transform.position + new Vector3(13.5f, 0f, 0f);
     }
     public int getsnum() { return snum; } //스왑가능 횟수를 반환
+    void setSwap(BlockBehavior objBlock, bool P)
+    {
+        int tx = (int)objBlock.Location.x;
+        int ty = (int)objBlock.Location.y;
+        for (int i = -1; i < 2; i++)
+        {
+            for (int j = -1; j < 2; j++)
+            {
+                if (inMapSize(ty + j, tx + i))
+                {
+                    BlockBehavior obj = MapList[16 * (ty + j) + tx + i].GetComponent<BlockBehavior>();
+                    obj.swapable = P;
+                    obj.SpriteChange(P);
+                }
+            }
+        }
+    }
     public void Swap(GameObject a) //스왑(자리바꿈)을 해주는 함수
     {
         BlockBehavior objBlock = a.GetComponent<BlockBehavior>();
-        Debug.Log(Swap_List.Count);
         if  (snum > 0) //만약 스왑 횟수가 남았는지 판별
         {
             if (Swap_List.Count == 0)
             {
                 Swap_List.Add(a);
                 objBlock.swapsprite();
+                setSwap(objBlock, true);
             }//스왑 리스트에 블럭이 없다면 그냥 블럭 하나 추가
-                
-            else if (Mathf.Abs(objBlock.Location.x - Swap_List[0].GetComponent<BlockBehavior>().Location.x) <= 1
-                && Mathf.Abs(objBlock.Location.y - Swap_List[0].GetComponent<BlockBehavior>().Location.y) <= 1) //스왑 리스트에 이미 블럭이 하나 이상 있는 경우, 현재 클릭한 블럭이 리스트의 블럭과 이웃한 것인지 판별
+            else if (objBlock.GetComponent<BlockBehavior>().swapable)//스왑 리스트에 이 미 블럭이 하나 이상 있는 경우, 현재 클릭한 블럭이 리스트의 블럭과 이웃한 것인지 판별
             {
                 Swap_List.Add(a);
+                setSwap(Swap_List[0].GetComponent<BlockBehavior>(), false);
                 Vector3 tmp = new Vector3(); //상대 좌표를 저장하기 위한 스왑용 임시변수
                 Vector2 tmp1 = new Vector2(); //상대 좌표를 저장하기 위한 스왑용 임시변수
                 tmp = Swap_List[0].transform.position; //여기서 부터
                 tmp1 = Swap_List[0].GetComponent<BlockBehavior>().Location;
+                int tmp2 = Swap_List[0].GetComponent<BlockBehavior>().blockNum;
                 Swap_List[0].transform.position = Swap_List[1].transform.position;
                 Swap_List[0].GetComponent<BlockBehavior>().Location = Swap_List[1].GetComponent<BlockBehavior>().Location;
                 Swap_List[1].transform.position = tmp;
@@ -286,6 +316,12 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
                 Map[(int)Swap_List[1].GetComponent<BlockBehavior>().Location.x, (int)Swap_List[1].GetComponent<BlockBehavior>().Location.y] = ttmp; //여기까지 게임오브젝트 맵에 있는 내용을 스왑함
                 if (Swap_List[0].gameObject != Swap_List[1].gameObject)
                     snum--;
+                Swap_List[0].GetComponent<BlockBehavior>().blockNum = Swap_List[1].GetComponent<BlockBehavior>().blockNum;
+                Swap_List[1].GetComponent<BlockBehavior>().blockNum = tmp2;
+                GameObject tmp3 = MapList[Swap_List[1].GetComponent<BlockBehavior>().blockNum];
+                MapList[Swap_List[1].GetComponent<BlockBehavior>().blockNum] = MapList[Swap_List[0].GetComponent<BlockBehavior>().blockNum];
+                MapList[Swap_List[0].GetComponent<BlockBehavior>().blockNum] = tmp3;
+                
                 Swap_List.Clear(); //리스트 비우기
                 swaping.text = snum.ToString(); //스왑 횟수 갱신
             }
@@ -357,6 +393,14 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             RayMode();
             Over.SetActive(true);
         }
+    }
+    bool inMapSize(int x, int y)
+    {
+        if (x>=0 && x<16 && y>=0 && y<12)
+        {
+            return true;
+        }
+        else { return false; }
     }
     void Explode(int[,] a, int x, int y) //직접 폭발을 위한 여러 정보를 확인하고 폭발시켜주는 함수 만약 주변에 폭탄이 있으면 리스트에 추가시킴
     {

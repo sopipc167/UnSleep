@@ -8,7 +8,8 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     protected SpriteRenderer render; //블록 오브젝트이 렌더러
     public GameObject panel, Manager, swp; //게임매니저 (매니저를 통해 다른 블록들과 통신한다
     protected Game_Manager GM;
-    protected bool select, isMagma; //블록의 상태를 체크하는 불 변수 각각 선택된 상태인가, 마그마 상태인가
+    protected bool select, isMagma; //블록의 상태를 체크하는 불 변수 각각 선택된 상태인가, 마그마 상태인가, 스왑 가능한가
+    public bool swapable = false;
     public bool Select{ get { return select; } set { select = value; } }
     public bool IsMagma { get { return isMagma; } set { isMagma = value; } }
     Vector2 location; //블럭의 좌표, 그러니까 블럭사이의 상대적인 위치를 나타내는 변수
@@ -17,6 +18,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     public Sprite[] Bom = new Sprite[6], flame = new Sprite[3]; //각각 폭발과 마그마상태의 애니메이션을 나타내기 위한 스프라이트들
 
     public Vector2 Location { get { return location; } set { location = value; } }
+    public int blockNum;
     public bool Inarea { get { return inarea; } set { inarea = value; } }
     public bool Exploding { get { return exploding; } private set { } }
 
@@ -39,7 +41,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     private void OnMouseEnter() //마우스가 들어 왔을 경우 1번에 한해
     {
-        SpriteChange(true);
+        //SpriteChange(true);
     }
     private void OnMouseOver() //마우스가 계속 들어와 있는 경우
     {
@@ -55,7 +57,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     private void OnMouseExit() //마우스가 나갈 경우
     {
-        SpriteChange(false);
+        //SpriteChange(false);
     }
     public void SpriteChange(bool a)
     {
