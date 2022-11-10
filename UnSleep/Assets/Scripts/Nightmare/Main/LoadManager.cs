@@ -27,11 +27,15 @@ public class LoadManager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("isGameOver") == 1)
         {
+            DE.next_flase = 707;
+            DE.next_true = 706;
+            DE.Fade.enabled = true;
             Scene1.SetActive(false);
             backGround.enabled = false;
             player.isSeven = true;
             player.targetPos = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
             player.transform.position = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
+            DE.ob[1].SetActive(false);
             gome.SetActive(true);
             gome.transform.DOScaleX(-2.3f, 0.1f);
             gome.transform.DOScaleY(2.3f, 0.1f);

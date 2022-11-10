@@ -10,15 +10,6 @@ public class MovieEffect : MonoBehaviour
     public GameObject down;
     public bool isFramein;
 
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
 
     public void MovieFrameIn()
     {
@@ -33,7 +24,7 @@ public class MovieEffect : MonoBehaviour
     {
         upper.transform.DOLocalMoveY(729, 1.0f).SetEase(Ease.OutQuad);
         down.transform.DOLocalMoveY(-729, 1.0f).SetEase(Ease.OutQuad);
-        Invoke("FrameDisable", 1.5f);
+        Invoke("FrameDisable", 1.0f);
     }
 
     public void FrameDisable()

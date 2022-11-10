@@ -61,6 +61,8 @@ public class DiaEvent : MonoBehaviour
     public Image ending_bg;
     public Image eye;
 
+    public bool isMovie;
+
     void Start()
     {
         dp = Dialogue_Proceeder.instance;
@@ -125,6 +127,17 @@ public class DiaEvent : MonoBehaviour
             {
                 moveEnd();
             }
+            else if(EventNum == 13)
+            {
+                movieFrame.MovieFrameout();
+                TM.isMovieIn = false;
+            }
+
+            if (isMovie)
+            {
+                movieFrame.MovieFrameout();
+                isMovie = false;
+            }
 
             TM.isEnd = false;
             isFirst = true;
@@ -154,7 +167,6 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "BearUp")
             {
-                EventNum = 100;
                 Move(1, new Vector3(10.15f, 0.58f, 0), new Vector3(0, 0, 0));
             }
             else if (content == "Sound0" || content == "Sound1" || content == "Sound2")
@@ -296,7 +308,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "FrameOut")
             {
-                movieFrame.MovieFrameout();
+                EventNum = 13;
+                content = null;
             }
             else if (content == "Choose")
             {
@@ -308,6 +321,7 @@ public class DiaEvent : MonoBehaviour
                 Dia[37].SetActive(true);
                 Dia[38].SetActive(true);
                 Dia[39].SetActive(true);
+                EventNum = 13;
             }
             else if (content == "Gome")
             {
@@ -466,6 +480,7 @@ public class DiaEvent : MonoBehaviour
 
     IEnumerator GameOver()
     {
+        Debug.Log("coroutine GameOVer");
         isOver = true;
         player.targetPos = player.transform.position;
         player.isStop = true;
@@ -483,17 +498,25 @@ public class DiaEvent : MonoBehaviour
 
 
         //프로시더에서 완료된 대화묶음 지우기
-        if (dp.Complete_Condition.Contains(744))
+        if (dp.Complete_Condition.Contains(743))
         {
+            Debug.Log("contain 744");
             int i = 0;
 
             if (dp.Complete_Condition.Contains(749))
+            {
+                Debug.Log("contain 749");
                 i = 749;
+            }
             else
+            {
+                Debug.Log("contain 749 false");
                 i = 742;
+            }
 
             while (dp.Complete_Condition.Contains(i))
             {
+                Debug.Log("Complete_condition: " + i);
                 dp.RemoveCompleteCondition(i);
                 i++;
             }

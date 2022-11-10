@@ -18,7 +18,8 @@ public class DiaInterInfo : MonoBehaviour
     public SceneType sceneType; //전환되는 씬 이름을 적어주세요
 
     //7세
-    public bool isNext;
+    public bool isAuto;
+    public bool isMany;
 
     //private void OnDrawGizmosSelected()
     //{

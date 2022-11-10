@@ -111,6 +111,10 @@ public class TextManager : MonoBehaviour
     public bool isNoise;
     public NoiseManager NM;
     public TugOfWar TW;
+    public bool isMovieIn;
+    public bool isMovieOut;
+
+    public Gome gome;
 
     void Awake()
     {
@@ -416,7 +420,6 @@ public class TextManager : MonoBehaviour
                             }
                             else //맵모드 + 동굴 + 7세까지 처리. 머지할때 잘 보고 하기
                             {
-
                                 Increasediaindex = false;
                                 DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기.
                             }
@@ -429,7 +432,14 @@ public class TextManager : MonoBehaviour
                                 isEnd = true;
                                 Player.instance.isStop = false;
                                 Player.instance.col.enabled = true;
-                                //Gome.instance.isStart = true;
+                                if (isMovieOut)
+                                {
+                                    diaEvent.isMovie = true;
+                                    isMovieIn = false;
+                                    isMovieOut = false;
+                                }
+
+                                gome.isStart = true;
                             }
 
 

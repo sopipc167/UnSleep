@@ -188,7 +188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &41589745
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -535,7 +535,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &115871035
 Transform:
   m_ObjectHideFlags: 0
@@ -544,7 +544,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 115871034}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.54, y: -0.88, z: 0}
+  m_LocalPosition: {x: -3.22, y: 8.75, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1723612008}
@@ -684,7 +684,8 @@ MonoBehaviour:
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &115871040
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -902,7 +903,8 @@ MonoBehaviour:
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &121830720
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -1120,7 +1122,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &130647449
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -1323,7 +1326,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &138051420
 Transform:
   m_ObjectHideFlags: 0
@@ -1591,7 +1594,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &156883325
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -1891,7 +1895,8 @@ MonoBehaviour:
   Interaction_distance: 2.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &176862578
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2191,7 +2196,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &223859584
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2380,7 +2386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 2001
+      value: 701
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -2388,7 +2394,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 6
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled
@@ -2569,7 +2575,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &242347057
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2871,7 +2878,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &271005367
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -3089,7 +3097,8 @@ MonoBehaviour:
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &303575862
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -3421,7 +3430,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &326261269
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -3429,7 +3439,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326261263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -3858,6 +3868,7 @@ MonoBehaviour:
   - {fileID: 1415981086}
   ending_bg: {fileID: 1136539227}
   eye: {fileID: 588761736}
+  isMovie: 0
 --- !u!82 &349265053
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4355,7 +4366,8 @@ MonoBehaviour:
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &371964901
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -4573,7 +4585,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &401727342
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -4909,7 +4922,8 @@ MonoBehaviour:
   Interaction_distance: 2.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &420413877
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -5085,7 +5099,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &436431053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5600,7 +5614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &476405464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6190,7 +6204,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &510237099
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -6408,7 +6423,8 @@ MonoBehaviour:
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &519524348
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -6708,7 +6724,8 @@ MonoBehaviour:
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &544983532
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -6716,7 +6733,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544983526}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -7389,7 +7406,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &612665643
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -7914,7 +7932,8 @@ MonoBehaviour:
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &708140418
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -8321,7 +8340,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791096679}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -8400,12 +8419,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: bd020000
-  OnlyOnce: 01
+  Obj_Diaid: bd020000be020000
+  OnlyOnce: 0101
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 1
 --- !u!50 &791096685
 Rigidbody2D:
   serializedVersion: 4
@@ -8919,7 +8939,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &864380061
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -9137,7 +9158,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &903587334
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -9437,7 +9459,8 @@ MonoBehaviour:
   Interaction_distance: 2.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &918223964
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -9542,7 +9565,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &926007055
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10102,7 +10125,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: isSeven
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: Increasediaindex
@@ -10132,6 +10155,10 @@ PrefabInstance:
       propertyPath: TW
       value: 
       objectReference: {fileID: 337816009}
+    - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: gome
+      value: 
+      objectReference: {fileID: 1985261897}
     - target: {fileID: 8528798682909620384, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -957.5342
@@ -10467,7 +10494,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1014479907
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -10767,7 +10795,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1049862371
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -11100,7 +11129,8 @@ MonoBehaviour:
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1067155328
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -11353,7 +11383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1077792536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11640,7 +11670,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1102629085
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -11648,7 +11679,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102629079}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -12014,7 +12045,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1161357411
 Transform:
   m_ObjectHideFlags: 0
@@ -12244,7 +12275,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1169540759
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -12705,7 +12737,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1231995670
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -12928,7 +12961,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5151159784527877136, guid: 4d776f2ec9778794c98ec90bff28d3f0, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5151159784527877164, guid: 4d776f2ec9778794c98ec90bff28d3f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13425,7 +13458,8 @@ MonoBehaviour:
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1264130332
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -13433,7 +13467,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264130326}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -13800,7 +13834,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1280279819
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14182,7 +14217,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1323448023
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14654,7 +14690,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1352186465
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14872,7 +14909,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1383924205
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -15317,7 +15355,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1436939748
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -15592,7 +15631,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1450674416
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -15810,7 +15850,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1460064815
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -16160,7 +16201,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1491977881
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -16761,7 +16803,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1666733838
 Transform:
   m_ObjectHideFlags: 0
@@ -17097,7 +17139,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1709401862
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -17179,7 +17222,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -17437,7 +17480,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1727986060
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -17810,7 +17854,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1750923794
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -17818,7 +17863,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750923788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -17874,7 +17919,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1758526364
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18147,7 +18192,8 @@ MonoBehaviour:
   Interaction_distance: 2.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1804938156
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18365,7 +18411,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1813120957
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18619,7 +18666,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &1838762462
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18627,7 +18675,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838762456}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -18701,7 +18749,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -19018,7 +19066,8 @@ MonoBehaviour:
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1858706971
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19296,7 +19345,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1919133138
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19514,7 +19564,8 @@ MonoBehaviour:
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 0
 --- !u!1971053207 &1925415935
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19925,7 +19976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1989653625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20258,7 +20309,8 @@ MonoBehaviour:
   Interaction_distance: 2.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &2025347315
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -20266,7 +20318,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025347309}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -20476,7 +20528,8 @@ MonoBehaviour:
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &2032426926
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -21226,7 +21279,8 @@ MonoBehaviour:
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 1
+  isMany: 1
 --- !u!1971053207 &2116037118
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -21700,7 +21754,8 @@ MonoBehaviour:
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!1971053207 &2133943095
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0

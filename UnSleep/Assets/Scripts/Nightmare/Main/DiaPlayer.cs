@@ -79,7 +79,6 @@ public class DiaPlayer : MonoBehaviour
                     {
                         isOnce = false;
                     }
-
                 }
                 else if (dia_hit_colliders[i].CompareTag("SceneOver"))
                 {
@@ -111,22 +110,6 @@ public class DiaPlayer : MonoBehaviour
         }
     }
 
-    public void Next(string now_name, string next_name)
-    {
-        for(int i = 0; i < dia_hit_colliders.Length; i++)
-        {
-            if(dia_hit_colliders[i].name == now_name)
-            {
-                dia_hit_colliders[i].gameObject.SetActive(false);
-                Debug.Log("now_name: " + i);
-            }
-            else if(dia_hit_colliders[i].name == next_name)
-            {
-                dia_hit_colliders[i].gameObject.SetActive(true);
-                Debug.Log("next_name: " + i);
-            }
-        }
-    }
 
     public void DialogueInteraction(DiaInterInfo hit)
     {
@@ -155,8 +138,24 @@ public class DiaPlayer : MonoBehaviour
 
         for (int i = event_cnt - 1; i >= 0; i--)
         {
+
             if (isOnce && Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
+            {
                 continue;
+            }
+            else
+            {
+                if (hit_info.isAuto && !textManager.isMovieIn)
+                {
+                    Debug.Log("MovieIN");
+                    movie.MovieFrameIn();
+                    textManager.isMovieIn = true;
+                    if(!hit_info.isMany)
+                        textManager.isMovieOut = true;
+                }
+
+            }
+
 
             player.col.enabled = false;
             player.isStop = true;
