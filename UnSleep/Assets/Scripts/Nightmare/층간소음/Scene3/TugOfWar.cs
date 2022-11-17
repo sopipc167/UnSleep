@@ -89,7 +89,7 @@ public class TugOfWar : MonoBehaviour
         {
             time += Time.deltaTime;
             limit = ((int)time % 60);
-            if (limit >= 1.5f)
+            if (limit >= 1.3f)
             {
                 //TugOfWar 실행조건
                 isMouseMove = false;
@@ -131,7 +131,8 @@ public class TugOfWar : MonoBehaviour
         {
             targetPos = BG.transform.position + new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
-        }
+            frame -= 0.3f;
+         }
 
         yield return new WaitForSeconds(frameTime);
         isMove = false;
@@ -146,6 +147,7 @@ public class TugOfWar : MonoBehaviour
             isCount = false;
             targetPos = BG.transform.position - new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
+            frame += 0.3f;
         }
         else
         {

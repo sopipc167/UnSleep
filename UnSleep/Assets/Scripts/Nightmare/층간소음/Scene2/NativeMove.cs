@@ -30,7 +30,6 @@ public class NativeMove : MonoBehaviour
     IEnumerator Move()
     {
         isMove = true;
-        Debug.Log("Move");
         if (num1 == 1)
             transform.DOMoveY(2.49f, 3).SetEase(Ease.InBounce);
         else if (num1 == 2)

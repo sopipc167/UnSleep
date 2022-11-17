@@ -40,6 +40,8 @@ public class ObManager : MonoBehaviour
 
     public bool isEnding;
 
+    public SpriteRenderer[] warning;
+
     void Start()
     {
         Gauge.value = 0;
@@ -157,9 +159,18 @@ public class ObManager : MonoBehaviour
     {
         isCreateS = true;
         int posNum = Random.Range(0, 3);
-        Instantiate(ob_S, CPos_S[posNum].position, Quaternion.Euler(0, 0, 0));
 
-        yield return new WaitForSeconds(3);
+
+        for(int i = 0; i < 4; i++)
+        {
+            warning[posNum].enabled = true;
+            yield return new WaitForSeconds(0.2f);
+            warning[posNum].enabled = false;
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        Instantiate(ob_S, CPos_S[posNum].position, Quaternion.Euler(0, 0, 0));
+        yield return new WaitForSeconds(2.5f);
         isCreateS = false;
     }
 

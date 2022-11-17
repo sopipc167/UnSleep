@@ -42,9 +42,5 @@ public class Obstruction : MonoBehaviour
             if(isSpecial)
                 DestroyObject();
         }
-        if (collision.gameObject.tag == "Native")
-        {
-            DestroyObject();
-        }
     }
 }

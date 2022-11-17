@@ -177,7 +177,10 @@ public class DragManager : MonoBehaviour
             }
 
             isDrag = false;
-            isTag = false;
+            if (iteamNum != 3)
+            {
+                isTag = false;
+            }
         }
     }    
 
