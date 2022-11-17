@@ -36,12 +36,10 @@ public class NoiseManager : MonoBehaviour
             if (con == "BackGround_On")
             {
                 backGround.enabled = true;
-                con = null;
             }
             else if (con == "BackGround_Off")
             {
                 backGround.enabled = false;
-                con = null;
             }
             else if (con == "Blink")
             {
@@ -49,8 +47,9 @@ public class NoiseManager : MonoBehaviour
                 tmp.a = 0;
                 Fade.color = tmp;
                 BA.BlinkOpen();
-                con = null;
             }
+
+            con = null;
         }
         
     }

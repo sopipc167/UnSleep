@@ -45,6 +45,7 @@ public class ObManager : MonoBehaviour
     void Start()
     {
         Gauge.value = 0;
+        SoundManager.Instance.PlayBGM("Dream Of You");
     }
 
     void Update()
@@ -133,6 +134,7 @@ public class ObManager : MonoBehaviour
     IEnumerator GameClear()
     {
         yield return new WaitForSeconds(2.5f);
+        SoundManager.Instance.FadeOutBGM(delay:1.0f);
         Noise_M.coStart(4, 5);
         Color tmp = BG.color;
         tmp.a = 255;

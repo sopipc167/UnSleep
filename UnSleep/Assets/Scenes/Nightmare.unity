@@ -3797,6 +3797,9 @@ MonoBehaviour:
   Background: {fileID: 1182236873}
   top: {fileID: 696025818}
   bottom: {fileID: 1700335746}
+  isNoise: 0
+  isScissor: 0
+  noiseSound: {fileID: 8300000, guid: 3c2a0afc59b4235429a437dca0fe6d52, type: 3}
 --- !u!1 &349265050
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,7 +3817,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &349265051
 Transform:
   m_ObjectHideFlags: 0
