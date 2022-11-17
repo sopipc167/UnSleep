@@ -31,22 +31,28 @@ public class NoiseManager : MonoBehaviour
 
     void Update()
     {
-        if(con == "BackGround_On")
+        if(con != null)
         {
-            backGround.enabled = true;
+            if (con == "BackGround_On")
+            {
+                backGround.enabled = true;
+                con = null;
+            }
+            else if (con == "BackGround_Off")
+            {
+                backGround.enabled = false;
+                con = null;
+            }
+            else if (con == "Blink")
+            {
+                Color tmp = Fade.color;
+                tmp.a = 0;
+                Fade.color = tmp;
+                BA.BlinkOpen();
+                con = null;
+            }
         }
-        else if(con == "BackGround_Off")
-        {
-            backGround.enabled = false;
-        }
-        else if(con == "Blink")
-        {
-            Color tmp = Fade.color;
-            tmp.a = 0;
-            Fade.color = tmp;
-            BA.BlinkOpen();
-            con = null;
-        }
+        
     }
 
     public void coStart(int cur, int next)

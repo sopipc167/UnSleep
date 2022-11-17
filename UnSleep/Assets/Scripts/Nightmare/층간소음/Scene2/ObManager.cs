@@ -31,11 +31,14 @@ public class ObManager : MonoBehaviour
     public GameObject Monster;
     public bool isStopM;
     public GameObject Native;
+    public Transform target;
     public NativeMove NM;
     public Animator animator;
 
     public NoiseManager Noise_M;
     public Image BG;
+
+    public bool isEnding;
 
     void Start()
     {
@@ -51,8 +54,10 @@ public class ObManager : MonoBehaviour
         }
         else if(Gauge.value == 1.0f && !isFull)
         {
-            isFull = true;
             player.targetPos.y = -1.4f;
+            Native.transform.position = Vector3.MoveTowards(Native.transform.position, target.position, 10 * Time.deltaTime);
+            if(!isEnding)
+                StartCoroutine(GameEnding());
         }
         else
         {
@@ -66,12 +71,11 @@ public class ObManager : MonoBehaviour
             if (Monster.transform.position.x > 6.73f)
             {
                 Monster.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-                Native.transform.position -= new Vector3(8 * Time.deltaTime, 0, 0);
+                //Native.transform.position -= new Vector3(8 * Time.deltaTime, 0, 0);
             }
             else
             {
                 StartCoroutine(GameClear());
-                //animator.SetTrigger("isEat");
                 player.BackGroundStop();
                 NM.isStop = true;
                 isStopM = true;
@@ -131,6 +135,15 @@ public class ObManager : MonoBehaviour
         Color tmp = BG.color;
         tmp.a = 255;
         BG.color = tmp;
+        Noise_M.TM.DiaUI.SetActive(true);
+        Noise_M.TM.Increasediaindex = true;
+    }
+
+    IEnumerator GameEnding()
+    {
+        isEnding = true;
+        player.isStop = true;
+        yield return new WaitForSeconds(1.5f);
         Noise_M.TM.DiaUI.SetActive(true);
         Noise_M.TM.Increasediaindex = true;
     }

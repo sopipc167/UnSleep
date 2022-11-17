@@ -111,6 +111,7 @@ public class TextManager : MonoBehaviour
     public bool isNoise;
     public NoiseManager NM;
     public TugOfWar TW;
+    public ObManager OM;
     public bool isMovieIn;
     public bool isMovieOut;
 
@@ -240,6 +241,19 @@ public class TextManager : MonoBehaviour
             Debug.Log("유효 클릭 조건 DiaUI(true):"+ DiaUI.activeSelf.ToString() +
                 "LogUI(false):"+ LogUI.activeSelf.ToString()+
                 "isPointerOverGameObject(false):"+EventSystem.current.IsPointerOverGameObject().ToString());
+
+            if (isSeven || isNoise)
+            {
+                con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
+                if (con != null)
+                {
+                    if (isSeven)
+                        diaEvent.content = con;
+                    else
+                        NoiseManager.instance.con = con;
+                }
+                Debug.Log("con2: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
+            }
 
 
             if (goodbyeUI.activeSelf && !isGoodbye && dp.CurrentEpiID == 19)
@@ -393,6 +407,11 @@ public class TextManager : MonoBehaviour
                                 {
                                     if (!NM.isStart)
                                         NM.coStart(2, 3);
+                                }
+                                else if(con == "MonsterMove")
+                                {
+                                    Debug.Log("MonsterMove");
+                                    OM.isFull = true;
                                 }
                                 else if (con == "GameStart_3_1")
                                 {

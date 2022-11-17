@@ -110,7 +110,7 @@ public class TugOfWar : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         Gauge.value = 0.5f;
         if(i >= 2)
-            Dialogue_Proceeder.instance.UpdateCurrentDiaID(2006);
+            Dialogue_Proceeder.instance.UpdateCurrentDiaID(2007);
 
         TM.DiaUI.SetActive(true);
         TM.Increasediaindex = true;
@@ -181,7 +181,6 @@ public class TugOfWar : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             Gauge.value = 0.5f;
             transform.localPosition = new Vector3(-121, 150, 0);
-            i = 0;
             Foot.SetActive(true);
             isFoot = true;
             yield return new WaitForSeconds(0.5f);
@@ -202,7 +201,7 @@ public class TugOfWar : MonoBehaviour
         fadeinout.Blackout_Func(0.5f);
         BG_2.enabled = true;
         yield return new WaitForSeconds(0.5f);
-        Dialogue_Proceeder.instance.UpdateCurrentDiaID(2007);
+        Dialogue_Proceeder.instance.UpdateCurrentDiaID(2008);
         TM.DiaUI.SetActive(true);
         TM.Increasediaindex = true;
     }

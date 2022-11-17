@@ -107,13 +107,16 @@ public class DragManager : MonoBehaviour
 
     public void IteamDragBegin(int a)
     {
-        originPos = it[a].transform.position;
-        iteamNum = a;
-        if (iteamNum == 5)
-            iteamAnim[iteamNum].SetTrigger("Stop");//뱀 움직임 멈추기
+        if (!isDrag)
+        {
+            originPos = it[a].transform.position;
+            iteamNum = a;
+            if (iteamNum == 5)
+                iteamAnim[iteamNum].SetTrigger("Stop");//뱀 움직임 멈추기
 
-        if (iteamNum == 4)
-            isLeaf = true;//잎 떨어지는 것 멈추기
+            if (iteamNum == 4)
+                isLeaf = true;//잎 떨어지는 것 멈추기
+        }
     }
 
     public void IteamDrag()
@@ -138,12 +141,12 @@ public class DragManager : MonoBehaviour
         }
         else if (isTag) //아이템이 손 위치 안으로 들어왔을 때
         {
-            isTag = false;
-            
+
             switch (iteamNum)
             {
                 case 0:
                     iteamAnim[iteamNum].SetTrigger("break");
+                    it[iteamNum].DOFade(0.7f, 0.7f);
                     StartCoroutine(Destory(0.7f, 0));
                     break;
                 case 1:
@@ -174,6 +177,7 @@ public class DragManager : MonoBehaviour
             }
 
             isDrag = false;
+            isTag = false;
         }
     }    
 
