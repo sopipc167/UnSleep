@@ -31,15 +31,21 @@ public class ObManager : MonoBehaviour
     public GameObject Monster;
     public bool isStopM;
     public GameObject Native;
+    public Transform target;
     public NativeMove NM;
     public Animator animator;
 
     public NoiseManager Noise_M;
     public Image BG;
 
+    public bool isEnding;
+
+    public SpriteRenderer[] warning;
+
     void Start()
     {
         Gauge.value = 0;
+        SoundManager.Instance.PlayBGM("Dream Of You");
     }
 
     void Update()
@@ -51,8 +57,10 @@ public class ObManager : MonoBehaviour
         }
         else if(Gauge.value == 1.0f && !isFull)
         {
-            isFull = true;
             player.targetPos.y = -1.4f;
+            Native.transform.position = Vector3.MoveTowards(Native.transform.position, target.position, 10 * Time.deltaTime);
+            if(!isEnding)
+                StartCoroutine(GameEnding());
         }
         else
         {
@@ -66,12 +74,11 @@ public class ObManager : MonoBehaviour
             if (Monster.transform.position.x > 6.73f)
             {
                 Monster.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-                Native.transform.position -= new Vector3(8 * Time.deltaTime, 0, 0);
+                //Native.transform.position -= new Vector3(8 * Time.deltaTime, 0, 0);
             }
             else
             {
                 StartCoroutine(GameClear());
-                //animator.SetTrigger("isEat");
                 player.BackGroundStop();
                 NM.isStop = true;
                 isStopM = true;
@@ -127,10 +134,20 @@ public class ObManager : MonoBehaviour
     IEnumerator GameClear()
     {
         yield return new WaitForSeconds(2.5f);
+        SoundManager.Instance.FadeOutBGM(delay:1.0f);
         Noise_M.coStart(4, 5);
         Color tmp = BG.color;
         tmp.a = 255;
         BG.color = tmp;
+        Noise_M.TM.DiaUI.SetActive(true);
+        Noise_M.TM.Increasediaindex = true;
+    }
+
+    IEnumerator GameEnding()
+    {
+        isEnding = true;
+        player.isStop = true;
+        yield return new WaitForSeconds(1.5f);
         Noise_M.TM.DiaUI.SetActive(true);
         Noise_M.TM.Increasediaindex = true;
     }
@@ -144,9 +161,18 @@ public class ObManager : MonoBehaviour
     {
         isCreateS = true;
         int posNum = Random.Range(0, 3);
-        Instantiate(ob_S, CPos_S[posNum].position, Quaternion.Euler(0, 0, 0));
 
-        yield return new WaitForSeconds(3);
+
+        for(int i = 0; i < 4; i++)
+        {
+            warning[posNum].enabled = true;
+            yield return new WaitForSeconds(0.2f);
+            warning[posNum].enabled = false;
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        Instantiate(ob_S, CPos_S[posNum].position, Quaternion.Euler(0, 0, 0));
+        yield return new WaitForSeconds(2.5f);
         isCreateS = false;
     }
 

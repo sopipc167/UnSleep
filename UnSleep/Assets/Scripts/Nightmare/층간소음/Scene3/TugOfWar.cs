@@ -43,16 +43,23 @@ public class TugOfWar : MonoBehaviour
     public RectTransform top;
     public RectTransform bottom;
 
+    public bool isNoise;
+    public bool isScissor;
+    public AudioClip noiseSound;
 
     int i = 0;
 
     void Start()
     {
         Gauge.value = 0.5f;
+        isNoise = true;
     }
 
     void Update()
     {
+        if (isNoise && !isScissor)
+            StartCoroutine(Noise());
+
         if (isStart)
         {
             if (!isAdd)
@@ -89,18 +96,29 @@ public class TugOfWar : MonoBehaviour
         {
             time += Time.deltaTime;
             limit = ((int)time % 60);
-            if (limit >= 1.5f)
+            if (limit >= 1.3f)
             {
                 //TugOfWar 실행조건
+                isScissor = true;
                 isMouseMove = false;
                 BG.enabled = false;
                 isCount = false;
                 Gauge.gameObject.SetActive(true);
                 Hand.gameObject.SetActive(true);
+                SoundManager.Instance.PlayBGM("Extreme Fear");
                 TM.DiaUI.SetActive(true);
                 TM.Increasediaindex = true;
             }
         }
+    }
+
+    IEnumerator Noise()
+    {
+        isNoise = false;
+        yield return new WaitForSeconds(3.0f);
+        SoundManager.Instance.PlaySE(noiseSound);
+        yield return new WaitForSeconds(0.5f);
+        isNoise = true;
     }
 
     IEnumerator GameOver()
@@ -110,7 +128,7 @@ public class TugOfWar : MonoBehaviour
         yield return new WaitForSeconds(0.7f);
         Gauge.value = 0.5f;
         if(i >= 2)
-            Dialogue_Proceeder.instance.UpdateCurrentDiaID(2006);
+            Dialogue_Proceeder.instance.UpdateCurrentDiaID(2007);
 
         TM.DiaUI.SetActive(true);
         TM.Increasediaindex = true;
@@ -131,7 +149,8 @@ public class TugOfWar : MonoBehaviour
         {
             targetPos = BG.transform.position + new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
-        }
+            frame -= 0.3f;
+         }
 
         yield return new WaitForSeconds(frameTime);
         isMove = false;
@@ -146,6 +165,7 @@ public class TugOfWar : MonoBehaviour
             isCount = false;
             targetPos = BG.transform.position - new Vector3(0, frame, 0);
             BG.transform.position = Vector3.Lerp(targetPos, BG.transform.position, Time.deltaTime);
+            frame += 0.3f;
         }
         else
         {
@@ -181,7 +201,6 @@ public class TugOfWar : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             Gauge.value = 0.5f;
             transform.localPosition = new Vector3(-121, 150, 0);
-            i = 0;
             Foot.SetActive(true);
             isFoot = true;
             yield return new WaitForSeconds(0.5f);
@@ -192,17 +211,17 @@ public class TugOfWar : MonoBehaviour
             footChange[0].SetActive(false);
             footChange[1].SetActive(true);
             isEnd = true; 
-            Debug.Log("Success");
             StartCoroutine(Ending());
         }
     }
 
     IEnumerator Ending()
     {
+        SoundManager.Instance.FadeOutBGM(delay:1.0f);
         fadeinout.Blackout_Func(0.5f);
         BG_2.enabled = true;
         yield return new WaitForSeconds(0.5f);
-        Dialogue_Proceeder.instance.UpdateCurrentDiaID(2007);
+        Dialogue_Proceeder.instance.UpdateCurrentDiaID(2008);
         TM.DiaUI.SetActive(true);
         TM.Increasediaindex = true;
     }
