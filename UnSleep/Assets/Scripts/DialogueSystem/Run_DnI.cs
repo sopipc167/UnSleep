@@ -49,6 +49,7 @@ public class Run_DnI : MonoBehaviour
             case 5602: return 7;    // 메시지3
             case 6502: return 8;    // 맥주2
             case 6517: return 9;    // 리본
+            case 8016: return 10;    // 메시지4
         }
         return -1;
     }
