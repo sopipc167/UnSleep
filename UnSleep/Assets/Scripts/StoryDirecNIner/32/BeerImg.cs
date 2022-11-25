@@ -52,12 +52,14 @@ public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
 
         diff = curMousePos - prevMousePos;
 
-        if (transform.localPosition.x > -35.2f && diff.x > 0f)
+        if (transform.localPosition.x > -35.2f && diff.x > 0f ||
+            transform.localPosition.x < -880f && diff.x < 0f)
         {
             diff.x = 0f;
         }
 
-        if (transform.localPosition.y > -97.2f && diff.y > 0f)
+        if (transform.localPosition.y > -97.2f && diff.y > 0f ||
+            transform.localPosition.y < -500f && diff.y < 0f)
         {
             diff.y = 0f;
         }
@@ -65,7 +67,6 @@ public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
         // 재미로 넣은 코드...
         // 도문이 혼술 가능 ㅋㅋ
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.localRotation.eulerAngles.z - (diff.x * 0.08f)));
-        
         transform.localPosition += diff;
 
         if (transform.localPosition.x > -35.2f && transform.localPosition.y > -97.2f)

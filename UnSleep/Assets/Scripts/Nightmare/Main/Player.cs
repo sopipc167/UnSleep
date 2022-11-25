@@ -83,12 +83,12 @@ public class Player : MonoBehaviour
         Vector3 tmp = transform.position;
         if (isMiniGame)
         {
-            if (targetPos.y > 0.18f)
-                tmp.y = 2.94f;
-            else if (targetPos.y > -2.8f)
-                tmp.y = 0.05f;
+            if (targetPos.y > -1.1f)
+                tmp.y = 1.0f;
+            else if (targetPos.y > -3.6f)
+                tmp.y = -0.7f;
             else
-                tmp.y = -2.42f;
+                tmp.y = -2.45f;
 
             transform.position = Vector3.MoveTowards(transform.position, tmp, Time.deltaTime * speed_M);
 
@@ -119,6 +119,7 @@ public class Player : MonoBehaviour
         }
 
 
+        //Scene2 엔딩 도문이 뛰는거
         if (Ob_M.isStopM)
         {
             transform.position = Vector3.MoveTowards(transform.position, new Vector3(5.98f, 0.07f, 0), Time.deltaTime * speed);

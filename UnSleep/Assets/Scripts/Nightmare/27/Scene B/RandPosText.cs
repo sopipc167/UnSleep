@@ -25,16 +25,7 @@ public class RandPosText : MonoBehaviour
     private struct WL
     {
         public string line;
-        private int weight;
-        public int Weight {
-            get => weight;
-            set
-            {
-                if (value > 15) value = 15;
-                if (value < -15) value = -15;
-                weight = value;
-            }
-        }
+        public int weight;
     }
 
     WL[] ws = new WL[4];
@@ -57,17 +48,17 @@ public class RandPosText : MonoBehaviour
     { 
         if (isMe)
         {
-            ws[0].Weight = 10;
-            ws[1].Weight = 5;
-            ws[2].Weight = 2;
-            ws[3].Weight = 1;
+            ws[0].weight = 9;
+            ws[1].weight = 7;
+            ws[2].weight = 4;
+            ws[3].weight = 2;
         }
         else
         {
-            ws[0].Weight = -10;
-            ws[1].Weight = -5;
-            ws[2].Weight = -2;
-            ws[3].Weight = -1;
+            ws[0].weight = -9;
+            ws[1].weight = -7;
+            ws[2].weight = -4;
+            ws[3].weight = -2;
         }
 
         switch (type)
@@ -128,7 +119,7 @@ public class RandPosText : MonoBehaviour
 
         for (int i = 0; i < 4; ++i)
         {
-            weightedLines[i].SetValue(ws[i].line, ws[i].Weight);
+            weightedLines[i].SetValue(ws[i].line, ws[i].weight);
             buttons[i].RefreshSize();
         }
     }

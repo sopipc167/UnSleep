@@ -26,12 +26,13 @@ public class MessageButton : StoryInteract
 
     private void Update()
     {
-        if (flagObj.activeSelf) return;
+        if (flagObj != null && flagObj.activeSelf) return;
 
         if (result)
         {
             if (Dialogue_Proceeder.instance.CurrentDiaID == 3118 ||
-                Dialogue_Proceeder.instance.CurrentDiaID == 5603)
+                Dialogue_Proceeder.instance.CurrentDiaID == 5603 ||
+                Dialogue_Proceeder.instance.CurrentDiaID == 8017)
             {
                 gameObject.SetActive(false);
             }

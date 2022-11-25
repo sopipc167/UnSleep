@@ -13,6 +13,7 @@ public class ObManager : MonoBehaviour
     public float speed;
 
     public GameObject[] ob_N;
+    int ob1_pos;
     public GameObject ob_S;
 
     public bool isCreate;
@@ -41,6 +42,9 @@ public class ObManager : MonoBehaviour
     public bool isEnding;
 
     public SpriteRenderer[] warning;
+    public string[] road;
+
+    public Ease Movement;
 
     void Start()
     {
@@ -71,18 +75,8 @@ public class ObManager : MonoBehaviour
         //Ending
         if (isFull && !isStopM)
         {
-            if (Monster.transform.position.x > 6.73f)
-            {
-                Monster.transform.position -= new Vector3(speed * Time.deltaTime, 0, 0);
-                //Native.transform.position -= new Vector3(8 * Time.deltaTime, 0, 0);
-            }
-            else
-            {
-                StartCoroutine(GameClear());
-                player.BackGroundStop();
-                NM.isStop = true;
-                isStopM = true;
-            }
+            StartCoroutine(GameClear());
+            NM.isStop = true;            
         }
 
 
@@ -96,7 +90,7 @@ public class ObManager : MonoBehaviour
 
         if (Gauge.value > 0.1f)
         {
-            if (!isCreateS && Gauge.value < 0.95f)
+            if (isOne && !isCreateS && Gauge.value < 0.95f)
             {
                 StartCoroutine(CreateOB_S1());
             }
@@ -133,7 +127,12 @@ public class ObManager : MonoBehaviour
 
     IEnumerator GameClear()
     {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.7f);
+        isStopM = true;
+        player.BackGroundStop();
+        //북귀신 이동
+        Monster.transform.DOLocalMoveX(-58.05f, 0.2f).SetEase(Movement);
+        yield return new WaitForSeconds(1.8f);
         SoundManager.Instance.FadeOutBGM(delay:1.0f);
         Noise_M.coStart(4, 5);
         Color tmp = BG.color;
@@ -160,15 +159,20 @@ public class ObManager : MonoBehaviour
     IEnumerator CreateOB_S1()
     {
         isCreateS = true;
-        int posNum = Random.Range(0, 3);
+        int posNum;
+
+        do
+        {
+            posNum = Random.Range(0, 3);
+        } while (posNum == ob1_pos);
 
 
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < 3; i++)
         {
             warning[posNum].enabled = true;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
             warning[posNum].enabled = false;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         Instantiate(ob_S, CPos_S[posNum].position, Quaternion.Euler(0, 0, 0));
@@ -176,33 +180,37 @@ public class ObManager : MonoBehaviour
         isCreateS = false;
     }
 
-    IEnumerator CreateOB1()
+    IEnumerator CreateOB1() //장애물 한개 등장
     {
         isCreate = true;
         isOne = true;
-        int posNum = Random.Range(0, 3);
-        int ran = Random.Range(0, 2);
-        Obstruction = Instantiate(ob_N[ran], CPos[posNum].position, Quaternion.Euler(0, 0, 0));
+        ob1_pos = Random.Range(0, 3); //장애물 위치 랜덤
+        int ran = Random.Range(0, 2); //장애물 종류 랜덤
+        Obstruction = Instantiate(ob_N[ran], CPos[ob1_pos].position, Quaternion.Euler(0, 0, 0));
         ObList[0] = Obstruction;
 
         yield return new WaitForSeconds(3);
         isCreate = false;
     }
 
-    IEnumerator CreateOB2()
+    IEnumerator CreateOB2() //장애물 두개 등장
     {
         isCreate = true;
         isOne = false;
 
         int posNum1 = Random.Range(0, 3);
-        int posNum2 = Random.Range(0, 3);
-        while(posNum2 == posNum1)
+        int posNum2;
+
+        do  //장애물 두개의 위치가 같을 경우 다른 위치가 나올때까지 다시 랜덤
         {
             posNum2 = Random.Range(0, 3);
-        }
+        } while (posNum2 == posNum1);
 
+
+        //장애물 종류 랜덤
         int ran1 = Random.Range(0, 2);
         int ran2 = Random.Range(0, 2);
+        
         Obstruction = Instantiate(ob_N[ran1], CPos[posNum1].position, Quaternion.Euler(0, 0, 0));
         ObList[1] = Obstruction;
         Obstruction = Instantiate(ob_N[ran2], CPos[posNum2].position, Quaternion.Euler(0, 0, 0));

@@ -11,14 +11,14 @@ public class ScaleManager : MonoBehaviour
     private Animator ani;
 
     private ScaleRotation scaleRotation;
-    private int weight = -10;
+    private int weight = -5;
     private int Weight
     {
         get => weight;
         set
         {
-            if (value < -15) weight = -15;
-            else if (value > 15) weight = 15;
+            if (value < -5) weight = -5;
+            else if (value > 5) weight = 5;
             else weight = value;
         }
     }
@@ -35,7 +35,7 @@ public class ScaleManager : MonoBehaviour
 
     public void ResetData()
     {
-        Weight = -7;
+        Weight = -5;
         scaleText.text = unbalance;
         scaleRotation.RotateScale(-5);
     }
@@ -44,12 +44,12 @@ public class ScaleManager : MonoBehaviour
     {
         Weight += value;
 
-        if (Weight > 5)
+        if (Weight == 5)
         {
             scaleText.text = unbalance;
             scaleRotation.RotateScale(5);
         }
-        else if (Weight < -5)
+        else if (Weight == -5)
         {
             scaleText.text = unbalance;
             scaleRotation.RotateScale(-5);
