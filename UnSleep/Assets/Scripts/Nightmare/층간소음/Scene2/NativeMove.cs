@@ -31,11 +31,11 @@ public class NativeMove : MonoBehaviour
     {
         isMove = true;
         if (num1 == 1)
-            transform.DOMoveY(2.49f, 3).SetEase(Ease.InBounce);
+            transform.DOMoveY(1.5f, 3).SetEase(Ease.InBounce);
         else if (num1 == 2)
-            transform.DOMoveY(-0.06f, 3).SetEase(Ease.InBounce);
+            transform.DOMoveY(-0.56f, 3).SetEase(Ease.InBounce);
         else if (num1 == 3)
-            transform.DOMoveY(-2.53f, 3).SetEase(Ease.InBounce);
+            transform.DOMoveY(-3.03f, 3).SetEase(Ease.InBounce);
         num2 = num1;
         yield return new WaitForSeconds(3.0f);
         isMove = false;
