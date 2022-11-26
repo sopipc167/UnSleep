@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
 
     public bool isAuto;
 
+    public GameObject surprise;
+
     void Start()
     {
         instance = this;

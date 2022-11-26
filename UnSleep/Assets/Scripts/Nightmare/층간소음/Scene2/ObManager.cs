@@ -45,6 +45,8 @@ public class ObManager : MonoBehaviour
     public string[] road;
 
     public Ease Movement;
+    public MovieEffect frame;
+    public bool isClear;
 
     void Start()
     {
@@ -63,6 +65,7 @@ public class ObManager : MonoBehaviour
         {
             player.targetPos.y = -1.4f;
             Native.transform.position = Vector3.MoveTowards(Native.transform.position, target.position, 10 * Time.deltaTime);
+            
             if(!isEnding)
                 StartCoroutine(GameEnding());
         }
@@ -73,8 +76,9 @@ public class ObManager : MonoBehaviour
         }
 
         //Ending
-        if (isFull && !isStopM)
+        if (isFull && !isStopM && !isClear)
         {
+            isClear = true;
             StartCoroutine(GameClear());
             NM.isStop = true;            
         }
@@ -127,14 +131,18 @@ public class ObManager : MonoBehaviour
 
     IEnumerator GameClear()
     {
-        yield return new WaitForSeconds(2.7f);
-        isStopM = true;
-        player.BackGroundStop();
-        //북귀신 이동
-        Monster.transform.DOLocalMoveX(-58.05f, 0.2f).SetEase(Movement);
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1.5f); //도문이가 도망치는 시간
+        player.surprise.SetActive(true);
+        yield return new WaitForSeconds(1.0f);
+        player.surprise.SetActive(false);
+        isStopM = true; //도문이 이동
+        player.BackGroundStop(); //배경 및 바닥 멈춤
+        yield return new WaitForSeconds(0.5f);
+        Monster.transform.DOLocalMoveX(-58.05f, 0.2f).SetEase(Movement); //북귀신 이동
+        yield return new WaitForSeconds(1.0f);
         SoundManager.Instance.FadeOutBGM(delay:1.0f);
         Noise_M.coStart(4, 5);
+        frame.MovieFrameout();
         Color tmp = BG.color;
         tmp.a = 255;
         BG.color = tmp;
@@ -144,6 +152,7 @@ public class ObManager : MonoBehaviour
 
     IEnumerator GameEnding()
     {
+        frame.MovieFrameIn();
         isEnding = true;
         player.isStop = true;
         yield return new WaitForSeconds(1.5f);

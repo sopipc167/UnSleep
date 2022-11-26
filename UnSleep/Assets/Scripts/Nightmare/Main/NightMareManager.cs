@@ -9,6 +9,7 @@ public class NightMareManager : MonoBehaviour
 
     public GameObject player;
     public Player player_s;
+    public TextManager TM;
 
     //층간소음
     public GameObject openning;
@@ -30,6 +31,7 @@ public class NightMareManager : MonoBehaviour
     public GameObject Seven;
     public Image BackGround;
     public GameObject loadManager;
+    public GameObject diaEvent;
 
     //Test
     public int Case;
@@ -37,6 +39,7 @@ public class NightMareManager : MonoBehaviour
     void Start()
     {
         instance = this;
+
     }
 
     void Update()
@@ -82,6 +85,7 @@ public class NightMareManager : MonoBehaviour
 
     public void startScene1()
     {
+        TM.isNoise = true;
         player.SetActive(false);
         for(int i = 0; i < Scene1.Length; i++)
         {
@@ -142,10 +146,13 @@ public class NightMareManager : MonoBehaviour
 
     public void StartSeven()
     {
+        TM.isNoise = false;
+        TM.isSeven = true;
         player_s.Seven.enabled = true;
         player.SetActive(true);
         Seven.SetActive(true);
         loadManager.SetActive(true);
+        diaEvent.SetActive(true);
         Color tmp = BackGround.color;
         tmp.a = 255;
         BackGround.color = tmp;
@@ -153,7 +160,9 @@ public class NightMareManager : MonoBehaviour
 
     public void endSeven()
     {
+        TM.isSeven = false;
         loadManager.SetActive(false);
+        diaEvent.SetActive(false);
         player_s.Seven.enabled = false;
         player.SetActive(false);
         Seven.SetActive(false);

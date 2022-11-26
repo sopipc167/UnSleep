@@ -303,7 +303,9 @@ public class TextManager : MonoBehaviour
                             if (con != null)
                             {
                                 if (isSeven)
+                                {
                                     diaEvent.content = con;
+                                }
                                 else
                                     NoiseManager.instance.con = con;
                             }
@@ -521,7 +523,9 @@ public class TextManager : MonoBehaviour
             if (con != null)
             {
                 if (isSeven)
+                {
                     diaEvent.content = con;
+                }
                 else
                     NoiseManager.instance.con = con;
             }

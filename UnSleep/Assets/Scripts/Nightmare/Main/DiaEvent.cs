@@ -500,23 +500,23 @@ public class DiaEvent : MonoBehaviour
         //프로시더에서 완료된 대화묶음 지우기
         if (dp.Complete_Condition.Contains(743))
         {
-            Debug.Log("contain 744");
+            //Debug.Log("contain 744");
             int i = 0;
 
             if (dp.Complete_Condition.Contains(749))
             {
-                Debug.Log("contain 749");
+                //Debug.Log("contain 749");
                 i = 749;
             }
             else
             {
-                Debug.Log("contain 749 false");
+                //Debug.Log("contain 749 false");
                 i = 742;
             }
 
             while (dp.Complete_Condition.Contains(i))
             {
-                Debug.Log("Complete_condition: " + i);
+                //Debug.Log("Complete_condition: " + i);
                 dp.RemoveCompleteCondition(i);
                 i++;
             }
