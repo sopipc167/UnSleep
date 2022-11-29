@@ -147,7 +147,6 @@ public class DiaPlayer : MonoBehaviour
             {
                 if (hit_info.isAuto && !textManager.isMovieIn)
                 {
-                    Debug.Log("MovieIN");
                     movie.MovieFrameIn();
                     textManager.isMovieIn = true;
                     if(!hit_info.isMany)

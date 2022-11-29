@@ -242,19 +242,6 @@ public class TextManager : MonoBehaviour
                 "LogUI(false):"+ LogUI.activeSelf.ToString()+
                 "isPointerOverGameObject(false):"+EventSystem.current.IsPointerOverGameObject().ToString());
 
-            if (isSeven || isNoise)
-            {
-                con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
-                if (con != null)
-                {
-                    if (isSeven)
-                        diaEvent.content = con;
-                    else
-                        NoiseManager.instance.con = con;
-                }
-                Debug.Log("con2: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
-            }
-
 
             if (goodbyeUI.activeSelf && !isGoodbye && dp.CurrentEpiID == 19)
             {
@@ -263,7 +250,6 @@ public class TextManager : MonoBehaviour
                 {
                     dp.CurrentDiaIndex++;
                     StartCoroutine(Update_Dialogue_Goodbye());
-
                 }
                 else
                 {

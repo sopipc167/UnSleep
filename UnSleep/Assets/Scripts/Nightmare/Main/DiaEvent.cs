@@ -161,7 +161,6 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "LightOff")
             {
-                Debug.Log("Light흐림");
                 ob[8].SetActive(true);
                 ob[7].SetActive(false);
             }
@@ -220,10 +219,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "BearBig")
             {
-                Debug.Log("con: BearBig + " + content);
                 if (!isBearAppear)
                 {
-                    Debug.Log("con: BearBig_Appear");
                     isBearAppear = true;
                     Move(5, new Vector3(-7.18f, -1.32f, 0), new Vector3(0, 0, 0));
                     ob[5].SetActive(true);
@@ -231,7 +228,6 @@ public class DiaEvent : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("con: BearBig_Bigger");
                     Move(5, new Vector3(-7.18f, -0.29f, 0), new Vector3(0, 0, 0));
                     Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = false;
                     StartCoroutine(Bigger());
@@ -241,7 +237,6 @@ public class DiaEvent : MonoBehaviour
             {
                 if(diaGroupIndex == 743)
                 {
-                    Debug.Log("con: BearMove_743");
                     gome.isStart = false;
                     gome.transform.position = tPos[3].transform.position;
                     gome.ChangeTarget(tPos[3].transform.position);
@@ -249,7 +244,6 @@ public class DiaEvent : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("con: BearMove_");
                     Vector3 targetPos = player.transform.position;
                     targetPos -= new Vector3(1.5f, 0, 0);
                     gome.ChangeTarget(targetPos);
