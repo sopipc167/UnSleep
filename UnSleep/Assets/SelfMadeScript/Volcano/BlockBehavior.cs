@@ -17,7 +17,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     public Sprite X; // 까먹음
     public Sprite[] Bom = new Sprite[6], flame = new Sprite[3]; //각각 폭발과 마그마상태의 애니메이션을 나타내기 위한 스프라이트들
 
-    public Vector2 Location { get { return location; } set { location = value; } }
+    public Vector2 Location;
     public int blockNum;
     public bool Inarea { get { return inarea; } set { inarea = value; } }
     public bool Exploding { get { return exploding; } private set { } }
@@ -48,7 +48,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
         if (GM.Raymode && !isMagma) //마우스 입력을 받는 상태이고 마그마 상태가 아니라면 
         {
             if (GM.getsnum() > 0)  //스왑할 수 있는 횟수가 남아있을 경우 버튼입력을 감지하고
-                if (Input.GetMouseButtonDown(0)) //버튼입력이 감지되면 스왑 진행
+                if (Input.GetMouseButtonDown(0) && swapable) //버튼입력이 감지되면 스왑 진행
                 {
                     select = true;
                     Manager.GetComponent<Game_Manager>().Swap(gameObject);

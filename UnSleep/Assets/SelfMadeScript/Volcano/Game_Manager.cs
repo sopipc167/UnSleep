@@ -275,7 +275,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         {
             for (int j = -1; j < 2; j++)
             {
-                if (inMapSize(ty + j, tx + i))
+                if (inMapSize(tx + i, ty + j))
                 {
                     BlockBehavior obj = MapList[16 * (ty + j) + tx + i].GetComponent<BlockBehavior>();
                     obj.swapable = P;
@@ -327,7 +327,9 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             }
             else //예외 일경우 에러나고 스왑 리스트 다 비워짐
             {
+
                 Debug.Log("ERROR");
+                setSwap(Swap_List[0].GetComponent<BlockBehavior>(), false);
                 Swap_List[0].GetComponent<BlockBehavior>().Select = false;
                 Swap_List[0].GetComponent<BlockBehavior>().swapsprite();
                 objBlock.Select = false;
@@ -396,6 +398,8 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     }
     bool inMapSize(int x, int y)
     {
+        Debug.Log(x);
+        Debug.Log(y);
         if (x>=0 && x<16 && y>=0 && y<12)
         {
             return true;
