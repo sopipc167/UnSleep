@@ -13,6 +13,7 @@ public class NightMareManager : MonoBehaviour
 
     //층간소음
     public GameObject openning;
+    public GameObject noiseManager;
 
     //층간소음 Scene1
     public GameObject[] Scene1;
@@ -39,6 +40,21 @@ public class NightMareManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 6)
+        {
+            endSeven();
+            noiseManager.SetActive(true);
+            startNoise();
+            startScene1();
+        }
+        else if(Dialogue_Proceeder.instance.CurrentEpiID == 1)
+        {
+            noiseManager.SetActive(false);
+            endScene1();
+            endScene2();
+            endScene3();
+            StartSeven();
+        }
 
     }
 
