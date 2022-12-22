@@ -32,6 +32,7 @@ public class DiaPlayer : MonoBehaviour
     {
         textManager = Dialogue_system_manager.GetComponent<TextManager>();
         mainCam = Camera.main;
+        isOnce = true;
     }
 
 
@@ -66,8 +67,7 @@ public class DiaPlayer : MonoBehaviour
         //***************충돌*********************
         dia_hit_colliders = Physics2D.OverlapCircleAll(new Vector2(transform.position.x, transform.position.y), 3.0f);
         if (dia_hit_colliders.Length > 0)
-        {
-            
+        {            
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
                 if (dia_hit_colliders[i].CompareTag("DiaInterCollision")
@@ -141,6 +141,7 @@ public class DiaPlayer : MonoBehaviour
 
             if (isOnce && Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
             {
+                Debug.Log("hit_Diaid_inOnce_true: " + hit_Diaid[i]);
                 continue;
             }
             else
@@ -149,10 +150,11 @@ public class DiaPlayer : MonoBehaviour
                 {
                     movie.MovieFrameIn();
                     textManager.isMovieIn = true;
-                    if(!hit_info.isMany)
+                    if (!hit_info.isMany)
                         textManager.isMovieOut = true;
                 }
-
+                Debug.Log("hit_Diaid_inOnce_false: " + hit_Diaid[i] + " isOnce: " + isOnce +
+                    " complete: " + Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i]));
             }
 
 
@@ -171,6 +173,7 @@ public class DiaPlayer : MonoBehaviour
                 textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
 
                 isOnce = true;
+                Debug.Log("대화묶음: " + hit_Diaid[i] + " isOnce: " + isOnce);
 
                 return;
             }

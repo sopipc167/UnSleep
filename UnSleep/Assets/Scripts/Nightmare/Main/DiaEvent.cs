@@ -127,11 +127,18 @@ public class DiaEvent : MonoBehaviour
             {
                 moveEnd();
             }
+            else if (EventNum == 10)
+            {
+                player.enabled = false;
+                Move(9, tPos[5].localPosition, ob[9].transform.eulerAngles);
+                ob[9].transform.localScale = new Vector3(1.3f, 1.3f, 1.0f);
+            }
             else if(EventNum == 13)
             {
                 movieFrame.MovieFrameout();
                 TM.isMovieIn = false;
             }
+
 
             if (isMovie)
             {
@@ -277,7 +284,6 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "MiniGame")
             {
-                Debug.Log("con: MiniGame");
                 gome.isMinigame = true;
                 PlayerMove(4);
                 isMini = true;
@@ -285,7 +291,6 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "Eight")
             {
-                Debug.Log("con: Eight");
                 PlayerPrefs.SetInt("savePoint", 2);
                 EventNum = 8;
                 content = null;
@@ -295,9 +300,16 @@ public class DiaEvent : MonoBehaviour
                 ob[7].SetActive(true);
                 gome.isStart = false;
             }
+            else if(content == "Hide")
+            {
+                Debug.Log("Hide");
+                EventNum = 10;
+                content = null;
+            }
             else if (content == "Suprise")
             {
                 suprise.enabled = true;
+                content = null;
                 EventNum = 7;
             }
             else if (content == "FrameOut")
@@ -474,7 +486,6 @@ public class DiaEvent : MonoBehaviour
 
     IEnumerator GameOver()
     {
-        Debug.Log("coroutine GameOVer");
         isOver = true;
         player.targetPos = player.transform.position;
         player.isStop = true;
@@ -494,24 +505,24 @@ public class DiaEvent : MonoBehaviour
         //프로시더에서 완료된 대화묶음 지우기
         if (dp.Complete_Condition.Contains(743))
         {
-            //Debug.Log("contain 744");
             int i = 0;
+            int max = 0;
 
             if (dp.Complete_Condition.Contains(749))
             {
-                //Debug.Log("contain 749");
                 i = 749;
+                max = 755;
             }
             else
             {
-                //Debug.Log("contain 749 false");
-                i = 742;
+                i = 743;
+                max = 744;
             }
 
-            while (dp.Complete_Condition.Contains(i))
+            while (i <= max)
             {
-                //Debug.Log("Complete_condition: " + i);
-                dp.RemoveCompleteCondition(i);
+                if(dp.Complete_Condition.Contains(i))
+                    dp.RemoveCompleteCondition(i);
                 i++;
             }
         }

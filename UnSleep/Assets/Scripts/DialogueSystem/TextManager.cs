@@ -174,7 +174,7 @@ public class TextManager : MonoBehaviour
 
         if (!DiaDic.ContainsKey(Dia_Id - 1)) //처음 시작 시
         {
-            if (!isSeven && STEManager != null)
+            if (!isNoise && !isSeven && STEManager != null)
                 STEManager.WaitBlackOut(2f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
         }
         else //에피소드 중간에 씬 전환 후 첫 시작

@@ -42,8 +42,9 @@ public class LoadManager : MonoBehaviour
             gome_script.targetPos = DE.gomePos[PlayerPrefs.GetInt("savePoint")].position;
             gome_script.transform.position = DE.gomePos[PlayerPrefs.GetInt("savePoint")].position;
             player.isSeven = false;
-            if(PlayerPrefs.GetInt("savePoint") == 1)
+            if (PlayerPrefs.GetInt("savePoint") == 1)
             {
+                Dialogue_Proceeder.instance.UpdateCurrentDiaID(742);
                 DE.Dia[37].SetActive(true);
                 DE.Dia[38].SetActive(true);
                 DE.Dia[39].SetActive(true);
@@ -52,6 +53,7 @@ public class LoadManager : MonoBehaviour
             }
             else if(PlayerPrefs.GetInt("savePoint") == 2)
             {
+                Dialogue_Proceeder.instance.UpdateCurrentDiaID(749);
                 Scene4.SetActive(true);
                 GameOver_749.SetActive(true);
                 player.transform.eulerAngles = new Vector3(0, 0, 0);

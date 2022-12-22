@@ -36,6 +36,7 @@ public class Dialogue_Proceeder : MonoBehaviour
 
     public void UpdateCurrentEpiID(int updateid) //현재 에피소드 id 갱신
     {
+        Debug.Log("UpdateCurrentEpiID: " + updateid);
         CurrentEpiID = updateid;
     }
 
