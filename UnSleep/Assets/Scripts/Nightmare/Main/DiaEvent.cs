@@ -129,7 +129,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (EventNum == 10)
             {
-                player.enabled = false;
+                player.sprite.enabled = false;
                 Move(9, tPos[5].localPosition, ob[9].transform.eulerAngles);
                 ob[9].transform.localScale = new Vector3(1.3f, 1.3f, 1.0f);
             }
@@ -288,10 +288,16 @@ public class DiaEvent : MonoBehaviour
                 PlayerMove(4);
                 isMini = true;
                 gome.speed = 2.5f;
+                Debug.Log("MiniGame");
+                content = null;
             }
             else if (content == "Eight")
             {
                 PlayerPrefs.SetInt("savePoint", 2);
+                gome.isMinigame = true;
+                PlayerMove(4);
+                isMini = true;
+                gome.speed = 2.5f;
                 EventNum = 8;
                 content = null;
             }
