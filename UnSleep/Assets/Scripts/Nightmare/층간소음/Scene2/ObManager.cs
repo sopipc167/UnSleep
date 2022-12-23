@@ -137,7 +137,7 @@ public class ObManager : MonoBehaviour
         player.surprise.SetActive(false);
         isStopM = true; //도문이 이동
         player.BackGroundStop(); //배경 및 바닥 멈춤
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         Monster.transform.DOLocalMoveX(-58.05f, 0.2f).SetEase(Movement); //북귀신 이동
         yield return new WaitForSeconds(1.0f);
         SoundManager.Instance.FadeOutBGM(delay:1.0f);

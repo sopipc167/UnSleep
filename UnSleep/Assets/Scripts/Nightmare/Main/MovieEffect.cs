@@ -24,7 +24,7 @@ public class MovieEffect : MonoBehaviour
     {
         upper.transform.DOLocalMoveY(729, 1.0f).SetEase(Ease.OutQuad);
         down.transform.DOLocalMoveY(-729, 1.0f).SetEase(Ease.OutQuad);
-        Invoke("FrameDisable", 1.0f);
+        //Invoke("FrameDisable", 1.0f);
     }
 
     public void FrameDisable()

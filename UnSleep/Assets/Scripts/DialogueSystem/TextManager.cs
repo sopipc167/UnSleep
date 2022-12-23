@@ -174,7 +174,7 @@ public class TextManager : MonoBehaviour
 
         if (!DiaDic.ContainsKey(Dia_Id - 1)) //처음 시작 시
         {
-            if (!isSeven && STEManager != null)
+            if (!isNoise && !isSeven && STEManager != null)
                 STEManager.WaitBlackOut(2f); //매개변수 만큼 암막 상태로 대기했다가 밝아집니다
         }
         else //에피소드 중간에 씬 전환 후 첫 시작
@@ -242,19 +242,6 @@ public class TextManager : MonoBehaviour
                 "LogUI(false):"+ LogUI.activeSelf.ToString()+
                 "isPointerOverGameObject(false):"+EventSystem.current.IsPointerOverGameObject().ToString());
 
-            if (isSeven || isNoise)
-            {
-                con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
-                if (con != null)
-                {
-                    if (isSeven)
-                        diaEvent.content = con;
-                    else
-                        NoiseManager.instance.con = con;
-                }
-                Debug.Log("con2: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
-            }
-
 
             if (goodbyeUI.activeSelf && !isGoodbye && dp.CurrentEpiID == 19)
             {
@@ -263,7 +250,6 @@ public class TextManager : MonoBehaviour
                 {
                     dp.CurrentDiaIndex++;
                     StartCoroutine(Update_Dialogue_Goodbye());
-
                 }
                 else
                 {
