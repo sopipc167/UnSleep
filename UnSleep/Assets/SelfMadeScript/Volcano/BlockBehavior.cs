@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트 (맵에 있는 모든 물체가 블럭이라고 생각하면 되고, 블럭은 마우스를 가져다대면 모습을 바꾸고, 클릭으로 스왑할 수 있는 성질을 지니고 있다.)
 {
     public Sprite Defalut, Selected; //기본스프라이트와 선택 했을 시에 나타나는 스프라이트
-    protected SpriteRenderer render; //블록 오브젝트이 렌더러
+    public SpriteRenderer render; //블록 오브젝트이 렌더러
     public GameObject panel, Manager, swp; //게임매니저 (매니저를 통해 다른 블록들과 통신한다
     protected Game_Manager GM;
     protected bool select, isMagma; //블록의 상태를 체크하는 불 변수 각각 선택된 상태인가, 마그마 상태인가, 스왑 가능한가
@@ -61,16 +61,18 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     public void SpriteChange(bool a)
     {
-        if (GM.Raymode && !isMagma) //마우스 입력을 받는 상태이고 마그마 상태가 아니라면 
+        //if (GM.Raymode && !isMagma)
         {
             if (a)
             {
                 render.sprite = Selected;
+                render.color = Color.cyan;
                 panel.SetActive(false);
             }
             else
             {
                 render.sprite = Defalut;
+                render.color = Color.white;
                 panel.SetActive(false);
             }
         }
