@@ -65,9 +65,4 @@ public class LoadManager : MonoBehaviour
 
         PlayerPrefs.SetInt("isGameOver", 0);
     }
-
-    void Update()
-    {
-        
-    }
 }

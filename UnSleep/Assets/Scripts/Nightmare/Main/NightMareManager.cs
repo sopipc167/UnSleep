@@ -14,6 +14,7 @@ public class NightMareManager : MonoBehaviour
     //층간소음
     public GameObject openning;
     public GameObject noiseManager;
+    public GameObject noiseObject;
 
     //층간소음 Scene1
     public GameObject[] Scene1;
@@ -96,6 +97,7 @@ public class NightMareManager : MonoBehaviour
     public void startNoise()
     {
         openning.SetActive(true);
+        noiseObject.SetActive(true);
     }
 
 
