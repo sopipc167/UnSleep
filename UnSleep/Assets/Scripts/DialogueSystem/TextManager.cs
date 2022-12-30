@@ -1084,7 +1084,6 @@ public class TextManager : MonoBehaviour
             STEManager.BlinkClose();
             SoundManager.Instance.ChangeBGM("deepblue");
         }
-
         else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)
             STEManager.FadeIn();
 
@@ -1105,7 +1104,10 @@ public class TextManager : MonoBehaviour
 
     public void StartLoadStoryMental()
     {
-        StartCoroutine(LoadStoryMental(SceneType.Mental));
+        if (dp.CurrentEpiID == 10)
+            StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
+        else
+            StartCoroutine(LoadStoryMental(SceneType.Mental));
     }
 
 }
