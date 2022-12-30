@@ -29,6 +29,7 @@ public class DiaInterActor : MonoBehaviour
         //*****************클릭*******************
         if (Input.GetMouseButtonDown(0))
         {
+            
             Ray dia_ray = mainCam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(dia_ray, out RaycastHit hitted_object))
             {
