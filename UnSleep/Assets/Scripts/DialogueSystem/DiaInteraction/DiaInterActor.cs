@@ -65,8 +65,6 @@ public class DiaInterActor : MonoBehaviour
         if (hit == null)
             return;
 
-        hit.gameObject.layer = 0;
-        Debug.Log(hit.gameObject.name);
 
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
@@ -80,9 +78,6 @@ public class DiaInterActor : MonoBehaviour
                 return;
             }
         }
-
-        // Debug.Log(hit.gameObject.name);
-
 
 
         int[] hit_Diaid = hit.Obj_Diaid;
@@ -111,7 +106,6 @@ public class DiaInterActor : MonoBehaviour
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
                 isInteracting = true;
-                Debug.Log("상호작용 대화 실행");
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
                 textManager.SetDiaInMap();
                 textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
@@ -125,7 +119,6 @@ public class DiaInterActor : MonoBehaviour
         }
 
 
-        Debug.Log("모든 실행 조건 불충분"); //디버깅용 
     }
 
 
@@ -133,7 +126,6 @@ public class DiaInterActor : MonoBehaviour
     {
         goToPuzzle.SetActive(true);
         SoundManager.Instance.FadeOutBGM();
-        //yield return new WaitForSeconds(1.7f);
         yield return new WaitForSeconds(3f);
         SceneManager.LoadScene(SceneChanger.GetSceneName(sceneType));
     }
