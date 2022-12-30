@@ -268,7 +268,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         GameBoard.transform.position = GameBoard.transform.position + new Vector3(13.5f, 0f, 0f);
     }
     public int getsnum() { return snum; } //스왑가능 횟수를 반환
-    void setSwap(BlockBehavior objBlock, bool P)
+    public void setSwap(BlockBehavior objBlock, bool P)
     {
         int tx = (int)objBlock.Location.x;
         int ty = (int)objBlock.Location.y;
@@ -408,7 +408,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             time += Time.deltaTime;
             p = time / fadeTime;
             Color c = Over.GetComponent<Image>().color;
-            c.a=Mathf.Lerp(0f,1f,curve.Evaluate(p));
+            c.a=Mathf.Lerp(0f,0.75f,curve.Evaluate(p));
             Over.GetComponent<Image>().color = c;
             yield return null;
         }

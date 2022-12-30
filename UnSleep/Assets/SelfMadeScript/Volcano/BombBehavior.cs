@@ -90,6 +90,7 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
             if (Input.GetMouseButtonDown(1)) //오른쪽 클릭하면 폭발함
             {
                 showArr(false);
+                Manager.GetComponent<Game_Manager>().setSwap(this.GetComponent<BlockBehavior>(), false);
                 Manager.GetComponent<Game_Manager>().Boom((int)Location.x, (int)Location.y, gameObject, bombArr);
             }
             if (Input.GetMouseButtonDown(2)) //휠버튼 클릭은 폭발범위 회전
