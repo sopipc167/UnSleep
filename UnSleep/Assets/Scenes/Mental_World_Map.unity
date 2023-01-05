@@ -1344,7 +1344,8 @@ MonoBehaviour:
   Interaction_distance: 10
   isChangeScene: 1
   sceneType: 6
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!135 &146873869
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2170,7 +2171,8 @@ MonoBehaviour:
   Interaction_distance: 10
   isChangeScene: 1
   sceneType: 11
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!135 &187437776
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4506,7 +4508,8 @@ MonoBehaviour:
   Interaction_distance: 10
   isChangeScene: 1
   sceneType: 10
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!135 &390736086
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11778,6 +11781,14 @@ PrefabInstance:
       propertyPath: weight
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8145213663637688878, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 867
+      objectReference: {fileID: 0}
+    - target: {fileID: 8145213663637688878, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -460
+      objectReference: {fileID: 0}
     - target: {fileID: 8332860866770900275, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -12559,7 +12570,8 @@ MonoBehaviour:
   Interaction_distance: 10
   isChangeScene: 1
   sceneType: 7
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!65 &690699129
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43439,7 +43451,8 @@ MonoBehaviour:
   Interaction_distance: 30
   isChangeScene: 1
   sceneType: 5
-  isNext: 0
+  isAuto: 0
+  isMany: 0
 --- !u!65 &1392638206
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -50228,6 +50241,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 385066615653951997, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1376858110164936025, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2295938342685556705, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6474163060442432777, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8436695915588366389, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
       propertyPath: m_LocalPosition.x
       value: 960
@@ -50283,6 +50312,14 @@ PrefabInstance:
     - target: {fileID: 8436695916218826511, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
       propertyPath: m_SortingOrder
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8572175004528080297, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8878594283449789260, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b57aa0a4a9bc5445838366cd4d56734, type: 3}

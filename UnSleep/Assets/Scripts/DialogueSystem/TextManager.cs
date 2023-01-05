@@ -331,8 +331,8 @@ public class TextManager : MonoBehaviour
 
 
 
-                            if (Increasediaindex && !isSeven && STEManager != null && DiaDic[Dia_Id].SceneNum == 1)
-                                STEManager.FadeInOut();
+                            //if (Increasediaindex && !isSeven && STEManager != null && DiaDic[Dia_Id].SceneNum == 1)
+                            //    STEManager.FadeInOut();
 
 
                             //대화 묶음 넘어갈 때 초상화 초기화
