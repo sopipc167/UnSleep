@@ -200,6 +200,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "BlinkOpen")
             {
+                TM.EffectEnd = false;
+                StartCoroutine(EffectEnd(2.0f));
                 Color tmp = Fade.color;
                 tmp.a = 0;
                 Fade.color = tmp;
@@ -208,6 +210,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "BlinkClose")
             {
+                TM.EffectEnd = false;
+                StartCoroutine(EffectEnd(2.0f));
                 BA.isSeven_Close = true;
                 BA.BlinkClose();
                 content = null;
@@ -379,6 +383,12 @@ public class DiaEvent : MonoBehaviour
                 StartCoroutine(Ending());
             }
         }
+    }
+
+    IEnumerator EffectEnd(float durTime)
+    {
+        yield return new WaitForSeconds(durTime);
+        TM.EffectEnd = true;
     }
 
     IEnumerator LBlink(int times)

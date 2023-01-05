@@ -116,6 +116,7 @@ public class TextManager : MonoBehaviour
     public bool isMovieOut;
 
     public Gome gome;
+    public bool EffectEnd = true;
 
     void Awake()
     {
