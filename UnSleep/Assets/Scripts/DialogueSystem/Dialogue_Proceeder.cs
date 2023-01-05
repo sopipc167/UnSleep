@@ -43,6 +43,7 @@ public class Dialogue_Proceeder : MonoBehaviour
     public void UpdateCurrentDiaID(int updateid) //현재 대화 id 갱신
     {
         CurrentDiaID = updateid;
+        CurrentDiaIndex = 0;
     }
 
     public void UpdateCurrentDiaIDPlus1() //현재 대화 id 갱신

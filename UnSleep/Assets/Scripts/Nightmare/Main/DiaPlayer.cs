@@ -42,6 +42,7 @@ public class DiaPlayer : MonoBehaviour
         //*****************클릭*******************
         if (Input.GetMouseButtonDown(0))
         {
+    
             MousePosition = Input.mousePosition;
             MousePosition = mainCam.ScreenToWorldPoint(MousePosition);
 
@@ -171,7 +172,7 @@ public class DiaPlayer : MonoBehaviour
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
                 textManager.SetDiaInMap();
                 textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
-
+              
                 isOnce = true;
                 Debug.Log("대화묶음: " + hit_Diaid[i] + " isOnce: " + isOnce);
 
