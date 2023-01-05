@@ -115,6 +115,7 @@ public class RelationshipManager : MonoBehaviour
     public void OnClickClear()
     {
         // 씬이동
-        
+        Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
+        SceneChanger.ChangeScene(SceneType.Dialogue);
     }
 }

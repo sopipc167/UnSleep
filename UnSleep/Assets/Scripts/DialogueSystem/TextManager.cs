@@ -239,9 +239,7 @@ public class TextManager : MonoBehaviour
         //클릭시에 1. Log가 꺼져있고 2. 대화UI가 켜져있고 3.Raycast Target이 false인 UI 위일 때 (배경, 대사 창)
         if (Input.GetMouseButtonDown(0) && Increasediaindex)
         {
-            Debug.Log("유효 클릭 조건 DiaUI(true):"+ DiaUI.activeSelf.ToString() +
-                "LogUI(false):"+ LogUI.activeSelf.ToString()+
-                "isPointerOverGameObject(false):"+EventSystem.current.IsPointerOverGameObject().ToString());
+          
 
 
             if (goodbyeUI.activeSelf && !isGoodbye && dp.CurrentEpiID == 19)
@@ -263,8 +261,7 @@ public class TextManager : MonoBehaviour
             }
             else if (DiaUI.activeSelf && !LogUI.activeSelf && !EventSystem.current.IsPointerOverGameObject())
             {
-                Debug.Log("유효 클릭 감지");
-
+                
                 if (isTyping)
                 {
                     if (type_coroutine != null)
@@ -281,7 +278,10 @@ public class TextManager : MonoBehaviour
 
 
                         if (DiaUI.activeSelf && Increasediaindex) //대화 UI가 켜져 있고, 연출등의 이유로 인덱스 변화를 막지 않은 경우에 대화진행
+                        {
                             dp.CurrentDiaIndex++;
+                        }
+                            
 
 
                         if (isSeven || isNoise)
@@ -1085,7 +1085,6 @@ public class TextManager : MonoBehaviour
             STEManager.BlinkClose();
             SoundManager.Instance.ChangeBGM("deepblue");
         }
-
         else if (type == SceneType.Dialogue || type == SceneType.Nightmare27)
             STEManager.FadeIn();
 
@@ -1106,7 +1105,10 @@ public class TextManager : MonoBehaviour
 
     public void StartLoadStoryMental()
     {
-        StartCoroutine(LoadStoryMental(SceneType.Mental));
+        if (dp.CurrentEpiID == 10)
+            StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
+        else
+            StartCoroutine(LoadStoryMental(SceneType.Mental));
     }
 
 }
