@@ -138,6 +138,11 @@ public class DiaEvent : MonoBehaviour
                 movieFrame.MovieFrameout();
                 TM.isMovieIn = false;
             }
+            else if(EventNum == 14)
+            {
+                fadeinout.Blackout_Func(0.5f);
+                PlayerMove(6);
+            }
 
 
             if (isMovie)
@@ -174,6 +179,7 @@ public class DiaEvent : MonoBehaviour
             else if (content == "BearUp")
             {
                 Move(1, new Vector3(10.15f, 0.58f, 0), new Vector3(0, 0, 0));
+                Dia[16].SetActive(true);
             }
             else if (content == "Sound0" || content == "Sound1" || content == "Sound2")
             {
@@ -220,6 +226,11 @@ public class DiaEvent : MonoBehaviour
                 else
                     EventNum = 5;
             }
+            else if(content == "Scene3_Start")
+            {
+                EventNum = 14;
+                content = null;
+            }
             else if (content == "WindowOpen")
             {
                 EventNum = 6;
@@ -240,9 +251,9 @@ public class DiaEvent : MonoBehaviour
                     StartCoroutine(Bigger());
                 }
             }
-            else if(content == "BearMove")
+            else if (content == "BearMove")
             {
-                if(diaGroupIndex == 743)
+                if (diaGroupIndex == 743)
                 {
                     gome.isStart = false;
                     gome.transform.position = tPos[3].transform.position;
@@ -257,7 +268,7 @@ public class DiaEvent : MonoBehaviour
                     gome.isStart = true;
                 }
             }
-            else if(content == "PlayerMove")
+            else if (content == "PlayerMove")
             {
                 if (diaGroupIndex == 743)
                 {
@@ -282,6 +293,11 @@ public class DiaEvent : MonoBehaviour
                 gome.isFollow = false;
                 gome.isStart = true;
             }
+            else if (content == "EyeMove_D")
+            {
+                ob[10].transform.DOMoveX(20.0f, 1.0f);
+                ob[11].transform.DOMoveX(21.5f, 1.0f);
+            }
             else if (content == "MiniGame")
             {
                 gome.isMinigame = true;
@@ -303,10 +319,12 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "LightOn")
             {
-                ob[7].SetActive(true);
+                ob[12].SetActive(true);
                 gome.isStart = false;
+                gome.isFollow = false;
+                content = null;
             }
-            else if(content == "Hide")
+            else if (content == "Hide")
             {
                 Debug.Log("Hide");
                 EventNum = 10;
@@ -343,11 +361,11 @@ public class DiaEvent : MonoBehaviour
                 gome.isFollow = false;
                 gome.isStart = true;
             }
-            else if(content == "LightBlink1")
+            else if (content == "LightBlink1")
             {
                 StartCoroutine(LBlink(1));
             }
-            else if(content == "LightBlink2")
+            else if (content == "LightBlink2")
             {
                 StartCoroutine(LBlink(2));
             }
@@ -355,7 +373,7 @@ public class DiaEvent : MonoBehaviour
             {
                 StartCoroutine(GameOver());
             }
-            else if(content == "Ending")
+            else if (content == "Ending")
             {
                 fadeinout.Blackout_Func(0.3f);
                 StartCoroutine(Ending());
@@ -393,7 +411,9 @@ public class DiaEvent : MonoBehaviour
     {
         ending_bg.enabled = true;
         eye.enabled = true;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(0.5f);
+        eye.transform.DOMoveX(350, 1.5f);
+        yield return new WaitForSeconds(1.5f);
         fadeinout.Fade_In();
     }
 

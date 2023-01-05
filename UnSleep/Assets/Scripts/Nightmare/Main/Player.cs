@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -47,6 +48,8 @@ public class Player : MonoBehaviour
     public bool isAuto;
 
     public GameObject surprise;
+
+    public Image sadFace;
 
     void Start()
     {
@@ -214,6 +217,8 @@ public class Player : MonoBehaviour
         //Ob.enabled = false;
         isStop = true;
 
+        sadFace.enabled = true;
+
         if (Ob_M.Gauge.value >= 0.1f)
             Ob_M.Gauge.value -= 0.1f;
         else
@@ -231,6 +236,7 @@ public class Player : MonoBehaviour
         BackGroundStop();
 
         yield return new WaitForSeconds(0.5f);
+        sadFace.enabled = false;
         isStop = false;
         animator.SetBool("isStop", false);
         if (!Ob_M.isOne)
