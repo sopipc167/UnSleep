@@ -63,6 +63,8 @@ public class DiaEvent : MonoBehaviour
 
     public bool isMovie;
 
+    public int effectIndex;
+
     void Start()
     {
         dp = Dialogue_Proceeder.instance;
@@ -92,6 +94,7 @@ public class DiaEvent : MonoBehaviour
                 Color tmp = Fade.color;
                 tmp.a = 255;
                 Fade.color = tmp;
+                TM.EffectEnd = true;
             }
             else if (EventNum == 4)
                 Move(2, new Vector3(7.54f, -0.95f, 0), new Vector3(0, 0, 0));
@@ -143,7 +146,10 @@ public class DiaEvent : MonoBehaviour
                 fadeinout.Blackout_Func(0.5f);
                 PlayerMove(6);
             }
-
+            else if(EventNum == 15)
+            {
+                TM.EffectEnd = true;
+            }
 
             if (isMovie)
             {
@@ -200,18 +206,17 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "BlinkOpen")
             {
-                TM.EffectEnd = false;
-                StartCoroutine(EffectEnd(2.0f));
+                StartCoroutine(EffectEnd(3.0f));
                 Color tmp = Fade.color;
                 tmp.a = 0;
                 Fade.color = tmp;
                 BA.BlinkOpen();
+                EventNum = 15;
                 content = null;
             }
             else if (content == "BlinkClose")
             {
-                TM.EffectEnd = false;
-                StartCoroutine(EffectEnd(2.0f));
+                StartCoroutine(EffectEnd(3.0f));
                 BA.isSeven_Close = true;
                 BA.BlinkClose();
                 content = null;
@@ -299,8 +304,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "EyeMove_D")
             {
-                ob[10].transform.DOMoveX(20.0f, 1.0f);
-                ob[11].transform.DOMoveX(21.5f, 1.0f);
+                ob[10].transform.DOLocalMoveX(13.9f, 1.0f);
+                ob[11].transform.DOLocalMoveX(15.3f, 1.0f);
             }
             else if (content == "MiniGame")
             {
@@ -388,7 +393,9 @@ public class DiaEvent : MonoBehaviour
     IEnumerator EffectEnd(float durTime)
     {
         yield return new WaitForSeconds(durTime);
-        TM.EffectEnd = true;
+        Debug.Log("인덱스: " + effectIndex);
+        dp.CurrentDiaIndex = effectIndex;
+        TM.DiaUI.SetActive(true);
     }
 
     IEnumerator LBlink(int times)

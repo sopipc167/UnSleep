@@ -434,7 +434,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105108374}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.283, y: -0.9016336, z: 0}
+  m_LocalPosition: {x: 15.272, y: -0.9016336, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2014980295}
@@ -4070,6 +4070,7 @@ MonoBehaviour:
   ending_bg: {fileID: 1136539227}
   eye: {fileID: 588761736}
   isMovie: 0
+  effectIndex: 0
 --- !u!82 &349265053
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9828,14 +9829,14 @@ RectTransform:
   m_GameObject: {fileID: 923843426}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.05, y: 1.1000001, z: 1}
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1}
   m_Children: []
   m_Father: {fileID: 1710479707}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.9999695, y: -0.49996853}
+  m_AnchoredPosition: {x: 0, y: 0.5}
   m_SizeDelta: {x: 39, y: 39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &923843428
@@ -10957,7 +10958,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031397195}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 13.859, y: 2.3813665, z: 0}
+  m_LocalPosition: {x: 13.863, y: 2.3813665, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2014980295}
@@ -17528,7 +17529,7 @@ RectTransform:
   m_GameObject: {fileID: 1710479706}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 923843427}
   m_Father: {fileID: 411525371}

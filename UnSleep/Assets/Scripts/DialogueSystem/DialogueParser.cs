@@ -11,9 +11,6 @@ public class DialogueParser : MonoBehaviour
     private string CharIdCell; //등장주요인물
     private string PuzzleCell; //등장퍼즐
 
-    //7세
-    public string con;
-
     private TextAsset LoadCSV()
     {
         int EpiId = Dialogue_Proceeder.instance.CurrentEpiID;
