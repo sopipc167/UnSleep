@@ -204,7 +204,7 @@ public class DiaEvent : MonoBehaviour
                 content = null;
                 EventNum = 0;
             }
-            else if (content == "BlinkOpen")
+            else if (content == "BlinkOpen_Effect")
             {
                 StartCoroutine(EffectEnd(3.0f));
                 Color tmp = Fade.color;
@@ -214,7 +214,7 @@ public class DiaEvent : MonoBehaviour
                 EventNum = 15;
                 content = null;
             }
-            else if (content == "BlinkClose")
+            else if (content == "BlinkClose_Effect")
             {
                 StartCoroutine(EffectEnd(3.0f));
                 BA.isSeven_Close = true;
@@ -353,6 +353,8 @@ public class DiaEvent : MonoBehaviour
             else if (content == "Choose")
             {
                 fadeinout.Blackout_Func(0.7f);
+                gome.transform.position = tPos[5].transform.position;
+                gome.ChangeTarget(tPos[5].transform.position);
                 player.transform.eulerAngles = new Vector3(0, 180, 0);
                 PlayerMove(1);
                 content = null;
@@ -429,7 +431,7 @@ public class DiaEvent : MonoBehaviour
         ending_bg.enabled = true;
         eye.enabled = true;
         yield return new WaitForSeconds(0.5f);
-        eye.transform.DOMoveX(350, 1.5f);
+        eye.transform.DOLocalMoveX(-138, 1.5f);
         yield return new WaitForSeconds(1.5f);
         fadeinout.Fade_In();
     }

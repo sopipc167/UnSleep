@@ -292,7 +292,7 @@ public class TextManager : MonoBehaviour
                             con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
                             if (con != null)
                             {
-                                if(con.IndexOf("Blink") != -1)
+                                if(con.IndexOf("Effect") != -1)
                                 {
                                     diaEvent.effectIndex = dp.CurrentDiaIndex;
                                     EffectEnd = false;
