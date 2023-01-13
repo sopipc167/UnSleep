@@ -66,7 +66,6 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
             if (a)
             {
                 render.sprite = Selected;
-                render.color = Color.cyan;
                 panel.SetActive(false);
             }
             else
