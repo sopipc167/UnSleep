@@ -32,6 +32,7 @@ public class LakeBall : LakeMovement
 
     [Header("SE")]
     public AudioClip wallSound;
+    public bool isTutorial = true;
 
     internal bool canWarp = true;
     internal int duckCnt = 0;
@@ -141,7 +142,11 @@ public class LakeBall : LakeMovement
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            SoundManager.Instance.PlaySE(wallSound);
+            if (!isTutorial)
+            {
+                SoundManager.Instance.PlaySE(wallSound);
+            }
+
             if (ballManager.isRight)
             {
                 ballManager.isRight = false;
