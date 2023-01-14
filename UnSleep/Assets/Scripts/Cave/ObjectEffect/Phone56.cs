@@ -9,6 +9,7 @@ public class Phone56 : MonoBehaviour
     public Text text;
     public GameObject phone;
     public Button button;
+    public CaveStopPanel caveStopPanel;
 
     Coroutine phone_co = null;
     private bool isRunning = false;
@@ -41,7 +42,7 @@ public class Phone56 : MonoBehaviour
     {
         button.enabled = false;
         isRunning = true;
-
+        caveStopPanel.dontShowDiaUI();
         phone.SetActive(true);
 
         yield return StartCoroutine(PhoneYpos(-1100f, 0f));
@@ -52,12 +53,13 @@ public class Phone56 : MonoBehaviour
 
         phone.SetActive(false);
         isRunning = false;
+        caveStopPanel.disableCaveStopPanel();
         button.enabled = true;
     }
 
     IEnumerator IBImsg()
     {
-        Debug.Log("여기");
+ 
 
         for (int i = 0; i < msgs.Length; i++)
         {
