@@ -22,6 +22,11 @@ public class CliffManager : MonoBehaviour
     [Header("삭제 가능 시 변경 색상")]
     public Color color;
 
+    [Header("소리")]
+    public AudioClip chainSound;
+    public AudioClip revertSound;
+    public AudioClip removeSound;
+
     [Header("추가 옵션 설정")]
     [Tooltip("모양과 색깔이 같으면 1개로 침")]
     public bool limitedOption;
@@ -148,6 +153,7 @@ public class CliffManager : MonoBehaviour
                 int cnt = removeManager.RevertTiles(currentShape);
                 uiManager.ChangeProgress(-cnt * 100f / shapeCount);
                 ResetData();
+                SoundManager.Instance.PlaySE(revertSound);
                 return;
             }
 
@@ -159,6 +165,7 @@ public class CliffManager : MonoBehaviour
                 line.DrawLine(currentShape.transform);
                 uiManager.ChangeInteractNumText(1);
                 uiManager.ChangeTypeText(currentCheckType, currentShape);
+                SoundManager.Instance.PlaySE(chainSound);
             }
             else
             {
@@ -187,6 +194,7 @@ public class CliffManager : MonoBehaviour
                     currentCheckType = check;
                     uiManager.ChangeTypeText(currentCheckType, currentShape);
                     AddRemoveTile();
+                    SoundManager.Instance.PlaySE(chainSound);
                 }
             }
         }
@@ -209,6 +217,7 @@ public class CliffManager : MonoBehaviour
                 {
                     uiManager.ChangeProgress(removeManager.GetTileCount * 100f / shapeCount);
                     removeManager.RemoveTiles();
+                    SoundManager.Instance.PlaySE(removeSound);
 
                     if (uiManager.GetProgress == 100)
                     {
