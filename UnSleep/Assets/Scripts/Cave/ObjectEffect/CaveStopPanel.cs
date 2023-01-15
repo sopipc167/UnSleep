@@ -7,7 +7,7 @@ public class CaveStopPanel : MonoBehaviour, IPointerClickHandler
 {
 
     private bool showDiaUI = true;
-    private GameObject DiaUI;
+    public GameObject DiaUI;
 
     public void OnPointerClick(PointerEventData eventData)
     {
@@ -15,10 +15,6 @@ public class CaveStopPanel : MonoBehaviour, IPointerClickHandler
             DiaUI.SetActive(!DiaUI.activeSelf);
     }
 
-    private void Start()
-    {
-        DiaUI = transform.GetChild(0).gameObject;
-    }
 
     public void dontShowDiaUI()
     {
