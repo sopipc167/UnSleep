@@ -73,7 +73,7 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
     }
     private void OnMouseEnter() //마우스 드가면
     {
-        SpriteChange(true);
+        //SpriteChange(true);
         if (GM.Raymode) //만약 마우스 입력을 받아야 되는 상태라면
             showArr(true); //폭발범위 보여줘
     }
@@ -90,6 +90,7 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
             if (Input.GetMouseButtonDown(1)) //오른쪽 클릭하면 폭발함
             {
                 showArr(false);
+                Manager.GetComponent<Game_Manager>().setSwap(this.GetComponent<BlockBehavior>(), false);
                 Manager.GetComponent<Game_Manager>().Boom((int)Location.x, (int)Location.y, gameObject, bombArr);
             }
             if (Input.GetMouseButtonDown(2)) //휠버튼 클릭은 폭발범위 회전
@@ -103,7 +104,7 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
     }
     private void OnMouseExit() //마우스 나가면
     {
-        SpriteChange(false);
+        //SpriteChange(false);
         if (GM.Raymode) //만약 마우스 입력을 받아야 되는 상태라면 
         {
             render.sprite = Defalut;
