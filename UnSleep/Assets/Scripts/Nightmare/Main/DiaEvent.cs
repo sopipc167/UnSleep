@@ -63,6 +63,8 @@ public class DiaEvent : MonoBehaviour
 
     public bool isMovie;
 
+    public int effectIndex;
+
     void Start()
     {
         dp = Dialogue_Proceeder.instance;
@@ -92,6 +94,7 @@ public class DiaEvent : MonoBehaviour
                 Color tmp = Fade.color;
                 tmp.a = 255;
                 Fade.color = tmp;
+                TM.EffectEnd = true;
             }
             else if (EventNum == 4)
                 Move(2, new Vector3(7.54f, -0.95f, 0), new Vector3(0, 0, 0));
@@ -138,7 +141,15 @@ public class DiaEvent : MonoBehaviour
                 movieFrame.MovieFrameout();
                 TM.isMovieIn = false;
             }
-
+            else if(EventNum == 14)
+            {
+                fadeinout.Blackout_Func(0.5f);
+                PlayerMove(6);
+            }
+            else if(EventNum == 15)
+            {
+                TM.EffectEnd = true;
+            }
 
             if (isMovie)
             {
@@ -174,6 +185,7 @@ public class DiaEvent : MonoBehaviour
             else if (content == "BearUp")
             {
                 Move(1, new Vector3(10.15f, 0.58f, 0), new Vector3(0, 0, 0));
+                Dia[16].SetActive(true);
             }
             else if (content == "Sound0" || content == "Sound1" || content == "Sound2")
             {
@@ -192,16 +204,19 @@ public class DiaEvent : MonoBehaviour
                 content = null;
                 EventNum = 0;
             }
-            else if (content == "BlinkOpen")
+            else if (content == "BlinkOpen_Effect")
             {
+                StartCoroutine(EffectEnd(3.0f));
                 Color tmp = Fade.color;
                 tmp.a = 0;
                 Fade.color = tmp;
                 BA.BlinkOpen();
+                EventNum = 15;
                 content = null;
             }
-            else if (content == "BlinkClose")
+            else if (content == "BlinkClose_Effect")
             {
+                StartCoroutine(EffectEnd(3.0f));
                 BA.isSeven_Close = true;
                 BA.BlinkClose();
                 content = null;
@@ -219,6 +234,11 @@ public class DiaEvent : MonoBehaviour
                 }
                 else
                     EventNum = 5;
+            }
+            else if(content == "Scene3_Start")
+            {
+                EventNum = 14;
+                content = null;
             }
             else if (content == "WindowOpen")
             {
@@ -240,9 +260,9 @@ public class DiaEvent : MonoBehaviour
                     StartCoroutine(Bigger());
                 }
             }
-            else if(content == "BearMove")
+            else if (content == "BearMove")
             {
-                if(diaGroupIndex == 743)
+                if (diaGroupIndex == 743)
                 {
                     gome.isStart = false;
                     gome.transform.position = tPos[3].transform.position;
@@ -257,7 +277,7 @@ public class DiaEvent : MonoBehaviour
                     gome.isStart = true;
                 }
             }
-            else if(content == "PlayerMove")
+            else if (content == "PlayerMove")
             {
                 if (diaGroupIndex == 743)
                 {
@@ -282,6 +302,11 @@ public class DiaEvent : MonoBehaviour
                 gome.isFollow = false;
                 gome.isStart = true;
             }
+            else if (content == "EyeMove_D")
+            {
+                ob[10].transform.DOLocalMoveX(13.9f, 1.0f);
+                ob[11].transform.DOLocalMoveX(15.3f, 1.0f);
+            }
             else if (content == "MiniGame")
             {
                 gome.isMinigame = true;
@@ -303,10 +328,12 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "LightOn")
             {
-                ob[7].SetActive(true);
+                ob[12].SetActive(true);
                 gome.isStart = false;
+                gome.isFollow = false;
+                content = null;
             }
-            else if(content == "Hide")
+            else if (content == "Hide")
             {
                 Debug.Log("Hide");
                 EventNum = 10;
@@ -326,6 +353,8 @@ public class DiaEvent : MonoBehaviour
             else if (content == "Choose")
             {
                 fadeinout.Blackout_Func(0.7f);
+                gome.transform.position = tPos[5].transform.position;
+                gome.ChangeTarget(tPos[5].transform.position);
                 player.transform.eulerAngles = new Vector3(0, 180, 0);
                 PlayerMove(1);
                 content = null;
@@ -343,11 +372,11 @@ public class DiaEvent : MonoBehaviour
                 gome.isFollow = false;
                 gome.isStart = true;
             }
-            else if(content == "LightBlink1")
+            else if (content == "LightBlink1")
             {
                 StartCoroutine(LBlink(1));
             }
-            else if(content == "LightBlink2")
+            else if (content == "LightBlink2")
             {
                 StartCoroutine(LBlink(2));
             }
@@ -355,12 +384,20 @@ public class DiaEvent : MonoBehaviour
             {
                 StartCoroutine(GameOver());
             }
-            else if(content == "Ending")
+            else if (content == "Ending")
             {
                 fadeinout.Blackout_Func(0.3f);
                 StartCoroutine(Ending());
             }
         }
+    }
+
+    IEnumerator EffectEnd(float durTime)
+    {
+        yield return new WaitForSeconds(durTime);
+        Debug.Log("인덱스: " + effectIndex);
+        dp.CurrentDiaIndex = effectIndex;
+        TM.DiaUI.SetActive(true);
     }
 
     IEnumerator LBlink(int times)
@@ -393,7 +430,9 @@ public class DiaEvent : MonoBehaviour
     {
         ending_bg.enabled = true;
         eye.enabled = true;
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(0.5f);
+        eye.transform.DOLocalMoveX(-138, 1.5f);
+        yield return new WaitForSeconds(1.5f);
         fadeinout.Fade_In();
     }
 

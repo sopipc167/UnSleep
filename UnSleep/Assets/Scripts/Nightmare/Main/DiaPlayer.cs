@@ -169,9 +169,14 @@ public class DiaPlayer : MonoBehaviour
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
-                Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
-                textManager.SetDiaInMap();
-                textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
+                
+                if (textManager.EffectEnd)
+                {
+                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
+                    textManager.SetDiaInMap();
+                    textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
+                }
+                    
               
                 isOnce = true;
                 Debug.Log("대화묶음: " + hit_Diaid[i] + " isOnce: " + isOnce);

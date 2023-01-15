@@ -8,15 +8,19 @@ public class LakeManager : MonoBehaviour
     public bool moveWithMouseWheel;
     public Color changeColor;
     public Color nonInterativeColor;
+    public SpriteMask nonInteractMask;
+    public AudioClip rotationSound;
+    public AudioClip doNotTouchSound;
 
     private int currentPhase;
     public GameObject[] PhaseGroups;
+
 
     private Camera mainCamera;
     private RotateLake[] lakes;
     private GameObject[] lakeObjs;
     private SpriteRenderer[] lakeSprites;
-    private int nonInteractiveLakeIndex;
+    private int nonInteractiveLakeIndex = -1;
     private int currentLake = -1;
     private bool isInteracting = false;
     private bool isStart = false;
@@ -84,10 +88,16 @@ public class LakeManager : MonoBehaviour
             else if (i != size - 1)
             {
                 nonInteractiveLakeIndex = i;
-                lakeSprites[i].color = nonInterativeColor;
+                //lakeSprites[i].color = nonInterativeColor;
+                nonInteractMask.sprite = lakeSprites[i].sprite;
             }
         }
-    }
+
+        if (nonInteractiveLakeIndex == -1)
+        {
+            nonInteractMask.sprite = null;
+        }
+    } 
 
     private void Update()
     {
@@ -96,13 +106,20 @@ public class LakeManager : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
+                if (currentLake == -2)
+                {
+                    SoundManager.Instance.PlaySE(doNotTouchSound);
+                    return;
+                }
                 isDragging = true;
                 lakes[currentLake].isRotating = true;
                 screenPos = mainCamera.WorldToScreenPoint(lakeObjs[currentLake].transform.position);
                 Vector3 vec = Input.mousePosition - screenPos;
                 angleOffset = (Mathf.Atan2(lakeObjs[currentLake].transform.right.y, lakeObjs[currentLake].transform.right.x) - Mathf.Atan2(vec.y, vec.x)) * Mathf.Rad2Deg;
                 lakeSprites[currentLake].color = changeColor;
+                SoundManager.Instance.PlaySE(rotationSound);
             }
+            else if (currentLake < 0) return;
             else if (Input.GetMouseButton(0))
             {
                 Vector3 vec = Input.mousePosition - screenPos;
@@ -219,7 +236,7 @@ public class LakeManager : MonoBehaviour
                         if (lakeObjs[currentLake] != hit.transform.gameObject)
                         {
                             isInteracting = false;
-                            currentLake = -1;
+                            currentLake = -2;
                         }
                     }
                 }
@@ -248,6 +265,7 @@ public class LakeManager : MonoBehaviour
                 lakes[i].isStart = true;
             }
         }
+        //nonInteractMask.sprite = null;
     }
 
     //임시

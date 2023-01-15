@@ -9,13 +9,11 @@ public class SpriteOutline : MonoBehaviour
     [Range(0, 16)]
     public int outlineSize = 4;
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer;
 
     public void OnMouseEnter()
     {
         Debug.Log("Enter");
-        spriteRenderer = GetComponent<SpriteRenderer>();
-
         UpdateOutline(true);
     }
 

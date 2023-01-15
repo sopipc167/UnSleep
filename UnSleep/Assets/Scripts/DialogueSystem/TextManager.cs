@@ -116,6 +116,7 @@ public class TextManager : MonoBehaviour
     public bool isMovieOut;
 
     public Gome gome;
+    public bool EffectEnd = true;
 
     void Awake()
     {
@@ -260,7 +261,7 @@ public class TextManager : MonoBehaviour
             }
             else if (DiaUI.activeSelf && !LogUI.activeSelf && !EventSystem.current.IsPointerOverGameObject())
             {
-                
+               
                 if (isTyping)
                 {
                     if (type_coroutine != null)
@@ -272,6 +273,9 @@ public class TextManager : MonoBehaviour
                 }
                 else
                 {
+                    if(isNoise)
+                        Get_Content();
+
                     if (dp.CurrentDiaIndex < DiaDic[Dia_Id].dialogues.Length - 1) //대화 묶음 내에서 다음 대사로 접근
                     {
 
@@ -282,22 +286,24 @@ public class TextManager : MonoBehaviour
                         }
                             
 
-
-                        if (isSeven || isNoise)
+                        
+                        if (isSeven)
                         {
                             con = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;
                             if (con != null)
                             {
-                                if (isSeven)
+                                if(con.IndexOf("Effect") != -1)
                                 {
-                                    diaEvent.content = con;
+                                    diaEvent.effectIndex = dp.CurrentDiaIndex;
+                                    EffectEnd = false;
+                                    DiaUI.SetActive(false);
                                 }
-                                else
-                                    NoiseManager.instance.con = con;
+
+                                diaEvent.content = con;
                             }
                             Debug.Log("con1: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
                         }
-
+                        
 
                         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].isSelect) //선택지인 경우
                             Set_Select_System();
@@ -357,6 +363,7 @@ public class TextManager : MonoBehaviour
                                 {
                                     if (dp.Satisfy_Condition(DiaDic[Dia_Id + 1].Condition)) //씬 변경 없이 다음 대화묶음의 조건이 완수된 경우 바로 이동 (평상시)
                                     {
+                                        
                                         dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
                                         Dia_Id += 1; //다음 대화 묶음으로
 
@@ -419,6 +426,7 @@ public class TextManager : MonoBehaviour
                                 // 아래 코드는 테이블 확인용 임시 코드.
                                 // 그냥 원래 스토리에서 진행되듯 넘어가는 코드입니다.
                                 // 층간 작업하실 때 지우고 쓰시면 됨.
+
                                 Dia_Id++;
                                 dp.UpdateCurrentDiaID(Dia_Id);
                                 Increasediaindex = false;
@@ -893,11 +901,15 @@ public class TextManager : MonoBehaviour
     {
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
+
         //Invoke("Set_Dialogue_System", 0.5f);
         Get_Content();
         Set_Dialogue_System();
         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange != 5)
+        {
+            Debug.Log("여기가 true");
             DiaUI.SetActive(true);
+        }
         Increasediaindex = true;
     }
 

@@ -12,6 +12,7 @@ public class Control : MonoBehaviour
     public GameObject Log_UI;
     public GameObject goToPuzzle;
     public ParticleSystem clickParticle;
+    public Transform clickPoolPos;
 
     [Header("밟기 가능 레이어마스크")]
     public LayerMask canMoveMask;
@@ -29,6 +30,8 @@ public class Control : MonoBehaviour
 
     private Animator animator;
 
+    private readonly ParticleSystem[] pool = new ParticleSystem[20];
+    private int poolIdx = 0;
 
     void Start()
     {
@@ -36,6 +39,10 @@ public class Control : MonoBehaviour
         animator = GetComponent<Animator>();
         actor = GetComponent<DiaInterActor>();
         movement = transform.parent.GetComponent<PlayerMovement>();
+        for (int i = 0; i < 20; ++i)
+        {
+            pool[i] = Instantiate(clickParticle.gameObject, clickPoolPos).GetComponent<ParticleSystem>();
+        }
     }
 
     void Update()
@@ -49,9 +56,10 @@ public class Control : MonoBehaviour
             ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out RaycastHit hit, 500f, canMoveMask))
             {
-                clickParticle.gameObject.transform.position = new Vector3(hit.point.x, hit.point.y + 1f, hit.point.z);
-                if (clickParticle.isPlaying) clickParticle.Clear();
-                clickParticle.Play();
+                pool[poolIdx].gameObject.transform.position = new Vector3(hit.point.x, hit.point.y + 1f, hit.point.z);
+                if (pool[poolIdx].isPlaying) pool[poolIdx].Clear();
+                pool[poolIdx++].Play();
+                poolIdx = poolIdx > 19 ? 0 : poolIdx;
 
                 // 화면 기준 좌, 우 클릭에 따라 잠재우미 좌우반전
                 if (cam.ScreenToViewportPoint(Input.mousePosition).x < 0.5f)

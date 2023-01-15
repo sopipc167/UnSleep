@@ -22,8 +22,8 @@ public class NoiseManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        Dialogue_Proceeder.instance.UpdateCurrentEpiID(6);
-        Dialogue_Proceeder.instance.UpdateCurrentDiaID(2001);
+        //Dialogue_Proceeder.instance.UpdateCurrentEpiID(6);
+        //Dialogue_Proceeder.instance.UpdateCurrentDiaID(2001);
         TM.DiaUI.SetActive(true);
         TM.Increasediaindex = true;
     }
@@ -35,6 +35,7 @@ public class NoiseManager : MonoBehaviour
         {
             if (con == "BackGround_On")
             {
+                Debug.Log("BackGround_On");
                 backGround.enabled = true;
             }
             else if (con == "BackGround_Off")
