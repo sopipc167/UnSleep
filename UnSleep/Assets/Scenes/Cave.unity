@@ -1532,7 +1532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1136898208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1626,7 +1626,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1953956926}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1838,7 +1838,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1953956926}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2437,6 +2437,63 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4560876318259137657, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
   m_PrefabInstance: {fileID: 1800378575}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1775560696
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2005434574587094854, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_Name
+      value: Memo System
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
 --- !u!1 &1786697539 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5646144082951956442, guid: 658e3e8458be08a4aacae36afdc4843c, type: 3}
@@ -2939,8 +2996,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1484621249}
-  - {fileID: 1393379348}
   - {fileID: 1361344635}
+  - {fileID: 1393379348}
   - {fileID: 1835461995}
   - {fileID: 1510722357}
   - {fileID: 1982361639}
@@ -3396,11 +3453,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 5610
+      value: 6510
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled

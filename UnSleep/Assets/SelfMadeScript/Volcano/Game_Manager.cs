@@ -7,6 +7,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
 {
     public int gameboardint; //현재 게임스테이지
     private GameObject GameBoard;
+    public AnimationCurve curve;
     protected class bombs //폭탄의 내용을 간략하게 저장하기 위한 구조체
     {
         Vector2 pos; //폭탄의 위치
@@ -267,7 +268,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         GameBoard.transform.position = GameBoard.transform.position + new Vector3(13.5f, 0f, 0f);
     }
     public int getsnum() { return snum; } //스왑가능 횟수를 반환
-    void setSwap(BlockBehavior objBlock, bool P)
+    public void setSwap(BlockBehavior objBlock, bool P)
     {
         int tx = (int)objBlock.Location.x;
         int ty = (int)objBlock.Location.y;
@@ -394,6 +395,22 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         {
             RayMode();
             Over.SetActive(true);
+            StartCoroutine(overing());
+        }
+    }
+    IEnumerator overing()
+    {
+        float time = 0f;
+        float p = 0f;
+        float fadeTime = 2f;
+        while (p<1)
+        {
+            time += Time.deltaTime;
+            p = time / fadeTime;
+            Color c = Over.GetComponent<Image>().color;
+            c.a=Mathf.Lerp(0f,0.75f,curve.Evaluate(p));
+            Over.GetComponent<Image>().color = c;
+            yield return null;
         }
     }
     bool inMapSize(int x, int y)

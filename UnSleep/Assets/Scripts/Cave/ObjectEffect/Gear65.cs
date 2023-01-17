@@ -8,6 +8,7 @@ public class Gear65 : MonoBehaviour
 
     public GameObject gearBtn;
     private ObjectManager objectManager;
+    public CaveStopPanel caveStopPanel;
 
     private void Start()
     {
@@ -20,5 +21,6 @@ public class Gear65 : MonoBehaviour
     {
         gearBtn.SetActive(false);
         objectManager.OnGearUI();
+        caveStopPanel.disableCaveStopPanel();
     }
 }
