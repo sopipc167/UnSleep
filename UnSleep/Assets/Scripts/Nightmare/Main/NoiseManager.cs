@@ -22,6 +22,7 @@ public class NoiseManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        SoundManager.Instance.PlayBGM("instinct");
         //Dialogue_Proceeder.instance.UpdateCurrentEpiID(6);
         //Dialogue_Proceeder.instance.UpdateCurrentDiaID(2001);
         TM.DiaUI.SetActive(true);
@@ -62,6 +63,7 @@ public class NoiseManager : MonoBehaviour
 
     IEnumerator GameStart(int currentScene, int nextScene)
     {
+        SoundManager.Instance.FadeOutBGM(delay: 1.0f);
         isStart = true;
         //현재 씬 종료
         NM.Case = currentScene;
