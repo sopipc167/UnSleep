@@ -213,7 +213,9 @@ public class DragManager : MonoBehaviour
     {
         hand.sprite = handState[state];
         if(state == 3)
+        {
             StartCoroutine(NoiseManager.instance.GameClear());
+        }
     }
 
     public void healing()
