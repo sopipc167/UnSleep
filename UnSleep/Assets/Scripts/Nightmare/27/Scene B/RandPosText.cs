@@ -9,7 +9,7 @@ public class RandPosText : MonoBehaviour
     public SceneAText sceneA;
 
     private WeightedLine[] weightedLines = new WeightedLine[4];
-    private TextSizeButton[] buttons = new TextSizeButton[4];
+    // private TextSizeButton[] buttons = new TextSizeButton[4];
 
     // Start is called before the first frame update
     void Awake()
@@ -18,7 +18,7 @@ public class RandPosText : MonoBehaviour
         {
             var child = transform.GetChild(i);
             weightedLines[i] = child.GetComponent<WeightedLine>();
-            buttons[i] = child.GetComponent<TextSizeButton>();
+            // buttons[i] = child.GetComponent<TextSizeButton>();
         }
     }
 
@@ -120,7 +120,7 @@ public class RandPosText : MonoBehaviour
         for (int i = 0; i < 4; ++i)
         {
             weightedLines[i].SetValue(ws[i].line, ws[i].weight);
-            buttons[i].RefreshSize();
+            // buttons[i].RefreshSize();
         }
     }
 

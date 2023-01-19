@@ -1117,7 +1117,10 @@ public class TextManager : MonoBehaviour
     public void StartLoadStoryMental()
     {
         if (dp.CurrentEpiID == 10)
+        {
             StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
+            SoundManager.Instance.PlayBGM("creepy");
+        }
         else
             StartCoroutine(LoadStoryMental(SceneType.Mental));
     }
