@@ -150,6 +150,10 @@ public class DiaEvent : MonoBehaviour
             {
                 TM.EffectEnd = true;
             }
+            else if(EventNum == 16)
+            {
+                GameOver_s();
+            }
 
             if (isMovie)
             {
@@ -313,7 +317,6 @@ public class DiaEvent : MonoBehaviour
                 PlayerMove(4);
                 isMini = true;
                 gome.speed = 2.5f;
-                Debug.Log("MiniGame");
                 content = null;
             }
             else if (content == "Eight")
@@ -321,6 +324,7 @@ public class DiaEvent : MonoBehaviour
                 PlayerPrefs.SetInt("savePoint", 2);
                 gome.isMinigame = true;
                 PlayerMove(4);
+                ob[13].SetActive(true);
                 isMini = true;
                 gome.speed = 2.5f;
                 EventNum = 8;
@@ -382,7 +386,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "GameOver")
             {
-                StartCoroutine(GameOver());
+                EventNum = 16;
+                content = null;
             }
             else if (content == "Ending")
             {
@@ -519,6 +524,35 @@ public class DiaEvent : MonoBehaviour
                 audioSource.Stop();
                 return;
         }
+    }
+
+    public void unperform()
+    {
+        if (!dp.Complete_Condition.Contains(750) || !dp.Complete_Condition.Contains(751))
+            StartCoroutine(unPerformed());
+    }
+
+    IEnumerator unPerformed()
+    {
+        //고미 멈추고
+        gome.isStart = false;
+        gome.isMinigame = false;
+        gome.isFollow = false;
+
+        //플레이어 멈추고
+        player.isStop = true;
+
+        //고미 달려온다
+        gome.speed = 7.0f;
+        //Vector3 targetPos = player.transform.position;
+        //targetPos -= new Vector3(3.5f, 0, 0);
+        gome.ChangeTarget(ob[13].transform.position);
+        gome.isStart = true;
+        //Dialogue_Proceeder.instance.UpdateCurrentDiaID(755);
+
+        yield return new WaitForSeconds(2.5f);
+        //TM.DiaUI.SetActive(true);
+        GameOver_s();
     }
 
     public void GameOver_s()

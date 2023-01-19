@@ -201,6 +201,11 @@ public class Player : MonoBehaviour
         {
             dia.GameOver_s();
         }
+
+        if(collision.gameObject.tag == "Unperformed")
+        {
+            dia.unperform();
+        }
     }
 
     public void BackGroundStop()
@@ -267,24 +272,4 @@ public class Player : MonoBehaviour
         sprite.enabled = false;
     }
 
-    IEnumerator Event(bool isOnce, float runningTime)
-    {
-        isEvent = true;
-        speed = 0;
-        if (isOnce)
-        {
-            dropPos[i].SetActive(false);
-            i++;
-        }
-        yield return new WaitForSeconds(runningTime);
-        speed = Speed;
-        isEvent = false;
-    }
-
-    IEnumerator RoadEnd()
-    {
-        C.isStop = !C.isStop;
-        yield return new WaitForSeconds(0.2f);
-        isRoadEnd = !isRoadEnd;
-    }    
 }
