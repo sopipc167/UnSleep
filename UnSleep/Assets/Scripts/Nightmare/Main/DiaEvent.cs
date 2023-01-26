@@ -534,6 +534,7 @@ public class DiaEvent : MonoBehaviour
 
     IEnumerator unPerformed()
     {
+        TM.DiaUI.SetActive(false);
         //고미 멈추고
         gome.isStart = false;
         gome.isMinigame = false;
@@ -549,8 +550,8 @@ public class DiaEvent : MonoBehaviour
         gome.ChangeTarget(ob[13].transform.position);
         gome.isStart = true;
 
-        yield return new WaitForSeconds(2.5f);
-        GameOver_s();
+        yield return new WaitForSeconds(2.0f);
+        ob[14].SetActive(true);
     }
 
     public void GameOver_s()
