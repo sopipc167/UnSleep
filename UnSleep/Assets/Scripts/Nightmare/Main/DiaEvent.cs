@@ -548,10 +548,8 @@ public class DiaEvent : MonoBehaviour
         //targetPos -= new Vector3(3.5f, 0, 0);
         gome.ChangeTarget(ob[13].transform.position);
         gome.isStart = true;
-        //Dialogue_Proceeder.instance.UpdateCurrentDiaID(755);
 
         yield return new WaitForSeconds(2.5f);
-        //TM.DiaUI.SetActive(true);
         GameOver_s();
     }
 

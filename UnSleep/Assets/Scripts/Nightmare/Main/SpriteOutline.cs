@@ -10,18 +10,33 @@ public class SpriteOutline : MonoBehaviour
     public int outlineSize = 4;
 
     public SpriteRenderer spriteRenderer;
+    public bool isOut = false;
 
-    public void OnMouseEnter()
+
+    void Update()
+    {
+        if (isOut)
+            UpdateOutline(true);
+    }
+
+
+    private void OnMouseEnter()
     {
         Debug.Log("Enter");
-        UpdateOutline(true);
+        //UpdateOutline(true);
     }
 
-    public void OnMouseExit()
+    private void OnMouseOver()
+    {
+        Debug.Log("Over");
+    }
+
+    private void OnMouseExit()
     {
         Debug.Log("Exit");
-        UpdateOutline(false);
+        //UpdateOutline(false);
     }
+
 
     void UpdateOutline(bool outline)
     {
