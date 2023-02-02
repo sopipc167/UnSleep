@@ -8,43 +8,27 @@ public class SpriteOutline : MonoBehaviour
 
     [Range(0, 16)]
     public int outlineSize = 4;
+    public bool isStop;
 
-    public SpriteRenderer spriteRenderer;
-    public bool isOut = false;
+    public static SpriteOutline instance;
 
 
-    void Update()
+    private void Start()
     {
-        if (isOut)
-            UpdateOutline(true);
+        instance = this;
     }
 
 
-    private void OnMouseEnter()
+    public void UpdateOutline(bool outline, SpriteRenderer spriteRenderer)
     {
-        Debug.Log("Enter");
-        //UpdateOutline(true);
-    }
-
-    private void OnMouseOver()
-    {
-        Debug.Log("Over");
-    }
-
-    private void OnMouseExit()
-    {
-        Debug.Log("Exit");
-        //UpdateOutline(false);
-    }
-
-
-    void UpdateOutline(bool outline)
-    {
-        MaterialPropertyBlock mpb = new MaterialPropertyBlock();
-        spriteRenderer.GetPropertyBlock(mpb);
-        mpb.SetFloat("_Outline", outline ? 1f : 0);
-        mpb.SetColor("_OutlineColor", color);
-        mpb.SetFloat("_OutlineSize", outlineSize);
-        spriteRenderer.SetPropertyBlock(mpb);
+        if (!isStop)
+        {
+            MaterialPropertyBlock mpb = new MaterialPropertyBlock();
+            spriteRenderer.GetPropertyBlock(mpb);
+            mpb.SetFloat("_Outline", outline ? 1f : 0);
+            mpb.SetColor("_OutlineColor", color);
+            mpb.SetFloat("_OutlineSize", outlineSize);
+            spriteRenderer.SetPropertyBlock(mpb);
+        }       
     }
 }

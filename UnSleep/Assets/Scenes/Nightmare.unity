@@ -687,6 +687,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &115871040
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -906,6 +908,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2128116299}
 --- !u!1971053207 &121830720
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -1125,6 +1129,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &130647449
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -1394,7 +1400,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d924db89047dfa242be679950123f92b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1597,6 +1603,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &156883325
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -1898,6 +1906,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1270002492}
 --- !u!1971053207 &176862578
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2179,7 +2189,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13089037, y: -0.17451668}
+  m_Offset: {x: 0.49838257, y: 0.10110521}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2190,7 +2200,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.27021, y: 19.706524}
+  m_Size: {x: 5.3054285, y: 6.6604767}
   m_EdgeRadius: 0
 --- !u!114 &223859582
 MonoBehaviour:
@@ -2281,6 +2291,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1328519846}
 --- !u!1971053207 &223859584
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2660,6 +2672,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &242347057
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -2831,7 +2845,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 271005361}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.97, y: -0.88, z: 0}
+  m_LocalPosition: {x: -9.83, y: -0.88, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 1624137027}
@@ -2871,7 +2885,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1308899, y: 0.22642827}
+  m_Offset: {x: 0.7314677, y: 0.22642803}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2882,7 +2896,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.27021, y: 9.103594}
+  m_Size: {x: 10.061503, y: 9.103594}
   m_EdgeRadius: 0
 --- !u!114 &271005365
 MonoBehaviour:
@@ -2973,6 +2987,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1286229456}
 --- !u!1971053207 &271005367
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -3192,6 +3208,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2128116299}
 --- !u!1971053207 &303575862
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -3283,7 +3301,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d924db89047dfa242be679950123f92b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3369,8 +3387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
   outlineSize: 4
-  spriteRenderer: {fileID: 0}
-  isOut: 0
+  isStop: 0
 --- !u!1 &326261263
 GameObject:
   m_ObjectHideFlags: 0
@@ -3542,6 +3559,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2125684930}
 --- !u!1971053207 &326261269
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -4650,6 +4669,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2128116299}
 --- !u!1971053207 &371964901
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -4869,6 +4890,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2125684930}
 --- !u!1971053207 &401727342
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -5206,6 +5229,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &420413877
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -6548,6 +6573,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &510237099
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -6767,6 +6794,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &519524348
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -7068,6 +7097,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2128116299}
 --- !u!1971053207 &544983532
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -7719,6 +7750,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2125684930}
 --- !u!1971053207 &612665643
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -8245,6 +8278,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &708140418
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -8737,6 +8772,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 1
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!50 &791096685
 Rigidbody2D:
   serializedVersion: 4
@@ -9252,6 +9289,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &864380061
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -9471,6 +9510,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2125684930}
 --- !u!1971053207 &903587334
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -9772,6 +9813,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1270002492}
 --- !u!1971053207 &918223964
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -10896,6 +10939,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1014479907
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -11210,7 +11255,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13089037, y: -0.17451668}
+  m_Offset: {x: 0.13088512, y: -0.026677728}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11221,7 +11266,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.27021, y: 19.706524}
+  m_Size: {x: 5.204461, y: 7.4549294}
   m_EdgeRadius: 0
 --- !u!114 &1067155326
 MonoBehaviour:
@@ -11312,6 +11357,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1328519846}
 --- !u!1971053207 &1067155328
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -11715,7 +11762,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102629079}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.97, y: -0.88, z: 0}
+  m_LocalPosition: {x: -9.81, y: -0.88, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 1723612008}
@@ -11755,7 +11802,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1308899, y: 0.22642827}
+  m_Offset: {x: 0.95708454, y: -0.32436466}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -11766,7 +11813,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.27021, y: 9.103594}
+  m_Size: {x: 9.539628, y: 8.002008}
   m_EdgeRadius: 0
 --- !u!114 &1102629083
 MonoBehaviour:
@@ -11857,6 +11904,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1286229456}
 --- !u!1971053207 &1102629085
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -12076,6 +12125,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1134524651
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -12653,6 +12704,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1169540759
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -13197,6 +13250,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 313269962}
 --- !u!1971053207 &1231995670
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -13918,6 +13973,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1264130332
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14077,7 +14134,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d924db89047dfa242be679950123f92b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14294,6 +14351,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1280279819
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14378,7 +14437,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d924db89047dfa242be679950123f92b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14677,6 +14736,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 313269962}
 --- !u!1971053207 &1323448023
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -14761,7 +14822,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d924db89047dfa242be679950123f92b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -15226,6 +15287,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1352186465
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -15303,7 +15366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1383924199}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.97, y: -0.88, z: 0}
+  m_LocalPosition: {x: -9.77, y: -0.88, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 1624137027}
@@ -15343,7 +15406,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.1308899, y: 0.22642827}
+  m_Offset: {x: 0.030795574, y: 0.22642803}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -15354,7 +15417,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.27021, y: 9.103594}
+  m_Size: {x: 10.662093, y: 9.103594}
   m_EdgeRadius: 0
 --- !u!114 &1383924203
 MonoBehaviour:
@@ -15445,6 +15508,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1286229456}
 --- !u!1971053207 &1383924205
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -15921,6 +15986,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 1
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1436939748
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -16095,7 +16162,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13089037, y: -0.17451668}
+  m_Offset: {x: 0.46257162, y: 0.4379691}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -16106,7 +16173,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.27021, y: 19.706524}
+  m_Size: {x: 5.8463, y: 7.5792103}
   m_EdgeRadius: 0
 --- !u!114 &1450674414
 MonoBehaviour:
@@ -16197,6 +16264,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1328519846}
 --- !u!1971053207 &1450674416
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -16416,6 +16485,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1460064815
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -16767,6 +16838,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1491977881
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -17735,6 +17808,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1709401862
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18077,6 +18152,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1727986060
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18349,7 +18426,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13089037, y: -0.17451668}
+  m_Offset: {x: 0.6046295, y: 0.34228182}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -18360,7 +18437,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.27021, y: 19.706524}
+  m_Size: {x: 5.4028196, y: 6.7866135}
   m_EdgeRadius: 0
 --- !u!114 &1750923792
 MonoBehaviour:
@@ -18451,6 +18528,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1328519846}
 --- !u!1971053207 &1750923794
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18819,6 +18898,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 141224175}
 --- !u!1971053207 &1804938156
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -18896,7 +18977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813120951}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -5.68, y: -0.9100001, z: 0}
+  m_LocalPosition: {x: -7.42, y: -0.9100001, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1624137027}
@@ -19038,6 +19119,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1813120957
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19293,6 +19376,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 313269962}
 --- !u!1971053207 &1838762462
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -19693,6 +19778,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1858706971
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -20054,6 +20141,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1919133138
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -20273,6 +20362,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 0
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &1925415935
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -21101,6 +21192,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 1270002492}
 --- !u!1971053207 &2025347315
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -21320,6 +21413,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 313269962}
 --- !u!1971053207 &2032426926
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -21757,8 +21852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
   outlineSize: 4
-  spriteRenderer: {fileID: 0}
-  isOut: 0
+  isStop: 0
 --- !u!1 &2097851466
 GameObject:
   m_ObjectHideFlags: 0
@@ -22118,6 +22212,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 1
   isMany: 1
+  isClick: 0
+  sprite: {fileID: 0}
 --- !u!1971053207 &2116037118
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0
@@ -22286,7 +22382,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d924db89047dfa242be679950123f92b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22346,8 +22442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 1, b: 1, a: 1}
   outlineSize: 4
-  spriteRenderer: {fileID: 2128116299}
-  isOut: 0
+  isStop: 0
 --- !u!61 &2128116302
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -22637,6 +22732,8 @@ MonoBehaviour:
   sceneType: 0
   isAuto: 0
   isMany: 0
+  isClick: 1
+  sprite: {fileID: 2128116299}
 --- !u!1971053207 &2133943095
 SpriteShapeRenderer:
   m_ObjectHideFlags: 0

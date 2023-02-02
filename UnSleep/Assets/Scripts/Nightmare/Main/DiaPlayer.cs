@@ -162,6 +162,7 @@ public class DiaPlayer : MonoBehaviour
             player.col.enabled = false;
             player.isStop = true;
             gome.isStart = false;
+            SpriteOutline.instance.isStop = true;
 
             //실행 조건 가져옴
             int[] conditions = textManager.ReturnDiaConditions(hit_Diaid[i]);
