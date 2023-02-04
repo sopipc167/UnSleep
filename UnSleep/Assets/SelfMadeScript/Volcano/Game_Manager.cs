@@ -185,7 +185,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
         {
             initialx = 4;
             initialy = 0;
-            snum = 8;
+            snum = 10;
             gameboardint = 4;
         }
         fnum = 1;
