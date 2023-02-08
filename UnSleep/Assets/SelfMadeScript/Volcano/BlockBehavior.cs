@@ -45,6 +45,7 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     private void OnMouseOver() //마우스가 계속 들어와 있는 경우
     {
+        if (MemoManager.isMemoOn) return;
         if (GM.Raymode && !isMagma) //마우스 입력을 받는 상태이고 마그마 상태가 아니라면 
         {
             if (GM.getsnum() > 0)  //스왑할 수 있는 횟수가 남아있을 경우 버튼입력을 감지하고

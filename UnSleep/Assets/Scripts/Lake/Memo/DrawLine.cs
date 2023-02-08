@@ -10,13 +10,14 @@ public class DrawLine : MonoBehaviour
     public Transform lineGroup;
     public GameObject linePrefab;
     public Slider memoSlider;
-    public FlexibleColorPicker fcp;
+    public Button[] colorButtons;
+    private Color[] colors;
 
     [Header("그려지는 선 옵션")]
     [Range(0.01f, 0.1f)]
     public float lineWidth;
-    public Color lineColor;
 
+    private int colorIdx = 0;
     private MemoManager memoManager;
     private EraseLine eraseLine;
     private LineRenderer lineRenderer;
@@ -29,8 +30,14 @@ public class DrawLine : MonoBehaviour
         memoSlider.maxValue = 0.2f;
         memoSlider.minValue = 0.05f;
         memoSlider.value = lineWidth;
-        fcp.color = lineColor;
         memoManager.deleteAllButton.onClick.AddListener(OnClickDeleteAllButton);
+        colors = new Color[colorButtons.Length];
+        for (int i = 0; i < colorButtons.Length; ++i)
+        {
+            int index = i;
+            colorButtons[i].onClick.AddListener(() => OnClickColorButton(index));
+            colors[i] = colorButtons[i].image.color;
+        }
     }
 
     // Update is called once per frame
@@ -51,11 +58,9 @@ public class DrawLine : MonoBehaviour
                     GameObject obj = Instantiate(linePrefab, lineGroup);
                     obj.GetComponent<MemoLine>().erase = eraseLine;
                     lineRenderer = obj.GetComponent<LineRenderer>();
-                    lineRenderer.startColor = lineColor;
-                    lineRenderer.endColor = lineColor;
+                    lineRenderer.startColor = colors[colorIdx];
+                    lineRenderer.endColor = colors[colorIdx];
                     lineRenderer.widthMultiplier = lineWidth;
-                    lineRenderer.startColor = fcp.color;
-                    lineRenderer.endColor = fcp.color;
                     lineRenderer.positionCount = 1;
                     oldPos = memoManager.memoCamera.ScreenToWorldPoint(Input.mousePosition);
                     lineRenderer.SetPosition(0, oldPos);
@@ -81,7 +86,6 @@ public class DrawLine : MonoBehaviour
     private void OnClickDeleteAllButton()
     {
         memoManager.memoDetailCanvas.SetActive(false);
-        memoManager.eraseDetailCanvas.SetActive(false);
         int size = lineGroup.transform.childCount;
         if (size == 0) return;
 
@@ -89,5 +93,10 @@ public class DrawLine : MonoBehaviour
         {
             Destroy(lineGroup.transform.GetChild(i).gameObject);
         }
+    }
+
+    private void OnClickColorButton(int idx)
+    {
+        colorIdx = idx;
     }
 }

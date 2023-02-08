@@ -6,9 +6,6 @@ using UnityEngine.EventSystems;
 
 public class EraseLine : MonoBehaviour
 {
-    [Header("참조")]
-    public Slider eraseSlider;
-
     [Header("지우는 영역 설정")]
     public int vertexCount = 40;
     [Range(0.01f, 0.1f)]
@@ -17,7 +14,7 @@ public class EraseLine : MonoBehaviour
 
     //for MemoLine
     internal bool isErasing = false;
-    internal float radius = 0f;
+    internal float radius = 0.5f;
     internal Vector3 mousePos = Vector3.zero;
 
     private Vector3 oldPos = Vector3.zero;
@@ -32,10 +29,6 @@ public class EraseLine : MonoBehaviour
         lineRenderer.widthMultiplier = lineWidth;
         lineRenderer.startColor = color;
         lineRenderer.endColor = color;
-
-        eraseSlider.value = radius;
-        eraseSlider.minValue = 0.5f;
-        eraseSlider.maxValue = 1.5f;
     }
 
     private void Update()
@@ -43,7 +36,6 @@ public class EraseLine : MonoBehaviour
         if (MemoManager.isMemoOn && memoManager.isEraseMode)
         {
             memoManager.eraseButton.Select();
-            radius = eraseSlider.value;
 
             mousePos = memoManager.memoCamera.ScreenToWorldPoint(Input.mousePosition);
             mousePos.z = 0f;
@@ -56,10 +48,6 @@ public class EraseLine : MonoBehaviour
             if (!ExceptUIClick.isActive && Input.GetMouseButton(0))
             {
                 isErasing = true;
-                if (memoManager.eraseDetailCanvas.activeSelf)
-                {
-                    memoManager.eraseDetailCanvas.SetActive(false);
-                }
             }
             else if (Input.GetKeyUp(KeyCode.Mouse0))
             {
