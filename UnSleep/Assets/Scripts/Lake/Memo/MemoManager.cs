@@ -13,7 +13,6 @@ public class MemoManager : MonoBehaviour
     public Button mainButton;
     public GameObject menuCanvas;
     public GameObject memoDetailCanvas;
-    public GameObject eraseDetailCanvas;
 
     [Header("버튼 참조")]
     public Button memoButton;
@@ -28,6 +27,7 @@ public class MemoManager : MonoBehaviour
 
     private void Awake()
     {
+        isMemoOn = false;
         mainButton.onClick.AddListener(OnClickMainButton);
         memoButton.onClick.AddListener(OnClickMemoButton);
         eraseButton.onClick.AddListener(OnClickEraseButton);
@@ -52,7 +52,6 @@ public class MemoManager : MonoBehaviour
             backgroundCanvas.SetActive(false);
             menuCanvas.SetActive(false);
             memoDetailCanvas.SetActive(false);
-            eraseDetailCanvas.SetActive(false);
         }
     }
 
@@ -64,7 +63,6 @@ public class MemoManager : MonoBehaviour
         }
         else
         {
-            eraseDetailCanvas.SetActive(false);
             isEraseMode = false;
         }
     }
@@ -73,7 +71,6 @@ public class MemoManager : MonoBehaviour
     {
         if (isEraseMode)
         {
-            eraseDetailCanvas.SetActive(!eraseDetailCanvas.activeSelf);
         }
         else
         {

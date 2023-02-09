@@ -100,6 +100,7 @@ public class MenuManager : MonoBehaviour
         if (menuCanvas.activeSelf) menuCanvas.SetActive(false);
         else onlySetting = true;
     }
+
     public void OnClickSettingOff()
     {
         if (PAUSE)

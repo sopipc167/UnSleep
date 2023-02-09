@@ -9,7 +9,7 @@ public class ShowLakeMovement : MonoBehaviour
     public BallManager ballManager;
     public Image[] buttons;
     public Color changeColor;
-    private Color defaultColor = new Color(0.1647059f, 0.1647059f, 0.1647059f);
+    public Color defaultColor;
 
     private Vector3 bPos;
     private Quaternion bRot;
