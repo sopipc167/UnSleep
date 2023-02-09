@@ -294,6 +294,7 @@ public class TextManager : MonoBehaviour
                             {
                                 if(con.IndexOf("Effect") != -1)
                                 {
+                                    Debug.Log("Effect");
                                     diaEvent.effectIndex = dp.CurrentDiaIndex;
                                     EffectEnd = false;
                                     DiaUI.SetActive(false);
@@ -520,6 +521,14 @@ public class TextManager : MonoBehaviour
             {
                 if (isSeven)
                 {
+                    if (con.IndexOf("Effect") != -1)
+                    {
+                        Debug.Log("Effect");
+                        diaEvent.effectIndex = dp.CurrentDiaIndex;
+                        EffectEnd = false;
+                        DiaUI.SetActive(false);
+                    }
+
                     diaEvent.content = con;
                 }
                 else
@@ -905,13 +914,13 @@ public class TextManager : MonoBehaviour
         dp.CurrentDiaIndex = 0;
 
         //Invoke("Set_Dialogue_System", 0.5f);
-        Get_Content();
         Set_Dialogue_System();
         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange != 5)
         {
             Debug.Log("여기가 true");
             DiaUI.SetActive(true);
         }
+        Get_Content();
         Increasediaindex = true;
     }
 

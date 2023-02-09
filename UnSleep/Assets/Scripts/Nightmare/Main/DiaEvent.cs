@@ -436,8 +436,8 @@ public class DiaEvent : MonoBehaviour
         ending_bg.enabled = true;
         eye.enabled = true;
         yield return new WaitForSeconds(0.5f);
-        eye.transform.DOLocalMoveX(-138, 1.5f);
-        yield return new WaitForSeconds(1.5f);
+        eye.transform.DOLocalMoveX(-138, 2.5f);
+        yield return new WaitForSeconds(4.0f);
         fadeinout.Fade_In();
     }
 
