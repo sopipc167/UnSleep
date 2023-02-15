@@ -2,48 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaveMapParser
+public class CaveMapParser: MonoBehaviour
 {
     
-    public Cavern getCavern(TextAsset csv)
+    private string[][][] caveMapInfo;
+    private ParseUtil parseUtil = ParseUtil.Instance();
+
+
+
+    public Cavern getRootCavern(TextAsset caveCsv)
     {
-        string[] cols = parseCavernData(csv);
-        Cavern root = null;
-        Cavern prevCavern = null;
-
-        for (int c = 0; c < cols.Length; c++)
-        {
-            string[] rows = cols[c].Split(new char[] { '\n' });
-            List<Cavern> stage = new List<Cavern>();
-
-            for (int r = 0; r < rows.Length; r++)
-            {
-                string[] roomData = rows[r].Split(new char[] { '#' });
-                
-                if (roomData[0].Equals("-1")) continue; // 빈 방이면 패스
-
-                if (prevCavern == null)
-                {
-                    root = new Cavern(roomData);
-                    prevCavern = root;
-                } else
-                {
-                    Cavern cavern = new Cavern(roomData);
-                    cavern.setPrevCarven(prevCavern);
-                    stage.Add(cavern);
-                }
-            }
-
-            prevCavern.setNextCarven(stage.ToArray());
-
-        }
+        caveMapInfo = parseCavernData(caveCsv);
+        Cavern root = new Cavern(caveMapInfo[0][0]);
+        Cavern[] child = composeCarvens(0, 0, root.routeCnt);
+        root.setNextCarven(child);
 
         return root;
     }
 
-    private string[] parseCavernData(TextAsset csv)
+    private Cavern[] composeCarvens(int stage, int start, int count)
     {
-        string[] Selected_Data;
+        List<Cavern> caverns = new List<Cavern>();
+        int accumulate = 0;
+
+
+        for (int s = start; s < start + count; s++)
+        {
+            string[] cell = caveMapInfo[stage + 1][s];
+            int routeCount = parseUtil.parseInt(cell[0]);
+           
+
+            if (routeCount >= 0)
+            {
+                Cavern cavern = new Cavern(cell);
+
+                if (routeCount > 0 && routeCount < 999)
+                    cavern.setNextCarven(composeCarvens(stage + 1, accumulate, cavern.routeCnt));
+
+                caverns.Add(cavern);
+                accumulate += cavern.routeCnt;
+            }
+        }
+
+        return caverns.ToArray();
+    }
+
+
+    private string[][][] parseCavernData(TextAsset csv)
+    {
+        List<string> rowList = new List<string>();
+        
         int rowLength;
         int start;
 
@@ -105,14 +113,41 @@ public class CaveMapParser
 
         }
 
-
-        string[] tmpstring = csv.text.Split(new char[] { ',' });
-        Selected_Data = new string[rowLength];
+        string[] rows = csv.text.Split(new char[] { '\n' });
+        
         for (int i = 0; i < rowLength; i++)
         {
-            Selected_Data[i] = tmpstring[start + i];
+            rowList.Add(rows[start + i]);
         }
-        return Selected_Data;
+
+        return parseStageData(rowList);
+    }
+
+    private string[][][] parseStageData(List<string> rowList)
+    {
+        List<string[][]> carvenDataList = new List<string[][]>();
+        List<string[]> splitedRowList = new List<string[]>();
+        int depth = -1;
+        
+        foreach (string row in rowList)
+        {
+            splitedRowList.Add(row.Split(new char[] { ',' }));
+            if (depth < 0) depth = row.Split(new char[] { ',' }).Length;
+        }
+ 
+        for (int i = 0; i < depth; i++)
+        {
+            List<string[]> column = new List<string[]>();
+
+            for (int r = 0; r < rowList.Count; r++)
+            {
+                column.Add(splitedRowList[r][i].Split(new char[] { '#' }));
+            }
+
+            carvenDataList.Add(column.ToArray());
+        }
+
+        return carvenDataList.ToArray();
     }
 
 }

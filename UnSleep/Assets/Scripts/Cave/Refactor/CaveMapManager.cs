@@ -8,9 +8,9 @@ public class CaveMapManager : MonoBehaviour
     private CaveMapParser caveMapParser = new CaveMapParser();
     public Cavern carven;
 
-    private void Awake()
+    private void Start()
     {
-        carven = caveMapParser.getCavern(caveCsv);
+        carven = caveMapParser.getRootCavern(caveCsv);
     }
     
 }
