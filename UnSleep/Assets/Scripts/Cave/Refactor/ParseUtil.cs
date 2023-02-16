@@ -13,7 +13,6 @@
     }
 
     // int로 Parse 가능하면 결과값을, 그렇지 않으면 -1을 반환 
-    // Todo: ParseUtil로 빼기
     public int parseInt(string target)
     {
         int result;
