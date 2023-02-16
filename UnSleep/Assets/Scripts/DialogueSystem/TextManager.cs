@@ -449,6 +449,8 @@ public class TextManager : MonoBehaviour
                                 Player.instance.isStop = false;
                                 Player.instance.col.enabled = true;
                                 SpriteOutline.instance.isStop = false;
+                                if (diaEvent.outline != 0)
+                                    diaEvent.Outline_false();
 
                                 if (isMovieOut)
                                 {

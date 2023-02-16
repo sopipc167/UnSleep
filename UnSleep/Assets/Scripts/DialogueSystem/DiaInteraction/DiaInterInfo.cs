@@ -22,18 +22,32 @@ public class DiaInterInfo : MonoBehaviour
     public bool isMany;
     public bool isClick;
     public SpriteRenderer sprite;
+    public DiaEvent DE;
 
     private void OnMouseEnter()
     {
-        if(isClick)
+        if (isClick)
+        {
+            DE.outline = Obj_Diaid[0];
             SpriteOutline.instance.UpdateOutline(true, sprite);
+        }
     }
 
     private void OnMouseExit()
     {
-        if(isClick)
+        if (isClick)
+        {
+            //DE.outline = 0;
             SpriteOutline.instance.UpdateOutline(false, sprite);
+        }
     }
+
+    public void outline_off()
+    {
+        DE.outline = 0;
+        SpriteOutline.instance.UpdateOutline(false, sprite);
+    }
+
 
     //private void OnDrawGizmosSelected()
     //{
