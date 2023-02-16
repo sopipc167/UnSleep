@@ -5,12 +5,15 @@ using UnityEngine;
 public class CaveMapManager : MonoBehaviour
 {
     public TextAsset caveCsv;
+    public Cavern rootCavern;
+    public CaveMapRenderer caveMapRenderer;
+
     private CaveMapParser caveMapParser = new CaveMapParser();
-    public Cavern carven;
 
     private void Start()
     {
-        carven = caveMapParser.getRootCavern(caveCsv);
+        rootCavern = caveMapParser.getRootCavern(caveCsv);
+        caveMapRenderer.renderCavern(rootCavern);
     }
     
 }
