@@ -5,14 +5,19 @@ using UnityEngine;
 public class CaveMapManager : MonoBehaviour
 {
     public TextAsset caveCsv;
+    public GameObject backButton;
+
     public Cavern rootCavern;
+    private Cavern currentCavern;
     public CaveMapRenderer caveMapRenderer;
 
- 
+    private Stack<Cavern> stack = new Stack<Cavern>();
+
     private void Start()
     {
         rootCavern = new CaveMapParser().getRootCavern(caveCsv);
-        caveMapRenderer.renderCavern(rootCavern);
+        currentCavern = rootCavern;
+        caveMapRenderer.renderCavern(currentCavern);
     }
 
     void Update()
@@ -35,10 +40,22 @@ public class CaveMapManager : MonoBehaviour
 
     public void proceed(int routeIndex)
     {
-        Debug.Log(string.Format("전진 {0}", routeIndex));
+        stack.Push(currentCavern);
+        currentCavern = currentCavern.next[routeIndex];
+        caveMapRenderer.renderCavern(currentCavern);
+        if (!backButton.activeSelf) backButton.SetActive(true);
+
         // TODO
-        // stack에 현재 cavern push
-        // routeIndex 구멍으로 전진
+        // 화면 전환 효과 재생
+    }
+
+    public void back()
+    {
+        currentCavern = stack.Pop();
+        caveMapRenderer.renderCavern(currentCavern);
+        if (stack.Count == 0) backButton.SetActive(false);
+        
+        // TODO
         // 화면 전환 효과 재생
     }
 }
