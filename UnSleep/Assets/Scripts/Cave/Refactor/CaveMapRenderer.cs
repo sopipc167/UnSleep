@@ -5,6 +5,7 @@ using UnityEngine;
 public class CaveMapRenderer : MonoBehaviour
 {
     public SpriteRenderer background;
+    public SpriteRenderer black;
     public Sprite[] backgroundSprites;
 
     public GameObject[] holes;
@@ -14,8 +15,15 @@ public class CaveMapRenderer : MonoBehaviour
     public AudioClip[] audioClips;
 
 
+    public void proceed(Cavern cavern)
+    {
+        StartCoroutine(proceedCavern(cavern));
+    }
+
     public void renderCavern(Cavern cavern)
     {
+        
+
         if (cavern.routeCnt < 0) 
             return; // 오류 방지 early return
         else if (cavern.routeCnt == 999)
@@ -67,6 +75,17 @@ public class CaveMapRenderer : MonoBehaviour
         }
     }
 
+    IEnumerator proceedCavern(Cavern cavern)
+    {
+        yield return StartCoroutine(proceedEffect());
+        renderCavern(cavern);
+    }
+
+    public void back()
+    {
+        StartCoroutine(backEffect());
+    }
+
     private void setCavernAudio(AudioSource audioSource, int idx, float vol, bool first)
     {
         if (audioSource.mute)
@@ -102,6 +121,29 @@ public class CaveMapRenderer : MonoBehaviour
         audioSource.mute = true;
     }
 
+    IEnumerator proceedEffect()
+    {
+        StartCoroutine(shakeCavern(0.4f));
+        StartCoroutine(scaleCavern(1f, 1.1f, 8f));
+        yield return StartCoroutine(fadeInOut(1f, 2f));
+
+       
+       
+        StartCoroutine(fadeInOut(0f, 0.5f));
+        transform.position = new Vector3(0f, 0f, 0f);
+        transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+
+    IEnumerator backEffect()
+    {
+        StartCoroutine(scaleCavern(1f, 0.9f, 8f));
+        yield return StartCoroutine(fadeInOut(1f, 2f));
+
+        StartCoroutine(fadeInOut(0f, 0.5f));
+        transform.position = new Vector3(0f, 0f, 0f);
+        transform.localScale = new Vector3(1f, 1f, 1f);
+    }
+
     IEnumerator fadeOutCavernAudio()
     {
         float rightvol = rightAudio.volume;
@@ -120,4 +162,69 @@ public class CaveMapRenderer : MonoBehaviour
             yield return null;
         }
     }
+
+    IEnumerator fadeInOut(float target, float time)
+    {
+        float alpha = black.color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / time)
+        {
+            Color newColor = new Color(0, 0, 0, Mathf.Lerp(alpha, target, t));
+            black.color = newColor;
+            yield return null;
+        }
+
+
+    }
+
+    IEnumerator shakeCavern(float time)
+    {
+        
+        for (float y = 0.0f; y < 0.5f; y += Time.deltaTime / time)
+        {
+            Vector3 pos = transform.position;
+            transform.position = new Vector3(pos.x, y, pos.z);
+            yield return null;
+        }
+
+        for (float y = 0.5f; y > -0.5f; y -= Time.deltaTime / time)
+        {
+            Vector3 pos = transform.position;
+            transform.position = new Vector3(pos.x, y, pos.z);
+            yield return null;
+        }
+
+        for (float y = -0.5f; y < 0.5f; y += Time.deltaTime / time)
+        {
+            Vector3 pos = transform.position;
+            transform.position = new Vector3(pos.x, y, pos.z);
+            yield return null;
+        }
+
+        for (float y = 0.5f; y > -0.5f; y -= Time.deltaTime / time)
+        {
+            Vector3 pos = transform.position;
+            transform.position = new Vector3(pos.x, y, pos.z);
+            yield return null;
+        }
+
+        for (float y = -0.5f; y < 0.5f; y += Time.deltaTime / time)
+        {
+            Vector3 pos = transform.position;
+            transform.position = new Vector3(pos.x, y, pos.z);
+            yield return null;
+        }
+
+    }
+
+    IEnumerator scaleCavern(float start, float target, float time)
+    {
+
+        for (float s = start; s < target; s += Time.deltaTime / time)
+        {
+            transform.localScale = new Vector3(s, s, s);
+            yield return null;
+        }
+    }
+
+
 }

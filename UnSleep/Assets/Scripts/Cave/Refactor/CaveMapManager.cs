@@ -42,20 +42,18 @@ public class CaveMapManager : MonoBehaviour
     {
         stack.Push(currentCavern);
         currentCavern = currentCavern.next[routeIndex];
-        caveMapRenderer.renderCavern(currentCavern);
+        
+        caveMapRenderer.proceed(currentCavern);
         if (!backButton.activeSelf) backButton.SetActive(true);
+        
 
-        // TODO
-        // 화면 전환 효과 재생
     }
 
     public void back()
     {
         currentCavern = stack.Pop();
-        caveMapRenderer.renderCavern(currentCavern);
+        //caveMapRenderer.renderCavern(currentCavern);
         if (stack.Count == 0) backButton.SetActive(false);
-        
-        // TODO
-        // 화면 전환 효과 재생
+       
     }
 }
