@@ -8,11 +8,11 @@ public class CaveMapManager : MonoBehaviour
     public Cavern rootCavern;
     public CaveMapRenderer caveMapRenderer;
 
-    private CaveMapParser caveMapParser = new CaveMapParser();
+  
 
     private void Start()
     {
-        rootCavern = caveMapParser.getRootCavern(caveCsv);
+        rootCavern = new CaveMapParser().getRootCavern(caveCsv);
         caveMapRenderer.renderCavern(rootCavern);
     }
     

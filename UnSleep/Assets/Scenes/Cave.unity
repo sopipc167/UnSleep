@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &60204763
 Transform:
   m_ObjectHideFlags: 0
@@ -154,7 +154,7 @@ Transform:
   - {fileID: 1305737737}
   - {fileID: 1802745669}
   m_Father: {fileID: 1189626498}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &76676048
 GameObject:
@@ -1190,7 +1190,7 @@ Transform:
   - {fileID: 1346457542}
   - {fileID: 265546909}
   m_Father: {fileID: 1189626498}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &600203261
 GameObject:
@@ -1435,6 +1435,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d38e13dc90cfa974f89b1b895db58337, type: 3}
   - {fileID: 21300000, guid: f1d41ee21a145434b855fb1ff81d6ca5, type: 3}
   - {fileID: 21300000, guid: ea3290a0addf78b48b46e9daa1a24888, type: 3}
+  - {fileID: 21300000, guid: ea3290a0addf78b48b46e9daa1a24888, type: 3}
+  holes:
+  - {fileID: 2023055516}
+  - {fileID: 913910493}
+  - {fileID: 467735377}
+  - {fileID: 60204762}
+  leftAudio: {fileID: 600203262}
+  rightAudio: {fileID: 2089577693}
+  audioClips:
+  - {fileID: 8300000, guid: b7db47d2fb607304bb779b001b6b6882, type: 3}
+  - {fileID: 8300000, guid: 3a48756404790db47851bdcb9e4c1e54, type: 3}
+  - {fileID: 8300000, guid: 951fc0dc84253314cbe3e73e89a9cc93, type: 3}
+  - {fileID: 8300000, guid: 7cdfffc466c3a414e8fb5062dafdf8fd, type: 3}
+  - {fileID: 8300000, guid: 8259040ec4f728d46b13e8bc7876158e, type: 3}
+  - {fileID: 8300000, guid: b4b260cb9bb3cef448adad1938d23d95, type: 3}
+  - {fileID: 8300000, guid: 1c5bcb06818d5624fa2bdb710f32f8f6, type: 3}
 --- !u!1 &722274755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1601,7 +1617,7 @@ Transform:
   m_Children:
   - {fileID: 463775498}
   m_Father: {fileID: 1189626498}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &993461120
 GameObject:
@@ -1865,6 +1881,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 2023055517}
   - {fileID: 913910494}
   - {fileID: 467735378}
   - {fileID: 60204763}
@@ -2672,7 +2689,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818177936}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1906bdc12f2965143a51393ea84cbf86, type: 3}
   m_Name: 
@@ -2838,6 +2855,36 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2023055516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2023055517}
+  m_Layer: 0
+  m_Name: hole0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2023055517
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023055516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1189626498}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2089577692
 GameObject:
   m_ObjectHideFlags: 0
