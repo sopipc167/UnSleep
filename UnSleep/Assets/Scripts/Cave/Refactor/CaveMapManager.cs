@@ -52,7 +52,7 @@ public class CaveMapManager : MonoBehaviour
     public void back()
     {
         currentCavern = stack.Pop();
-        //caveMapRenderer.renderCavern(currentCavern);
+        caveMapRenderer.back(currentCavern);
         if (stack.Count == 0) backButton.SetActive(false);
        
     }

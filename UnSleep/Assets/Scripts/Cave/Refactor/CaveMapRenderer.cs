@@ -20,6 +20,11 @@ public class CaveMapRenderer : MonoBehaviour
         StartCoroutine(proceedCavern(cavern));
     }
 
+    public void back(Cavern cavern)
+    {
+        StartCoroutine(backCavern(cavern));
+    }
+
     public void renderCavern(Cavern cavern)
     {
         
@@ -81,10 +86,13 @@ public class CaveMapRenderer : MonoBehaviour
         renderCavern(cavern);
     }
 
-    public void back()
+
+    IEnumerator backCavern(Cavern cavern)
     {
-        StartCoroutine(backEffect());
+        yield return StartCoroutine(backEffect());
+        renderCavern(cavern);
     }
+
 
     private void setCavernAudio(AudioSource audioSource, int idx, float vol, bool first)
     {
@@ -123,9 +131,9 @@ public class CaveMapRenderer : MonoBehaviour
 
     IEnumerator proceedEffect()
     {
-        StartCoroutine(shakeCavern(0.4f));
-        StartCoroutine(scaleCavern(1f, 1.1f, 8f));
-        yield return StartCoroutine(fadeInOut(1f, 2f));
+        StartCoroutine(shakeCavern(0.3f));
+        StartCoroutine(scaleCavern(1f, 1.1f, 6f));
+        yield return StartCoroutine(fadeInOut(1f, 1f));
 
        
        
@@ -136,8 +144,8 @@ public class CaveMapRenderer : MonoBehaviour
 
     IEnumerator backEffect()
     {
-        StartCoroutine(scaleCavern(1f, 0.9f, 8f));
-        yield return StartCoroutine(fadeInOut(1f, 2f));
+        StartCoroutine(scaleCavern(1f, 0.9f, 6f));
+        yield return StartCoroutine(fadeInOut(1f, 1f));
 
         StartCoroutine(fadeInOut(0f, 0.5f));
         transform.position = new Vector3(0f, 0f, 0f);
