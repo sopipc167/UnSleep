@@ -85,6 +85,7 @@ public class DiaPlayer : MonoBehaviour
                 {
                     diaScene1.SetActive(false);
                     diaScene2.SetActive(true);
+                    DE.Outline_false();
                     DE.next_flase = 701;
                     DE.next_true = 700;
                     DE.ob[7].SetActive(true);

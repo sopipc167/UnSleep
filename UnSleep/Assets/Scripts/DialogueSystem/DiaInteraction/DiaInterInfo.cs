@@ -26,7 +26,7 @@ public class DiaInterInfo : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (isClick)
+        if (isClick && !SpriteOutline.instance.isStop)
         {
             DE.outline = Obj_Diaid[0];
             SpriteOutline.instance.UpdateOutline(true, sprite);
@@ -35,7 +35,7 @@ public class DiaInterInfo : MonoBehaviour
 
     private void OnMouseExit()
     {
-        if (isClick)
+        if (isClick && !SpriteOutline.instance.isStop)
         {
             //DE.outline = 0;
             SpriteOutline.instance.UpdateOutline(false, sprite);
@@ -44,6 +44,7 @@ public class DiaInterInfo : MonoBehaviour
 
     public void outline_off()
     {
+        Debug.Log("off: " + Obj_Diaid[0]);
         DE.outline = 0;
         SpriteOutline.instance.UpdateOutline(false, sprite);
     }
