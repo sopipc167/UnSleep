@@ -13,6 +13,15 @@ public class CaveMapManager : MonoBehaviour
 
     private Stack<Cavern> stack = new Stack<Cavern>();
 
+    public GameObject DiaUI;
+    public bool DiaActive
+    {
+        get
+        {
+            return DiaUI.activeSelf;
+        }
+    }
+
     private void Start()
     {
         rootCavern = new CaveMapParser().getRootCavern(caveCsv);

@@ -29,25 +29,27 @@ public class CaveMapRenderer : MonoBehaviour
 
     public void renderCavern(Cavern cavern)
     {
+
+        // 구멍 다 숨기기
+        foreach (GameObject h in holes)
+        {
+            h.SetActive(false);
+        }
+
+
         // <-------------- 배경 ---------------->
 
         if (cavern.routeCnt < 0) 
             return; // 오류 방지 early return
         else if (cavern.routeCnt == 999)
         {
+
             background.sprite = backgroundSprites[4]; // 마지막 방 배경
             StartCoroutine(fadeOutCavernAudio());
             return;
         }
-        
 
         background.sprite = backgroundSprites[cavern.routeCnt];
-        
-        foreach(GameObject h in holes)
-        {
-            h.SetActive(false);
-        }
-
         holes[cavern.routeCnt].SetActive(true);
 
 

@@ -913,11 +913,9 @@ public class TextManager : MonoBehaviour
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
 
-        //Invoke("Set_Dialogue_System", 0.5f);
         Set_Dialogue_System();
         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange != 5)
         {
-            Debug.Log("여기가 true");
             DiaUI.SetActive(true);
         }
         Get_Content();

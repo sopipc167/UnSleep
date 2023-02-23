@@ -8,6 +8,7 @@ public class Hole: MonoBehaviour, CaveClickable
 
     void CaveClickable.onClick(CaveMapManager caveMapManager)
     {
-        caveMapManager.proceed(holeIndex);
+        if (!caveMapManager.DiaActive)
+            caveMapManager.proceed(holeIndex);
     }
 }
