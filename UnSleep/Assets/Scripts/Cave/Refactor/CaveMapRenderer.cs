@@ -16,6 +16,8 @@ public class CaveMapRenderer : MonoBehaviour
 
     public TextManager textManager;
 
+    public bool moving = false;
+
 
     public void proceed(Cavern cavern)
     {
@@ -36,6 +38,21 @@ public class CaveMapRenderer : MonoBehaviour
             h.SetActive(false);
         }
 
+        // <-------------- 대화 ---------------->
+        if (cavern.talkId > 0)
+        {
+            if (!Dialogue_Proceeder.instance.AlreadyDone(cavern.talkId))
+            {
+
+                if (Dialogue_Proceeder.instance.Satisfy_Condition(textManager.ReturnDiaConditions(cavern.talkId)))
+                {
+                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(cavern.talkId);
+                    textManager.Increasediaindex = true;
+                    textManager.SetDiaInMap();
+                }
+
+            }
+        }
 
         // <-------------- 배경 ---------------->
 
@@ -87,35 +104,25 @@ public class CaveMapRenderer : MonoBehaviour
         }
 
 
-        // <-------------- 대화 ---------------->
-        if (cavern.talkId > 0)
-        {
-            if (!Dialogue_Proceeder.instance.AlreadyDone(cavern.talkId))
-            {
 
-                if (Dialogue_Proceeder.instance.Satisfy_Condition(textManager.ReturnDiaConditions(cavern.talkId)))
-                {
-                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(cavern.talkId);
-                    textManager.Increasediaindex = true;
-                    textManager.SetDiaInMap();
-                }
-
-            }
-        }
 
 
     }
 
     IEnumerator proceedCavern(Cavern cavern)
     {
+        moving = true;
         yield return StartCoroutine(proceedEffect());
+        moving = false;
         renderCavern(cavern);
     }
 
 
     IEnumerator backCavern(Cavern cavern)
     {
+        moving = true;
         yield return StartCoroutine(backEffect());
+        moving = false;
         renderCavern(cavern);
     }
 

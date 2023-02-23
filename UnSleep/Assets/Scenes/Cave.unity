@@ -1730,7 +1730,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d38e13dc90cfa974f89b1b895db58337, type: 3}
   - {fileID: 21300000, guid: f1d41ee21a145434b855fb1ff81d6ca5, type: 3}
   - {fileID: 21300000, guid: ea3290a0addf78b48b46e9daa1a24888, type: 3}
-  - {fileID: 21300000, guid: ea3290a0addf78b48b46e9daa1a24888, type: 3}
+  - {fileID: 21300000, guid: 7c9d08ecf70fc75419bff739315e7a4a, type: 3}
   holes:
   - {fileID: 2023055516}
   - {fileID: 913910493}
@@ -1747,6 +1747,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b4b260cb9bb3cef448adad1938d23d95, type: 3}
   - {fileID: 8300000, guid: 1c5bcb06818d5624fa2bdb710f32f8f6, type: 3}
   textManager: {fileID: 1349169065}
+  moving: 0
 --- !u!1 &722274755
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,6 +2169,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1061216551}
   m_CullTransparentMesh: 0
+--- !u!1 &1074318185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8528798682089432713, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+  m_PrefabInstance: {fileID: 1775474530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1143699881
 GameObject:
   m_ObjectHideFlags: 0
@@ -2211,6 +2217,7 @@ MonoBehaviour:
     isSave: 0
     next: []
   caveMapRenderer: {fileID: 657702111}
+  DiaUI: {fileID: 1074318185}
 --- !u!4 &1143699883
 Transform:
   m_ObjectHideFlags: 0
@@ -2224,7 +2231,7 @@ Transform:
   m_Children:
   - {fileID: 657702110}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1161336001 stripped
 RectTransform:
@@ -3053,7 +3060,7 @@ RectTransform:
   m_Children:
   - {fileID: 1649205638}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

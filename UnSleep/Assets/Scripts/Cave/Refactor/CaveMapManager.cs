@@ -49,17 +49,25 @@ public class CaveMapManager : MonoBehaviour
 
     public void proceed(int routeIndex)
     {
+        if (DiaActive || caveMapRenderer.moving) return;
+
         stack.Push(currentCavern);
         currentCavern = currentCavern.next[routeIndex];
         
         caveMapRenderer.proceed(currentCavern);
         if (!backButton.activeSelf) backButton.SetActive(true);
-        
 
+        if (currentCavern.routeCnt == 999)
+        {
+            backButton.SetActive(false);
+        }
+        
     }
 
     public void back()
     {
+        if (DiaActive || caveMapRenderer.moving) return;
+
         currentCavern = stack.Pop();
         caveMapRenderer.back(currentCavern);
         if (stack.Count == 0) backButton.SetActive(false);
