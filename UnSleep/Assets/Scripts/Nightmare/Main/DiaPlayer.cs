@@ -85,6 +85,7 @@ public class DiaPlayer : MonoBehaviour
                 {
                     diaScene1.SetActive(false);
                     diaScene2.SetActive(true);
+                    DE.Outline_false();
                     DE.next_flase = 701;
                     DE.next_true = 700;
                     DE.ob[7].SetActive(true);
@@ -149,6 +150,8 @@ public class DiaPlayer : MonoBehaviour
             {
                 if (hit_info.isAuto && !textManager.isMovieIn)
                 {
+                    if(DE.outline != 0)
+                        DE.Outline_false();
                     movie.MovieFrameIn();
                     textManager.isMovieIn = true;
                     if (!hit_info.isMany)
@@ -170,6 +173,7 @@ public class DiaPlayer : MonoBehaviour
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
+
                 
                 if (textManager.EffectEnd)
                 {
@@ -187,5 +191,4 @@ public class DiaPlayer : MonoBehaviour
 
         }
     }
-
 }

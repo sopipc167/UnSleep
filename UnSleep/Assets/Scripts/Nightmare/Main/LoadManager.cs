@@ -44,6 +44,9 @@ public class LoadManager : MonoBehaviour
             player.isSeven = false;
             if (PlayerPrefs.GetInt("savePoint") == 1)
             {
+                Color tmp = new Vector4(0, 0, 0, 0);
+                backGround.enabled = true;
+                backGround.color = tmp;
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(742);
                 DE.Dia[37].SetActive(true);
                 DE.Dia[38].SetActive(true);

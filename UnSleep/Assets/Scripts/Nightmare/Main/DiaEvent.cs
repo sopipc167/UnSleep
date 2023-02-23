@@ -65,6 +65,8 @@ public class DiaEvent : MonoBehaviour
 
     public int effectIndex;
 
+    public int outline = 0;
+
     void Start()
     {
         dp = Dialogue_Proceeder.instance;
@@ -163,7 +165,6 @@ public class DiaEvent : MonoBehaviour
 
             TM.isEnd = false;
             isFirst = true;
-            Debug.Log("con_isFirst");
             EventNum = 100;
         }
 
@@ -395,6 +396,13 @@ public class DiaEvent : MonoBehaviour
                 StartCoroutine(Ending());
             }
         }
+    }
+
+    public void Outline_false()
+    {
+        DiaInterInfo Line;
+        Line = Dia[outline - next_true].transform.GetComponent<DiaInterInfo>();
+        Line.outline_off();
     }
 
     IEnumerator EffectEnd(float durTime)

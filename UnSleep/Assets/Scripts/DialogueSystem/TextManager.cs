@@ -456,6 +456,8 @@ public class TextManager : MonoBehaviour
                                 Player.instance.isStop = false;
                                 Player.instance.col.enabled = true;
                                 SpriteOutline.instance.isStop = false;
+                                if (diaEvent.outline != 0)
+                                    diaEvent.Outline_false();
 
                                 if (isMovieOut)
                                 {
@@ -922,9 +924,7 @@ public class TextManager : MonoBehaviour
 
         Set_Dialogue_System();
         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange != 5)
-        {
             DiaUI.SetActive(true);
-        }
         Get_Content();
         Increasediaindex = true;
     }
