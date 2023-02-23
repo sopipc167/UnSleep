@@ -6,15 +6,15 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
 {
     public TextAsset caveCsv;
     public GameObject backButton;
-
-    public Cavern rootCavern;
-    private Cavern currentCavern;
     public CaveMapRenderer caveMapRenderer;
     public TextManager textManager;
+    public PuzzleClear puzzleClear;
+    public GameObject DiaUI;
 
     private Stack<Cavern> stack = new Stack<Cavern>();
+    private Cavern rootCavern;
+    private Cavern currentCavern;
 
-    public GameObject DiaUI;
     public bool DiaActive
     {
         get
@@ -82,6 +82,25 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
         if (currentCavern.routeCnt == 999 && currentCavern.talkId == DiaId)
         {
             Debug.Log("끝~");
+            puzzleClear.gameObject.SetActive(true);
+            //PuzzleClear puzzleClear = Clear.transform.GetChild(0).GetComponent<PuzzleClear>();
+            SoundManager.Instance.FadeOutBGM();
+            int CurEpiId = Dialogue_Proceeder.instance.CurrentEpiID;
+            int CurDiaId = Dialogue_Proceeder.instance.CurrentDiaID;
+
+
+            if (CurEpiId == 7)
+            {
+                if (CurDiaId == 2013)
+                    puzzleClear.ClearPuzzle(SceneType.Mental, 1f);
+                else if (CurDiaId == 2017)
+                    puzzleClear.ClearPuzzle(SceneType.Dialogue, 1f);
+            }
+            else if (CurEpiId == 9 || CurEpiId == 11 || CurEpiId == 15 || CurEpiId == 16 || CurEpiId == 18 || CurEpiId == 19) //나중엔 퍼즐 연출로
+                puzzleClear.ClearPuzzle(SceneType.Mental, 1f);
+            else if (CurEpiId == 2 || CurEpiId == 5 || CurEpiId == 17)
+                puzzleClear.ClearPuzzle(SceneType.Dialogue, 1f);
+
         }
     }
 }
