@@ -14,6 +14,8 @@ public class CaveMapRenderer : MonoBehaviour
     public AudioSource rightAudio;
     public AudioClip[] audioClips;
 
+    public TextManager textManager;
+
 
     public void proceed(Cavern cavern)
     {
@@ -27,7 +29,7 @@ public class CaveMapRenderer : MonoBehaviour
 
     public void renderCavern(Cavern cavern)
     {
-        
+        // <-------------- 배경 ---------------->
 
         if (cavern.routeCnt < 0) 
             return; // 오류 방지 early return
@@ -47,6 +49,9 @@ public class CaveMapRenderer : MonoBehaviour
         }
 
         holes[cavern.routeCnt].SetActive(true);
+
+
+        // <-------------- 소리 ---------------->
 
         switch (cavern.soundPosition)
         {
@@ -78,6 +83,25 @@ public class CaveMapRenderer : MonoBehaviour
                 muteAudioSource(leftAudio);
                 break;
         }
+
+
+        // <-------------- 대화 ---------------->
+        if (cavern.talkId > 0)
+        {
+            if (!Dialogue_Proceeder.instance.AlreadyDone(cavern.talkId))
+            {
+
+                if (Dialogue_Proceeder.instance.Satisfy_Condition(textManager.ReturnDiaConditions(cavern.talkId)))
+                {
+                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(cavern.talkId);
+                    textManager.Increasediaindex = true;
+                    textManager.SetDiaInMap();
+                }
+
+            }
+        }
+
+
     }
 
     IEnumerator proceedCavern(Cavern cavern)
