@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CaveMapManager : MonoBehaviour
+public class CaveMapManager : MonoBehaviour, DialogueDoneListener
 {
     public TextAsset caveCsv;
     public GameObject backButton;
@@ -10,6 +10,7 @@ public class CaveMapManager : MonoBehaviour
     public Cavern rootCavern;
     private Cavern currentCavern;
     public CaveMapRenderer caveMapRenderer;
+    public TextManager textManager;
 
     private Stack<Cavern> stack = new Stack<Cavern>();
 
@@ -27,6 +28,7 @@ public class CaveMapManager : MonoBehaviour
         rootCavern = new CaveMapParser().getRootCavern(caveCsv);
         currentCavern = rootCavern;
         caveMapRenderer.renderCavern(currentCavern);
+        textManager.addDialogueDoneListeners(this);
     }
 
     void Update()
@@ -72,5 +74,14 @@ public class CaveMapManager : MonoBehaviour
         caveMapRenderer.back(currentCavern);
         if (stack.Count == 0) backButton.SetActive(false);
        
+    }
+
+    public void OnDialogueEnd(int DiaId)
+    {
+        Debug.Log(string.Format("OnDialogueEnd : {0}", DiaId));
+        if (currentCavern.routeCnt == 999 && currentCavern.talkId == DiaId)
+        {
+            Debug.Log("끝~");
+        }
     }
 }

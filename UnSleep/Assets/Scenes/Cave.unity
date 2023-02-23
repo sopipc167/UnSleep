@@ -1333,7 +1333,7 @@ RectTransform:
   m_Children:
   - {fileID: 359655245}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2217,6 +2217,7 @@ MonoBehaviour:
     isSave: 0
     next: []
   caveMapRenderer: {fileID: 657702111}
+  textManager: {fileID: 1349169065}
   DiaUI: {fileID: 1074318185}
 --- !u!4 &1143699883
 Transform:
@@ -3060,7 +3061,7 @@ RectTransform:
   m_Children:
   - {fileID: 1649205638}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
