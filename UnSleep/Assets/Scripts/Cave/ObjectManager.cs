@@ -102,7 +102,9 @@ public class ObjectManager : MonoBehaviour
         yield return new WaitForSeconds(delay);
 
         objects[idx].SetActive(true);
-        objects[idx].GetComponent<CanvasGroup>().alpha = 1f;
+        CanvasGroup cg = objects[idx].GetComponent<CanvasGroup>();
+        cg.alpha = 0f;
+        cg.DOFade(1f, 0.5f);
     }
 
     public void OnGearUI()

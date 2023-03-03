@@ -22,11 +22,13 @@ public class CaveMapRenderer : MonoBehaviour
 
     public void proceed(Cavern cavern)
     {
+        objectManager.SetObjectFadeOff();
         StartCoroutine(proceedCavern(cavern));
     }
 
     public void back(Cavern cavern)
     {
+        objectManager.SetObjectFadeOff();
         StartCoroutine(backCavern(cavern));
     }
 
@@ -52,11 +54,10 @@ public class CaveMapRenderer : MonoBehaviour
             }
         }
 
-
         // <--------- 오브젝트 ------------>
-        objectManager.SetObjectFadeOff();
         if (cavern.isObject)
             objectManager.SetObject(cavern.objectIndex);
+
 
         // <-------------- 배경 ---------------->
 
