@@ -10,10 +10,11 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
     public TextManager textManager;
     public PuzzleClear puzzleClear;
     public GameObject DiaUI;
+    
 
     private Stack<Cavern> stack = new Stack<Cavern>();
     private Cavern rootCavern;
-    private Cavern currentCavern;
+    public Cavern currentCavern;
 
     public bool DiaActive
     {
@@ -27,8 +28,8 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
     {
         rootCavern = new CaveMapParser().getRootCavern(caveCsv);
         currentCavern = rootCavern;
-        caveMapRenderer.renderCavern(currentCavern);
         textManager.addDialogueDoneListeners(this);
+        caveMapRenderer.renderCavern(currentCavern);
     }
 
     void Update()
@@ -72,6 +73,7 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
 
         currentCavern = stack.Pop();
         caveMapRenderer.back(currentCavern);
+
         if (stack.Count == 0) backButton.SetActive(false);
        
     }

@@ -16,6 +16,12 @@ public class ObjectManager : MonoBehaviour
 
     private void Awake()
     {
+        GetObjects(Dialogue_Proceeder.instance.CurrentEpiID);
+
+    }
+
+    private void Start()
+    {
         SetObjectOff();
     }
 
@@ -64,22 +70,18 @@ public class ObjectManager : MonoBehaviour
 
     public void SetObject(int idx)
     {
-        objects[idx].SetActive(true);
-        objects[idx].GetComponent<CanvasGroup>().alpha = 1f;
-
+        StartCoroutine(setObjectDelay(idx, 0.3f));
     }
 
     public void SetObjectOff()
     {
-        for (int i=0; i < objectsCnt; i++)
+        foreach (GameObject o in objects)
         {
-            if (objects[i].activeSelf)
+            if (o.activeSelf)
             {
-                objects[i].SetActive(false);
-
+                o.SetActive(false);
             }
         }
-
     }
 
     public void SetObjectFadeOff()
@@ -90,12 +92,18 @@ public class ObjectManager : MonoBehaviour
             if (objects[i].activeSelf)
             {
                 ObjectCG = objects[i].GetComponent<CanvasGroup>();
-                ObjectCG.DOFade(0f, 0.5f);
+                ObjectCG.DOFade(0f, 0.2f);
             }
         }
-        Invoke("SetObjectOff", 0.5f);
+        Invoke("SetObjectOff", 0.2f);
     }
 
+   IEnumerator setObjectDelay(int idx, float delay) {
+        yield return new WaitForSeconds(delay);
+
+        objects[idx].SetActive(true);
+        objects[idx].GetComponent<CanvasGroup>().alpha = 1f;
+    }
 
     public void OnGearUI()
     {
