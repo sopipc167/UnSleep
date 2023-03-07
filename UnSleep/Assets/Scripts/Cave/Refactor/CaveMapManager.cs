@@ -9,25 +9,31 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
     public CaveMapRenderer caveMapRenderer;
     public TextManager textManager;
     public PuzzleClear puzzleClear;
+    private ObjectManager objectManager;
+
     public GameObject DiaUI;
-    
+    public GameObject Memo;
+
 
     private Stack<Cavern> stack = new Stack<Cavern>();
     private Cavern rootCavern;
     public Cavern currentCavern;
 
-    public bool DiaActive
+    private bool cantMove
     {
         get
         {
-            return DiaUI.activeSelf;
+            return DiaUI.activeSelf || Memo.activeSelf;
         }
     }
+
+    public bool objectActive = false;
 
     private void Start()
     {
         rootCavern = new CaveMapParser().getRootCavern(caveCsv);
         currentCavern = rootCavern;
+        objectManager = GetComponent<ObjectManager>();
         textManager.addDialogueDoneListeners(this);
         caveMapRenderer.renderCavern(currentCavern);
     }
@@ -52,7 +58,7 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
 
     public void proceed(int routeIndex)
     {
-        if (DiaActive || caveMapRenderer.moving) return;
+        if (cantMove || caveMapRenderer.moving || objectActive) return;
 
         stack.Push(currentCavern);
         currentCavern = currentCavern.next[routeIndex];
@@ -69,7 +75,7 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
 
     public void back()
     {
-        if (DiaActive || caveMapRenderer.moving) return;
+        if (cantMove || caveMapRenderer.moving || objectActive) return;
 
         currentCavern = stack.Pop();
         caveMapRenderer.back(currentCavern);

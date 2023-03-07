@@ -1887,6 +1887,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &787801370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2005434574521840891, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+  m_PrefabInstance: {fileID: 416532951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &913910493
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,6 +2228,7 @@ MonoBehaviour:
   textManager: {fileID: 1349169065}
   puzzleClear: {fileID: 944171149}
   DiaUI: {fileID: 1074318185}
+  Memo: {fileID: 787801370}
   currentCavern:
     routeCnt: 0
     talkId: 0
@@ -2235,6 +2241,7 @@ MonoBehaviour:
     objectIndex: 0
     isSave: 0
     next: []
+  objectActive: 0
 --- !u!4 &1143699883
 Transform:
   m_ObjectHideFlags: 0
@@ -3880,15 +3887,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 6510
+      value: 5610
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
-      value: 6509
+      value: 5609
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: End

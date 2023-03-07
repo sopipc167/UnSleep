@@ -96,15 +96,17 @@ public class ObjectManager : MonoBehaviour
             }
         }
         Invoke("SetObjectOff", 0.2f);
+
     }
 
    IEnumerator setObjectDelay(int idx, float delay) {
-        yield return new WaitForSeconds(delay);
-
         objects[idx].SetActive(true);
         CanvasGroup cg = objects[idx].GetComponent<CanvasGroup>();
         cg.alpha = 0f;
+        yield return new WaitForSeconds(delay);
+
         cg.DOFade(1f, 0.5f);
+
     }
 
     public void OnGearUI()
