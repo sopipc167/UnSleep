@@ -14,6 +14,8 @@ public class CaveMapRenderer : MonoBehaviour
     public AudioSource rightAudio;
     public AudioClip[] audioClips;
 
+    public AudioClip walkClip;
+
     public TextManager textManager;
     public ObjectManager objectManager;
 
@@ -23,12 +25,14 @@ public class CaveMapRenderer : MonoBehaviour
     public void proceed(Cavern cavern)
     {
         objectManager.SetObjectFadeOff();
+        SoundManager.Instance.PlaySE(walkClip, 0.5f);
         StartCoroutine(proceedCavern(cavern));
     }
 
     public void back(Cavern cavern)
     {
         objectManager.SetObjectFadeOff();
+        SoundManager.Instance.PlaySE(walkClip, 0.5f);
         StartCoroutine(backCavern(cavern));
     }
 

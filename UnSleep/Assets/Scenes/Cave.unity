@@ -1783,6 +1783,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8259040ec4f728d46b13e8bc7876158e, type: 3}
   - {fileID: 8300000, guid: b4b260cb9bb3cef448adad1938d23d95, type: 3}
   - {fileID: 8300000, guid: 1c5bcb06818d5624fa2bdb710f32f8f6, type: 3}
+  walkClip: {fileID: 8300000, guid: 4cacdc2c9d4bd754eb93946912ba290f, type: 3}
   textManager: {fileID: 1349169065}
   objectManager: {fileID: 1143699884}
   moving: 0
