@@ -14,18 +14,25 @@ public class CaveMapRenderer : MonoBehaviour
     public AudioSource rightAudio;
     public AudioClip[] audioClips;
 
+    public AudioClip walkClip;
+
     public TextManager textManager;
+    public ObjectManager objectManager;
 
     public bool moving = false;
 
 
     public void proceed(Cavern cavern)
     {
+        objectManager.SetObjectFadeOff();
+        SoundManager.Instance.PlaySE(walkClip, 0.5f);
         StartCoroutine(proceedCavern(cavern));
     }
 
     public void back(Cavern cavern)
     {
+        objectManager.SetObjectFadeOff();
+        SoundManager.Instance.PlaySE(walkClip, 0.5f);
         StartCoroutine(backCavern(cavern));
     }
 
@@ -41,18 +48,20 @@ public class CaveMapRenderer : MonoBehaviour
         // <-------------- 대화 ---------------->
         if (cavern.talkId > 0)
         {
+          
             if (!Dialogue_Proceeder.instance.AlreadyDone(cavern.talkId))
             {
-
-                if (Dialogue_Proceeder.instance.Satisfy_Condition(textManager.ReturnDiaConditions(cavern.talkId)))
-                {
-                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(cavern.talkId);
-                    textManager.Increasediaindex = true;
-                    textManager.SetDiaInMap();
-                }
-
+                Dialogue_Proceeder.instance.UpdateCurrentDiaID(cavern.talkId);
+                textManager.Increasediaindex = true;
+                textManager.SetDiaInMap();
+               
             }
         }
+
+        // <--------- 오브젝트 ------------>
+        if (cavern.isObject)
+            objectManager.SetObject(cavern.objectIndex);
+
 
         // <-------------- 배경 ---------------->
 
@@ -82,12 +91,12 @@ public class CaveMapRenderer : MonoBehaviour
                 setCavernAudio(rightAudio, cavern.soundIndex, cavern.volume, true);
                 break;
             case "L":
-                setCavernAudio(leftAudio, cavern.soundIndex, cavern.volume, true);
                 muteAudioSource(rightAudio);
+                setCavernAudio(leftAudio, cavern.soundIndex, cavern.volume, true);
                 break;
             case "R":
-                setCavernAudio(rightAudio, cavern.soundIndex, cavern.volume, true);
                 muteAudioSource(leftAudio);
+                setCavernAudio(rightAudio, cavern.soundIndex, cavern.volume, true);
                 break;
             case "c":
                 setCavernAudio(leftAudio, cavern.soundIndex, cavern.volume, false);
@@ -102,8 +111,6 @@ public class CaveMapRenderer : MonoBehaviour
                 muteAudioSource(leftAudio);
                 break;
         }
-
-
 
 
 
@@ -134,8 +141,10 @@ public class CaveMapRenderer : MonoBehaviour
 
         if (first)
         {
-            audioSource.clip = audioClips[idx];
-            audioSource.Play();
+            leftAudio.clip = audioClips[idx];
+            leftAudio.Play();
+            rightAudio.clip = audioClips[idx];
+            rightAudio.Play();
         }
            
         audioSource.volume = vol;

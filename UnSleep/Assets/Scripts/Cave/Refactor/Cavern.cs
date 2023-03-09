@@ -8,6 +8,7 @@ public class Cavern
     public float volume;
     public int soundIndex2;
     public float volume2;
+    public bool isObject = false;
     public int objectIndex;
     public bool isSave;
 
@@ -39,6 +40,7 @@ public class Cavern
 
         if (!info[9].Equals(""))
         {
+            isObject = true;
             objectIndex = parseUtil.parseInt(info[10]);
         }
 

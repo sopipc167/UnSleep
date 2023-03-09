@@ -23,14 +23,19 @@ public class CaveMapParser: MonoBehaviour
     private Cavern[] composeCarvens(int stage, int start, int count)
     {
         List<Cavern> caverns = new List<Cavern>();
-        int accumulate = 0;
+        int accumulate = 0; 
+        
+        for (int i = 0; i < start; i++)
+        {
+            accumulate += parseUtil.parseInt(caveMapInfo[stage][i][0]);
+        }
+        
 
 
-        for (int s = start; s < start + count; s++)
+        for (int s = accumulate; s < start + count; s++)
         {
             string[] cell = caveMapInfo[stage + 1][s];
             int routeCount = parseUtil.parseInt(cell[0]);
-           
 
             if (routeCount >= 0)
             {
@@ -132,7 +137,7 @@ public class CaveMapParser: MonoBehaviour
         foreach (string row in rowList)
         {
             splitedRowList.Add(row.Split(new char[] { ',' }));
-            if (depth < 0) depth = row.Split(new char[] { ',' }).Length;
+            if (depth < 0) depth = splitedRowList[0].Length;
         }
  
         for (int i = 0; i < depth; i++)
@@ -146,6 +151,7 @@ public class CaveMapParser: MonoBehaviour
 
             carvenDataList.Add(column.ToArray());
         }
+
 
         return carvenDataList.ToArray();
     }

@@ -12,7 +12,7 @@ public class Gear65 : MonoBehaviour
 
     private void Start()
     {
-        objectManager = GameObject.Find("MapManager").GetComponent<ObjectManager>();
+        objectManager = GameObject.Find("CaveSystem").GetComponent<ObjectManager>();
     }
 
 

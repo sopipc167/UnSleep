@@ -9,26 +9,31 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
     public CaveMapRenderer caveMapRenderer;
     public TextManager textManager;
     public PuzzleClear puzzleClear;
+
     public GameObject DiaUI;
+    public GameObject Memo;
+
 
     private Stack<Cavern> stack = new Stack<Cavern>();
     private Cavern rootCavern;
-    private Cavern currentCavern;
+    public Cavern currentCavern;
 
-    public bool DiaActive
+    private bool cantMove
     {
         get
         {
-            return DiaUI.activeSelf;
+            return DiaUI.activeSelf || Memo.activeSelf;
         }
     }
+
+    public bool objectActive = false;
 
     private void Start()
     {
         rootCavern = new CaveMapParser().getRootCavern(caveCsv);
         currentCavern = rootCavern;
-        caveMapRenderer.renderCavern(currentCavern);
         textManager.addDialogueDoneListeners(this);
+        caveMapRenderer.renderCavern(currentCavern);
     }
 
     void Update()
@@ -51,7 +56,7 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
 
     public void proceed(int routeIndex)
     {
-        if (DiaActive || caveMapRenderer.moving) return;
+        if (cantMove || caveMapRenderer.moving || objectActive) return;
 
         stack.Push(currentCavern);
         currentCavern = currentCavern.next[routeIndex];
@@ -68,22 +73,38 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
 
     public void back()
     {
-        if (DiaActive || caveMapRenderer.moving) return;
+        if (cantMove || caveMapRenderer.moving || objectActive) return;
 
         currentCavern = stack.Pop();
         caveMapRenderer.back(currentCavern);
+
         if (stack.Count == 0) backButton.SetActive(false);
        
     }
 
+    public void returnLastPoint()
+    {
+        if (stack.Count == 0 || stack.Peek().isSave) return;
+
+        while (!stack.Peek().isSave)
+        {
+            Cavern poped = stack.Pop();
+            if (poped.talkId > 0)
+            {
+                Dialogue_Proceeder.instance.RemoveCompleteCondition(poped.talkId);
+            }
+        }
+        currentCavern = stack.Pop();
+        caveMapRenderer.renderCavern(currentCavern);
+        if (stack.Count == 0) backButton.SetActive(false);
+
+    }
+
     public void OnDialogueEnd(int DiaId)
     {
-        Debug.Log(string.Format("OnDialogueEnd : {0}", DiaId));
         if (currentCavern.routeCnt == 999 && currentCavern.talkId == DiaId)
         {
-            Debug.Log("끝~");
             puzzleClear.gameObject.SetActive(true);
-            //PuzzleClear puzzleClear = Clear.transform.GetChild(0).GetComponent<PuzzleClear>();
             SoundManager.Instance.FadeOutBGM();
             int CurEpiId = Dialogue_Proceeder.instance.CurrentEpiID;
             int CurDiaId = Dialogue_Proceeder.instance.CurrentDiaID;

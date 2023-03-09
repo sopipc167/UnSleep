@@ -10,9 +10,15 @@ public class Phone56 : MonoBehaviour
     public GameObject phone;
     public Button button;
     public CaveStopPanel caveStopPanel;
+    private CaveMapManager caveMapManager;
 
     Coroutine phone_co = null;
     private bool isRunning = false;
+
+    private void Start()
+    {
+        caveMapManager = GameObject.Find("CaveSystem").GetComponent<CaveMapManager>();
+    }
 
 
     private void Update()
@@ -44,17 +50,20 @@ public class Phone56 : MonoBehaviour
         isRunning = true;
         caveStopPanel.dontShowDiaUI();
         phone.SetActive(true);
-
+        caveMapManager.objectActive = true;
         yield return StartCoroutine(PhoneYpos(-1100f, 0f));
 
         yield return StartCoroutine(IBImsg());
+
+        caveMapManager.objectActive = false;
+        caveStopPanel.disableCaveStopPanel();
 
         yield return StartCoroutine(PhoneYpos(0f, -1100f));
 
         phone.SetActive(false);
         isRunning = false;
-        caveStopPanel.disableCaveStopPanel();
         button.enabled = true;
+
     }
 
     IEnumerator IBImsg()
@@ -84,7 +93,7 @@ public class Phone56 : MonoBehaviour
 
         while (Vector2.Distance(curPos, endPos) > 0.05f)
         {
-            curPos = Vector3.Lerp(curPos, endPos, 3f * Time.deltaTime);
+            curPos = Vector3.Lerp(curPos, endPos, 5f * Time.deltaTime);
             RECT.anchoredPosition = curPos;
 
              yield return null;
