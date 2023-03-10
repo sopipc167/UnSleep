@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using DG.Tweening;
 
-public class GearUI65 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class GearUI65 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IScrollHandler
 {
     private Vector3 StartPos;
     private Vector3 CenterPos = new Vector3(0, 0, 0);
@@ -45,5 +45,12 @@ public class GearUI65 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         transform.DOMove(StartPos, 1f, true);
+    }
+
+    public void OnScroll(PointerEventData eventData)
+    {
+        Quaternion curQua = transform.rotation;
+        Quaternion newQua = Quaternion.Euler(new Vector3(0, 0, 60 * eventData.scrollDelta.y));
+        transform.DORotateQuaternion(curQua*newQua, 0.5f);
     }
 }
