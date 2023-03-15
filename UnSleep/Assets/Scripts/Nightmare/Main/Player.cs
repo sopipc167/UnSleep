@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
 
         if (isMiniGame)
         {
-            transform.position = new Vector3(0.26f, 0.05f, 0);
+            transform.position = new Vector3(-1.6f, 0.05f, 0);
             animator.SetBool("isRun", true);
         }
         else
