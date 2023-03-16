@@ -8,6 +8,7 @@ using DG.Tweening;
 public class DiaEvent : MonoBehaviour
 {
     public GameObject Dialogue_system_manager;
+    public GameObject Scene1;
     public string content;
 
     public TextManager TM;
@@ -66,6 +67,18 @@ public class DiaEvent : MonoBehaviour
     public int effectIndex;
 
     public int outline = 0;
+
+    private void Awake()
+    {
+        player.isStop = true;
+        StartCoroutine(StartGame());
+    }
+
+    IEnumerator StartGame()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Scene1.SetActive(true);
+    }
 
     void Start()
     {
@@ -431,8 +444,6 @@ public class DiaEvent : MonoBehaviour
 
     IEnumerator Bigger()
     {
-        Debug.Log("Bigger");
-        //Debug.Log("Gome_X: " + ob[5].transform.localScale.x);
         ob[5].transform.DOScaleX(-2.3f, 0.5f);
         ob[5].transform.DOScaleY(2.3f, 0.5f);
         yield return new WaitForSeconds(0.2f);
@@ -447,6 +458,7 @@ public class DiaEvent : MonoBehaviour
         eye.transform.DOLocalMoveX(-138, 2.5f);
         yield return new WaitForSeconds(4.0f);
         fadeinout.Fade_In();
+        SceneManager.LoadScene("Diary");
     }
 
 

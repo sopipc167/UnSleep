@@ -55,17 +55,7 @@ public class Player : MonoBehaviour
     {
         instance = this;
         Speed = speed;
-        if (PlayerPrefs.GetInt("isGameOver") == 0)
-        {
-            targetPos = new Vector3(0.26f, 0.07f, 0);
-        }
-        else if(PlayerPrefs.GetInt("isGameOver") == 1)
-        {
-            targetPos = dia.playerPos[PlayerPrefs.GetInt("savePoint")].position;
-            transform.position = targetPos;
-            isSeven = false;
-        }
-
+        
         if (isMiniGame)
         {
             transform.position = new Vector3(-1.6f, 0.05f, 0);
@@ -73,8 +63,20 @@ public class Player : MonoBehaviour
         }
         else
         {
+            if (PlayerPrefs.GetInt("isGameOver") == 0)
+            {
+                targetPos = new Vector3(-5.5f, -1.5f, 0);
+            }
+            else if (PlayerPrefs.GetInt("isGameOver") == 1)
+            {
+                targetPos = dia.playerPos[PlayerPrefs.GetInt("savePoint")].position;
+                transform.position = targetPos;
+                isSeven = false;
+            }
+
             animator.SetBool("isSeven", true);
         }
+
     }
 
     
