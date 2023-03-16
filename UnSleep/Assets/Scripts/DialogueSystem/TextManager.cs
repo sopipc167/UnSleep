@@ -84,6 +84,9 @@ public class TextManager : MonoBehaviour
     public SceneTransEffectManager STEManager; //씬 전환 효과
     public GameObject UI_Objects; //대화UI 레이아웃 변경 주관하는 녀석
 
+    [Header("대화 종료 구독자들")]
+    private List<DialogueDoneListener> dialogueDoneListeners = new List<DialogueDoneListener>();
+
 
     [SerializeField] public Dictionary<int, DialogueEvent> DiaDic = new Dictionary<int, DialogueEvent>(); //대화묶음 딕셔너리
 
@@ -196,11 +199,10 @@ public class TextManager : MonoBehaviour
     }
 
 
-    private void LateStart()
+    public void addDialogueDoneListeners(DialogueDoneListener listener)
     {
-
+        dialogueDoneListeners.Add(listener);
     }
-
 
     void Update()
     {
@@ -323,6 +325,11 @@ public class TextManager : MonoBehaviour
 
 
                         dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
+                        foreach (DialogueDoneListener listener in dialogueDoneListeners)
+                        {
+                            listener.OnDialogueEnd(Dia_Id);
+                        }
+                        
 
                         if (!DiaDic.ContainsKey(Dia_Id + 1)) //다음 대사가 없으면
                         {
@@ -915,7 +922,6 @@ public class TextManager : MonoBehaviour
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
 
-        //Invoke("Set_Dialogue_System", 0.5f);
         Set_Dialogue_System();
         if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange != 5)
             DiaUI.SetActive(true);

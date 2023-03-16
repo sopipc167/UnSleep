@@ -9,10 +9,12 @@ public class Gear65 : MonoBehaviour
     public GameObject gearBtn;
     private ObjectManager objectManager;
     public CaveStopPanel caveStopPanel;
+    private CaveMapManager caveMapManager;
 
     private void Start()
     {
-        objectManager = GameObject.Find("MapManager").GetComponent<ObjectManager>();
+        caveMapManager = GameObject.Find("CaveSystem").GetComponent<CaveMapManager>();
+        objectManager = GameObject.Find("CaveSystem").GetComponent<ObjectManager>();
     }
 
 
@@ -21,6 +23,7 @@ public class Gear65 : MonoBehaviour
     {
         gearBtn.SetActive(false);
         objectManager.OnGearUI();
+        caveMapManager.objectActive = false;
         caveStopPanel.disableCaveStopPanel();
     }
 }
