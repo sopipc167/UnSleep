@@ -118,6 +118,8 @@ public class DiaEvent : MonoBehaviour
                 ob[1].SetActive(false);
                 if (diaGroupIndex == 729)
                 {
+                    Dia[22].SetActive(false);
+                    Dia[23].SetActive(false);
                     Dia[34].SetActive(false);
                     Dia[35].SetActive(true);
                     Dia[36].SetActive(true);
@@ -555,22 +557,22 @@ public class DiaEvent : MonoBehaviour
     IEnumerator unPerformed()
     {
         TM.DiaUI.SetActive(false);
+        //플레이어 멈추고
+        player.isStop = true;
+
         //고미 멈추고
         gome.isStart = false;
         gome.isMinigame = false;
         gome.isFollow = false;
 
-        //플레이어 멈추고
-        player.isStop = true;
-
         //고미 달려온다
         gome.speed = 7.0f;
-        //Vector3 targetPos = player.transform.position;
-        //targetPos -= new Vector3(3.5f, 0, 0);
-        gome.ChangeTarget(ob[13].transform.position);
+        Vector3 targetPos = player.targetPos;
+        targetPos += new Vector3(1.5f, 0, 0);
+        gome.ChangeTarget(targetPos);
         gome.isStart = true;
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(2.5f);
         ob[14].SetActive(true);
     }
 

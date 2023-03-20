@@ -162,6 +162,7 @@ public class DiaPlayer : MonoBehaviour
             }
 
 
+            Debug.Log("고미 stop");
             player.col.enabled = false;
             player.isStop = true;
             gome.isStart = false;
