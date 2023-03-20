@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class CogWheel : MonoBehaviour
@@ -10,15 +9,14 @@ public class CogWheel : MonoBehaviour
     public int size;
 
     private float radius;
-   
 
-    private const float offset = 0.5f;
+
+    private const float offset = 0.1f;
 
     // Start is called before the first frame update
     void Start()
     {
         radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
-        detect();
     }
 
     // Update is called once per frame
@@ -30,30 +28,7 @@ public class CogWheel : MonoBehaviour
         }
     }
 
-    private void detect()
-    {
-        CogWheel[] cogWheels = sortByDistance(FindObjectsOfType<CogWheel>());
-        foreach (CogWheel cw in cogWheels)
-        {
-            Debug.Log(getCogAction(cw));
-            switch (getCogAction(cw))
-            {
-                case CogAction.ADJOIN:
-                    switch (state)
-                    {
-                        case CogState.ROTATE: givePower(cw); break;
-                        case CogState.IDLE: getPower(cw); break;
-                    }
-                    break;
-                case CogAction.FAR:
-                    break;
-                case CogAction.RESTRICT:
-                    break;
-                case CogAction.OVERLAP:
-                    break;
-            }
-        }
-    }
+
 
     public void givePower(CogWheel other)
     {
@@ -63,10 +38,12 @@ public class CogWheel : MonoBehaviour
         if (rotation == CogRotation.CLOCKWISE)
         {
             giveRotation = CogRotation.COUNTERCLOCKWISE;
-        } else if (rotation == CogRotation.COUNTERCLOCKWISE)
+        }
+        else if (rotation == CogRotation.COUNTERCLOCKWISE)
         {
             giveRotation = CogRotation.CLOCKWISE;
-        } else
+        }
+        else
         {
             return;
         }
@@ -102,34 +79,40 @@ public class CogWheel : MonoBehaviour
         state = CogState.ROTATE;
     }
 
-    private CogWheel[] sortByDistance(CogWheel[] cogs)
+    public void stop()
     {
-        List<CogWheel> list = new List<CogWheel>(cogs);
-        list.Remove(this); // 나 자신은 빼고
-        list.Sort((a, b) => compareDistance(a, b));
-        return list.ToArray();
+        rotation = CogRotation.IDLE;
+        speed = 0f;
+        state = CogState.IDLE;
     }
 
     private int compareDistance(CogWheel A, CogWheel B)
     {
-        float distA = Vector3.Distance(transform.position, A.transform.position);
-        float distB = Vector3.Distance(transform.position, B.transform.position);
+        float distA = Vector2.Distance(transform.position, A.transform.position);
+        float distB = Vector2.Distance(transform.position, B.transform.position);
 
         if (distA < distB) return -1;
         else if (distA == distB) return 0;
         else return 1;
     }
 
-    private CogAction getCogAction(CogWheel other)
+    protected CogAction getCogAction(CogWheel other)
     {
-        float dist = Vector3.Distance(transform.position, other.transform.position);
-        Debug.Log(dist);
+        float dist = Vector2.Distance(transform.position, other.transform.position);
         float criteria = radius + other.radius;
 
         if (dist <= offset) return CogAction.OVERLAP;
         else if (dist < criteria - offset) return CogAction.RESTRICT;
         else if (dist <= criteria + offset) return CogAction.ADJOIN;
         else return CogAction.FAR;
+    }
+
+    protected CogWheel[] sortByDistance(CogWheel[] cogs)
+    {
+        List<CogWheel> list = new List<CogWheel>(cogs);
+        list.Remove(this); // 나 자신은 빼고
+        list.Sort((a, b) => compareDistance(a, b));
+        return list.ToArray();
     }
 }
 
