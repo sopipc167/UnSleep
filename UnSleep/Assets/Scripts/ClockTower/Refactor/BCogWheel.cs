@@ -15,6 +15,16 @@ public class BCogWheel : CogWheel
         }
     
     }
+
+    public override void stop()
+    {
+        if (info.type == BCogWheelType.START) return;
+
+        rotation = CogRotation.IDLE;
+        speed = 0f;
+        state = CogState.IDLE;
+    }
+
 }
 
 [System.Serializable]

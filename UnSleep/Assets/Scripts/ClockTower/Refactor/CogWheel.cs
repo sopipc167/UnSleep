@@ -79,7 +79,7 @@ public class CogWheel : MonoBehaviour
         state = CogState.ROTATE;
     }
 
-    public void stop()
+    public virtual void stop()
     {
         rotation = CogRotation.IDLE;
         speed = 0f;
