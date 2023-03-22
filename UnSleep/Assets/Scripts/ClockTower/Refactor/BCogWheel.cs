@@ -5,6 +5,25 @@ using UnityEngine;
 public class BCogWheel : CogWheel
 {
     public BCogWheelInfo info;
+    public bool satisfy
+    {
+        get
+        {
+            switch (info.type)
+            {
+                case BCogWheelType.START:
+                    return true;
+                case BCogWheelType.ROTATION:
+                    return rotation == info.rotation;
+                case BCogWheelType.SPEED:
+                    return (int)speed == (int)info.speed;
+                case BCogWheelType.ROTASPEED:
+                    return rotation == info.rotation && (int)speed == (int)info.speed;
+            }
+            return false;
+        }
+    }
+ 
 
     private void Awake()
     {
@@ -25,6 +44,8 @@ public class BCogWheel : CogWheel
         state = CogState.IDLE;
     }
 
+    
+
 }
 
 [System.Serializable]
@@ -37,5 +58,5 @@ public class BCogWheelInfo
 
 public enum BCogWheelType
 {
-    START, OTHER
+    START, ROTATION, SPEED, ROTASPEED
 }

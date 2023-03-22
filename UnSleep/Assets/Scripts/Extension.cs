@@ -24,6 +24,16 @@ public static class ArrayExtension
         return list.ToArray();
     }
 
+    public static int Count<T>(this T[] array, Func<T, bool> match)
+    {
+        int count = 0;
+        foreach (T t in array)
+        {
+            if (match(t)) count++;
+        }
+        return count;
+    }
+
     public static bool isEmtpy<T>(this T[] array)
     {
         return array.Length == 0;
