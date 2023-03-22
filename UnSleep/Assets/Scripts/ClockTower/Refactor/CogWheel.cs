@@ -11,6 +11,7 @@ public class CogWheel : MonoBehaviour
 
     protected float radius;
     protected CogWheelSpriteManager spriteManager;
+    private CogWheel overlapChild = null;
 
 
     private const float offset = 0.12f;
@@ -52,7 +53,7 @@ public class CogWheel : MonoBehaviour
             return;
         }
 
-        other.receive(giveRotation, speed * ((float)size / (float)other.size), level);
+        other.receive(giveRotation, speed * ((float)size / (float)other.size), level, transform.position.z);
     }
 
     public virtual void getPower(CogWheel other)
@@ -74,15 +75,34 @@ public class CogWheel : MonoBehaviour
             return;
         }
 
-        receive(getRotation, other.speed * ((float)size / (float)other.size), other.level);
+        receive(getRotation, other.speed * ((float)size / (float)other.size), other.level, other.gameObject.transform.position.z);
     }
 
-    public void receive(CogRotation r, float s, int l)
+    public void overlap(CogWheel other) // 내가 other 위에 꽂힌다
+    {
+        if (state == CogState.ROTATE || state == CogState.OVERLAP) return;
+        if (other.state == CogState.INACTIVE || other.state == CogState.IDLE) return;
+        
+        Vector3 parentPosition = other.gameObject.transform.position;
+        other.setOverlapChild(this);
+        transform.position = parentPosition;
+
+        if (size <= other.size)
+        {
+            receive(other.rotation, other.speed, other.level + 1, parentPosition.z - 1f);
+        } else
+        {
+            receive(other.rotation, other.speed, other.level + 1, parentPosition.z + 1f);
+        }
+    }
+
+    public void receive(CogRotation r, float s, int l, float z)
     {
         rotation = r;
         speed = s;
         level = l;
         state = CogState.ROTATE;
+        transform.position = new Vector3(transform.position.x, transform.position.y, z);
 
         if (spriteManager!=null)
             spriteManager.setSprite(l);
@@ -131,9 +151,22 @@ public class CogWheel : MonoBehaviour
     {
         float distA = Vector2.Distance(transform.position, A.transform.position);
         float distB = Vector2.Distance(transform.position, B.transform.position);
-
+        
         if (distA < distB) return -1;
-        else if (distA == distB) return 0;
+        else if (distA == distB)
+        {
+            if (A.hasOverlap() || B.hasOverlap())
+            {
+                if (distA - radius - A.radius + offset < 0) return 1;
+                if (distB - radius - B.radius + offset < 0) return -1;
+
+                if (distA - radius - A.radius + offset < distB - radius - B.radius + offset) return -1;
+                else if (distA - radius - A.radius + offset > distB - radius - B.radius + offset) return 1;
+                else return 0;
+            }
+            else
+                return 0;
+        }
         else return 1;
     }
 
@@ -155,6 +188,16 @@ public class CogWheel : MonoBehaviour
         list.Remove(this); // 나 자신은 빼고
         list.Sort((a, b) => compareDistance(a, b));
         return list.ToArray();
+    }
+
+    public void setOverlapChild(CogWheel child)
+    {
+        overlapChild = child;
+    }
+
+    public bool hasOverlap()
+    {
+        return overlapChild != null;
     }
 }
 

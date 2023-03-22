@@ -7,7 +7,7 @@ public class CogWheelSpriteManager : MonoBehaviour
     public Sprite defaultSprite;
     public Sprite[] sprites;
     private SpriteRenderer spriteRender;
-    private void Start()
+    private void Awake()
     {
         spriteRender = GetComponent<SpriteRenderer>();
     }

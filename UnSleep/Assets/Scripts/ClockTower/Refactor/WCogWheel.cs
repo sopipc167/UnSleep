@@ -63,6 +63,7 @@ public class WCogWheel : CogWheel
         }
 
         CogAction nearestCogAction = getCogAction(cogWheels[0]);
+        Debug.Log(cogWheels[0].name);
         if (spriteManager != null)
             spriteManager.setColor(nearestCogAction);
     }
@@ -101,7 +102,7 @@ public class WCogWheel : CogWheel
                 inactive();
                 break;
             case CogAction.OVERLAP:
-                // overlap
+                overlap(cogWheels[0]);
                 CogWheel[] overlapAdjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
                 foreach (CogWheel cw in overlapAdjoinCw) givePower(cw);
                 break;
