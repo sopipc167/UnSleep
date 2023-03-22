@@ -8,7 +8,7 @@ public class CogWheel : MonoBehaviour
     public float speed;
     public int size;
 
-    private float radius;
+    protected float radius;
 
 
     private const float offset = 0.1f;
@@ -86,6 +86,21 @@ public class CogWheel : MonoBehaviour
         state = CogState.IDLE;
     }
 
+    protected CogWheel[] detect()
+    {
+        return sortByDistance(FindObjectsOfType<CogWheel>());
+    }
+
+    public bool isAlone()
+    {
+        foreach (CogWheel cw in detect())
+        {
+            if (getCogAction(cw) != CogAction.FAR)
+                return false;
+        }
+        return true;
+    }
+
     private int compareDistance(CogWheel A, CogWheel B)
     {
         float distA = Vector2.Distance(transform.position, A.transform.position);
@@ -95,6 +110,7 @@ public class CogWheel : MonoBehaviour
         else if (distA == distB) return 0;
         else return 1;
     }
+
 
     protected CogAction getCogAction(CogWheel other)
     {
@@ -107,7 +123,7 @@ public class CogWheel : MonoBehaviour
         else return CogAction.FAR;
     }
 
-    protected CogWheel[] sortByDistance(CogWheel[] cogs)
+    private CogWheel[] sortByDistance(CogWheel[] cogs)
     {
         List<CogWheel> list = new List<CogWheel>(cogs);
         list.Remove(this); // 나 자신은 빼고
