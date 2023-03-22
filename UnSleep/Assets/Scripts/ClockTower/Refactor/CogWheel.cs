@@ -11,7 +11,7 @@ public class CogWheel : MonoBehaviour
     protected float radius;
 
 
-    private const float offset = 0.1f;
+    private const float offset = 0.15f;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +33,7 @@ public class CogWheel : MonoBehaviour
     public void givePower(CogWheel other)
     {
         if (state == CogState.INACTIVE || state == CogState.IDLE) return;
+        if (other.state == CogState.ROTATE || other.state == CogState.OVERLAP) return;
 
         CogRotation giveRotation;
         if (rotation == CogRotation.CLOCKWISE)
@@ -51,9 +52,10 @@ public class CogWheel : MonoBehaviour
         other.receive(giveRotation, speed * ((float)size / (float)other.size));
     }
 
-    public void getPower(CogWheel other)
+    public virtual void getPower(CogWheel other)
     {
         if (state == CogState.ROTATE || state == CogState.OVERLAP) return;
+        if (other.state == CogState.INACTIVE || other.state == CogState.IDLE) return;
 
         CogRotation getRotation;
         if (other.rotation == CogRotation.CLOCKWISE)

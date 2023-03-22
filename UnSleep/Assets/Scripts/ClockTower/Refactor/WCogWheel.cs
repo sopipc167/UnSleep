@@ -32,8 +32,30 @@ public class WCogWheel : CogWheel
         action(detect());
     }
 
+    private bool rotationValidation(CogWheel[] cogWheels)
+    {
+
+        CogWheel[] adjoinWheels = cogWheels.filter(cw => getCogAction(cw) == CogAction.ADJOIN);
+        if (adjoinWheels.Length < 2) return true;
+
+        CogRotation criteria = adjoinWheels[0].rotation;
+
+        foreach (CogWheel cw in adjoinWheels)
+        {
+            if (cw.rotation != criteria) return false;
+        }
+
+        return true;
+    }
+
     private void action(CogWheel[] cogWheels)
     {
+        if (!rotationValidation(cogWheels))
+        {
+            // 비활성화, 빨강
+            return;
+        }
+
         foreach (CogWheel cw in cogWheels)
         {
  
@@ -42,8 +64,14 @@ public class WCogWheel : CogWheel
                 case CogAction.ADJOIN:
                     switch (state)
                     {
-                        case CogState.ROTATE: givePower(cw); break;
-                        case CogState.IDLE: getPower(cw); break;
+                        case CogState.ROTATE: 
+                            if (!dragging) 
+                                givePower(cw); 
+                            break;
+                        case CogState.IDLE:
+                            if (!dragging)
+                                getPower(cw);
+                            break; 
                     }
                     break;
                 case CogAction.FAR:
