@@ -416,6 +416,7 @@ MonoBehaviour:
   rotation: -1
   speed: 0
   size: 10
+  level: 1
   info:
     type: 0
     speed: 10
@@ -2147,6 +2148,7 @@ MonoBehaviour:
   rotation: 0
   speed: 0
   size: 10
+  level: 0
   info:
     type: 1
     speed: 0
@@ -7385,7 +7387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &664929566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7722,7 +7724,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677382291}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0ebc463508273c41a44dc495a4b6a4c, type: 3}
   m_Name: 
@@ -7761,7 +7763,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 677382291}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dcb1191e1f166584484f22b4f669a20b, type: 3}
   m_Name: 
@@ -13745,6 +13747,7 @@ GameObject:
   - component: {fileID: 1075519844}
   - component: {fileID: 1075519843}
   - component: {fileID: 1075519842}
+  - component: {fileID: 1075519847}
   m_Layer: 0
   m_Name: WCog10 (1)
   m_TagString: CogWheel
@@ -13799,6 +13802,7 @@ MonoBehaviour:
   rotation: 0
   speed: 0
   size: 10
+  level: 0
 --- !u!212 &1075519845
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13866,6 +13870,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1075519847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075519841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942f1d683bc129b4caf631040c5d1e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 21300000, guid: 6a5caa825a6f3354da38cbe009bc14ea, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 0f6d8a3232b5e884b84997d0fcffe103, type: 3}
+  - {fileID: 21300000, guid: 1d3eb9f10c202fb49926f235925af9f7, type: 3}
+  - {fileID: 21300000, guid: efdfcf764cb998a48b15206a2c77356f, type: 3}
 --- !u!224 &1076968496 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7158655911026007336, guid: 71b06b97ceafe0e40894bcc99e67501d, type: 3}
@@ -22235,6 +22256,7 @@ GameObject:
   - component: {fileID: 1831165505}
   - component: {fileID: 1831165508}
   - component: {fileID: 1831165509}
+  - component: {fileID: 1831165510}
   m_Layer: 0
   m_Name: WCog10
   m_TagString: CogWheel
@@ -22258,6 +22280,7 @@ MonoBehaviour:
   rotation: 0
   speed: 0
   size: 10
+  level: 0
 --- !u!212 &1831165506
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -22356,6 +22379,23 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
   m_EffectDistance: {x: 1, y: 1}
   m_UseGraphicAlpha: 1
+--- !u!114 &1831165510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1831165504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942f1d683bc129b4caf631040c5d1e1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultSprite: {fileID: 21300000, guid: 6a5caa825a6f3354da38cbe009bc14ea, type: 3}
+  sprites:
+  - {fileID: 21300000, guid: 0f6d8a3232b5e884b84997d0fcffe103, type: 3}
+  - {fileID: 21300000, guid: 1d3eb9f10c202fb49926f235925af9f7, type: 3}
+  - {fileID: 21300000, guid: efdfcf764cb998a48b15206a2c77356f, type: 3}
 --- !u!224 &1831729804 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5860186945479241174, guid: 44e4c8b72e1bedc4ba26f848b270adf1, type: 3}
@@ -25531,7 +25571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703343810932189957, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5703343810932189958, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_LocalPosition.x

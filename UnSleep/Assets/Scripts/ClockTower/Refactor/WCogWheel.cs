@@ -5,12 +5,12 @@ using UnityEngine;
 public class WCogWheel : CogWheel
 {
     private Vector3 offset;
-    private bool dragging;
 
     private void Start()
     {
+        spriteManager = GetComponent<CogWheelSpriteManager>();
         radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
-        action(detect());    
+        actionUp(detect());    
     }
 
     private void OnMouseDown()
@@ -21,21 +21,19 @@ public class WCogWheel : CogWheel
     private void OnMouseDrag()
     {
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - offset;
-        dragging = true;
         stop();
-        action(detect());
+        actionDrag(detect());
     }
 
     private void OnMouseUp()
     {
-        dragging = false;
-        action(detect());
+        actionUp(detect());
     }
 
     private bool rotationValidation(CogWheel[] cogWheels)
     {
 
-        CogWheel[] adjoinWheels = cogWheels.filter(cw => getCogAction(cw) == CogAction.ADJOIN);
+        CogWheel[] adjoinWheels = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
         if (adjoinWheels.Length < 2) return true;
 
         CogRotation criteria = adjoinWheels[0].rotation;
@@ -48,43 +46,73 @@ public class WCogWheel : CogWheel
         return true;
     }
 
-    private void action(CogWheel[] cogWheels)
+    private CogWheel[] filterCogWheelsByCogActionType(CogWheel[] cogWheels, CogAction action)
     {
+        return cogWheels.Filter(cw => getCogAction(cw) == action);
+    }
+
+    private void actionDrag(CogWheel[] cogWheels)
+    {
+        if (cogWheels.isEmtpy()) return;
+
         if (!rotationValidation(cogWheels))
         {
-            // 비활성화, 빨강
+            if (spriteManager != null)
+                spriteManager.setColor(CogAction.RESTRICT);
             return;
         }
 
-        foreach (CogWheel cw in cogWheels)
-        {
- 
-            switch (getCogAction(cw))
-            {
-                case CogAction.ADJOIN:
-                    switch (state)
-                    {
-                        case CogState.ROTATE: 
-                            if (!dragging) 
-                                givePower(cw); 
-                            break;
-                        case CogState.IDLE:
-                            if (!dragging)
-                                getPower(cw);
-                            break; 
-                    }
-                    break;
-                case CogAction.FAR:
-                    if (cw.isAlone()) cw.stop();
-                    break;
-                case CogAction.RESTRICT:
-                    break;
-                case CogAction.OVERLAP:
-                    break;
-            }
-            
-        }
+        CogAction nearestCogAction = getCogAction(cogWheels[0]);
+        if (spriteManager != null)
+            spriteManager.setColor(nearestCogAction);
     }
+
+
+    private void actionUp(CogWheel[] cogWheels)
+    {
+        if (cogWheels.isEmtpy()) return;
+
+        if (!rotationValidation(cogWheels))
+        {
+            if (spriteManager != null)
+                spriteManager.setColor(CogAction.RESTRICT);
+            return;
+        }
+
+        if (spriteManager != null)
+            spriteManager.setColor(Color.white);
+
+        switch (getCogAction(cogWheels[0]))
+        {
+            case CogAction.ADJOIN:
+                if (state == CogState.IDLE)
+                {
+                    getPower(cogWheels[0]);
+                }
+                else if (state == CogState.ROTATE)
+                {
+                    CogWheel[] adjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
+                    foreach (CogWheel cw in adjoinCw) givePower(cw);
+                }
+                break;
+            case CogAction.FAR:
+                break;
+            case CogAction.RESTRICT:
+                inactive();
+                break;
+            case CogAction.OVERLAP:
+                // overlap
+                CogWheel[] overlapAdjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
+                foreach (CogWheel cw in overlapAdjoinCw) givePower(cw);
+                break;
+        }
+
+
+        CogWheel[] farCw = filterCogWheelsByCogActionType(cogWheels, CogAction.FAR);
+        foreach (CogWheel cw in farCw) if (cw.isAlone()) cw.stop();
+
+    }
+
 
 
 

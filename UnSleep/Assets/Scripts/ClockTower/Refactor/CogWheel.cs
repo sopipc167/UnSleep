@@ -7,15 +7,18 @@ public class CogWheel : MonoBehaviour
     public CogRotation rotation;
     public float speed;
     public int size;
+    public int level;
 
     protected float radius;
+    protected CogWheelSpriteManager spriteManager;
 
 
-    private const float offset = 0.15f;
+    private const float offset = 0.12f;
 
     // Start is called before the first frame update
     void Start()
     {
+        spriteManager = GetComponent<CogWheelSpriteManager>(); 
         radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
     }
 
@@ -49,7 +52,7 @@ public class CogWheel : MonoBehaviour
             return;
         }
 
-        other.receive(giveRotation, speed * ((float)size / (float)other.size));
+        other.receive(giveRotation, speed * ((float)size / (float)other.size), level);
     }
 
     public virtual void getPower(CogWheel other)
@@ -71,14 +74,18 @@ public class CogWheel : MonoBehaviour
             return;
         }
 
-        receive(getRotation, other.speed * ((float)size / (float)other.size));
+        receive(getRotation, other.speed * ((float)size / (float)other.size), other.level);
     }
 
-    public void receive(CogRotation r, float s)
+    public void receive(CogRotation r, float s, int l)
     {
         rotation = r;
         speed = s;
+        level = l;
         state = CogState.ROTATE;
+
+        if (spriteManager!=null)
+            spriteManager.setSprite(l);
     }
 
     public virtual void stop()
@@ -86,6 +93,23 @@ public class CogWheel : MonoBehaviour
         rotation = CogRotation.IDLE;
         speed = 0f;
         state = CogState.IDLE;
+        level = 0;
+        if (spriteManager != null)
+            spriteManager.setSprite(0);
+    }
+
+    protected void inactive()
+    {
+        if (spriteManager != null)
+        {
+            spriteManager.setSprite(0);
+            spriteManager.setColor(Color.gray);
+        }
+
+        state = CogState.INACTIVE;
+        speed = 0f;
+        rotation = CogRotation.IDLE;
+        level = 0;
     }
 
     protected CogWheel[] detect()
