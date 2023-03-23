@@ -6968,7 +6968,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: cc020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0

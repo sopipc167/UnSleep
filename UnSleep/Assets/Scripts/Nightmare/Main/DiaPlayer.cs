@@ -141,9 +141,8 @@ public class DiaPlayer : MonoBehaviour
         for (int i = event_cnt - 1; i >= 0; i--)
         {
 
-            if (isOnce && Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
+            if (Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
             {
-                Debug.Log("hit_Diaid_inOnce_true: " + hit_Diaid[i]);
                 continue;
             }
             else
@@ -157,12 +156,9 @@ public class DiaPlayer : MonoBehaviour
                     if (!hit_info.isMany)
                         textManager.isMovieOut = true;
                 }
-                Debug.Log("hit_Diaid_inOnce_false: " + hit_Diaid[i] + " isOnce: " + isOnce +
-                    " complete: " + Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i]));
             }
 
 
-            Debug.Log("고미 stop");
             player.col.enabled = false;
             player.isStop = true;
             gome.isStart = false;
@@ -174,18 +170,14 @@ public class DiaPlayer : MonoBehaviour
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
-
-                
                 if (textManager.EffectEnd)
                 {
                     Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
                     textManager.SetDiaInMap();
                     textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
                 }
-                    
-              
+
                 isOnce = true;
-                Debug.Log("대화묶음: " + hit_Diaid[i] + " isOnce: " + isOnce);
 
                 return;
             }

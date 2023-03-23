@@ -63,6 +63,7 @@ public class DiaEvent : MonoBehaviour
     public Image eye;
 
     public bool isMovie;
+    public bool isUnperform;
 
     public int effectIndex;
 
@@ -477,24 +478,25 @@ public class DiaEvent : MonoBehaviour
     public void moveEnd()
     {
         Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
+        if (isUnperform)
+        {
+            ob[14].SetActive(true);
+            isUnperform = false;
+        }
     }
 
    
 
     void Setting()
     {
-        Debug.Log("setting");
         isFirst = false;
         diaIndex = dp.CurrentDiaIndex;
     }
 
     public void nextLevel()
     {
-        Debug.Log("i'm on the nextLevel: " + diaGroupIndex);
         Dia[diaGroupIndex - next_flase].SetActive(false);
         Dia[diaGroupIndex - next_true].SetActive(true);
-        Debug.Log("false: " + (diaGroupIndex - next_flase));
-        Debug.Log("true: " + (diaGroupIndex - next_true));
     }
 
     public void Shadow(bool isOn)
@@ -551,29 +553,24 @@ public class DiaEvent : MonoBehaviour
     public void unperform()
     {
         if (!dp.Complete_Condition.Contains(750) || !dp.Complete_Condition.Contains(751))
-            StartCoroutine(unPerformed());
-    }
+        {
+            isUnperform = true;
+            TM.DiaUI.SetActive(false);
+            //플레이어 멈추고
+            player.isStop = true;
 
-    IEnumerator unPerformed()
-    {
-        TM.DiaUI.SetActive(false);
-        //플레이어 멈추고
-        player.isStop = true;
+            //고미 멈추고
+            gome.isStart = false;
+            gome.isMinigame = false;
+            gome.isFollow = false;
 
-        //고미 멈추고
-        gome.isStart = false;
-        gome.isMinigame = false;
-        gome.isFollow = false;
-
-        //고미 달려온다
-        gome.speed = 7.0f;
-        Vector3 targetPos = player.targetPos;
-        targetPos += new Vector3(1.5f, 0, 0);
-        gome.ChangeTarget(targetPos);
-        gome.isStart = true;
-
-        yield return new WaitForSeconds(2.5f);
-        ob[14].SetActive(true);
+            //고미 달려온다
+            gome.speed = 7.0f;
+            Vector3 targetPos = player.targetPos;
+            targetPos += new Vector3(1.5f, 0, 0);
+            gome.ChangeTarget(targetPos);
+            gome.isStart = true;
+        }
     }
 
     public void GameOver_s()
