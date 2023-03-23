@@ -3,7 +3,7 @@
 public class WCogWheel : CogWheel
 {
     private Vector3 offset;
-    private const float lerpSpeed = 5f;
+    private const float lerpSpeed = 10f;
 
     private void Start()
     {
@@ -113,8 +113,6 @@ public class WCogWheel : CogWheel
                 CogWheel[] adjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
                 foreach (CogWheel cw in adjoinCw)
                 {
-                    Debug.Log(name + "가 " + cw.name + "에게 givePower");
-
                     givePower(cw);
                 }
                 break;

@@ -108,15 +108,21 @@ public class CogWheel : MonoBehaviour
 
     }
 
-    public virtual void stop()
+    public virtual void stop() // INACTIVE를 무시
     {
         if (state == CogState.INACTIVE) return;
 
         changeState(CogState.IDLE);
     }
 
-    protected void inactive()
+    public void idle() // INACTIVE를 IDLE로 변경
     {
+        changeState(CogState.IDLE);
+    }
+
+    public void inactive()
+    {
+        if (state == CogState.INACTIVE) return;
         changeState(CogState.INACTIVE);
     }
 

@@ -72,8 +72,8 @@ GameObject:
   - component: {fileID: 1593552049950197644}
   - component: {fileID: 1593552049950197645}
   - component: {fileID: 1593552049950197642}
-  - component: {fileID: 1593552049950197643}
   - component: {fileID: 1593552049950197646}
+  - component: {fileID: 3435900506953675974}
   m_Layer: 0
   m_Name: WCog6
   m_TagString: CogWheel
@@ -181,21 +181,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.46
---- !u!114 &1593552049950197643
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1593552049950197640}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: 1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &1593552049950197646
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,3 +198,24 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 8b6e0af3159818a42bf190bf6efbc3c6, type: 3}
   - {fileID: 21300000, guid: eac2565b701120641b77944143577f84, type: 3}
   - {fileID: 21300000, guid: 60a7290dfa22cd94887956e9255ef495, type: 3}
+--- !u!50 &3435900506953675974
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593552049950197640}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
