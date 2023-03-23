@@ -102,42 +102,27 @@ public class CogWheel : MonoBehaviour
         rotation = r;
         speed = s;
         level = l;
-        state = CogState.ROTATE;
+        changeState(CogState.ROTATE);
         transform.position = new Vector3(transform.position.x, transform.position.y, z);
 
-        if (spriteManager!=null)
-            spriteManager.setSprite(l);
+
     }
 
     public virtual void stop()
     {
         if (state == CogState.INACTIVE) return;
 
-        rotation = CogRotation.IDLE;
-        speed = 0f;
-        state = CogState.IDLE;
-        level = 0;
-        if (spriteManager != null)
-            spriteManager.setSprite(0);
+        changeState(CogState.IDLE);
     }
 
     protected void inactive()
     {
-        if (spriteManager != null)
-        {
-            spriteManager.setSprite(0);
-            spriteManager.setColor(Color.gray);
-        }
-
-        state = CogState.INACTIVE;
-        speed = 0f;
-        rotation = CogRotation.IDLE;
-        level = 0;
+        changeState(CogState.INACTIVE);
     }
 
     protected CogWheel[] detect()
     {
-        return sortByDistance(FindObjectsOfType<CogWheel>());
+        return sortByDistance(FindObjectsOfType<CogWheel>().Filter(cw => cw.state != CogState.INACTIVE));
     }
 
     public bool isAlone()
@@ -201,6 +186,43 @@ public class CogWheel : MonoBehaviour
     public bool hasOverlap()
     {
         return overlapChild != null;
+    }
+
+    public void changeState(CogState newState)
+    {
+        state = newState;
+        switch (newState)
+        {
+            case CogState.IDLE:
+                rotation = CogRotation.IDLE;
+                speed = 0f;
+                level = 0;
+                if (spriteManager != null)
+                {
+                    spriteManager.setSprite(0);
+                    spriteManager.setColor(Color.white);
+                }
+                break;
+            case CogState.INACTIVE:
+                if (spriteManager != null)
+                {
+                    spriteManager.setSprite(0);
+                    spriteManager.setColor(Color.gray);
+                }
+                speed = 0f;
+                rotation = CogRotation.IDLE;
+                level = 0;
+                break;
+            case CogState.ROTATE:
+                if (spriteManager != null)
+                {
+                    spriteManager.setSprite(level);
+                    spriteManager.setColor(Color.white);
+                }
+                break;
+
+
+        }
     }
 }
 

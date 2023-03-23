@@ -95,8 +95,7 @@ public class WCogWheel : CogWheel
 
         if (!rotationValidation(cogWheels))
         {
-            if (spriteManager != null)
-                spriteManager.setColor(CogAction.RESTRICT);
+            inactive();
             return;
         }
 
@@ -118,8 +117,6 @@ public class WCogWheel : CogWheel
 
                     givePower(cw);
                 }
-
-                
                 break;
             case CogAction.FAR:
                 break;
