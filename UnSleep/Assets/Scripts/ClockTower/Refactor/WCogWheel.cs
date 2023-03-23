@@ -1,21 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class WCogWheel : CogWheel
 {
     private Vector3 offset;
+    private const float lerpSpeed = 5f;
 
     private void Start()
     {
         spriteManager = GetComponent<CogWheelSpriteManager>();
         radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
-        actionUp(detect());    
+        actionUp(detect());
     }
 
     private void OnMouseDown()
     {
         offset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        if (state == CogState.INACTIVE) state = CogState.IDLE;
     }
 
     private void OnMouseDrag()
@@ -23,12 +23,31 @@ public class WCogWheel : CogWheel
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - offset;
         stop();
         actionDrag(detect());
+     
     }
 
     private void OnMouseUp()
     {
         actionUp(detect());
     }
+
+    void Update()
+    {
+        switch (state)
+        {
+            case CogState.ROTATE: 
+                transform.Rotate(new Vector3(0f, 0f, speed * (int)rotation * 0.01f)); 
+                break;
+            case CogState.INACTIVE: 
+                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.5f, 0.5f), Time.deltaTime * lerpSpeed); 
+                break;
+            case CogState.IDLE:
+                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1f, 1f), Time.deltaTime * lerpSpeed); 
+                break;
+        }
+
+    }
+
 
     private bool rotationValidation(CogWheel[] cogWheels)
     {
@@ -40,6 +59,7 @@ public class WCogWheel : CogWheel
 
         foreach (CogWheel cw in adjoinWheels)
         {
+            if (cw.rotation == CogRotation.IDLE) continue;
             if (cw.rotation != criteria) return false;
         }
 
@@ -63,7 +83,7 @@ public class WCogWheel : CogWheel
         }
 
         CogAction nearestCogAction = getCogAction(cogWheels[0]);
-        Debug.Log(cogWheels[0].name);
+
         if (spriteManager != null)
             spriteManager.setColor(nearestCogAction);
     }
@@ -90,11 +110,16 @@ public class WCogWheel : CogWheel
                 {
                     getPower(cogWheels[0]);
                 }
-                else if (state == CogState.ROTATE)
+ 
+                CogWheel[] adjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
+                foreach (CogWheel cw in adjoinCw)
                 {
-                    CogWheel[] adjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
-                    foreach (CogWheel cw in adjoinCw) givePower(cw);
+                    Debug.Log(name + "가 " + cw.name + "에게 givePower");
+
+                    givePower(cw);
                 }
+
+                
                 break;
             case CogAction.FAR:
                 break;

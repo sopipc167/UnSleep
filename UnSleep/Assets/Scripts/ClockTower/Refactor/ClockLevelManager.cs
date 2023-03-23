@@ -18,7 +18,6 @@ public class ClockLevelManager : MonoBehaviour
             Debug.Log("클리어~");
         } else
         {
-            Debug.Log("안 클리어~");
         }
     }
 

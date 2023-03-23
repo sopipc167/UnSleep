@@ -98,6 +98,7 @@ public class CogWheel : MonoBehaviour
 
     public void receive(CogRotation r, float s, int l, float z)
     {
+        // Debug.Log(string.Format("{0}: {1}로 {2}만큼 돌아간다", name, r, s));
         rotation = r;
         speed = s;
         level = l;
@@ -110,6 +111,8 @@ public class CogWheel : MonoBehaviour
 
     public virtual void stop()
     {
+        if (state == CogState.INACTIVE) return;
+
         rotation = CogRotation.IDLE;
         speed = 0f;
         state = CogState.IDLE;

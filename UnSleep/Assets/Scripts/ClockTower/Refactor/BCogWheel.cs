@@ -29,6 +29,7 @@ public class BCogWheel : CogWheel
     {
         if (info.type == BCogWheelType.START)
         {
+            state = CogState.ROTATE;
             speed = info.speed;
             rotation = info.rotation;
         }
