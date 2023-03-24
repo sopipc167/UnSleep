@@ -35,14 +35,14 @@ public class SceneAText : MonoBehaviour
     public void OnClickDomin()
     {
         opposite.color = new Color(0.2f, 0.2f, 0.2f);
-        randPosText.PrintText(manager.currentType, true);
+        randPosText.PrintText(RelationshipManager.CurrentType, true);
         manager.StartSceneB();
     }
 
     public void OnClickOpposite()
     {
         domun.color = new Color(0.2f, 0.2f, 0.2f);
-        randPosText.PrintText(manager.currentType, false);
+        randPosText.PrintText(RelationshipManager.CurrentType, false);
         manager.StartSceneB();
     }
 }
