@@ -25,14 +25,17 @@ public class DiaPlayer : MonoBehaviour
 
     private TextManager textManager;
     private Camera mainCam;
-
     public MovieEffect movie;
+
+    private Dictionary<Collider2D, int> rePlay = new Dictionary<Collider2D, int>();
+    private Collider2D rePlay_col;
+    private int rePlay_int;
 
     private void Awake()
     {
         textManager = Dialogue_system_manager.GetComponent<TextManager>();
         mainCam = Camera.main;
-        isOnce = true;
+        //isOnce = true;
     }
 
 
@@ -61,6 +64,19 @@ public class DiaPlayer : MonoBehaviour
                 }
             }
         }
+
+        if(rePlay != null)
+        {
+            int i;
+            for (i = 0; i < dia_hit_colliders.Length; i++)
+            {
+                if (rePlay_col == dia_hit_colliders[i])
+                    break;
+            }
+
+            if (i == dia_hit_colliders.Length)
+                Dialogue_Proceeder.instance.RemoveCompleteCondition(rePlay_int);
+        }
     }
 
     private void FixedUpdate()
@@ -76,9 +92,12 @@ public class DiaPlayer : MonoBehaviour
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
-                    if (!hit_info.OnlyOnce[0] && isOnce)
+                    if (!hit_info.OnlyOnce[0]) //&& isOnce
                     {
-                        isOnce = false;
+                        //isOnce = false;
+                        rePlay_col = dia_hit_colliders[i];
+                        rePlay_int = hit_info.Obj_Diaid[0];
+                        //rePlay.Add(dia_hit_colliders[i], hit_info.Obj_Diaid[0]);
                     }
                 }
                 else if (dia_hit_colliders[i].CompareTag("SceneOver"))
@@ -140,7 +159,6 @@ public class DiaPlayer : MonoBehaviour
 
         for (int i = event_cnt - 1; i >= 0; i--)
         {
-
             if (Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
             {
                 continue;
@@ -177,7 +195,7 @@ public class DiaPlayer : MonoBehaviour
                     textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
                 }
 
-                isOnce = true;
+                //isOnce = true;
 
                 return;
             }

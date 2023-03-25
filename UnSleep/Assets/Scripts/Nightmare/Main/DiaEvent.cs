@@ -47,7 +47,7 @@ public class DiaEvent : MonoBehaviour
 
     public Gome gome;
     public bool isMini;
-    public Image suprise;
+    public Image surprise;
     public Image block;
 
     public MovieEffect movieFrame;
@@ -72,7 +72,8 @@ public class DiaEvent : MonoBehaviour
     private void Awake()
     {
         player.isStop = true;
-        StartCoroutine(StartGame());
+        if(PlayerPrefs.GetInt("isGameOver") == 0)
+            StartCoroutine(StartGame());
     }
 
     IEnumerator StartGame()
@@ -134,7 +135,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (EventNum == 7)
             {
-                suprise.enabled = false;
+                surprise.enabled = false;
             }
             else if (EventNum == 8)
             {
@@ -360,9 +361,9 @@ public class DiaEvent : MonoBehaviour
                 EventNum = 10;
                 content = null;
             }
-            else if (content == "Suprise")
+            else if (content == "Surprise")
             {
-                suprise.enabled = true;
+                surprise.enabled = true;
                 content = null;
                 EventNum = 7;
             }
