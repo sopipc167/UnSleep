@@ -176,6 +176,7 @@ public class DiaEvent : MonoBehaviour
 
             if (isMovie)
             {
+                Debug.Log("MovieFrameOut");
                 movieFrame.MovieFrameout();
                 isMovie = false;
             }
@@ -384,7 +385,6 @@ public class DiaEvent : MonoBehaviour
                 Dia[37].SetActive(true);
                 Dia[38].SetActive(true);
                 Dia[39].SetActive(true);
-                EventNum = 13;
             }
             else if (content == "Gome")
             {
@@ -425,7 +425,6 @@ public class DiaEvent : MonoBehaviour
     IEnumerator EffectEnd(float durTime)
     {
         yield return new WaitForSeconds(durTime);
-        Debug.Log("인덱스: " + effectIndex);
         dp.CurrentDiaIndex = effectIndex;
         TM.DiaUI.SetActive(true);
     }
@@ -571,6 +570,10 @@ public class DiaEvent : MonoBehaviour
             targetPos += new Vector3(1.5f, 0, 0);
             gome.ChangeTarget(targetPos);
             gome.isStart = true;
+        }
+        else
+        {
+            next_true = 707;
         }
     }
 

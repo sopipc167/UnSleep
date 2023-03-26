@@ -4252,7 +4252,7 @@ MonoBehaviour:
   dia_p: {fileID: 436431059}
   gome: {fileID: 1985261897}
   isMini: 0
-  surprise: {fileID: 0}
+  surprise: {fileID: 1097298030}
   block: {fileID: 1532460817}
   movieFrame: {fileID: 1475501925}
   cm: {fileID: 1563125561}
@@ -5729,15 +5729,9 @@ MonoBehaviour:
   transPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
   isStop: 0
-  dropObject: {fileID: 1228403793536602347, guid: e7c456d5f08d8af4084247cbac657de5, type: 3}
-  dropStart: {fileID: 0}
-  dropPos:
-  - {fileID: 0}
   isEvent: 0
   isRoadEnd: 0
   C: {fileID: 1563125561}
-  appearObject: {fileID: 7772738060014500539, guid: 2b12c6661b4bd6c4e97110e50fce92bb, type: 3}
-  appearStart: {fileID: 0}
   isMiniGame: 0
   speed_M: 10
   isFall: 0
@@ -12025,7 +12019,7 @@ GameObject:
   - component: {fileID: 1097298031}
   - component: {fileID: 1097298030}
   m_Layer: 5
-  m_Name: Suprise
+  m_Name: Surprise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20233,7 +20227,7 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
+  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -20591,13 +20585,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: cd020000
-  OnlyOnce: 01
+  Obj_Diaid: cd020000ce020000
+  OnlyOnce: 0101
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
+  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}

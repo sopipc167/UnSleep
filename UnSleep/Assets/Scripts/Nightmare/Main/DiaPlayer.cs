@@ -163,19 +163,16 @@ public class DiaPlayer : MonoBehaviour
             {
                 continue;
             }
-            else
-            {
-                if (hit_info.isAuto && !textManager.isMovieIn)
-                {
-                    if(DE.outline != 0)
-                        DE.Outline_false();
-                    movie.MovieFrameIn();
-                    textManager.isMovieIn = true;
-                    if (!hit_info.isMany)
-                        textManager.isMovieOut = true;
-                }
-            }
 
+            if (hit_info.isAuto && !textManager.isMovieIn)
+            {
+                if (DE.outline != 0)
+                    DE.Outline_false();
+                movie.MovieFrameIn();
+                textManager.isMovieIn = true;
+                if (!hit_info.isMany)
+                    textManager.isMovieOut = true;
+            }
 
             player.col.enabled = false;
             player.isStop = true;
