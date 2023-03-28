@@ -382,7 +382,7 @@ public class DiaEvent : MonoBehaviour
                 PlayerMove(1);
                 content = null;
                 PlayerPrefs.SetInt("savePoint", 1);
-                Dia[37].SetActive(true);
+                //Dia[37].SetActive(true);
                 Dia[38].SetActive(true);
                 Dia[39].SetActive(true);
             }

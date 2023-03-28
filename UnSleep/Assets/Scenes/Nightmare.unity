@@ -768,7 +768,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -990,7 +989,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -1212,7 +1210,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -1687,7 +1684,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -2073,7 +2069,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1270002492}
   DE: {fileID: 349265052}
@@ -2459,7 +2454,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -2841,7 +2835,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -3157,7 +3150,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1286229456}
   DE: {fileID: 349265052}
@@ -3379,7 +3371,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -3731,7 +3722,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -4845,7 +4835,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -5067,7 +5056,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -5407,7 +5395,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -6741,12 +6728,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: de020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -6968,7 +6954,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -7272,7 +7257,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -7926,7 +7910,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -8455,7 +8438,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -8950,7 +8932,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -9468,7 +9449,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1694780158}
   DE: {fileID: 349265052}
@@ -9690,7 +9670,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -9994,7 +9973,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1270002492}
   DE: {fileID: 349265052}
@@ -11203,7 +11181,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -11704,7 +11681,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -12252,7 +12228,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1286229456}
   DE: {fileID: 349265052}
@@ -12474,7 +12449,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -13054,7 +13028,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 172336734}
   DE: {fileID: 349265052}
@@ -13601,7 +13574,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -14325,7 +14297,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -14704,7 +14675,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2016095713}
   DE: {fileID: 349265052}
@@ -15090,7 +15060,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -15642,7 +15611,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -15864,7 +15832,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1286229456}
   DE: {fileID: 349265052}
@@ -16343,7 +16310,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -16622,7 +16588,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -16844,7 +16809,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -17198,7 +17162,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1038517236}
   DE: {fileID: 349265052}
@@ -18251,7 +18214,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 983112481}
   DE: {fileID: 349265052}
@@ -18596,7 +18558,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -18973,7 +18934,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -19344,7 +19304,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 141224175}
   DE: {fileID: 349265052}
@@ -19566,7 +19525,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -19824,7 +19782,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -20227,7 +20184,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -20591,7 +20547,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -20808,12 +20763,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: df020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -21732,7 +21686,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1270002492}
   DE: {fileID: 349265052}
@@ -21954,7 +21907,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -22748,13 +22700,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: e0020000e1020000e2020000e3020000e4020000e5020000
+  Obj_Diaid: e0020000e1020000e2020000e3020000e4020000e5020000e6020000
   OnlyOnce: 010101010101
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -23232,7 +23183,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}

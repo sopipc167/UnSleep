@@ -88,7 +88,7 @@ public class DiaPlayer : MonoBehaviour
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
                 if (dia_hit_colliders[i].CompareTag("DiaInterCollision")
-                    && textManager.DiaUI.activeSelf == false)
+                    && textManager.DiaUI.activeSelf == false && textManager.EffectEnd)
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
@@ -170,8 +170,6 @@ public class DiaPlayer : MonoBehaviour
                     DE.Outline_false();
                 movie.MovieFrameIn();
                 textManager.isMovieIn = true;
-                if (!hit_info.isMany)
-                    textManager.isMovieOut = true;
             }
 
             player.col.enabled = false;
@@ -185,15 +183,15 @@ public class DiaPlayer : MonoBehaviour
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
-                if (textManager.EffectEnd)
+                Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
+                textManager.SetDiaInMap();
+                textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
+
+                if(i == event_cnt - 1 && textManager.isMovieIn && !textManager.isMovieOut)
                 {
-                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
-                    textManager.SetDiaInMap();
-                    textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
+                    textManager.isMovieOut = true;
                 }
-
                 //isOnce = true;
-
                 return;
             }
 

@@ -296,7 +296,6 @@ public class TextManager : MonoBehaviour
                             {
                                 if(con.IndexOf("Effect") != -1)
                                 {
-                                    Debug.Log("Effect");
                                     diaEvent.effectIndex = dp.CurrentDiaIndex;
                                     EffectEnd = false;
                                     DiaUI.SetActive(false);
@@ -304,7 +303,6 @@ public class TextManager : MonoBehaviour
 
                                 diaEvent.content = con;
                             }
-                            Debug.Log("con1: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
                         }
                         
 
@@ -919,6 +917,7 @@ public class TextManager : MonoBehaviour
 
     public void SetDiaInMap()
     {
+        Debug.Log("대사 시작");
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
 
