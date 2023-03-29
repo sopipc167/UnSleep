@@ -157,8 +157,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if(EventNum == 13)
             {
-                movieFrame.MovieFrameout();
-                TM.isMovieIn = false;
+                isMovie = false;
+                TM.isMovieIn = true;
             }
             else if(EventNum == 14)
             {
@@ -330,6 +330,10 @@ public class DiaEvent : MonoBehaviour
                 ob[10].transform.DOLocalMoveX(13.9f, 1.0f);
                 ob[11].transform.DOLocalMoveX(15.3f, 1.0f);
             }
+            else if(content == "FrameFreeze")
+            {
+                EventNum = 13;
+            }
             else if (content == "MiniGame")
             {
                 gome.isMinigame = true;
@@ -368,11 +372,6 @@ public class DiaEvent : MonoBehaviour
                 content = null;
                 EventNum = 7;
             }
-            else if (content == "FrameOut")
-            {
-                EventNum = 13;
-                content = null;
-            }
             else if (content == "Choose")
             {
                 fadeinout.Blackout_Func(0.7f);
@@ -382,7 +381,8 @@ public class DiaEvent : MonoBehaviour
                 PlayerMove(1);
                 content = null;
                 PlayerPrefs.SetInt("savePoint", 1);
-                //Dia[37].SetActive(true);
+                EventNum = 13;
+                Dia[37].SetActive(true);
                 Dia[38].SetActive(true);
                 Dia[39].SetActive(true);
             }
