@@ -5,6 +5,7 @@ using UnityEngine;
 public class BCogWheel : CogWheel
 {
     public BCogWheelInfo info;
+    private SpeedPanel speedPanel = null;
     public bool satisfy
     {
         get
@@ -43,9 +44,24 @@ public class BCogWheel : CogWheel
         rotation = CogRotation.IDLE;
         speed = 0f;
         state = CogState.IDLE;
+        if (speedPanel != null) speedPanel.updateBlackSpeedText(0f);
     }
 
-    
+    public override void receive(CogRotation r, float s, int l, float z)
+    {
+        rotation = r;
+        speed = s;
+        level = l;
+        changeState(CogState.ROTATE);
+        if (speedPanel != null) speedPanel.updateBlackSpeedText(s);
+        transform.position = new Vector3(transform.position.x, transform.position.y, z);
+    }
+
+
+    public void setSpeedPanel(SpeedPanel speedPanel)
+    {
+        this.speedPanel = speedPanel;
+    }
 
 }
 

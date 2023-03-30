@@ -53,7 +53,7 @@ public class CogWheel : MonoBehaviour
             return;
         }
 
-        other.receive(giveRotation, speed * ((float)size / (float)other.size), level, transform.position.z);
+        other.receive(giveRotation, (speed * size) / other.size, level, transform.position.z);
     }
 
     public virtual void getPower(CogWheel other)
@@ -75,7 +75,7 @@ public class CogWheel : MonoBehaviour
             return;
         }
 
-        receive(getRotation, other.speed * ((float)size / (float)other.size), other.level, other.gameObject.transform.position.z);
+        receive(getRotation, (other.speed * other.size) / size, other.level, other.gameObject.transform.position.z);
     }
 
     public void overlap(CogWheel other) // 내가 other 위에 꽂힌다
@@ -96,7 +96,7 @@ public class CogWheel : MonoBehaviour
         }
     }
 
-    public void receive(CogRotation r, float s, int l, float z)
+    public virtual void receive(CogRotation r, float s, int l, float z)
     {
         // Debug.Log(string.Format("{0}: {1}로 {2}만큼 돌아간다", name, r, s));
         rotation = r;
@@ -104,8 +104,6 @@ public class CogWheel : MonoBehaviour
         level = l;
         changeState(CogState.ROTATE);
         transform.position = new Vector3(transform.position.x, transform.position.y, z);
-
-
     }
 
     public virtual void stop() // INACTIVE를 무시
