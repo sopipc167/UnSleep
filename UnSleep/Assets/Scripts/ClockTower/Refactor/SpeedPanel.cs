@@ -11,7 +11,7 @@ public class SpeedPanel : MonoBehaviour
     private void OnEnable()
     {
         cogWheel.setSpeedPanel(this);
-        whiteSpeedText.text = ((int)cogWheel.info.speed).ToString();
+        whiteSpeedText.text = ((int)cogWheel.bInfo.speed).ToString();
     }
 
     public void updateBlackSpeedText(float speed)
