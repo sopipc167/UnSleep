@@ -47,7 +47,7 @@ public class DiaEvent : MonoBehaviour
 
     public Gome gome;
     public bool isMini;
-    public Image suprise;
+    public Image surprise;
     public Image block;
 
     public MovieEffect movieFrame;
@@ -63,6 +63,7 @@ public class DiaEvent : MonoBehaviour
     public Image eye;
 
     public bool isMovie;
+    public bool isUnperform;
 
     public int effectIndex;
 
@@ -71,7 +72,8 @@ public class DiaEvent : MonoBehaviour
     private void Awake()
     {
         player.isStop = true;
-        StartCoroutine(StartGame());
+        if(PlayerPrefs.GetInt("isGameOver") == 0)
+            StartCoroutine(StartGame());
     }
 
     IEnumerator StartGame()
@@ -118,6 +120,8 @@ public class DiaEvent : MonoBehaviour
                 ob[1].SetActive(false);
                 if (diaGroupIndex == 729)
                 {
+                    Dia[22].SetActive(false);
+                    Dia[23].SetActive(false);
                     Dia[34].SetActive(false);
                     Dia[35].SetActive(true);
                     Dia[36].SetActive(true);
@@ -131,7 +135,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (EventNum == 7)
             {
-                suprise.enabled = false;
+                surprise.enabled = false;
             }
             else if (EventNum == 8)
             {
@@ -153,8 +157,8 @@ public class DiaEvent : MonoBehaviour
             }
             else if(EventNum == 13)
             {
-                movieFrame.MovieFrameout();
-                TM.isMovieIn = false;
+                isMovie = false;
+                TM.isMovieIn = true;
             }
             else if(EventNum == 14)
             {
@@ -172,6 +176,7 @@ public class DiaEvent : MonoBehaviour
 
             if (isMovie)
             {
+                Debug.Log("MovieFrameOut");
                 movieFrame.MovieFrameout();
                 isMovie = false;
             }
@@ -325,6 +330,10 @@ public class DiaEvent : MonoBehaviour
                 ob[10].transform.DOLocalMoveX(13.9f, 1.0f);
                 ob[11].transform.DOLocalMoveX(15.3f, 1.0f);
             }
+            else if(content == "FrameFreeze")
+            {
+                EventNum = 13;
+            }
             else if (content == "MiniGame")
             {
                 gome.isMinigame = true;
@@ -357,16 +366,11 @@ public class DiaEvent : MonoBehaviour
                 EventNum = 10;
                 content = null;
             }
-            else if (content == "Suprise")
+            else if (content == "Surprise")
             {
-                suprise.enabled = true;
+                surprise.enabled = true;
                 content = null;
                 EventNum = 7;
-            }
-            else if (content == "FrameOut")
-            {
-                EventNum = 13;
-                content = null;
             }
             else if (content == "Choose")
             {
@@ -377,10 +381,10 @@ public class DiaEvent : MonoBehaviour
                 PlayerMove(1);
                 content = null;
                 PlayerPrefs.SetInt("savePoint", 1);
+                EventNum = 13;
                 Dia[37].SetActive(true);
                 Dia[38].SetActive(true);
                 Dia[39].SetActive(true);
-                EventNum = 13;
             }
             else if (content == "Gome")
             {
@@ -421,7 +425,6 @@ public class DiaEvent : MonoBehaviour
     IEnumerator EffectEnd(float durTime)
     {
         yield return new WaitForSeconds(durTime);
-        Debug.Log("인덱스: " + effectIndex);
         dp.CurrentDiaIndex = effectIndex;
         TM.DiaUI.SetActive(true);
     }
@@ -475,24 +478,25 @@ public class DiaEvent : MonoBehaviour
     public void moveEnd()
     {
         Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
+        if (isUnperform)
+        {
+            ob[14].SetActive(true);
+            isUnperform = false;
+        }
     }
 
    
 
     void Setting()
     {
-        Debug.Log("setting");
         isFirst = false;
         diaIndex = dp.CurrentDiaIndex;
     }
 
     public void nextLevel()
     {
-        Debug.Log("i'm on the nextLevel: " + diaGroupIndex);
         Dia[diaGroupIndex - next_flase].SetActive(false);
         Dia[diaGroupIndex - next_true].SetActive(true);
-        Debug.Log("false: " + (diaGroupIndex - next_flase));
-        Debug.Log("true: " + (diaGroupIndex - next_true));
     }
 
     public void Shadow(bool isOn)
@@ -549,29 +553,28 @@ public class DiaEvent : MonoBehaviour
     public void unperform()
     {
         if (!dp.Complete_Condition.Contains(750) || !dp.Complete_Condition.Contains(751))
-            StartCoroutine(unPerformed());
-    }
+        {
+            isUnperform = true;
+            TM.DiaUI.SetActive(false);
+            //플레이어 멈추고
+            player.isStop = true;
 
-    IEnumerator unPerformed()
-    {
-        TM.DiaUI.SetActive(false);
-        //고미 멈추고
-        gome.isStart = false;
-        gome.isMinigame = false;
-        gome.isFollow = false;
+            //고미 멈추고
+            gome.isStart = false;
+            gome.isMinigame = false;
+            gome.isFollow = false;
 
-        //플레이어 멈추고
-        player.isStop = true;
-
-        //고미 달려온다
-        gome.speed = 7.0f;
-        //Vector3 targetPos = player.transform.position;
-        //targetPos -= new Vector3(3.5f, 0, 0);
-        gome.ChangeTarget(ob[13].transform.position);
-        gome.isStart = true;
-
-        yield return new WaitForSeconds(2.0f);
-        ob[14].SetActive(true);
+            //고미 달려온다
+            gome.speed = 7.0f;
+            Vector3 targetPos = player.targetPos;
+            targetPos += new Vector3(1.5f, 0, 0);
+            gome.ChangeTarget(targetPos);
+            gome.isStart = true;
+        }
+        else
+        {
+            next_true = 707;
+        }
     }
 
     public void GameOver_s()

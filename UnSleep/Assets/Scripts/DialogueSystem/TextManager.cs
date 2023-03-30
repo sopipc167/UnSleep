@@ -117,6 +117,7 @@ public class TextManager : MonoBehaviour
     public ObManager OM;
     public bool isMovieIn;
     public bool isMovieOut;
+    public bool isReplay;
 
     public Gome gome;
     public bool EffectEnd = true;
@@ -296,7 +297,6 @@ public class TextManager : MonoBehaviour
                             {
                                 if(con.IndexOf("Effect") != -1)
                                 {
-                                    Debug.Log("Effect");
                                     diaEvent.effectIndex = dp.CurrentDiaIndex;
                                     EffectEnd = false;
                                     DiaUI.SetActive(false);
@@ -304,7 +304,6 @@ public class TextManager : MonoBehaviour
 
                                 diaEvent.content = con;
                             }
-                            Debug.Log("con1: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
                         }
                         
 
@@ -434,6 +433,13 @@ public class TextManager : MonoBehaviour
                                 // 아래 코드는 테이블 확인용 임시 코드.
                                 // 그냥 원래 스토리에서 진행되듯 넘어가는 코드입니다.
                                 // 층간 작업하실 때 지우고 쓰시면 됨.
+
+                                if (isReplay)
+                                {
+                                    Debug.Log("Dia: " + Dia_Id);
+                                    Dialogue_Proceeder.instance.RemoveCompleteCondition(Dia_Id);
+                                    isReplay = false;
+                                }
 
                                 Dia_Id++;
                                 dp.UpdateCurrentDiaID(Dia_Id);
@@ -919,6 +925,7 @@ public class TextManager : MonoBehaviour
 
     public void SetDiaInMap()
     {
+        Debug.Log("대사 시작");
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
 

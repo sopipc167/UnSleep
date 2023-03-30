@@ -13,18 +13,10 @@ public class Player : MonoBehaviour
     public Vector3 mousePos, transPos, targetPos;
     public bool isStop;
 
-    public GameObject dropObject;
-    public Transform dropStart;
-    public GameObject[] dropPos;
-    int i;
-
     public bool isEvent;
 
     public bool isRoadEnd;
     public CameraManager C;
-
-    public GameObject appearObject;
-    public Transform appearStart;
 
     public bool isMiniGame;
     public float speed_M;
@@ -158,25 +150,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*
-        if (collision.gameObject.tag == "Drop" && !isEvent)
-        {
-            StartCoroutine(Event(true, 0.8f));
-            Instantiate(dropObject, dropStart.position, Quaternion.Euler(0, 0, 0));
-        }
-
-        if (collision.gameObject.tag == "RoadEnd")
-        {
-            StartCoroutine(RoadEnd());
-        }
-
-        if(collision.gameObject.tag == "Appear")
-        {
-            StartCoroutine(Event(false, 0.8f));
-            Instantiate(appearObject, appearStart.position, Quaternion.Euler(0, 0, 0));
-        }
-        */
-
         if(collision.gameObject.tag == "Ob_N")
         {
 

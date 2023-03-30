@@ -27,11 +27,13 @@ public class LoadManager : MonoBehaviour
 
         if (PlayerPrefs.GetInt("isGameOver") == 1)
         {
+            Scene1.SetActive(false);
+
             DE.next_flase = 707;
             DE.next_true = 706;
             DE.Fade.enabled = true;
-            Scene1.SetActive(false);
             backGround.enabled = false;
+
             player.isSeven = true;
             player.targetPos = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
             player.transform.position = DE.playerPos[PlayerPrefs.GetInt("savePoint")].position;
@@ -56,13 +58,16 @@ public class LoadManager : MonoBehaviour
             }
             else if(PlayerPrefs.GetInt("savePoint") == 2)
             {
+                DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
+                DE.Move(15, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
+                DE.ob[4].SetActive(false);
+                DE.ob[3].SetActive(true);
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(749);
                 Scene4.SetActive(true);
                 GameOver_749.SetActive(true);
                 player.transform.eulerAngles = new Vector3(0, 0, 0);
                 gome.transform.eulerAngles = new Vector3(0, 180, 0);
             }
-            //DE.MovePoint = 2;
         }
 
 
