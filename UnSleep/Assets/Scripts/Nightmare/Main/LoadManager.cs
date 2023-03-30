@@ -58,6 +58,10 @@ public class LoadManager : MonoBehaviour
             }
             else if(PlayerPrefs.GetInt("savePoint") == 2)
             {
+                DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
+                DE.Move(15, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
+                DE.ob[4].SetActive(false);
+                DE.ob[3].SetActive(true);
                 Dialogue_Proceeder.instance.UpdateCurrentDiaID(749);
                 Scene4.SetActive(true);
                 GameOver_749.SetActive(true);

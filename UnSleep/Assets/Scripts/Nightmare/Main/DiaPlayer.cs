@@ -35,7 +35,7 @@ public class DiaPlayer : MonoBehaviour
     {
         textManager = Dialogue_system_manager.GetComponent<TextManager>();
         mainCam = Camera.main;
-        //isOnce = true;
+        isOnce = true;
     }
 
 
@@ -60,6 +60,10 @@ public class DiaPlayer : MonoBehaviour
                     && textManager.DiaUI.activeSelf == false
                     && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance
                     && Vector3.Distance(transform.position, MousePosition) <= 11.5f) {
+                    if (!hit_info.OnlyOnce[0] && isOnce)
+                    {
+                        isOnce = false;
+                    }
                     DialogueInteraction(hit_info);
                 }
             }
@@ -92,12 +96,10 @@ public class DiaPlayer : MonoBehaviour
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
-                    if (!hit_info.OnlyOnce[0]) //&& isOnce
+                    if (!hit_info.OnlyOnce[0])
                     {
-                        //isOnce = false;
                         rePlay_col = dia_hit_colliders[i];
                         rePlay_int = hit_info.Obj_Diaid[0];
-                        //rePlay.Add(dia_hit_colliders[i], hit_info.Obj_Diaid[0]);
                     }
                 }
                 else if (dia_hit_colliders[i].CompareTag("SceneOver"))
@@ -108,7 +110,6 @@ public class DiaPlayer : MonoBehaviour
                     DE.next_flase = 701;
                     DE.next_true = 700;
                     DE.ob[7].SetActive(true);
-                    //player.transform.localPosition = new Vector3(-5.05f, -1.38f, 0);
                     chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
                 }
                 else if(dia_hit_colliders[i].tag == "SceneOver_2")
@@ -125,6 +126,7 @@ public class DiaPlayer : MonoBehaviour
                 else if(dia_hit_colliders[i].tag == "Chair")
                 {
                     DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
+                    DE.Move(15, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
                     DE.chair.enabled = false;
                 }
             }
@@ -191,7 +193,12 @@ public class DiaPlayer : MonoBehaviour
                 {
                     textManager.isMovieOut = true;
                 }
-                //isOnce = true;
+                if (!isOnce)
+                {
+                    Debug.Log("isReplay = true;");
+                    textManager.isReplay = true;
+                    isOnce = true;
+                }
                 return;
             }
 
