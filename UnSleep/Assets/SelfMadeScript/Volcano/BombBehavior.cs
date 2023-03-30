@@ -73,7 +73,7 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
     }
     private void OnMouseEnter() //마우스 드가면
     {
-        if (MemoManager.isMemoOn) return;
+        if (MemoManager.isMemoOn || GameManager.IsPause || ExceptUIClick.isActive) return;
 
         //SpriteChange(true);
         if (GM.Raymode) //만약 마우스 입력을 받아야 되는 상태라면
@@ -81,7 +81,7 @@ public class BombBehavior : BlockBehavior //BlockBehavior를 상속받음으로�
     }
     private void OnMouseOver() //마우스가 머무르면
     {
-        if (MemoManager.isMemoOn) return;
+        if (MemoManager.isMemoOn || GameManager.IsPause || ExceptUIClick.isActive) return;
 
         if (GM.Raymode) //만약 마우스 입력을 받아야 되는 상태라면 마우스 버튼 클릭을 감지함
         {

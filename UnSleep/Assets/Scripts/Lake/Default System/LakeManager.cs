@@ -102,7 +102,7 @@ public class LakeManager : MonoBehaviour
     private void Update()
     {
         //드래그일 때
-        if (!moveWithMouseWheel && !isStart && currentLake != -1 && Time.timeScale != 0)
+        if (!moveWithMouseWheel && !isStart && currentLake != -1 && !GameManager.IsPause && !ExceptUIClick.isActive)
         {
             if (Input.GetMouseButtonDown(0))
             {

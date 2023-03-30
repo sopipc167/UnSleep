@@ -23174,10 +23174,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2005434574521840886, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
-      propertyPath: m_RenderMode
+    - target: {fileID: 1039099938572863604, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1039099938572863604, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433536343330850910, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433536343330850910, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433536343330850910, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434573423702073, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -27.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434573423702073, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574521840886, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574521840886, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 423702595}
     - target: {fileID: 2005434574521840891, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -23230,12 +23262,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2005434574852518557, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -27.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574852518557, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: radius
+      value: 0.12
+      objectReference: {fileID: 0}
     - target: {fileID: 2005434574877642673, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2005434575249692254, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -205
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+--- !u!1 &1966438859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2005434574877642678, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+  m_PrefabInstance: {fileID: 1966438858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1972426885
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24603,6 +24656,14 @@ PrefabInstance:
       propertyPath: info.Array.data[1].maxInfo
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[2].id
+      value: 19
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[2].maxInfo
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5703343808980061984, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_Camera
       value: 
@@ -24689,30 +24750,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[0].explain
-      value: "\uD1B1\uB2C8\uBC14\uD034\uB294 \uAC80\uC740\uC0C9\uACFC \uD770\uC0C9
-        \uB450\uAC00\uC9C0 \uC885\uB958\uAC00 \uC874\uC7AC\uD569\uB2C8\uB2E4. \uC2DC\uACC4\uD0D1
-        \uD37C\uC990\uC758 \uBAA9\uD45C\uB294 \uC81C\uC2DC\uB41C \uC870\uAC74\uC5D0
-        \uB9DE\uAC8C \uAC80\uC740 \uD1B1\uB2C8\uBC14\uD280\uB97C \uD68C\uC804\uC2DC\uD0A4\uB294
-        \uAC83\uC785\uB2C8\uB2E4."
+      value: "\uC81C\uC2DC\uB41C \uC870\uAC74\uC5D0 \uB9DE\uAC8C \uAC80\uC740 \uD1B1\uB2C8\uBC14\uD034\uB97C
+        \uD68C\uC804\uC2DC\uD0A4\uBA74 \uD074\uB9AC\uC5B4\uD569\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[1].explain
-      value: "\uD770\uC0C9 \uD1B1\uB2C8\uBC14\uD034\uB294 \uB4DC\uB798\uADF8 \uC564
-        \uB4DC\uB86D\uC73C\uB85C \uC62E\uAE38 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uD68C\uC804\uD558\uACE0
+      value: "\uD770\uC0C9 \uD1B1\uB2C8\uBC14\uD034\uB294 \uD68C\uC804\uD558\uACE0
         \uC788\uB294 \uD1B1\uB2C8 \uC606\uC5D0 \uB0B4\uB824\uB450\uBA74 \uB3D9\uB825\uC744
         \uC804\uB2EC\uBC1B\uC2B5\uB2C8\uB2E4. "
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[2].explain
-      value: "\uD074\uB9AC\uC5B4 \uC870\uAC74\uC5D0 \uB9DE\uAC8C \uD770 \uD1B1\uB2C8\uBC14\uD034\uB85C
-        \uB3D9\uB825\uC744 \uC804\uB2EC\uC2DC\uCF1C \uAC80\uC740 \uD1B1\uB2C8\uB97C
-        \uD68C\uC804\uC2DC\uD0B5\uC2DC\uB2E4. \uC11C\uB85C \uB9DE\uBB3C\uB9AC\uB294
-        \uD1B1\uB2C8\uBC14\uD034\uB294 \uBC18\uB300 \uBC29\uD5A5\uC73C\uB85C \uD68C\uC804\uD569\uB2C8\uB2E4."
+      value: "\uC11C\uB85C \uB9DE\uBB3C\uB9AC\uB294 \uD1B1\uB2C8\uBC14\uD034\uB294
+        \uBC18\uB300 \uBC29\uD5A5\uC73C\uB85C \uD68C\uC804\uD569\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[3].explain
       value: "\uD1B1\uB2C8\uBC14\uD034 \uC0C1\uB2E8\uC5D0 \uC801\uD78C \uC22B\uC790\uB294
-        \uD1B1\uB2C8\uBC14\uD034 \uC774\uBE68 \uC218\uC785\uB2C8\uB2E4."
+        \uD1B1\uB2C8\uC218\uC785\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[4].explain
@@ -24722,26 +24777,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[6].explain
-      value: "\uAC80\uC740 \uD1B1\uB2C8\uBC14\uD034 \uBC11\uC5D0 \uC18D\uB3C4\uD310\uC774
-        \uC874\uC7AC\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uAC80\uC740 \uD328\uB110\uC740
-        \uD604\uC7AC \uD68C\uC804 \uC18D\uB3C4, \uD558\uC580 \uD328\uB110\uC740 \uD574\uB2F9
-        \uD1B1\uB2C8\uBC14\uD034\uC758 \uBAA9\uD45C \uC18D\uB3C4 \uC785\uB2C8\uB2E4.
-        \uD558\uC580 \uD328\uB110\uC774 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC740 \uD1B1\uB2C8\uB294
+      value: "\uAC80\uC740 \uC601\uC5ED\uC740 \uD604\uC7AC \uD68C\uC804 \uC18D\uB3C4,\n\uD558\uC580
+        \uC601\uC5ED\uC740 \uBAA9\uD45C \uD68C\uC804 \uC18D\uB3C4 \uC785\uB2C8\uB2E4.\n\uD558\uC580
+        \uD328\uB110\uC774 \uC874\uC7AC\uD558\uC9C0 \uC54A\uC740 \uD1B1\uB2C8\uBC14\uD034\uB294
         \uC5B4\uB5A4 \uC18D\uB3C4\uB85C \uB3CC\uC544\uB3C4 \uC0C1\uAD00\uC5C6\uC2B5\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[7].explain
-      value: "\uAC19\uC740 \uB3D9\uB825\uC774\uC5B4\uB3C4 \uD1B1\uB2C8\uBC14\uD034\uC758
-        \uC774\uBE68 \uC218\uC5D0 \uB530\uB77C \uC18D\uB3C4\uAC00 \uBCC0\uD654\uD569\uB2C8\uB2E4.
-        A \uD1B1\uB2C8\uBC14\uD034 \uC18D\uB3C4 * A \uD1B1\uB2C8\uBC14\uD034 \uC774\uBE68
-        \uC218 = B \uD1B1\uB2C8\uBC14\uD034 \uC18D\uB3C4 * B \uD1B1\uB2C8\uBC14\uD034
-        \uC774\uBE68 \uC218"
+      value: "\uB3D9\uB825 = \uD68C\uC804\uC18D\uB3C4 x \uD1B1\uB2C8\uC218"
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[8].explain
-      value: "\uC18D\uB3C4\uAC00 \uD45C\uC2DC\uB418\uC9C0 \uC54A\uC740 \uD1B1\uB2C8
-        \uC704\uC5D0\uC11C \uC6B0\uD074\uB9AD\uC744 \uD558\uBA74 \uC18D\uB3C4\uACC4\uB85C
-        \uC18D\uB3C4\uB97C \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+      value: "\uC18D\uB3C4\uAC00 \uD45C\uC2DC\uB418\uC9C0 \uC54A\uC740 \uD1B1\uB2C8\uBC14\uD034\uB97C
+        \uC6B0\uD074\uB9AD \uC2DC \uC18D\uB3C4\uB97C \uD655\uC778\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[9].explain
@@ -24752,15 +24800,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[10].explain
-      value: "\uD55C \uD1B1\uB2C8 \uC704\uC5D0\uB294 \uD558\uB098\uC758 \uD1B1\uB2C8\uB9CC
-        \uC62C\uB9B4 \uC218 \uC788\uC2B5\uB2C8\uB2E4.  \uC62C\uB824\uC9C4 \uD1B1\uB2C8\uB294
-        \uB2E4\uB978 \uD328\uD134\uC73C\uB85C \uB098\uD0C0\uB0A9\uB2C8\uB2E4."
+      value: "\uD55C \uD1B1\uB2C8\uBC14\uD034 \uC704\uC5D0\uB294 \uD558\uB098\uC758
+        \uD1B1\uB2C8\uBC14\uD034\uB9CC \uC62C\uB9B4 \uC218 \uC788\uC2B5\uB2C8\uB2E4. "
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[11].explain
       value: "\uD68C\uC804\uCD95 \uACB9\uCE58\uAE30\uB294 \uCD5C\uB300 2\uBC88\uAE4C\uC9C0
         \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
       objectReference: {fileID: 0}
+    - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: memoObj
+      value: 
+      objectReference: {fileID: 1966438859}
     - target: {fileID: 5703343809681742343, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_IsActive
       value: 0

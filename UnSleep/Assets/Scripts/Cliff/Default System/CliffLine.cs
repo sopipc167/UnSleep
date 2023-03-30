@@ -28,7 +28,7 @@ public class CliffLine : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if (isStart)
+        if (isStart && !ExceptUIClick.isActive)
         {
             mousePos = mainCamera.ScreenToWorldPoint(Input.mousePosition);
             mouseDir = mousePos - targetPos.position;
