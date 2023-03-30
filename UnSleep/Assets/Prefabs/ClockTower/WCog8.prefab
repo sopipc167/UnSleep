@@ -133,7 +133,7 @@ MonoBehaviour:
   state: 2
   rotation: 0
   speed: 0
-  size: 6
+  size: 8
   level: 0
 --- !u!58 &692039515414652240
 CircleCollider2D:
