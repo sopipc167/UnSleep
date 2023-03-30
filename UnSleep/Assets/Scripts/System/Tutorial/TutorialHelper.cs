@@ -16,34 +16,34 @@ public class TutorialHelper : MonoBehaviour
 
     [Header("퍼즐의 정보를 제한할 개수")]
     public TutorialInfo[] info;
-    private TutorialInfo currentInfo;
+    private static TutorialInfo currentInfo;
     private int showInfo = 0;
 
     private PuzzleTutorial puzzle;
 
-    private void Awake()
-    {
-        puzzle = GetComponent<PuzzleTutorial>();
-    }
 
     void Start()
     {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log(Dialogue_Proceeder.instance.CurrentEpiID);
-        Debug.Log(ID);
+        puzzle = GetComponent<PuzzleTutorial>();
+        SetInfo();
+    }
 
+    private void SetInfo()
+    {
         // 재시작으로 인한 씬이동은 무시한다.
         if (ID == SceneManager.GetActiveScene().buildIndex * Dialogue_Proceeder.instance.CurrentEpiID) return;
         ID = SceneManager.GetActiveScene().buildIndex * Dialogue_Proceeder.instance.CurrentEpiID;
 
-        Debug.Log(ID);
-
         // 만약 새로운 정보가 추가됐다면, 퍼즐 처음부터 정보를 띄운다.
         int idx = 0;
+        bool falg = true;
         foreach (var item in info)
         {
+            if (Dialogue_Proceeder.instance.CurrentEpiID < item.id) break;
+
             if (Dialogue_Proceeder.instance.CurrentEpiID == item.id)
             {
+                falg = false;
                 currentInfo = item;
                 int newPage = (currentInfo.maxInfo + 2) / 3;
                 int curPage = (showInfo + 2) / 3;
@@ -67,18 +67,19 @@ public class TutorialHelper : MonoBehaviour
             }
             ++idx;
         }
-    }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (falg)
         {
-            HowToPuzzle();
+            currentInfo = info[idx - 1];
         }
+
     }
 
     public void HowToPuzzle()
     {
+        if (currentInfo == null)
+        {
+            SetInfo();
+        }
         puzzle.SetTutorial(currentInfo.maxInfo, 1);
     }
 }

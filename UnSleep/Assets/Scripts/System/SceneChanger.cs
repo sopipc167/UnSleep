@@ -39,17 +39,30 @@ public class SceneChanger
             case SceneType.Volcano: return "Volcano";
             case SceneType.Dialogue: return "DialogueTest";
             case SceneType.Mental: return "Mental_World_Map";
+
             case SceneType.ClockTower: return "ClockTower";
             case SceneType.Diary: return "Diary";
             case SceneType.Lake: return "Lake";
             case SceneType.Cave: return "Cave";
             case SceneType.Cliff: return "Cliff";
+
             case SceneType.Title: return "Title";
             case SceneType.Prologue: return "Prologue";
             case SceneType.Nightmare: return "Nightmare";
             case SceneType.Nightmare27: return "Nightmare_27";
             default: return string.Empty;
         }
+    }
+
+    public static bool IsPuzleScene()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName.Equals("Volcano") ||
+            sceneName.Equals("ClockTower") ||
+            sceneName.Equals("Lake") ||
+            sceneName.Equals("Cave") ||
+            sceneName.Equals("Cliff")) return true;
+        return false;
     }
 
     public static void RestartScene()
