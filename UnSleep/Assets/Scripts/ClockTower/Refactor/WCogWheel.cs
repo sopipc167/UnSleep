@@ -10,6 +10,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     private Vector3 clickOffset;
     private const float lerpSpeed = 10f;
+    private const float minYPosition = -4.8f;
 
     private void Awake()
     {
@@ -26,7 +27,8 @@ public class WCogWheel : MonoBehaviour, CogWheel
     private void OnMouseDown()
     {
         clickOffset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        if (info.state == CogState.INACTIVE) info.state = CogState.IDLE;
+        if (info.state == CogState.INACTIVE || info.state == CogState.READY)
+            changeState(CogState.IDLE);
     }
 
     private void OnMouseDrag()
@@ -34,7 +36,12 @@ public class WCogWheel : MonoBehaviour, CogWheel
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - clickOffset;
         stop();
         actionDrag(detect());
-     
+        if (transform.position.y <= minYPosition)
+        {
+            changeState(CogState.READY);
+            return;
+        }
+
     }
 
     private void OnMouseUp()
@@ -54,6 +61,9 @@ public class WCogWheel : MonoBehaviour, CogWheel
                 break;
             case CogState.IDLE:
                 transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1f, 1f), Time.deltaTime * lerpSpeed); 
+                break;
+            case CogState.READY:
+                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.5f, 0.5f), Time.deltaTime * lerpSpeed);
                 break;
         }
 
@@ -101,6 +111,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
     private void actionUp(CogWheel[] cogWheels)
     {
         if (cogWheels.isEmtpy()) return;
+        if (info.state == CogState.READY) return;
 
         if (!rotationValidation(cogWheels))
         {
@@ -108,9 +119,9 @@ public class WCogWheel : MonoBehaviour, CogWheel
             return;
         }
 
-            spriteManager.setColor(Color.white);
+        spriteManager.setColor(Color.white);
 
-
+        Debug.Log(CogWheelUtil.getCogAction(this, cogWheels[0]));
         switch (CogWheelUtil.getCogAction(this, cogWheels[0]))
         {
             case CogAction.ADJOIN:
@@ -146,8 +157,9 @@ public class WCogWheel : MonoBehaviour, CogWheel
     public void givePower(CogWheel other)
     {
         CogWheelInfo otherInfo = other.getCogWheelInfo();
-        if (info.state == CogState.INACTIVE || info.state == CogState.IDLE || 
-            otherInfo.state == CogState.ROTATE || otherInfo.state == CogState.OVERLAP) return;
+        if (info.state == CogState.INACTIVE || info.state == CogState.IDLE || info.state == CogState.READY ||
+            otherInfo.state == CogState.ROTATE || otherInfo.state == CogState.OVERLAP  || otherInfo.state == CogState.READY) 
+            return;
 
         other.receive(info, transform.position.z);
     }
@@ -155,8 +167,9 @@ public class WCogWheel : MonoBehaviour, CogWheel
     public void getPower(CogWheel other)
     {
         CogWheelInfo otherInfo = other.getCogWheelInfo();
-        if (info.state == CogState.ROTATE || info.state == CogState.OVERLAP || 
-            otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE) return;
+        if (info.state == CogState.ROTATE || info.state == CogState.OVERLAP || info.state == CogState.READY ||
+            otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE || otherInfo.state == CogState.READY) 
+            return;
 
         receive(otherInfo, other.getPosition().z);
     }
@@ -171,8 +184,9 @@ public class WCogWheel : MonoBehaviour, CogWheel
     public void overlap(WCogWheel other) // 내가 other 위에 꽂힌다
     {
         CogWheelInfo otherInfo = other.getCogWheelInfo();
-        if (info.state == CogState.ROTATE || info.state == CogState.OVERLAP ||
-            otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE) return;
+        if (info.state == CogState.ROTATE || info.state == CogState.OVERLAP || info.state == CogState.READY ||
+            otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE || otherInfo.state == CogState.READY)
+            return;
 
         Vector3 parentPosition = other.getPosition();
         other.setOverlapChild(this);
@@ -208,7 +222,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
         List<CogWheel> cogWheels = new List<CogWheel>();
         cogWheels.AddRange(FindObjectsOfType<BCogWheel>());
         cogWheels.AddRange(FindObjectsOfType<WCogWheel>());
-        return CogWheelUtil.sortByDistance(this, cogWheels.ToArray().Filter(cw => cw.getCogWheelInfo().state != CogState.INACTIVE));
+        return CogWheelUtil.sortByDistance(this, cogWheels.ToArray().Filter(cw => cw.getCogWheelInfo().state != CogState.INACTIVE && cw.getCogWheelInfo().state != CogState.READY));
     }
     public bool isAlone()
     {
@@ -239,6 +253,11 @@ public class WCogWheel : MonoBehaviour, CogWheel
                 info.update(CogState.ROTATE, otherInfo);
                 spriteManager.setSprite(info.level);
                 spriteManager.setColor(Color.white);
+                break;
+            case CogState.READY:
+                info.update(newState);
+                spriteManager.setSprite(0);
+                spriteManager.setColor(Color.gray);
                 break;
         }
 
