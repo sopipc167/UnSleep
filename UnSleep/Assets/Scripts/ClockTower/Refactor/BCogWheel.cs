@@ -22,6 +22,10 @@ public class BCogWheel : MonoBehaviour, CogWheel
                     return (int)info.speed == (int)bInfo.speed;
                 case BCogWheelType.ROTASPEED:
                     return info.rotation == bInfo.rotation && (int)info.speed == (int)bInfo.speed;
+                case BCogWheelType.DOWNSPEED:
+                    return info.speed <= bInfo.speed && info.speed > 0f;
+                case BCogWheelType.UPSPEED:
+                    return info.speed >= bInfo.speed;
             }
             return false;
         }
@@ -150,5 +154,5 @@ public class BCogWheelInfo
 
 public enum BCogWheelType
 {
-    START, ROTATION, SPEED, ROTASPEED
+    START, ROTATION, SPEED, ROTASPEED, UPSPEED, DOWNSPEED
 }
