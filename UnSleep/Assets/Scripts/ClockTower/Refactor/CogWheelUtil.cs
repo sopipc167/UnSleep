@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CogWheelUtil
 {
-    private const float offset = 0.12f;
+    private const float offset = 0.15f;
 
     public static CogAction getCogAction(CogWheel root, CogWheel other)
     {
