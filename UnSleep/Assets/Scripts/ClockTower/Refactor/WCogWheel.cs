@@ -11,10 +11,14 @@ public class WCogWheel : MonoBehaviour, CogWheel
     private Vector3 clickOffset;
     private const float lerpSpeed = 10f;
 
+    private void Awake()
+    {
+        spriteManager = GetComponent<CogWheelSpriteManager>();
+
+    }
 
     private void Start()
     {
-        spriteManager = GetComponent<CogWheelSpriteManager>();
         info.radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
         actionUp(detect());
     }
@@ -85,15 +89,12 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
         if (!rotationValidation(cogWheels))
         {
-            if (spriteManager != null)
-                spriteManager.setColor(CogAction.RESTRICT);
+            spriteManager.setColor(CogAction.RESTRICT);
             return;
         }
 
         CogAction nearestCogAction = CogWheelUtil.getCogAction(this, cogWheels[0]);
-
-        if (spriteManager != null)
-            spriteManager.setColor(nearestCogAction);
+        spriteManager.setColor(nearestCogAction);
     }
 
 
@@ -107,7 +108,6 @@ public class WCogWheel : MonoBehaviour, CogWheel
             return;
         }
 
-        if (spriteManager != null)
             spriteManager.setColor(Color.white);
 
 
@@ -149,15 +149,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
         if (info.state == CogState.INACTIVE || info.state == CogState.IDLE || 
             otherInfo.state == CogState.ROTATE || otherInfo.state == CogState.OVERLAP) return;
 
-        switch (info.rotation)
-        {
-            case CogRotation.CLOCKWISE:
-                other.receive(CogRotation.COUNTERCLOCKWISE, (info.speed * info.size) / otherInfo.size, info.level, transform.position.z);
-                break;
-            case CogRotation.COUNTERCLOCKWISE:
-                other.receive(CogRotation.CLOCKWISE, (info.speed * info.size) / otherInfo.size, info.level, transform.position.z);
-                break;
-        }
+        other.receive(info, transform.position.z);
     }
 
     public void getPower(CogWheel other)
@@ -166,21 +158,13 @@ public class WCogWheel : MonoBehaviour, CogWheel
         if (info.state == CogState.ROTATE || info.state == CogState.OVERLAP || 
             otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE) return;
 
-        switch (otherInfo.rotation)
-        {
-            case CogRotation.CLOCKWISE:
-                receive(CogRotation.COUNTERCLOCKWISE, (otherInfo.speed * otherInfo.size) / info.size, otherInfo.level, other.getPosition().z);
-                break;
-            case CogRotation.COUNTERCLOCKWISE:
-                receive(CogRotation.CLOCKWISE, (otherInfo.speed * otherInfo.size) / info.size, otherInfo.level, other.getPosition().z);
-                break;
-        }
+        receive(otherInfo, other.getPosition().z);
     }
 
 
-    public void receive(CogRotation r, float s, int l, float z)
+    public void receive(CogWheelInfo otherInfo, float z)
     {
-        info.updateInfo(CogState.ROTATE, r, s, l);
+        changeState(CogState.ROTATE, otherInfo);
         transform.position = new Vector3(transform.position.x, transform.position.y, z);
     }
 
@@ -193,7 +177,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
         Vector3 parentPosition = other.getPosition();
         other.setOverlapChild(this);
         transform.position = parentPosition;
-        receive(otherInfo.rotation, otherInfo.speed, otherInfo.level + 1, parentPosition.z + (info.size <= otherInfo.size ? -1f : 1f));
+        receive(otherInfo, parentPosition.z + (info.size <= otherInfo.size ? -1f : 1f));
     }
 
     public void setOverlapChild(CogWheel child)
@@ -237,21 +221,22 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     }
 
-    public void changeState(CogState newState)
+    public void changeState(CogState newState, CogWheelInfo otherInfo = null)
     {
         switch (newState)
         {
             case CogState.IDLE:
-                info.updateInfo(newState, CogRotation.IDLE, 0f, 0);
+                info.update(newState);
                 spriteManager.setSprite(0);
                 spriteManager.setColor(Color.white);       
                 break;
             case CogState.INACTIVE:
-                info.updateInfo(newState, CogRotation.IDLE, 0f, 0);
+                info.update(newState);
                 spriteManager.setSprite(0);
                 spriteManager.setColor(Color.gray);
                 break;
             case CogState.ROTATE:
+                info.update(CogState.ROTATE, otherInfo);
                 spriteManager.setSprite(info.level);
                 spriteManager.setColor(Color.white);
                 break;

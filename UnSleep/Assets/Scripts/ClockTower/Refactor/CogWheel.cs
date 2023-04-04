@@ -3,14 +3,14 @@ using UnityEngine;
 
 public interface CogWheel
 {
-    void givePower(CogWheel other);
+     void givePower(CogWheel other);
      void getPower(CogWheel other);
-     void receive(CogRotation r, float s, int l, float z);
+     void receive(CogWheelInfo info, float z);
      void stop();
      void idle();
      CogWheel[] detect();
      bool isAlone();
-     void changeState(CogState newState);
+     void changeState(CogState newState, CogWheelInfo otherInfo);
      bool hasOverlap();
      CogWheelInfo getCogWheelInfo();
      Vector3 getPosition();
@@ -41,16 +41,54 @@ public class CogWheelInfo
     public int level;
     public float radius;
 
-    public void updateInfo(CogState cs, CogRotation cr, float sp, int l)
+    private CogRotation reverse(CogRotation cr)
     {
-        state = cs;
-        rotation = cr;
-        speed = sp;
-        level = l;
+        switch (cr)
+        {
+            case CogRotation.CLOCKWISE:
+                return CogRotation.COUNTERCLOCKWISE;
+            case CogRotation.COUNTERCLOCKWISE:
+                return CogRotation.CLOCKWISE;
+            default:
+                 return CogRotation.IDLE;
+        }
     }
 
-    public void updateInfo(CogState cs)
+    public void update(CogState newState, CogWheelInfo otherInfo = null)
     {
-        state = cs;
+        switch (newState)
+        {
+            case CogState.ROTATE:
+                state = newState;
+                rotation = reverse(otherInfo.rotation);
+                speed = (otherInfo.speed * otherInfo.size) / size;
+                level = otherInfo.level;
+                break;
+            case CogState.IDLE:
+                state = newState;
+                rotation = CogRotation.IDLE;
+                speed = 0f;
+                level = 0;
+                break;
+            case CogState.INACTIVE:
+                state = newState;
+                rotation = CogRotation.IDLE;
+                speed = 0f;
+                level = 0;
+                break;
+            case CogState.READY:
+                state = newState;
+                rotation = CogRotation.IDLE;
+                speed = 0f;
+                level = 0;
+                break;
+            case CogState.OVERLAP:
+                state = newState;
+                rotation = otherInfo.rotation;
+                speed = otherInfo.speed;
+                level = otherInfo.level + 1;
+                break;
+        }
     }
+
 } 

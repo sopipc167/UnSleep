@@ -35,6 +35,7 @@ public class BCogWheel : MonoBehaviour, CogWheel
             info.state = CogState.ROTATE;
             info.speed = bInfo.speed;
             info.rotation = bInfo.rotation;
+            info.level = 1;
         }
     
     }
@@ -62,15 +63,7 @@ public class BCogWheel : MonoBehaviour, CogWheel
         if (info.state == CogState.INACTIVE || info.state == CogState.IDLE ||
             otherInfo.state == CogState.ROTATE || otherInfo.state == CogState.OVERLAP) return;
 
-        switch (info.rotation)
-        {
-            case CogRotation.CLOCKWISE:
-                other.receive(CogRotation.COUNTERCLOCKWISE, (info.speed * info.size) / otherInfo.size, info.level, transform.position.z);
-                break;
-            case CogRotation.COUNTERCLOCKWISE:
-                other.receive(CogRotation.CLOCKWISE, (info.speed * info.size) / otherInfo.size, info.level, transform.position.z);
-                break;
-        }
+        other.receive(info, transform.position.z);
     }
 
     public void getPower(CogWheel other)
@@ -79,26 +72,17 @@ public class BCogWheel : MonoBehaviour, CogWheel
         if (info.state == CogState.ROTATE || info.state == CogState.OVERLAP ||
             otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE) return;
 
-        switch (otherInfo.rotation)
-        {
-            case CogRotation.CLOCKWISE:
-                receive(CogRotation.COUNTERCLOCKWISE, (otherInfo.speed * otherInfo.size) / info.size, otherInfo.level, other.getPosition().z);
-                break;
-            case CogRotation.COUNTERCLOCKWISE:
-                receive(CogRotation.CLOCKWISE, (otherInfo.speed * otherInfo.size) / info.size, otherInfo.level, other.getPosition().z);
-                break;
-        }
+        receive(otherInfo, other.getPosition().z);
     }
 
-    public void receive(CogRotation r, float s, int l, float z)
+
+    public void receive(CogWheelInfo otherInfo, float z)
     {
-        info.rotation = r;
-        info.speed = s;
-        info.level = l;
-        changeState(CogState.ROTATE);
-        if (speedPanel != null) speedPanel.updateBlackSpeedText(s);
+        changeState(CogState.ROTATE, otherInfo);
         transform.position = new Vector3(transform.position.x, transform.position.y, z);
+        if (speedPanel != null) speedPanel.updateBlackSpeedText(info.speed);
     }
+
 
     public void stop()
     {
@@ -134,22 +118,9 @@ public class BCogWheel : MonoBehaviour, CogWheel
 
     }
 
-    public void changeState(CogState newState)
+    public void changeState(CogState newState, CogWheelInfo otherInfo = null)
     {
-        info.state = newState;
-        switch (newState)
-        {
-            case CogState.IDLE:
-                info.rotation = CogRotation.IDLE;
-                info.speed = 0f;
-                info.level = 0;
-                break;
-            case CogState.INACTIVE:
-                info.rotation = CogRotation.IDLE;
-                info.speed = 0f;
-                info.level = 0;
-                break;
-        }
+        info.update(newState, otherInfo);
     }
 
     public bool hasOverlap()
