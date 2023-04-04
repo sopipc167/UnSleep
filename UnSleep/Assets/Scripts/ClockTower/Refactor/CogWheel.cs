@@ -10,7 +10,7 @@ public interface CogWheel
      void idle();
      CogWheel[] detect();
      bool isAlone();
-     void changeState(CogState newState, CogWheelInfo otherInfo);
+     void changeState(CogState newState, CogWheelInfo otherInfo, CogWheel cw);
      bool hasOverlap();
      CogWheelInfo getCogWheelInfo();
      Vector3 getPosition();

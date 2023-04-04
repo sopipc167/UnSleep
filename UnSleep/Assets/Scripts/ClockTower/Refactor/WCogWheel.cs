@@ -15,13 +15,12 @@ public class WCogWheel : MonoBehaviour, CogWheel
     private void Awake()
     {
         spriteManager = GetComponent<CogWheelSpriteManager>();
-
     }
 
     private void Start()
     {
         info.radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
-        actionUp(detect());
+        spriteManager.setSprite(info.level);
     }
 
     private void OnMouseDown()
@@ -64,6 +63,9 @@ public class WCogWheel : MonoBehaviour, CogWheel
                 break;
             case CogState.READY:
                 transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.5f, 0.5f), Time.deltaTime * lerpSpeed);
+                break;
+            case CogState.OVERLAP:
+                transform.Rotate(new Vector3(0f, 0f, info.speed * (int)info.rotation * 0.01f));
                 break;
         }
 
@@ -121,7 +123,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
         spriteManager.setColor(Color.white);
 
-        Debug.Log(CogWheelUtil.getCogAction(this, cogWheels[0]));
+        CogWheelUtil.debugCogWheels(cogWheels);
         switch (CogWheelUtil.getCogAction(this, cogWheels[0]))
         {
             case CogAction.ADJOIN:
@@ -191,7 +193,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
         Vector3 parentPosition = other.getPosition();
         other.setOverlapChild(this);
         transform.position = parentPosition;
-        receive(otherInfo, parentPosition.z + (info.size <= otherInfo.size ? -1f : 1f));
+        changeState(CogState.OVERLAP, otherInfo, other);
     }
 
     public void setOverlapChild(CogWheel child)
@@ -235,7 +237,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     }
 
-    public void changeState(CogState newState, CogWheelInfo otherInfo = null)
+    public void changeState(CogState newState, CogWheelInfo otherInfo = null, CogWheel cw = null)
     {
         switch (newState)
         {
@@ -259,6 +261,13 @@ public class WCogWheel : MonoBehaviour, CogWheel
                 spriteManager.setSprite(0);
                 spriteManager.setColor(Color.gray);
                 break;
+            case CogState.OVERLAP:
+                info.update(newState, otherInfo);
+                spriteManager.setSprite(info.level);
+                spriteManager.setColor(Color.white);
+                float z = cw.getPosition().z + (info.size <= otherInfo.size ? -1f : 1f);
+                transform.position = new Vector3(transform.position.x, transform.position.y, z);
+                break;
         }
 
     }
@@ -271,7 +280,6 @@ public class WCogWheel : MonoBehaviour, CogWheel
     {
         return transform.position;
     }
-
 
     public CogWheelInfo getCogWheelInfo()
     {

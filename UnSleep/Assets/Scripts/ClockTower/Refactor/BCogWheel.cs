@@ -118,7 +118,7 @@ public class BCogWheel : MonoBehaviour, CogWheel
 
     }
 
-    public void changeState(CogState newState, CogWheelInfo otherInfo = null)
+    public void changeState(CogState newState, CogWheelInfo otherInfo = null, CogWheel cw = null)
     {
         info.update(newState, otherInfo);
     }

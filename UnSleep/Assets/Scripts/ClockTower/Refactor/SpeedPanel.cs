@@ -8,6 +8,12 @@ public class SpeedPanel : MonoBehaviour
     public TextMesh blackSpeedText;
     public TextMesh whiteSpeedText;
 
+    private void Start()
+    {
+        cogWheel.setSpeedPanel(this);
+        whiteSpeedText.text = ((int)cogWheel.bInfo.speed).ToString();
+    }
+
     private void OnEnable()
     {
         cogWheel.setSpeedPanel(this);
