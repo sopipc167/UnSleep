@@ -7,6 +7,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
     public CogWheelInfo info;
     protected CogWheelSpriteManager spriteManager;
     private CogWheel overlapChild = null;
+    private List<CogWheel> chain = new List<CogWheel>();
 
     private Vector3 clickOffset;
     private const float lerpSpeed = 10f;
@@ -163,6 +164,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
             otherInfo.state == CogState.ROTATE || otherInfo.state == CogState.OVERLAP  || otherInfo.state == CogState.READY) 
             return;
 
+        addChain(other);
         other.receive(info, transform.position.z);
     }
 
@@ -173,9 +175,14 @@ public class WCogWheel : MonoBehaviour, CogWheel
             otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE || otherInfo.state == CogState.READY) 
             return;
 
+        other.addChain(this);
         receive(otherInfo, other.getPosition().z);
     }
 
+    public void addChain(CogWheel cogWheel)
+    {
+        chain.Add(cogWheel);
+    }
 
     public void receive(CogWheelInfo otherInfo, float z)
     {
@@ -205,6 +212,11 @@ public class WCogWheel : MonoBehaviour, CogWheel
     {
         if (info.state == CogState.INACTIVE) return;
 
+        foreach (CogWheel cw in chain)
+        {
+            cw.stop();
+        }
+        chain.Clear();
         changeState(CogState.IDLE);
     }
 

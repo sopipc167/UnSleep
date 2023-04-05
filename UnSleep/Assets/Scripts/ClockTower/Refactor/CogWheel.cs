@@ -3,17 +3,18 @@ using UnityEngine;
 
 public interface CogWheel
 {
-     void givePower(CogWheel other);
-     void getPower(CogWheel other);
-     void receive(CogWheelInfo info, float z);
-     void stop();
-     void idle();
-     CogWheel[] detect();
-     bool isAlone();
-     void changeState(CogState newState, CogWheelInfo otherInfo, CogWheel cw);
-     bool hasOverlap();
-     CogWheelInfo getCogWheelInfo();
-     Vector3 getPosition();
+    void givePower(CogWheel other);
+    void getPower(CogWheel other);
+    void receive(CogWheelInfo info, float z);
+    void stop();
+    void idle();
+    CogWheel[] detect();
+    bool isAlone();
+    void changeState(CogState newState, CogWheelInfo otherInfo, CogWheel cw);
+    bool hasOverlap();
+    CogWheelInfo getCogWheelInfo();
+    Vector3 getPosition();
+    void addChain(CogWheel cogWheel);
 }
 
 public enum CogRotation

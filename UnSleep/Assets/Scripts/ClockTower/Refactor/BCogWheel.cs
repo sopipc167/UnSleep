@@ -7,6 +7,7 @@ public class BCogWheel : MonoBehaviour, CogWheel
     public CogWheelInfo info;
     public BCogWheelInfo bInfo;
     private SpeedPanel speedPanel = null;
+    private List<CogWheel> chain = new List<CogWheel>();
 
     public bool satisfy
     {
@@ -67,6 +68,7 @@ public class BCogWheel : MonoBehaviour, CogWheel
         if (info.state == CogState.INACTIVE || info.state == CogState.IDLE ||
             otherInfo.state == CogState.ROTATE || otherInfo.state == CogState.OVERLAP) return;
 
+        addChain(other);
         other.receive(info, transform.position.z);
     }
 
@@ -76,7 +78,13 @@ public class BCogWheel : MonoBehaviour, CogWheel
         if (info.state == CogState.ROTATE || info.state == CogState.OVERLAP ||
             otherInfo.state == CogState.INACTIVE || otherInfo.state == CogState.IDLE) return;
 
+        other.addChain(this);
         receive(otherInfo, other.getPosition().z);
+    }
+
+    public void addChain(CogWheel cogWheel)
+    {
+        chain.Add(cogWheel);
     }
 
 
@@ -95,6 +103,12 @@ public class BCogWheel : MonoBehaviour, CogWheel
         info.rotation = CogRotation.IDLE;
         info.speed = 0f;
         info.state = CogState.IDLE;
+
+        foreach (CogWheel cw in chain)
+        {
+            cw.stop();
+        }
+        chain.Clear();
         if (speedPanel != null) speedPanel.updateBlackSpeedText(0f);
     }
 
