@@ -15,7 +15,7 @@ public class CogWheelSpriteManager : MonoBehaviour
     public void setSprite(int level)
     {
         if (level > 0)
-            spriteRender.sprite = sprites[level % (sprites.Length) - 1];
+            spriteRender.sprite = sprites[(level - 1) % sprites.Length];
         else
             spriteRender.sprite = defaultSprite;
     }

@@ -57,13 +57,13 @@ public class WCogWheel : MonoBehaviour, CogWheel
                 transform.Rotate(new Vector3(0f, 0f, info.speed * (int)info.rotation * 0.01f)); 
                 break;
             case CogState.INACTIVE: 
-                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.5f, 0.5f), Time.deltaTime * lerpSpeed); 
+                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.8f, 0.8f), Time.deltaTime * lerpSpeed); 
                 break;
             case CogState.IDLE:
                 transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(1f, 1f), Time.deltaTime * lerpSpeed); 
                 break;
             case CogState.READY:
-                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.5f, 0.5f), Time.deltaTime * lerpSpeed);
+                transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.8f, 0.8f), Time.deltaTime * lerpSpeed);
                 break;
             case CogState.OVERLAP:
                 transform.Rotate(new Vector3(0f, 0f, info.speed * (int)info.rotation * 0.01f));
