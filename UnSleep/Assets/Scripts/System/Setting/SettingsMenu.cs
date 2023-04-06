@@ -24,6 +24,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void Save()
     {
+        if (data == null) return;
         data.volume_master = volume[0].value;
         data.volume_bgm = volume[1].value;
         data.volume_se = volume[2].value;

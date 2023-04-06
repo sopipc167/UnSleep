@@ -19,7 +19,6 @@ public class DiaInterInfo : MonoBehaviour
 
     //7세
     public bool isAuto;
-    public bool isMany;
     public bool isClick;
     public SpriteRenderer sprite;
     public DiaEvent DE;

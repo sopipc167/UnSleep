@@ -23,7 +23,7 @@ public class SelectManager : MonoBehaviour
 
     public bool ChangeName(CharacterType type)
     {
-        manager.currentType = type;
+        RelationshipManager.CurrentType = type;
 
         textParent.SetActive(true);
         switch (type)
@@ -43,7 +43,7 @@ public class SelectManager : MonoBehaviour
             case CharacterType.GF:
                 if (manager.IsClear(type))
                 {
-                    currentText.text = "오빠.. 나 무서워.. 여기 어디야? 저쪽에서 빛이 난 것 같았는데..";
+                    currentText.text = "오빠.. 나 무서워.. 여기 어디야?\n저쪽에서 빛이 난 것 같았는데...";
                     return false;
                 }
                 else
@@ -55,7 +55,7 @@ public class SelectManager : MonoBehaviour
             case CharacterType.Friends:
                 if (manager.IsClear(type))
                 {
-                    currentText.text = "뭐야, 도문아! 여기 갇혀있는거야? 우리 함께 여기를 탈출하자! 아까 저기서 열쇠를 주웠어!";
+                    currentText.text = "뭐야, 도문아! 여기 갇혀있는거야?\n우리 함께 여기를 탈출하자! 아까 저기서 열쇠를 주웠어!";
                     return false;
                 }
                 else

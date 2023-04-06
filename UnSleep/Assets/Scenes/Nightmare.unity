@@ -768,7 +768,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -990,7 +989,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -1001,7 +999,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 121830714}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -1071,7 +1069,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 130647443}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.34, y: -0.34000003, z: 0}
+  m_LocalPosition: {x: 18.34, y: -0.32, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 1734286252}
@@ -1212,9 +1210,8 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
-  isClick: 0
-  sprite: {fileID: 0}
+  isClick: 1
+  sprite: {fileID: 1727032690}
   DE: {fileID: 349265052}
 --- !u!1971053207 &130647449
 SpriteShapeRenderer:
@@ -1681,13 +1678,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: ea020000
-  OnlyOnce: 01
+  Obj_Diaid: ea020000eb020000ec020000
+  OnlyOnce: 010101
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -2068,12 +2064,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: d7020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1270002492}
   DE: {fileID: 349265052}
@@ -2454,12 +2449,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: d1020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -2841,9 +2835,8 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
-  isClick: 0
-  sprite: {fileID: 0}
+  isClick: 1
+  sprite: {fileID: 67136408}
   DE: {fileID: 349265052}
 --- !u!1971053207 &242347057
 SpriteShapeRenderer:
@@ -3152,12 +3145,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: d0020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1286229456}
   DE: {fileID: 349265052}
@@ -3374,12 +3366,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: d3020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -3731,7 +3722,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -3742,7 +3732,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326261263}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -4170,6 +4160,7 @@ MonoBehaviour:
   - {fileID: 329786780}
   - {fileID: 429419699}
   - {fileID: 1134524645}
+  - {fileID: 1231995664}
   Dia:
   - {fileID: 791096679}
   - {fileID: 115871034}
@@ -4212,8 +4203,8 @@ MonoBehaviour:
   - {fileID: 242347051}
   - {fileID: 130647443}
   - {fileID: 156883319}
-  - {fileID: 708140412}
-  - {fileID: 1727986054}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1460064809}
   - {fileID: 420413871}
   - {fileID: 1231995664}
@@ -4252,7 +4243,7 @@ MonoBehaviour:
   dia_p: {fileID: 436431059}
   gome: {fileID: 1985261897}
   isMini: 0
-  suprise: {fileID: 1097298030}
+  surprise: {fileID: 1097298030}
   block: {fileID: 1532460817}
   movieFrame: {fileID: 1475501925}
   cm: {fileID: 1563125561}
@@ -4269,6 +4260,7 @@ MonoBehaviour:
   ending_bg: {fileID: 1136539227}
   eye: {fileID: 588761736}
   isMovie: 0
+  isUnperform: 0
   effectIndex: 0
   outline: 0
 --- !u!82 &349265053
@@ -4844,7 +4836,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -5061,12 +5052,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: c6020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -5406,9 +5396,8 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
-  isClick: 0
-  sprite: {fileID: 0}
+  isClick: 1
+  sprite: {fileID: 67136408}
   DE: {fileID: 349265052}
 --- !u!1971053207 &420413877
 SpriteShapeRenderer:
@@ -5607,7 +5596,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.79071903}
+  m_Offset: {x: -1.6083317, y: 0.64441013}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5618,7 +5607,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 7.062174}
+  m_Size: {x: 4.2166634, y: 9.932432}
   m_EdgeRadius: 0
 --- !u!1 &436431052
 GameObject:
@@ -5642,7 +5631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &436431053
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5728,15 +5717,9 @@ MonoBehaviour:
   transPos: {x: 0, y: 0, z: 0}
   targetPos: {x: 0, y: 0, z: 0}
   isStop: 0
-  dropObject: {fileID: 1228403793536602347, guid: e7c456d5f08d8af4084247cbac657de5, type: 3}
-  dropStart: {fileID: 0}
-  dropPos:
-  - {fileID: 0}
   isEvent: 0
   isRoadEnd: 0
   C: {fileID: 1563125561}
-  appearObject: {fileID: 7772738060014500539, guid: 2b12c6661b4bd6c4e97110e50fce92bb, type: 3}
-  appearStart: {fileID: 0}
   isMiniGame: 0
   speed_M: 10
   isFall: 0
@@ -6746,12 +6729,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: de020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -6968,12 +6950,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: cc020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 0.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -7277,7 +7258,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
@@ -7288,7 +7268,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544983526}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -7590,7 +7570,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 590335045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 6.2, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2116037113}
@@ -7926,12 +7906,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: d4020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -8290,228 +8269,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -521}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &708140412
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 708140413}
-  - component: {fileID: 708140418}
-  - component: {fileID: 708140417}
-  - component: {fileID: 708140416}
-  - component: {fileID: 708140415}
-  - component: {fileID: 708140414}
-  m_Layer: 0
-  m_Name: 747
-  m_TagString: DiaInterCollision
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &708140413
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708140412}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.24, y: -0.9100001, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1734286252}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &708140414
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708140412}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!61 &708140415
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708140412}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.06732941, y: 2.7683039}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.2597504, y: 9.5048275}
-  m_EdgeRadius: 0
---- !u!114 &708140416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708140412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: -2, y: -2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-    - position: {x: -2, y: 2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-    - position: {x: 2, y: 2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-    - position: {x: 2, y: -2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
---- !u!114 &708140417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708140412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Obj_Diaid: eb020000
-  OnlyOnce: 01
-  Interaction_distance: 0.5
-  isChangeScene: 0
-  sceneType: 0
-  isAuto: 1
-  isMany: 0
-  isClick: 0
-  sprite: {fileID: 0}
-  DE: {fileID: 349265052}
---- !u!1971053207 &708140418
-SpriteShapeRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 708140412}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
-  m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 0}
-  m_Sprites: []
-  m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: 0}
-    m_Extent: {x: 2.0000002, y: 2, z: 0}
 --- !u!1 &722727494
 GameObject:
   m_ObjectHideFlags: 0
@@ -8870,7 +8627,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 791096679}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -8955,7 +8712,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -9468,12 +9224,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: dc020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1694780158}
   DE: {fileID: 349265052}
@@ -9695,7 +9450,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2125684930}
   DE: {fileID: 349265052}
@@ -9994,12 +9748,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: ca020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1270002492}
   DE: {fileID: 349265052}
@@ -11208,7 +10961,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -11709,7 +11461,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -12024,7 +11775,7 @@ GameObject:
   - component: {fileID: 1097298031}
   - component: {fileID: 1097298030}
   m_Layer: 5
-  m_Name: Suprise
+  m_Name: Surprise
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12252,12 +12003,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: bf020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1286229456}
   DE: {fileID: 349265052}
@@ -12268,7 +12018,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102629079}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -12378,7 +12128,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.2660275, y: 3.1942148}
+  m_Offset: {x: -5.4724026, y: 3.1942148}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -12389,7 +12139,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.7640495, y: 28.920786}
+  m_Size: {x: 17.24091, y: 28.920786}
   m_EdgeRadius: 0
 --- !u!114 &1134524649
 MonoBehaviour:
@@ -12479,7 +12229,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -13054,12 +12803,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: dd020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 172336734}
   DE: {fileID: 349265052}
@@ -13464,7 +13212,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1231995664}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.61, y: -0.74, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_Children: []
@@ -13606,7 +13354,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -14330,7 +14077,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -14341,7 +14087,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264130326}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -14704,12 +14450,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: db020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2016095713}
   DE: {fileID: 349265052}
@@ -15090,12 +14835,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: c8020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -15647,7 +15391,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -15869,7 +15612,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1286229456}
   DE: {fileID: 349265052}
@@ -16348,7 +16090,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -16622,12 +16363,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: c2020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 2
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -16849,7 +16589,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -17198,12 +16937,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: da020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1038517236}
   DE: {fileID: 349265052}
@@ -18251,12 +17989,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: d9020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 983112481}
   DE: {fileID: 349265052}
@@ -18399,7 +18136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1723612008
 Transform:
   m_ObjectHideFlags: 0
@@ -18431,7 +18168,7 @@ Transform:
   m_Father: {fileID: 1666733838}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1727986054
+--- !u!1 &1727032688
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18439,183 +18176,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1727986055}
-  - component: {fileID: 1727986060}
-  - component: {fileID: 1727986059}
-  - component: {fileID: 1727986058}
-  - component: {fileID: 1727986057}
-  - component: {fileID: 1727986056}
+  - component: {fileID: 1727032689}
+  - component: {fileID: 1727032690}
   m_Layer: 0
-  m_Name: 748
-  m_TagString: DiaInterCollision
+  m_Name: switch
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1727986055
+  m_IsActive: 1
+--- !u!4 &1727032689
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727986054}
+  m_GameObject: {fileID: 1727032688}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.24, y: -0.9100001, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalPosition: {x: 18.18, y: 1.6, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1734286252}
-  m_RootOrder: 6
+  m_Father: {fileID: 2014980295}
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1727986056
-Rigidbody2D:
-  serializedVersion: 4
+--- !u!212 &1727032690
+SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727986054}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!61 &1727986057
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727986054}
+  m_GameObject: {fileID: 1727032688}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.837965, y: -0.3142395}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.067112, y: 16.220375}
-  m_EdgeRadius: 0
---- !u!114 &1727986058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727986054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90539df1cd5704abcb25fec9f3f5f84b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Spline:
-    m_IsOpenEnded: 0
-    m_ControlPoints:
-    - position: {x: -2, y: -2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-    - position: {x: -2, y: 2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-    - position: {x: 2, y: 2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-    - position: {x: 2, y: -2, z: 0}
-      leftTangent: {x: 0, y: 0, z: 0}
-      rightTangent: {x: 0, y: 0, z: 0}
-      mode: 0
-      height: 1
-      bevelCutoff: 0
-      bevelSize: 0
-      spriteIndex: 0
-      corner: 0
-      m_CornerMode: 1
-  m_SpriteShape: {fileID: 0}
-  m_FillPixelPerUnit: 100
-  m_StretchTiling: 1
-  m_SplineDetail: 16
-  m_AdaptiveUV: 1
-  m_StretchUV: 0
-  m_WorldSpaceUV: 0
-  m_CornerAngleThreshold: 30
-  m_ColliderDetail: 16
-  m_ColliderOffset: 0
-  m_UpdateCollider: 1
-  m_OptimizeCollider: 1
-  m_OptimizeGeometry: 1
-  m_EnableTangents: 0
-  m_GeometryCached: 0
---- !u!114 &1727986059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727986054}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Obj_Diaid: ec020000
-  OnlyOnce: 01
-  Interaction_distance: 1.5
-  isChangeScene: 0
-  sceneType: 0
-  isAuto: 1
-  isMany: 0
-  isClick: 0
-  sprite: {fileID: 0}
-  DE: {fileID: 349265052}
---- !u!1971053207 &1727986060
-SpriteShapeRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1727986054}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -18624,8 +18218,7 @@ SpriteShapeRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d924db89047dfa242be679950123f92b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -18646,13 +18239,17 @@ SpriteShapeRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Color: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0}
+  m_Sprite: {fileID: 21300000, guid: 1b9095c10f13e9141a1ccd6d62c6833e, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.44, y: 0.64}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_ShapeTexture: {fileID: 0}
-  m_Sprites: []
-  m_LocalAABB:
-    m_Center: {x: 0, y: -0.00000023841858, z: 0}
-    m_Extent: {x: 2.0000002, y: 2, z: 0}
+  m_SpriteSortPoint: 0
 --- !u!1 &1729549358
 GameObject:
   m_ObjectHideFlags: 0
@@ -18767,8 +18364,6 @@ Transform:
   - {fileID: 242347052}
   - {fileID: 130647444}
   - {fileID: 156883320}
-  - {fileID: 708140413}
-  - {fileID: 1727986055}
   m_Father: {fileID: 1666733838}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -18978,7 +18573,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1328519846}
   DE: {fileID: 349265052}
@@ -18989,7 +18583,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1750923788}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -19349,7 +18943,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 141224175}
   DE: {fileID: 349265052}
@@ -19571,7 +19164,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -19829,7 +19421,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -19840,7 +19431,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838762456}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -20232,7 +19823,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -20590,13 +20180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222b284c864ae59439a6156268f9b5a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Obj_Diaid: cd020000
-  OnlyOnce: 01
+  Obj_Diaid: cd020000ce020000
+  OnlyOnce: 0101
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -20813,12 +20402,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: df020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 0
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -21219,7 +20807,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 55a0834d8cf1807478c26bd196fd1949, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -21399,6 +20987,7 @@ Transform:
   - {fileID: 2016095712}
   - {fileID: 1038517235}
   - {fileID: 983112480}
+  - {fileID: 1727032689}
   - {fileID: 2097255414}
   m_Father: {fileID: 1666733838}
   m_RootOrder: 4
@@ -21737,7 +21326,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 1270002492}
   DE: {fileID: 349265052}
@@ -21748,7 +21336,7 @@ SpriteShapeRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2025347309}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 0
@@ -21954,12 +21542,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: d6020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 1.5
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 313269962}
   DE: {fileID: 349265052}
@@ -22384,7 +21971,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2014980295}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2097255415
 MonoBehaviour:
@@ -22759,7 +22346,6 @@ MonoBehaviour:
   isChangeScene: 0
   sceneType: 0
   isAuto: 1
-  isMany: 1
   isClick: 0
   sprite: {fileID: 0}
   DE: {fileID: 349265052}
@@ -23232,12 +22818,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Obj_Diaid: c4020000
-  OnlyOnce: 01
+  OnlyOnce: 00
   Interaction_distance: 3
   isChangeScene: 0
   sceneType: 0
   isAuto: 0
-  isMany: 0
   isClick: 1
   sprite: {fileID: 2128116299}
   DE: {fileID: 349265052}
