@@ -462,7 +462,7 @@ public class DiaEvent : MonoBehaviour
         eye.transform.DOLocalMoveX(-138, 2.5f);
         yield return new WaitForSeconds(4.0f);
         fadeinout.Fade_In();
-        SceneManager.LoadScene("Diary");
+        SceneChanger.Instance.ChangeScene(SceneType.Diary);
     }
 
 
@@ -601,7 +601,7 @@ public class DiaEvent : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         PlayerPrefs.SetInt("isGameOver", 1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.Instance.RestartScene();
 
 
         //프로시더에서 완료된 대화묶음 지우기

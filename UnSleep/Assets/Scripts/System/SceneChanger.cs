@@ -23,16 +23,84 @@ public enum SceneType
     Cliff,
 }
 
-public class SceneChanger
+public class SceneChanger : MonoBehaviour
 {
-    public static void ChangeScene(SceneType type)
+    #region 싱글톤 클래스
+    private static SceneChanger instance;
+
+    public static SceneChanger Instance
     {
-        // 순서대로 세팅하긴 했는데 추후 바뀔까봐...
-        //SceneManager.LoadScene((int)type);
-        SceneManager.LoadScene(GetSceneName(type));
+        get
+        {
+            if (instance == null)
+            {
+                var obj = FindObjectOfType<SceneChanger>();
+                if (obj != null)
+                {
+                    instance = obj;
+                }
+                else
+                {
+                    SceneChanger newObj = Resources.Load<SceneChanger>("Singleton/SceneChanger");
+                    instance = Instantiate(newObj);
+                }
+            }
+            return instance;
+        }
     }
 
-    public static string GetSceneName(SceneType type)
+    private void Awake()
+    {
+        if (Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        DontDestroyOnLoad(gameObject);
+    }
+    #endregion
+
+    private SceneTransition transition;
+
+    private readonly WaitForSeconds delay = new WaitForSeconds(0.1f);
+    private WaitUntil untilTransition;
+
+    public SceneTransition Transition { get => transition; }
+    public bool IsDone { get; private set; } = false;
+
+    private void Start()
+    {
+        transition = GetComponent<SceneTransition>();
+        untilTransition = new WaitUntil(() => transition.IsDone);
+    }
+
+    public void ChangeScene(SceneType type, bool isFade = true, float fadeTime = 1.5f)
+    {
+        if (isFade)
+        {
+            IsDone = false;
+            StartCoroutine(ChangeSceneCoroutine(GetSceneName(type), fadeTime));
+        }
+        else
+        {
+            SceneManager.LoadScene(GetSceneName(type));
+        }
+    }
+
+    public void RestartScene(bool isFade = true, float fadeTime = 1.5f)
+    {
+        if (isFade)
+        {
+            IsDone = false;
+            StartCoroutine(ChangeSceneCoroutine(SceneManager.GetActiveScene().name, fadeTime));
+        }
+        else
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    public string GetSceneName(SceneType type)
     {
         switch (type)
         {
@@ -54,9 +122,10 @@ public class SceneChanger
         }
     }
 
-    public static bool IsPuzleScene()
+    public bool IsPuzleScene()
     {
         string sceneName = SceneManager.GetActiveScene().name;
+        Debug.Log(sceneName);
         if (sceneName.Equals("Volcano") ||
             sceneName.Equals("ClockTower") ||
             sceneName.Equals("Lake") ||
@@ -65,8 +134,23 @@ public class SceneChanger
         return false;
     }
 
-    public static void RestartScene()
+    private IEnumerator ChangeSceneCoroutine(string type, float fadeTime)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        transition.FadeOut(fadeTime);
+
+        // 비동기 씬 로딩
+        var scene = SceneManager.LoadSceneAsync(type);
+        scene.allowSceneActivation = false;
+        do
+        {
+            yield return delay;
+        } while (scene.progress < 0.9f);
+
+        yield return untilTransition;
+        scene.allowSceneActivation = true;
+
+        transition.FadeIn(fadeTime);
+        yield return untilTransition;
+        IsDone = true;
     }
 }

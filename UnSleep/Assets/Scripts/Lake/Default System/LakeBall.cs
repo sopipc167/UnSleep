@@ -224,7 +224,7 @@ public class LakeBall : LakeMovement
 
     public void OnClickRestart()
     {
-        SceneChanger.RestartScene();
+        SceneChanger.Instance.RestartScene();
     }
 
     public void BallUIOn()
@@ -277,7 +277,7 @@ public class LakeBall : LakeMovement
     {
         //LakeManager.currentPhase = level;
         TestLake.isOpen = false;
-        SceneChanger.RestartScene();
+        SceneChanger.Instance.RestartScene();
     }
     public void OnClickExit()
     {

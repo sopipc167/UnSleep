@@ -64135,6 +64135,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1039099938572863604, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1039099938572863604, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433536343330850910, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433536343330850910, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1433536343330850910, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2005434574587094854, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_Name
       value: Memo System
@@ -64182,6 +64202,18 @@ PrefabInstance:
     - target: {fileID: 2005434574587094855, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.b
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2005434574877642673, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_SortingOrder

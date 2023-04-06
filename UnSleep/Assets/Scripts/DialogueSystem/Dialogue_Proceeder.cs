@@ -111,32 +111,14 @@ public class Dialogue_Proceeder : MonoBehaviour
     private IEnumerator InitEpiCoroutine()
     {
         // 씬 이름 결정
-        string sceneName;
         if (CurrentEpiID == 1 || CurrentEpiID == 6)
-            sceneName = "Nightmare";
+            SceneChanger.Instance.ChangeScene(SceneType.Nightmare);
         else
-            sceneName = "DialogueTest";
+            SceneChanger.Instance.ChangeScene(SceneType.Dialogue);
 
-        // 비동기 씬 로딩
-        var scene = SceneManager.LoadSceneAsync(sceneName);
-        WaitForSeconds delay = new WaitForSeconds(0.1f);
-
-        // 씬로딩이 끝날 때까지 대기
-        scene.allowSceneActivation = false;
-        do
-        {
-            yield return delay;
-        } while (scene.progress < 0.9f);
-
-        // 씬을 켜고 모든 게임 오브젝트가 배치될 떄까지 대기
-        scene.allowSceneActivation = true;
-        do
-        {
-            yield return delay;
-        } while (scene.progress < 0.99f);
+        yield return new WaitUntil(() => SceneChanger.Instance.IsDone);
 
         // dialogueParser를 찾고 퍼즐 순서를 미리 결정
-
         dialogueParser = GameObject.FindGameObjectWithTag("GameController").GetComponent<DialogueParser>();
         PuzzleList = dialogueParser.getPuzzle(); // 파서에서 퍼즐 이름 배열을 받아옴
         foreach (var item in PuzzleList)
@@ -145,14 +127,6 @@ public class Dialogue_Proceeder : MonoBehaviour
         }
         puzzleIdx = -1;
         CurrentPuzzle = PuzzleList[++puzzleIdx]; // 첫번째 것으로 세팅
-
-
-        // 굳이 제외할 필요 있을까 싶어서 빼버림
-        //
-        // if (CurrentEpiID != 6 && CurrentEpiID != 10) //퍼즐이 없는 공포에피 제외
-        // {
-        // 
-        // }
     }
 
     public void ClearPuzzle()

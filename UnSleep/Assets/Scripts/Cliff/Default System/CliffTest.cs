@@ -17,7 +17,7 @@ public class CliffTest : MonoBehaviour
 
     public void OnClickButton(int phase)
     {
-        SceneChanger.RestartScene();
+        SceneChanger.Instance.RestartScene();
     }
 
     public void OnClickExitButton()
