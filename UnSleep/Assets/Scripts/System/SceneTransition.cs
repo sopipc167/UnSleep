@@ -16,11 +16,6 @@ public class SceneTransition : MonoBehaviour
         img = transform.GetChild(0).GetComponent<Image>();
     }
 
-    private void Update()
-    {
-        if (!IsDone && Input.GetMouseButtonDown(0)) isClicked = true;
-    }
-
     public void FadeOut(float delay = 1.5f)
     {
         IsDone = false;

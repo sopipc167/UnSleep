@@ -74,7 +74,7 @@ public class SceneChanger : MonoBehaviour
         untilTransition = new WaitUntil(() => transition.IsDone);
     }
 
-    public void ChangeScene(SceneType type, bool isFade = true, float fadeTime = 1.5f)
+    public void ChangeScene(SceneType type, bool isFade = true, float fadeTime = 1f)
     {
         if (isFade)
         {
