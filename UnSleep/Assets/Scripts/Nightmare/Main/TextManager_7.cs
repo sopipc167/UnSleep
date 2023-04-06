@@ -298,7 +298,7 @@ public class TextManager_7 : MonoBehaviour
                         {
                             dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
                             SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID + 1); //현재 에피소드 완료 저장
-                            SceneManager.LoadScene("Diary");
+                            SceneChanger.Instance.ChangeScene(SceneType.Diary);
                         }
 
                         if (DiaDic[Dia_Id].SceneNum == DiaDic[Dia_Id + 1].SceneNum) //씬 변화가 없음
@@ -1008,7 +1008,7 @@ public class TextManager_7 : MonoBehaviour
 
         dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
         dp.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
-        SceneChanger.ChangeScene(type);
+        SceneChanger.Instance.ChangeScene(type, false);
     }
 
 

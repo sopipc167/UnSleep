@@ -16,7 +16,7 @@ public class DiaryDataTester : MonoBehaviour
 
     public void reload()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneChanger.Instance.RestartScene();
     }
 
     public void revertClear()

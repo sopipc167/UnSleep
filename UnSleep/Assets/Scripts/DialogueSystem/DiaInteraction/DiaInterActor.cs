@@ -112,10 +112,6 @@ public class DiaInterActor : MonoBehaviour
 
                 return;
             }
-            else
-            {
-                Debug.Log(conditions);
-            }
         }
 
 
@@ -127,7 +123,7 @@ public class DiaInterActor : MonoBehaviour
         goToPuzzle.SetActive(true);
         SoundManager.Instance.FadeOutBGM();
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(SceneChanger.GetSceneName(sceneType));
+        SceneChanger.Instance.ChangeScene(sceneType, false);
     }
 }
 
