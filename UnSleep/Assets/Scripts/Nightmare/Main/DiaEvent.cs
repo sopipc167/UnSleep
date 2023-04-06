@@ -142,6 +142,7 @@ public class DiaEvent : MonoBehaviour
                 gome.targetPos = player.transform.position;
                 gome.isFollow = true;
                 gome.isStart = true;
+                gome.isMinigame = false;
                 player.isStop = false;
                 isFollow = true;
             }

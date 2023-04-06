@@ -12,6 +12,7 @@ public class SpriteOutline : MonoBehaviour
     public int outlineSize = 4;
     public bool isStop;
 
+    public bool isClick;
     public static SpriteOutline instance;
 
 
@@ -19,7 +20,6 @@ public class SpriteOutline : MonoBehaviour
     {
         instance = this;
     }
-
 
     public void UpdateOutline(bool outline, SpriteRenderer spriteRenderer)
     {
