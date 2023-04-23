@@ -84,8 +84,6 @@ public class CogWheelUtil
                 str += (cw as BCogWheel).gameObject.name + " ";
             }
         }
-
-        Debug.Log(str);
     }
 
     private static bool isAdjust(float edgeDist)
