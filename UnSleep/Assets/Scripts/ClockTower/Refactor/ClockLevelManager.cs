@@ -18,7 +18,7 @@ public class ClockLevelManager : MonoBehaviour
 
     private int currentStageIndex = 0;
 
-    void Start()
+    void Awake()
     {
         setLevel();
         SoundManager.Instance.PlayBGM("scifi");

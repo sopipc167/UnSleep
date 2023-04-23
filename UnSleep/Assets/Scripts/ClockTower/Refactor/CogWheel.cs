@@ -8,6 +8,7 @@ public interface CogWheel
     void receive(CogWheelInfo info, float z);
     void stop();
     void idle();
+    void reset();
     CogWheel[] detect();
     bool isAlone();
     void changeState(CogState newState, CogWheelInfo otherInfo, CogWheel cw);

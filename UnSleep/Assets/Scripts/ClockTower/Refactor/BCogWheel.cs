@@ -59,6 +59,14 @@ public class BCogWheel : MonoBehaviour, CogWheel
         }
     }
 
+    public void reset()
+    {
+        if (bInfo.type != BCogWheelType.START)
+        {
+            changeState(CogState.IDLE);
+        }
+    }
+
     public void setSpeedPanel(SpeedPanel speedPanel)
     {
         this.speedPanel = speedPanel;

@@ -10,6 +10,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
     private List<CogWheel> chain = new List<CogWheel>();
 
     private Vector3 clickOffset;
+    private Vector3 startPosition;
     private const float lerpSpeed = 10f;
     private const float minYPosition = -4.8f;
 
@@ -20,6 +21,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     private void Start()
     {
+        startPosition = transform.position;
         info.radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
         spriteManager.setSprite(info.level);
     }
@@ -72,6 +74,11 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     }
 
+    public void reset()
+    {
+        transform.position = startPosition;
+        changeState(CogState.IDLE);
+    }
 
     private bool rotationValidation(CogWheel[] cogWheels)
     {
