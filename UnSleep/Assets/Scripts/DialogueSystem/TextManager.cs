@@ -117,6 +117,7 @@ public class TextManager : MonoBehaviour
     public ObManager OM;
     public bool isMovieIn;
     public bool isMovieOut;
+    public bool isReplay;
 
     public Gome gome;
     public bool EffectEnd = true;
@@ -296,7 +297,6 @@ public class TextManager : MonoBehaviour
                             {
                                 if(con.IndexOf("Effect") != -1)
                                 {
-                                    Debug.Log("Effect");
                                     diaEvent.effectIndex = dp.CurrentDiaIndex;
                                     EffectEnd = false;
                                     DiaUI.SetActive(false);
@@ -304,7 +304,6 @@ public class TextManager : MonoBehaviour
 
                                 diaEvent.content = con;
                             }
-                            Debug.Log("con1: " + con + "Dia_id: " + Dia_Id + "CurrentDiaIndex: " + dp.CurrentDiaID);
                         }
                         
 
@@ -336,7 +335,7 @@ public class TextManager : MonoBehaviour
                             dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
                             dp.CurrentDiaIndex = 0;
                             SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID + 1); //현재 에피소드 완료 저장
-                            SceneManager.LoadScene("Diary");
+                            SceneChanger.Instance.ChangeScene(SceneType.Diary);
                         }
 
                         if (DiaDic[Dia_Id].SceneNum == DiaDic[Dia_Id + 1].SceneNum) //씬 변화가 없음
@@ -427,13 +426,20 @@ public class TextManager : MonoBehaviour
                                 }
                                 else if(con == "End")
                                 {
-                                    SceneManager.LoadScene("Diary");
+                                    SceneChanger.Instance.ChangeScene(SceneType.Diary);
                                 }
 
 
                                 // 아래 코드는 테이블 확인용 임시 코드.
                                 // 그냥 원래 스토리에서 진행되듯 넘어가는 코드입니다.
                                 // 층간 작업하실 때 지우고 쓰시면 됨.
+
+                                if (isReplay)
+                                {
+                                    Debug.Log("Dia: " + Dia_Id);
+                                    Dialogue_Proceeder.instance.RemoveCompleteCondition(Dia_Id);
+                                    isReplay = false;
+                                }
 
                                 Dia_Id++;
                                 dp.UpdateCurrentDiaID(Dia_Id);
@@ -919,6 +925,7 @@ public class TextManager : MonoBehaviour
 
     public void SetDiaInMap()
     {
+        Debug.Log("대사 시작");
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
 
@@ -1122,7 +1129,7 @@ public class TextManager : MonoBehaviour
         dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
         dp.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
         Increasediaindex = true;
-        SceneChanger.ChangeScene(type);
+        SceneChanger.Instance.ChangeScene(type, false);
     }
 
     public Dictionary<int, DialogueEvent> getDiaDic()

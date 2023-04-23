@@ -579,6 +579,14 @@ PrefabInstance:
       propertyPath: info.Array.data[0].maxInfo
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[1].id
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1473574901309202655, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: info.Array.data[1].maxInfo
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5703343808980061984, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_RenderMode
       value: 0
@@ -589,7 +597,7 @@ PrefabInstance:
       objectReference: {fileID: 1584822343}
     - target: {fileID: 5703343808980061989, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809091186848, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_BackGroundColor.r
@@ -614,14 +622,14 @@ PrefabInstance:
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[0].explain
       value: "\uD78C\uD2B8\uB97C \uB4A4\uCAD3\uC544 \uB3D9\uAD74 \uAE4A\uC219\uD55C
-        \uACF3\uC5D0 \uB3C4\uB2EC\uD558\uB294 \uD37C\uC990\uC785\uB2C8\uB2E4. \uD1B5\uB85C\uB97C
-        \uD074\uB9AD\uD558\uBA74 \uC774\uB3D9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+        \uACF3\uC5D0 \uB3C4\uB2EC\uD558\uBA74 \uD074\uB9AC\uC5B4\uD569\uB2C8\uB2E4.
+        \uD1B5\uB85C\uB97C \uD074\uB9AD\uD558\uBA74 \uC774\uB3D9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[1].explain
       value: "\uBAA9\uD45C \uC9C0\uC810\uC73C\uB85C \uC774\uB044\uB294 \uD78C\uD2B8\uAC00
-        \uB4F1\uC7A5\uD569\uB2C8\uB2E4. \uC18C\uB9AC, \uC774\uBBF8\uC9C0 \uB4F1 \uC5EC\uB7EC
-        \uD615\uC2DD\uC774 \uC788\uC73C\uBA70 \uC774\uC5B4\uD3F0 \uC0AC\uC6A9\uC744
+        \uB4F1\uC7A5\uD569\uB2C8\uB2E4. \uC18C\uB9AC, \uC774\uBBF8\uC9C0 \uB4F1 \uD615\uC2DD\uC774
+        \uB2E4\uC591\uD558\uAC8C \uC788\uC73C\uBA70 \uC774\uC5B4\uD3F0 \uC0AC\uC6A9\uC744
         \uCD94\uCC9C\uB4DC\uB9BD\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
@@ -648,6 +656,10 @@ PrefabInstance:
       propertyPath: tutorialinfo.Array.data[2].sprite
       value: 
       objectReference: {fileID: 21300000, guid: 07d2a35590e1fca47bdc17e56866ff6e, type: 3}
+    - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: memoObj
+      value: 
+      objectReference: {fileID: 416532952}
     - target: {fileID: 5703343809301886801, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_Color.r
       value: 0.12941177
@@ -742,7 +754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703343810932189957, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5703343810932189958, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1220,7 +1232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2005434574521840886, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_RenderMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2005434574587094854, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_Name
@@ -1270,12 +1282,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2005434574877642673, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
       propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+--- !u!1 &416532952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2005434574877642678, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+  m_PrefabInstance: {fileID: 416532951}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &446923340
 GameObject:
   m_ObjectHideFlags: 0
@@ -3163,8 +3192,8 @@ Canvas:
   m_GameObject: {fileID: 1568551815}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1463278968}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -3172,7 +3201,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 1627219397
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1568551819

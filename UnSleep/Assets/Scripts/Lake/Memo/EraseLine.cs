@@ -14,7 +14,7 @@ public class EraseLine : MonoBehaviour
 
     //for MemoLine
     internal bool isErasing = false;
-    internal float radius = 0.5f;
+    public float radius = 0.5f;
     internal Vector3 mousePos = Vector3.zero;
 
     private Vector3 oldPos = Vector3.zero;

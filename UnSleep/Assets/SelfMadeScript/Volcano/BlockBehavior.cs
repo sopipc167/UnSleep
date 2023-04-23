@@ -58,11 +58,11 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     private void OnMouseExit() //마우스가 나갈 경우
     {
-        //SpriteChange(false);
+        SpriteChange(false);
     }
     public void SpriteChange(bool a)
     {
-        //if (GM.Raymode && !isMagma)
+        if (GM.Raymode && !isMagma)
         {
             if (a)
             {
@@ -97,7 +97,6 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     public IEnumerator Mgm() //마그마 애니메이션
     {
         int i = 0, k = 1;
-        Debug.Log("ad");
         while (true)
         {
             if (i >= 2)

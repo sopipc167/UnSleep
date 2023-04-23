@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
@@ -40,7 +41,9 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
-    private bool PAUSE = false;
+    [SerializeField] private Button tutorialButton;
+    private TutorialHelper tutorial;
+
     private bool isSettingOn = false;
     private bool onlySetting = false;
 
@@ -60,32 +63,39 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (MemoManager.isMemoOn) return;
             if (isSettingOn)
             {
                 OnClickSettingOff();
             }
             else
             {
-                PAUSE = !PAUSE;
-                if (PAUSE) menuCanvas.SetActive(true);
+                GameManager.IsPause = !GameManager.IsPause;
+                if (GameManager.IsPause) ShowMenu();
                 else menuCanvas.SetActive(false);
             }
         }
     }
 
+    private void ShowMenu()
+    {
+        tutorialButton.interactable = SceneChanger.Instance.IsPuzleScene();
+        menuCanvas.SetActive(true);
+    }
+
     public void Resume()
     {
-        PAUSE = !PAUSE;
-        if (PAUSE) menuCanvas.SetActive(true);
+        GameManager.IsPause = false;
+        if (GameManager.IsPause) ShowMenu();
         else menuCanvas.SetActive(false);
     }
 
     public void GoDiary()
     {
-        PAUSE = !PAUSE;
-        if (PAUSE) menuCanvas.SetActive(true);
+        GameManager.IsPause = false;
+        if (GameManager.IsPause) ShowMenu();
         else menuCanvas.SetActive(false);
-        SceneManager.LoadScene("Diary");
+        SceneChanger.Instance.ChangeScene(SceneType.Diary);
     }
 
     public void Exit_()
@@ -103,11 +113,11 @@ public class MenuManager : MonoBehaviour
 
     public void OnClickSettingOff()
     {
-        if (PAUSE)
+        if (GameManager.IsPause)
         {
             isSettingOn = false;
             settingCanvas.SetActive(false);
-            menuCanvas.SetActive(true);
+            ShowMenu();
         }
         else
         {
@@ -115,5 +125,16 @@ public class MenuManager : MonoBehaviour
             settingCanvas.SetActive(false);
         }
         menu.Save();
+    }
+
+    public void OnClickTutorialOn()
+    {
+        GameManager.IsPause = false;
+        if (tutorial == null)
+        {
+            tutorial = GameObject.FindGameObjectWithTag("Tutorial").transform.GetChild(0).GetComponent<TutorialHelper>();
+        }
+        tutorial.HowToPuzzle();
+        menuCanvas.SetActive(false);
     }
 }

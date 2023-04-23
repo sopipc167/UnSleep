@@ -25,8 +25,11 @@ public class DiaPlayer : MonoBehaviour
 
     private TextManager textManager;
     private Camera mainCam;
-
     public MovieEffect movie;
+
+    private Dictionary<Collider2D, int> rePlay = new Dictionary<Collider2D, int>();
+    private Collider2D rePlay_col;
+    private int rePlay_int;
 
     private void Awake()
     {
@@ -57,9 +60,26 @@ public class DiaPlayer : MonoBehaviour
                     && textManager.DiaUI.activeSelf == false
                     && Vector3.Distance(transform.position, hitted_object.transform.position) <= hit_info.Interaction_distance
                     && Vector3.Distance(transform.position, MousePosition) <= 11.5f) {
+                    if (!hit_info.OnlyOnce[0] && isOnce)
+                    {
+                        isOnce = false;
+                    }
                     DialogueInteraction(hit_info);
                 }
             }
+        }
+
+        if(rePlay != null)
+        {
+            int i;
+            for (i = 0; i < dia_hit_colliders.Length; i++)
+            {
+                if (rePlay_col == dia_hit_colliders[i])
+                    break;
+            }
+
+            if (i == dia_hit_colliders.Length)
+                Dialogue_Proceeder.instance.RemoveCompleteCondition(rePlay_int);
         }
     }
 
@@ -72,13 +92,14 @@ public class DiaPlayer : MonoBehaviour
             for (int i = 0; i < dia_hit_colliders.Length; i++)
             {
                 if (dia_hit_colliders[i].CompareTag("DiaInterCollision")
-                    && textManager.DiaUI.activeSelf == false)
+                    && textManager.DiaUI.activeSelf == false && textManager.EffectEnd)
                 {
                     hit_info = dia_hit_colliders[i].transform.GetComponent<DiaInterInfo>();
                     DialogueInteraction(hit_info);
-                    if (!hit_info.OnlyOnce[0] && isOnce)
+                    if (!hit_info.OnlyOnce[0])
                     {
-                        isOnce = false;
+                        rePlay_col = dia_hit_colliders[i];
+                        rePlay_int = hit_info.Obj_Diaid[0];
                     }
                 }
                 else if (dia_hit_colliders[i].CompareTag("SceneOver"))
@@ -89,7 +110,6 @@ public class DiaPlayer : MonoBehaviour
                     DE.next_flase = 701;
                     DE.next_true = 700;
                     DE.ob[7].SetActive(true);
-                    //player.transform.localPosition = new Vector3(-5.05f, -1.38f, 0);
                     chair.transform.localPosition = new Vector3(5.87f, -2.76f, 0);
                 }
                 else if(dia_hit_colliders[i].tag == "SceneOver_2")
@@ -106,6 +126,7 @@ public class DiaPlayer : MonoBehaviour
                 else if(dia_hit_colliders[i].tag == "Chair")
                 {
                     DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
+                    DE.Move(15, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
                     DE.chair.enabled = false;
                 }
             }
@@ -120,7 +141,7 @@ public class DiaPlayer : MonoBehaviour
 
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
-            SceneChanger.ChangeScene(hit.sceneType);
+            SceneChanger.Instance.ChangeScene(hit.sceneType, false);
         }
 
         //Debug.Log("상호작용 대화 실행");
@@ -140,27 +161,18 @@ public class DiaPlayer : MonoBehaviour
 
         for (int i = event_cnt - 1; i >= 0; i--)
         {
-
-            if (isOnce && Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
+            if (Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i])) //한번만 실행되는 대화, 이미 실행되었으면 넘긴다.
             {
-                Debug.Log("hit_Diaid_inOnce_true: " + hit_Diaid[i]);
                 continue;
             }
-            else
-            {
-                if (hit_info.isAuto && !textManager.isMovieIn)
-                {
-                    if(DE.outline != 0)
-                        DE.Outline_false();
-                    movie.MovieFrameIn();
-                    textManager.isMovieIn = true;
-                    if (!hit_info.isMany)
-                        textManager.isMovieOut = true;
-                }
-                Debug.Log("hit_Diaid_inOnce_false: " + hit_Diaid[i] + " isOnce: " + isOnce +
-                    " complete: " + Dialogue_Proceeder.instance.AlreadyDone(hit_Diaid[i]));
-            }
 
+            if (hit_info.isAuto && !textManager.isMovieIn)
+            {
+                if (DE.outline != 0)
+                    DE.Outline_false();
+                movie.MovieFrameIn();
+                textManager.isMovieIn = true;
+            }
 
             player.col.enabled = false;
             player.isStop = true;
@@ -173,19 +185,20 @@ public class DiaPlayer : MonoBehaviour
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
+                Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
+                textManager.SetDiaInMap();
+                textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
 
-                
-                if (textManager.EffectEnd)
+                if(i == event_cnt - 1 && textManager.isMovieIn && !textManager.isMovieOut)
                 {
-                    Dialogue_Proceeder.instance.UpdateCurrentDiaID(hit_Diaid[i]); //현재 대화묶음id로 설정 후 함수 종료
-                    textManager.SetDiaInMap();
-                    textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
+                    textManager.isMovieOut = true;
                 }
-                    
-              
-                isOnce = true;
-                Debug.Log("대화묶음: " + hit_Diaid[i] + " isOnce: " + isOnce);
-
+                if (!isOnce)
+                {
+                    Debug.Log("isReplay = true;");
+                    textManager.isReplay = true;
+                    isOnce = true;
+                }
                 return;
             }
 

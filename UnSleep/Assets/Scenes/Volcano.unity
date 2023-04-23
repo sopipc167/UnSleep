@@ -1114,7 +1114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1782,7 +1782,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 177225610}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -2699,7 +2699,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5445,7 +5445,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8705883, g: 0.49803925, b: 0.43137258, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -10749,7 +10749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 3
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1571707690156634541, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
@@ -14898,8 +14898,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2005434574877642668, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+      propertyPath: color.b
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+--- !u!1 &1300601744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2005434574877642678, guid: 9ed7b309efe507d448b9932115e8bc07, type: 3}
+  m_PrefabInstance: {fileID: 1300601743}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1308428729
 GameObject:
   m_ObjectHideFlags: 0
@@ -16125,7 +16142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.8705883, g: 0.49803925, b: 0.43137258, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -19389,44 +19406,38 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[0].explain
-      value: "\uD654\uC0B0 \uD37C\uC990\uC740 \uC81C\uD55C\uB41C \uD589\uB3D9 \uB0B4\uC5D0\uC11C
-        \uD3ED\uD0C4\uC73C\uB85C \uB450 \uB9C8\uADF8\uB9C8 \uD0C0\uC77C \uC0AC\uC774\uC758
-        \uAE38\uC744 \uB9CC\uB4DC\uB294 \uD37C\uC990\uC785\uB2C8\uB2E4."
+      value: "\uC81C\uD55C\uB41C \uD589\uB3D9 \uD69F\uC218 \uB0B4\uC5D0 \uB450 \uB9C8\uADF8\uB9C8
+        \uC0AC\uC774\uC5D0 \uAE38\uC744 \uB9CC\uB4E4\uBA74 \uD074\uB9AC\uC5B4\uD569\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[1].explain
-      value: "\uBE14\uB85D, \uD3ED\uD0C4, \uB9C8\uADF8\uB9C8\uC758 3\uAC00\uC9C0
-        \uC885\uB958\uB85C \uC774\uB8E8\uC5B4\uC838 \uC788\uC2B5\uB2C8\uB2E4. "
+      value: "\uBE14\uB85D, \uD3ED\uD0C4, \uB9C8\uADF8\uB9C8 3\uAC00\uC9C0 \uC885\uB958\uB85C
+        \uC774\uB8E8\uC5B4\uC838 \uC788\uC2B5\uB2C8\uB2E4. "
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[2].explain
-      value: "\uBE14\uB85D\uACFC \uD3ED\uD0C4\uC740 \uC2A4\uC651\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.
-        \uBC14\uAFB8\uACE0 \uC2F6\uC740 \uB450 \uD0C0\uC77C\uC744 \uC5F0\uB2EC\uC544
-        \uD074\uB9AD\uD558\uBA74 \uC11C\uB85C\uC758 \uC704\uCE58\uAC00 \uC2A4\uC651\uB429\uB2C8\uB2E4.
-        \uC2A4\uC651 \uD69F\uC218\uB294 \uC81C\uD55C\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
+      value: "\uD3ED\uD0C4\uACFC \uD3ED\uD0C4 \uC8FC\uBCC0 \uBE14\uB85D\uC744 \uD074\uB9AD\uD558\uBA74
+        \uC11C\uB85C\uC758 \uC704\uCE58\uAC00 \uBCC0\uACBD\uB429\uB2C8\uB2E4. \uBCC0\uACBD
+        \uD69F\uC218\uB294 \uC81C\uD55C\uB418\uC5B4 \uC788\uC2B5\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[3].explain
-      value: "\uD3ED\uD0C4\uC744 \uC6B0\uD074\uB9AD\uD558\uBA74 \uD3ED\uBC1C\uC2DC\uD0AC
-        \uC218 \uC788\uC2B5\uB2C8\uB2E4. \uD3ED\uD0C4 \uC885\uB958\uC5D0 \uB530\uB77C
-        \uD3ED\uBC1C \uBC94\uC704\uAC00 \uB2E4\uB974\uBA70, \uD3ED\uBC1C \uBC94\uC704\uC5D0
-        \uB2E4\uB978 \uD3ED\uD0C4\uC774 \uC788\uC73C\uBA74 \uC5F0\uC774\uC5B4 \uD3ED\uBC1C\uD569\uB2C8\uB2E4.
-        \uC810\uD654\uB294 \uB2E8 1\uBC88 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.\r\n"
+      value: "1\uBC88\uB9CC \uC0AC\uC6A9\uD560 \uC218 \uC788\uB294 \uC810\uD654\uB294
+        \uD3ED\uD0C4\uC744 \uC6B0\uD074\uB9AD\uD558\uBA74 \uD560 \uC218 \uC788\uC2B5\uB2C8\uB2E4.
+        \uBC94\uC704\uC5D0 \uB2E4\uB978 \uD3ED\uD0C4\uC774 \uC788\uC73C\uBA74 \uC5F0\uC774\uC5B4
+        \uD3ED\uBC1C\uD569\uB2C8\uB2E4.\n"
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[4].explain
       value: "\uD3ED\uD0C4 \uC704\uC5D0 \uB9C8\uC6B0\uC2A4\uB97C \uC62C\uB824\uB450\uBA74
-        \uD3ED\uBC1C \uBC94\uC704\uAC00 \uB098\uD0C0\uB0A9\uB2C8\uB2E4. \uC5F0\uC1C4\uC801\uC73C\uB85C
-        \uD3ED\uBC1C\uD558\uB294 \uBC94\uC704\uB3C4 \uAC19\uC774 \uD45C\uC2DC\uB429\uB2C8\uB2E4.
-        \uD3ED\uD0C4 \uC704\uC5D0\uC11C \uD720 \uBC84\uD2BC\uC744 \uB204\uB974\uBA74
-        \uD68C\uC804\uC2DC\uD0AC \uC218 \uC788\uC2B5\uB2C8\uB2E4."
+        \uD3ED\uBC1C \uBC94\uC704\uAC00 \uB098\uD0C0\uB0A9\uB2C8\uB2E4. "
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[5].explain
       value: "\uD3ED\uBC1C\uC774 \uB05D\uB09C \uD6C4\uC5D0 \uB450 \uB9C8\uADF8\uB9C8
         \uC0AC\uC774\uC5D0 \uAE38\uC774 \uB9CC\uB4E4\uC5B4\uC9C0\uC9C0 \uC54A\uC73C\uBA74
-        \uC2E4\uD328\uC785\uB2C8\uB2E4. \uD55C \uBC88\uC5D0 \uD130\uD2B8\uB9B4 \uC218
-        \uC788\uB3C4\uB85D \uC2E0\uC911\uD558\uAC8C \uBC30\uCE58\uD574\uBD05\uC2DC\uB2E4."
+        \uC2E4\uD328\uC785\uB2C8\uB2E4. \n\uD55C \uBC88\uC5D0 \uD130\uD2B8\uB9B4
+        \uC218 \uC788\uB3C4\uB85D \uC2E0\uC911\uD558\uAC8C \uBC30\uCE58\uD574\uBD05\uC2DC\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[6].explain
@@ -19438,12 +19449,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[8].explain
-      value: "\uD30C\uB791 \uD3ED\uD0C4\uC758 \uD3ED\uBC1C \uBC94\uC704\r"
+      value: "\uD30C\uB791 \uD3ED\uD0C4\uC758 \uD3ED\uBC1C \uBC94\uC704\r\uC785\uB2C8\uB2E4."
       objectReference: {fileID: 0}
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: tutorialinfo.Array.data[9].explain
-      value: "\uB178\uB791 \uD3ED\uD0C4\uC758 \uD3ED\uBC1C \uBC94\uC704"
+      value: "\uB178\uB791 \uD3ED\uD0C4\uC758 \uD3ED\uBC1C \uBC94\uC704\uC785\uB2C8\uB2E4."
       objectReference: {fileID: 0}
+    - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
+      propertyPath: memoObj
+      value: 
+      objectReference: {fileID: 1300601744}
     - target: {fileID: 5703343809281333140, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 300
@@ -19580,7 +19595,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3629987803514615099, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
 --- !u!1 &1665043268
 GameObject:
@@ -19633,7 +19649,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0.392}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -20626,6 +20642,7 @@ GameObject:
   - component: {fileID: 1757901010}
   - component: {fileID: 1757901012}
   - component: {fileID: 1757901011}
+  - component: {fileID: 1757901013}
   m_Layer: 5
   m_Name: Next
   m_TagString: Untagged
@@ -20691,6 +20708,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757901009}
   m_CullTransparentMesh: 0
+--- !u!114 &1757901013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1757901009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1038f92fe8c67f4dbffd756652c3ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1761879570
 GameObject:
   m_ObjectHideFlags: 0

@@ -185,7 +185,7 @@ public class ObManager : MonoBehaviour
         }
 
         Instantiate(ob_S, CPos_S[posNum].position, Quaternion.Euler(0, 0, 0));
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(2.0f);
         isCreateS = false;
     }
 

@@ -32,6 +32,8 @@ TagManager:
   - Gome
   - Unperformed
   - CogWheel
+  - Tutorial
+
   layers:
   - Default
   - TransparentFX

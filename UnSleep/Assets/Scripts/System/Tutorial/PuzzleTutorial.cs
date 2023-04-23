@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [System.Serializable]
@@ -29,6 +30,7 @@ public class PuzzleTutorial : MonoBehaviour
 
     [Header("참조")]
     public GameObject tutorialUICanvas;
+    public GameObject memoObj;
     public TutorialRef[] tutorialPages = new TutorialRef[PENEL_INFO_CNT];
 
     [Header("튜토리얼 정보")]
@@ -47,12 +49,13 @@ public class PuzzleTutorial : MonoBehaviour
     // 현재 가리키고 있는 페이지
     private int curPageIdx;
 
-
     // 실제로 다른 클래스에서 쓰는 함수
-    public void SetTutorial(int _maxInfoSize, int _showPage, bool isShow = true)
+    public void SetTutorial(int _maxInfoSize, int _showPage)
     {
+        GameManager.ClickableMemo = false;
+        memoObj.SetActive(false);
         maxInfoSize = _maxInfoSize;
-        ShowContentCanvas(isShow);
+        ShowContentCanvas(true);
         ShowPage(_showPage - 1);
     }
 
@@ -225,11 +228,12 @@ public class PuzzleTutorial : MonoBehaviour
 
     public void ComfirmButton()
     {
+        GameManager.ClickableMemo = true;
+        memoObj.SetActive(true);
         for (int i = 0; i < 3; i++)
         {
             tutorialPages[i].camera.SetActive(false);
         }
-
         TurnOffCameraObject(GetMaxPageIdx());
         tutorialUICanvas.SetActive(false);
         ShowContentCanvas(false);

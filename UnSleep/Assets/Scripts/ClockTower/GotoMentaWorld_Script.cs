@@ -13,6 +13,6 @@ public class GotoMentaWorld_Script : MonoBehaviour
     public void GotoMentalWorld()
     {
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneChanger.ChangeScene(SceneType.Mental);
+        SceneChanger.Instance.ChangeScene(SceneType.Mental);
     }
 }

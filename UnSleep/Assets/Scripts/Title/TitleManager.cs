@@ -21,24 +21,18 @@ public class TitleManager : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);
-        Debug.Log("시작");
         SoundManager.Instance.PlayBGM(titleBGM);
     }
 
 
     public void ContinueGame()
     {
-        SceneChanger.ChangeScene(SceneType.Diary);
+        SceneChanger.Instance.ChangeScene(SceneType.Diary);
     }
 
     public void NewGame()
     {
         SaveDataManager.Instance.SaveEpiProgress(0);
-        SceneManager.LoadScene("Prologue");
-    }
-
-    public void SettingGame()
-    {
-        //설정 창 오픈
+        SceneChanger.Instance.ChangeScene(SceneType.Prologue);
     }
 }

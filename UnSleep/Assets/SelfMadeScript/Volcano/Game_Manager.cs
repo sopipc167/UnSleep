@@ -546,6 +546,6 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
     public void GotoNext()
     {
         //Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
-        SceneChanger.RestartScene();
+        SceneChanger.Instance.RestartScene();
     }
 }
