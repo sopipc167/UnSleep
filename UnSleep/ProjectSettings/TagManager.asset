@@ -31,7 +31,9 @@ TagManager:
   - Chair
   - Gome
   - Unperformed
+  - CogWheel
   - Tutorial
+
   layers:
   - Default
   - TransparentFX
