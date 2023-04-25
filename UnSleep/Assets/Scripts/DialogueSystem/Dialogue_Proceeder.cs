@@ -172,7 +172,17 @@ public class Dialogue_Proceeder : MonoBehaviour
         }
     }
 
-
+    public List<int> getLastCompleteConditionRange(int n = 3)
+    {
+        int size = Complete_Condition.Count;
+        if (size >= n)
+        {
+            return Complete_Condition.GetRange(size - n, n);
+        } else
+        {
+            return Complete_Condition;
+        }
+    }
 
     public void etcCase(int id) //진짜진짜 예외 처리
     {
