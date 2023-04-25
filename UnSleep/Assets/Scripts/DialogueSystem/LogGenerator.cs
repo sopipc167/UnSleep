@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class LogGenerator : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class LogGenerator : MonoBehaviour
     public GameObject logUI; //로그UI
     public GameObject logPrefab;
     public GameObject Content;
+
 
     private Dictionary<int, DialogueEvent> diaDic;
     private Dictionary<int, Sprite[]> porDic;
@@ -29,6 +32,7 @@ public class LogGenerator : MonoBehaviour
     {
         createLog();
         logUI.SetActive(true);
+        Content.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0); // 스크롤 항상 최하단부터.
     }
 
     public void turnOffLog()

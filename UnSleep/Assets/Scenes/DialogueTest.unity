@@ -580,6 +580,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4560876318259137657, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
   m_PrefabInstance: {fileID: 8528798681456544755}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2061610454 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2298787597473975332, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+  m_PrefabInstance: {fileID: 8528798681456544755}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2078431980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1283,6 +1294,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6080196177384778358, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: scrollRect
+      value: 
+      objectReference: {fileID: 2061610454}
     - target: {fileID: 6449565921878008826, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 600
@@ -1681,6 +1696,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8571790700920214147, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571790700920214147, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571790700920214147, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8571790700920214147, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8572857068984679959, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
