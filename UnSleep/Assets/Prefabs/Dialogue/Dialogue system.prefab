@@ -464,7 +464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3617834517624862805
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1090,7 +1090,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2596,6 +2596,7 @@ MonoBehaviour:
   logUI: {fileID: 8379347920026992262}
   logPrefab: {fileID: 7594936392712446685, guid: e1dc9b6ef37cfc74cbcd29e968b7a863, type: 3}
   Content: {fileID: 2239054028534971478}
+  logPrefabSmall: {fileID: 7047214564848471919, guid: 1d2115d57d9fe1644990a220ae39a1fb, type: 3}
 --- !u!114 &2811922211074286234
 MonoBehaviour:
   m_ObjectHideFlags: 0
