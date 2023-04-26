@@ -71,7 +71,7 @@ public class Book_test : MonoBehaviour
     public Sprite LeftPage;
     public Sprite RightPage;
     public RectTransform Page;
-    public UnityEvent OnFlip;
+    public UnityEvent OnFlip; // 페이지가 완전히 넘어가고 
     float radius1, radius2; // 페이지 가로 길이, 페이지 대각선
 
     Vector3 sb;
@@ -372,7 +372,6 @@ public class Book_test : MonoBehaviour
 
     public void DragRightPageToPoint(Vector3 point)
     {
-        //Debug.Log("오른쪽 넘김");
         if (currentPage >= bookPages.Length) return;
         if (currentPage > 0) pages.isChange = false;
         if (auto.isFlipping) interactable = false;
@@ -380,6 +379,7 @@ public class Book_test : MonoBehaviour
         drag = true;
         mode = FlipMode.RightToLeft;
         f = point;
+
 
         if (currentPage == (bookPages.Length - 2))
         {
@@ -457,6 +457,7 @@ public class Book_test : MonoBehaviour
         drag = true;
         mode = FlipMode.LeftToRight;
         f = point;
+
 
         if (currentPage == 2)
         {
@@ -722,6 +723,22 @@ public class Book_test : MonoBehaviour
         pageList.Add(END);
 
         return pageList.ToArray();
+    }
+
+    public void flipLeft()
+    {
+        SoundManager.Instance.PlaySE(pageFlipSE);
+        mode = FlipMode.LeftToRight;
+        Flip();
+        pages.Re_ChangePage(false);
+    }
+
+    public void flipRight()
+    {
+        SoundManager.Instance.PlaySE(pageFlipSE);
+        mode = FlipMode.RightToLeft;
+        Flip();
+        pages.Re_ChangePage(true);
     }
 
 }

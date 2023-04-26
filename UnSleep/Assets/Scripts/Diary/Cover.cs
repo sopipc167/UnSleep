@@ -19,8 +19,7 @@ public class Cover : MonoBehaviour
     public Image Shadow;
     public Image shadowManager;
 
-    float speed ;
-    float duration = 0.3f;
+    public float duration = 0.3f;
     public bool isTween;
     public bool isEnd;
     public bool Ending;

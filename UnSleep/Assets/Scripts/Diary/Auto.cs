@@ -163,6 +163,6 @@ public class Auto : MonoBehaviour
         
         Mode = FlipMode.RightToLeft;
         cover.isBack = true;
-        StartCoroutine(FlipToCurrentPage(1.0f, 40, 0.1f, cPage));
+        StartCoroutine(FlipToCurrentPage(0.25f, 40, 0.1f, cPage));
     }
 }
