@@ -22,8 +22,19 @@ public class Envelope : MonoBehaviour
 
     void Start()
     {
+        GameObject.Find("Book").GetComponent<Book_test>()
+            .OnFlip.AddListener(new UnityEngine.Events.UnityAction(onPageFlipped));
+
         En_B.gameObject.SetActive(false);
         CH.gameObject.SetActive(false);
+    }
+
+    private void onPageFlipped()
+    {
+        if (Click) // 페이지 넘겨질 때 봉투가 열려있으면 닫음.
+        {
+            CK();
+        }
     }
 
     void Update()
