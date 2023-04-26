@@ -253,6 +253,7 @@ public class TextManager : MonoBehaviour
                         StopCoroutine(type_coroutine);
                         LineText.text = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].contexts;
                         isTyping = false;
+                        StartCoroutine(debounce()); // 강제 넘김 시 잠깐의 딜레이
                     }
                 }
                 else
@@ -822,6 +823,16 @@ public class TextManager : MonoBehaviour
         }
         isTyping = false;
     }
+
+    IEnumerator debounce()
+    {
+        Increasediaindex = false ;
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
+        Increasediaindex = true;
+    }
+
 
     //잘 있어요 퍼즐 전용 대화 UI
     public void Set_Dialogue_Goodbye() //처음 킬 때
