@@ -372,7 +372,6 @@ public class Book_test : MonoBehaviour
 
     public void DragRightPageToPoint(Vector3 point)
     {
-        //Debug.Log("오른쪽 넘김");
         if (currentPage >= bookPages.Length) return;
         if (currentPage > 0) pages.isChange = false;
         if (auto.isFlipping) interactable = false;
@@ -731,6 +730,7 @@ public class Book_test : MonoBehaviour
         SoundManager.Instance.PlaySE(pageFlipSE);
         mode = FlipMode.LeftToRight;
         Flip();
+        pages.Re_ChangePage(false);
     }
 
     public void flipRight()
@@ -738,6 +738,7 @@ public class Book_test : MonoBehaviour
         SoundManager.Instance.PlaySE(pageFlipSE);
         mode = FlipMode.RightToLeft;
         Flip();
+        pages.Re_ChangePage(true);
     }
 
 }
