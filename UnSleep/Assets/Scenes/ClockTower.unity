@@ -10562,7 +10562,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1627219397
+  m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &664929569
@@ -34169,7 +34169,7 @@ PrefabInstance:
     - target: {fileID: 5703343809203001690, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: memoObj
       value: 
-      objectReference: {fileID: 1966438859}
+      objectReference: {fileID: 0}
     - target: {fileID: 5703343809681742343, guid: eeb8ceb3914a6aa42b73693f203fcc23, type: 3}
       propertyPath: m_IsActive
       value: 0
