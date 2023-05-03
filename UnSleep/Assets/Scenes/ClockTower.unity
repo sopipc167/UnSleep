@@ -1107,6 +1107,10 @@ PrefabInstance:
       value: BCog30
       objectReference: {fileID: 0}
     - target: {fileID: 8934466761264164206, guid: 3eeb08864f4a0f14c8dba61c2aced3b5, type: 3}
+      propertyPath: initChain.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934466761264164206, guid: 3eeb08864f4a0f14c8dba61c2aced3b5, type: 3}
       propertyPath: info.speed
       value: 100
       objectReference: {fileID: 0}
@@ -1122,6 +1126,18 @@ PrefabInstance:
       propertyPath: info.level
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8934466761264164206, guid: 3eeb08864f4a0f14c8dba61c2aced3b5, type: 3}
+      propertyPath: initChain.Array.data[0].data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934466761264164206, guid: 3eeb08864f4a0f14c8dba61c2aced3b5, type: 3}
+      propertyPath: initChain.Array.data[1].data
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8934466761264164206, guid: 3eeb08864f4a0f14c8dba61c2aced3b5, type: 3}
+      propertyPath: initChain.Array.data[0]
+      value: 
+      objectReference: {fileID: 863470175}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3eeb08864f4a0f14c8dba61c2aced3b5, type: 3}
 --- !u!1001 &103434869
@@ -9263,7 +9279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &610387434
 Transform:
   m_ObjectHideFlags: 0
@@ -14426,6 +14442,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c191a6264d555014688169334ca46da9, type: 3}
+--- !u!114 &863470175 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5065118000274035894, guid: efe5e6bb915b29e47abb19fab689596e, type: 3}
+  m_PrefabInstance: {fileID: 1456810826}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef2aa823fce4564d9a2f51459352f9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &864846172 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 9001982380084005278, guid: 8a8830594c05ecc43a25f2589c9ba126, type: 3}
@@ -29011,6 +29038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aabace9fc2dbc844dbbedae6f3458883, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startCogWheel: {fileID: 0}
 --- !u!224 &1749566323 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8440239402523619337, guid: f3bdc538dfff61946a5d33692a5d1555, type: 3}
