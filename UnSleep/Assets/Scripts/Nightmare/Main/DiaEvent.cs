@@ -126,9 +126,11 @@ public class DiaEvent : MonoBehaviour
                     Dia[35].SetActive(true);
                     Dia[36].SetActive(true);
                 }
+                SoundManager.Instance.PlaySE("fuss");
             }
             else if (EventNum == 6)
             {
+                SoundManager.Instance.PlaySE("WindowOpen");
                 ob[3].SetActive(false);
                 ob[4].SetActive(true);
                 ob[5].SetActive(true);
@@ -203,6 +205,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "LightOff")
             {
+                SoundManager.Instance.PlaySE("LightOnOff");
                 ob[8].SetActive(true);
                 ob[7].SetActive(false);
             }
@@ -210,6 +213,7 @@ public class DiaEvent : MonoBehaviour
             {
                 Move(1, new Vector3(10.15f, 0.58f, 0), new Vector3(0, 0, 0));
                 Dia[16].SetActive(true);
+                SoundManager.Instance.PlaySE("fuss");
             }
             else if (content == "Sound0" || content == "Sound1" || content == "Sound2")
             {
@@ -356,6 +360,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "LightOn")
             {
+                SoundManager.Instance.PlaySE("LightOnOff");
                 ob[12].SetActive(true);
                 gome.isStart = false;
                 gome.isFollow = false;
@@ -413,6 +418,8 @@ public class DiaEvent : MonoBehaviour
                 fadeinout.Blackout_Func(0.3f);
                 StartCoroutine(Ending());
             }
+
+            content = null;
         }
     }
 
@@ -438,9 +445,11 @@ public class DiaEvent : MonoBehaviour
             Color tmp = Fade.color;
             tmp.a = 0.7f;
             Fade.color = tmp;
+            SoundManager.Instance.PlaySE("LightBlink", 0.7f);
             yield return new WaitForSeconds(0.3f);
             tmp.a = 0;
             Fade.color = tmp;
+            SoundManager.Instance.PlaySE("LightBlink", 0.7f);
             yield return new WaitForSeconds(0.3f);
         }
         Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
@@ -448,6 +457,7 @@ public class DiaEvent : MonoBehaviour
 
     IEnumerator Bigger()
     {
+        SoundManager.Instance.PlaySE("bigGomme");
         ob[5].transform.DOScaleX(-2.3f, 0.5f);
         ob[5].transform.DOScaleY(2.3f, 0.5f);
         yield return new WaitForSeconds(0.2f);
@@ -529,19 +539,19 @@ public class DiaEvent : MonoBehaviour
             case 0:
                 //Debug.Log("Sound0");
                 audioSource.panStereo = 1;
-                audioSource.volume = 0.3f;
+                audioSource.volume = 0.7f;
                 audioSource.Play();
                 return;
             case 1:
                 //Debug.Log("Sound1");
                 audioSource.panStereo = 1;
-                audioSource.volume = 0.7f;
+                audioSource.volume = 1.0f;
                 audioSource.Play();
                 return;
             case 2:
                 //Debug.Log("Sound2");
                 audioSource.panStereo = 0.7f;
-                audioSource.volume = 0.7f;
+                audioSource.volume = 1.0f;
                 audioSource.Play();
                 return;
             default:

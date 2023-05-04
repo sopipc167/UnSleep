@@ -4,7 +4,7 @@
     {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
         _Color ("Tint", Color) = (1,1,1,1)
-        [MaterialToggle] PixelSnap ("Pixel snap", Float) = 1
+        //[MaterialToggle] PixelSnap ("Pixel snap", Float) = 1
         [HideInInspector] _RendererColor ("RendererColor", Color) = (1,1,1,1)
         [HideInInspector] _Flip ("Flip", Vector) = (1,1,1,1)
         [PerRendererData] _AlphaTex ("External Alpha", 2D) = "white" {}
@@ -39,7 +39,7 @@
             #pragma fragment frag
             #pragma target 2.0
             #pragma multi_compile_instancing
-            #pragma multi_compile _ PIXELSNAP_ON
+            //#pragma multi_compile _ PIXELSNAP_ON
             #pragma multi_compile _ ETC1_EXTERNAL_ALPHA
             #include "UnitySprites.cginc"
 

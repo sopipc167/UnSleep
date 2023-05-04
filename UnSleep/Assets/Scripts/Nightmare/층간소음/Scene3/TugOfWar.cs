@@ -180,7 +180,7 @@ public class TugOfWar : MonoBehaviour
     {
         isAdd = true;
         Gauge.value += 0.05f;
-        yield return new WaitForSeconds(0.15f);
+        yield return new WaitForSeconds(0.5f);
         isAdd = false;
     }
 
