@@ -9,6 +9,8 @@ public class BCogWheel : MonoBehaviour, CogWheel
     private SpeedPanel speedPanel = null;
     private List<CogWheel> chain = new List<CogWheel>();
 
+    //public WCogWheel[] initChain; // 3번 레벨 등 초기에 연결되어 있는 경우
+
     public bool satisfy
     {
         get
@@ -49,6 +51,7 @@ public class BCogWheel : MonoBehaviour, CogWheel
     void Start()
     {
         info.radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
+        // chain.AddRange(initChain);
     }
 
     void Update()
@@ -64,7 +67,7 @@ public class BCogWheel : MonoBehaviour, CogWheel
         if (bInfo.type != BCogWheelType.START)
         {
             changeState(CogState.IDLE);
-        }
+        } 
     }
 
     public void setSpeedPanel(SpeedPanel speedPanel)
@@ -82,6 +85,19 @@ public class BCogWheel : MonoBehaviour, CogWheel
         other.receive(info, transform.position.z);
     }
 
+    public void getPowerActivation(CogWheel other)
+    {
+        getPower(other);
+        activate();
+    }
+
+    public void activate()
+    {
+        CogWheel[] adjoinCw = CogWheelUtil.filterCogWheelsByCogAction(this, detect(), CogAction.ADJOIN);
+        CogWheel[] idleCw = CogWheelUtil.filterCogWheelsByCogState(adjoinCw, CogState.IDLE);
+        foreach (CogWheel acw in idleCw) { acw.getPowerActivation(this); }
+    }
+
     public void getPower(CogWheel other)
     {
         CogWheelInfo otherInfo = other.getCogWheelInfo();
@@ -94,7 +110,8 @@ public class BCogWheel : MonoBehaviour, CogWheel
 
     public void addChain(CogWheel cogWheel)
     {
-        chain.Add(cogWheel);
+        if (!chain.Contains(cogWheel))
+            chain.Add(cogWheel);
     }
 
 

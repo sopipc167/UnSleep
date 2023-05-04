@@ -7,12 +7,18 @@ public class WCogWheel : MonoBehaviour, CogWheel
     public CogWheelInfo info;
     protected CogWheelSpriteManager spriteManager;
     private CogWheel overlapChild = null;
+    private CogWheel overlapParent = null;
     private List<CogWheel> chain = new List<CogWheel>();
+
+    // public WCogWheel[] initWChain; // 3번 레벨 등 초기에 연결되어 있는 경우
+    // public BCogWheel[] initBChain; // 3번 레벨 등 초기에 연결되어 있는 경우
 
     private Vector3 clickOffset;
     private Vector3 startPosition;
     private const float lerpSpeed = 10f;
     private const float minYPosition = -4.8f;
+
+    public bool hasOverlapChild; // 디버깅용
 
     private void Awake()
     {
@@ -24,6 +30,8 @@ public class WCogWheel : MonoBehaviour, CogWheel
         startPosition = transform.position;
         info.radius = Vector2.Distance(transform.GetChild(0).position, transform.GetChild(1).position);
         spriteManager.setSprite(info.level);
+        // chain.AddRange(initWChain); 
+        // chain.AddRange(initBChain);
     }
 
     private void OnMouseDown()
@@ -53,10 +61,12 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     void Update()
     {
+        hasOverlapChild = overlapChild != null; // for debug
+
         switch (info.state)
         {
             case CogState.ROTATE: 
-                transform.Rotate(new Vector3(0f, 0f, info.speed * (int)info.rotation * 0.01f)); 
+                transform.Rotate(new Vector3(0f, 0f, info.speed * (int)info.rotation * 0.01f));
                 break;
             case CogState.INACTIVE: 
                 transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(0.8f, 0.8f), Time.deltaTime * lerpSpeed); 
@@ -77,13 +87,14 @@ public class WCogWheel : MonoBehaviour, CogWheel
     public void reset()
     {
         transform.position = startPosition;
+        transform.localScale = new Vector3(1f, 1f, 1f);
         changeState(CogState.IDLE);
     }
 
     private bool rotationValidation(CogWheel[] cogWheels)
     {
 
-        CogWheel[] adjoinWheels = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
+        CogWheel[] adjoinWheels = CogWheelUtil.filterCogWheelsByCogAction(this, cogWheels, CogAction.ADJOIN);
         if (adjoinWheels.Length < 2) return true;
 
         CogRotation criteria = adjoinWheels[0].getCogWheelInfo().rotation;
@@ -98,10 +109,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
         return true;
     }
 
-    private CogWheel[] filterCogWheelsByCogActionType(CogWheel[] cogWheels, CogAction action)
-    {
-        return cogWheels.Filter(cw => CogWheelUtil.getCogAction(this, cw) == action);
-    }
+
 
     private void actionDrag(CogWheel[] cogWheels)
     {
@@ -140,7 +148,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
                     getPower(cogWheels[0]);
                 }
  
-                CogWheel[] adjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
+                CogWheel[] adjoinCw = CogWheelUtil.filterCogWheelsByCogAction(this, cogWheels, CogAction.ADJOIN);
                 foreach (CogWheel cw in adjoinCw)
                 {
                     givePower(cw);
@@ -153,13 +161,13 @@ public class WCogWheel : MonoBehaviour, CogWheel
                 break;
             case CogAction.OVERLAP:
                 overlap(cogWheels[0] as WCogWheel);
-                CogWheel[] overlapAdjoinCw = filterCogWheelsByCogActionType(cogWheels, CogAction.ADJOIN);
+                CogWheel[] overlapAdjoinCw = CogWheelUtil.filterCogWheelsByCogAction(this, cogWheels, CogAction.ADJOIN); // 여기 this 맞니?
                 foreach (CogWheel cw in overlapAdjoinCw) givePower(cw);
                 break;
         }
 
 
-        CogWheel[] farCw = filterCogWheelsByCogActionType(cogWheels, CogAction.FAR);
+        CogWheel[] farCw = CogWheelUtil.filterCogWheelsByCogAction(this, cogWheels, CogAction.FAR);
         foreach (CogWheel cw in farCw) if (cw.isAlone()) cw.stop();
 
     }
@@ -173,6 +181,33 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
         addChain(other);
         other.receive(info, transform.position.z);
+    }
+
+    public void getPowerActivation(CogWheel other)
+    {
+        
+        getPower(other);
+        activate();
+    }
+
+    public void activate()
+    {
+        foreach (CogWheel cw in detect().Filter(cw => cw.getCogWheelInfo().state == CogState.IDLE))
+        {
+            switch (CogWheelUtil.getCogAction(this, cw))
+            {
+                case CogAction.ADJOIN:
+                    cw.getPowerActivation(this);
+                    break;
+                case CogAction.OVERLAP:
+                    if (cw is WCogWheel)
+                    {
+                        (cw as WCogWheel).overlap(this);
+                        cw.activate();
+                    }
+                    break;
+            }
+        }
     }
 
     public void getPower(CogWheel other)
@@ -206,6 +241,7 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
         Vector3 parentPosition = other.getPosition();
         other.setOverlapChild(this);
+        setOverlapParent(other);
         transform.position = parentPosition;
         changeState(CogState.OVERLAP, otherInfo, other);
     }
@@ -213,6 +249,11 @@ public class WCogWheel : MonoBehaviour, CogWheel
     public void setOverlapChild(CogWheel child)
     {
         overlapChild = child;
+    }
+
+    public void setOverlapParent(CogWheel parent)
+    {
+        overlapParent = parent;
     }
 
     public void stop()
@@ -224,6 +265,18 @@ public class WCogWheel : MonoBehaviour, CogWheel
             cw.stop();
         }
         chain.Clear();
+
+        if (overlapChild != null)
+        {
+            overlapChild.stop();
+        }
+
+        // 내가 overlap 중이면
+        if (overlapParent != null)
+        {
+            (overlapParent as WCogWheel).setOverlapChild(null);
+        }
+
         changeState(CogState.IDLE);
     }
 
