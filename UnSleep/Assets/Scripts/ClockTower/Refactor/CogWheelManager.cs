@@ -5,15 +5,21 @@ using UnityEngine;
 public class CogWheelManager : MonoBehaviour
 {
     private List<CogWheel> cogWheels = new List<CogWheel>();
-    // Start is called before the first frame update
+    public BCogWheel startCogWheel;
+
     void Start()
     {
         cogWheels.AddRange(FindObjectsOfType<WCogWheel>());
-        cogWheels.AddRange(FindObjectsOfType<BCogWheel>());
+        BCogWheel[] bCogWheels = FindObjectsOfType<BCogWheel>();
+        cogWheels.AddRange(bCogWheels);
+        startCogWheel = bCogWheels.Filter(cw => cw.bInfo.type == BCogWheelType.START)[0];
     }
 
     public void resetAll()
     {
         cogWheels.ForEach(cog => cog.reset());
+        startCogWheel.activate();
     }
+  
+    
 }

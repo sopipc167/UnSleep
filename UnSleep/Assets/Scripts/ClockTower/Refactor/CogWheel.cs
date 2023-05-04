@@ -4,6 +4,7 @@ using UnityEngine;
 public interface CogWheel
 {
     void givePower(CogWheel other);
+    void getPowerActivation(CogWheel other);
     void getPower(CogWheel other);
     void receive(CogWheelInfo info, float z);
     void stop();
@@ -16,6 +17,7 @@ public interface CogWheel
     CogWheelInfo getCogWheelInfo();
     Vector3 getPosition();
     void addChain(CogWheel cogWheel);
+    void activate();
 }
 
 public enum CogRotation

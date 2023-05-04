@@ -25,6 +25,16 @@ public class CogWheelUtil
         return list.ToArray();
     }
 
+    public static CogWheel[] filterCogWheelsByCogAction(CogWheel root, CogWheel[] cogWheels, CogAction action)
+    {
+        return cogWheels.Filter(cw => getCogAction(root, cw) == action);
+    }
+
+    public static CogWheel[] filterCogWheelsByCogState(CogWheel[] cogWheels, CogState state)
+    {
+        return cogWheels.Filter(cw => cw.getCogWheelInfo().state == state);
+    }
+
     public static int compareDistance(CogWheel root, CogWheel A, CogWheel B)
     {
         float centerDistA = Vector2.Distance(root.getPosition(), A.getPosition());
