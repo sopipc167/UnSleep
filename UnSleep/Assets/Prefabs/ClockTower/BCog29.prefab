@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7446470505750495785}
   - component: {fileID: 2368119956674028814}
   - component: {fileID: 2158188465910782628}
+  - component: {fileID: -6365665258544607065}
   m_Layer: 0
   m_Name: BCog29
   m_TagString: CogWheel
@@ -108,6 +109,22 @@ MonoBehaviour:
     type: 0
     speed: 0
     rotation: 0
+--- !u!58 &-6365665258544607065
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5383179603703332438}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 2
 --- !u!1 &7991355647726788248
 GameObject:
   m_ObjectHideFlags: 0
