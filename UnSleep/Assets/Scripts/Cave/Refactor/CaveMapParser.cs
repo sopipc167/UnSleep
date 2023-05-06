@@ -20,38 +20,38 @@ public class CaveMapParser: MonoBehaviour
         return root;
     }
 
+
     private Cavern[] composeCarvens(int stage, int start, int count)
     {
         List<Cavern> caverns = new List<Cavern>();
-        int accumulate = 0; 
-        
+        int accumulate = 0;
+
         for (int i = 0; i < start; i++)
         {
             accumulate += parseUtil.parseInt(caveMapInfo[stage][i][0]);
         }
-        
 
-
-        for (int s = accumulate; s < start + count; s++)
+        int until = accumulate + count;
+        for (int s = accumulate; s < until; s++)
         {
             string[] cell = caveMapInfo[stage + 1][s];
             int routeCount = parseUtil.parseInt(cell[0]);
 
-            if (routeCount >= 0)
+            if (routeCount < 0) continue;
+
+       
+            Cavern cavern = new Cavern(cell);
+            if (cavern.routeCnt > 0 && cavern.routeCnt < 999)
             {
-                Cavern cavern = new Cavern(cell);
-
-                if (routeCount > 0 && routeCount < 999)
-                    cavern.setNextCarven(composeCarvens(stage + 1, accumulate, cavern.routeCnt));
-
-                caverns.Add(cavern);
+                cavern.setNextCarven(composeCarvens(stage + 1, s, cavern.routeCnt));
                 accumulate += cavern.routeCnt;
             }
+
+            caverns.Add(cavern);
         }
 
         return caverns.ToArray();
     }
-
 
     private string[][][] parseCavernData(TextAsset csv)
     {
@@ -139,7 +139,6 @@ public class CaveMapParser: MonoBehaviour
             splitedRowList.Add(row.Split(new char[] { ',' }));
             if (depth < 0) depth = splitedRowList[0].Length;
         }
- 
         for (int i = 0; i < depth; i++)
         {
             List<string[]> column = new List<string[]>();
@@ -148,7 +147,6 @@ public class CaveMapParser: MonoBehaviour
             {
                 column.Add(splitedRowList[r][i].Split(new char[] { '#' }));
             }
-
             carvenDataList.Add(column.ToArray());
         }
 
