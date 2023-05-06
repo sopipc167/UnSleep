@@ -844,7 +844,7 @@ public class TextManager : MonoBehaviour
     {
         Increasediaindex = false ;
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
         Increasediaindex = true;
     }
