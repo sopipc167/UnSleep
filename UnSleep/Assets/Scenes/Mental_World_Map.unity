@@ -11853,6 +11853,10 @@ PrefabInstance:
       propertyPath: interactionObjParent
       value: 
       objectReference: {fileID: 637818272}
+    - target: {fileID: 4744764315333031983, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6781079484197349827, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_IsActive
       value: 1
