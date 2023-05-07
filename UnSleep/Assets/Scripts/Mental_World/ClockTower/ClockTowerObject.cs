@@ -15,6 +15,12 @@ public class ClockTowerObject : MonoBehaviour
     public GameObject timeniddle;
     public GameObject minniddle;
 
+    private bool isCounterClockwise = false;
+
+    public void OnEffect()
+    {
+        isCounterClockwise = true;
+    }
 
     void Update()
     {
@@ -25,7 +31,7 @@ public class ClockTowerObject : MonoBehaviour
         Gear5.transform.Rotate(0, 0, 0.1f);
         Gear6.transform.Rotate(0, 0, -0.05f);
 
-        timeniddle.transform.Rotate(0, 0, 0.08f);
-        minniddle.transform.Rotate(0, 0, 0.007f);
+        timeniddle.transform.Rotate(0, 0, isCounterClockwise ? -0.08f : 0.08f);
+        minniddle.transform.Rotate(0, 0, isCounterClockwise ? -0.007f : 0.007f);
     }
 }
