@@ -109,8 +109,13 @@ public class Player : MonoBehaviour
 
             if (transform.position == targetPos)
             {
+                if (isSE)
+                {
+                    Debug.Log("Domoon_walk_false");
+                    SoundManager.Instance.StopSE();
+                    isSE = false;
+                }
                 animator.SetBool("isMove", false);
-                SoundManager.Instance.StopSE();
 
                 if (isAuto)
                 {
@@ -151,7 +156,13 @@ public class Player : MonoBehaviour
 
         targetPos = new Vector3(transPos.x, transPos.y, 0);
         animator.SetBool("isMove", true);
-        SoundManager.Instance.PlaySE(walk, 2);
+
+        if (!isSE)
+        {
+            Debug.Log("Domoon_walk_true");
+            SoundManager.Instance.PlaySE(walk, 2);
+            isSE = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
