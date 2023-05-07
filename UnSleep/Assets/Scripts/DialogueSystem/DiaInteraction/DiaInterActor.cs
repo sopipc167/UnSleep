@@ -102,6 +102,7 @@ public class DiaInterActor : MonoBehaviour
             //실행 조건 가져옴
             int[] conditions = textManager.ReturnDiaConditions(hit_Diaid[i]);
 
+
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
