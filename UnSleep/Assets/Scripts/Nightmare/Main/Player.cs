@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
                 if (isSE)
                 {
                     Debug.Log("Domoon_walk_false");
-                    SoundManager.Instance.StopSE();
+                    SoundManager.Instance.seSource1.Stop();
                     isSE = false;
                 }
                 animator.SetBool("isMove", false);
@@ -160,6 +160,7 @@ public class Player : MonoBehaviour
         if (!isSE)
         {
             Debug.Log("Domoon_walk_true");
+            SoundManager.Instance.seState = 0;
             SoundManager.Instance.PlaySE(walk, 2);
             isSE = true;
         }

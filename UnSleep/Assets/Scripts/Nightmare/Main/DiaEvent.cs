@@ -114,7 +114,10 @@ public class DiaEvent : MonoBehaviour
                 TM.EffectEnd = true;
             }
             else if (EventNum == 4)
+            {
+                SoundManager.Instance.PlaySE("chair");
                 Move(2, new Vector3(7.54f, -0.95f, 0), new Vector3(0, 0, 0));
+            }
             else if (EventNum == 5)
             {
                 ob[1].SetActive(false);
@@ -175,6 +178,13 @@ public class DiaEvent : MonoBehaviour
             else if(EventNum == 16)
             {
                 GameOver_s();
+            }
+            else if(EventNum == 17)
+            {
+                Color tmp = Fade.color;
+                tmp.a = 255;
+                Fade.color = tmp;
+                ob[5].SetActive(false);
             }
 
             if (isMovie)
@@ -368,15 +378,20 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "Hide")
             {
-                Debug.Log("Hide");
+                SoundManager.Instance.PlaySE("fuss");
                 EventNum = 10;
                 content = null;
             }
             else if (content == "Surprise")
             {
+                SoundManager.Instance.PlaySE("surprise");
                 surprise.enabled = true;
                 content = null;
                 EventNum = 7;
+            }
+            else if(content == "wakeup")
+            {
+                EventNum = 17;
             }
             else if (content == "Choose")
             {
@@ -468,6 +483,7 @@ public class DiaEvent : MonoBehaviour
     {
         ending_bg.enabled = true;
         eye.enabled = true;
+        SoundManager.Instance.PlaySE("gomeEyes");
         yield return new WaitForSeconds(0.5f);
         eye.transform.DOLocalMoveX(-138, 2.5f);
         yield return new WaitForSeconds(4.0f);
