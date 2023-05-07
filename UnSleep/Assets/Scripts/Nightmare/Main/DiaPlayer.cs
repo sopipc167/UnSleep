@@ -125,7 +125,7 @@ public class DiaPlayer : MonoBehaviour
                 }
                 else if(dia_hit_colliders[i].tag == "Chair")
                 {
-                    SoundManager.Instance.PlaySE("chair");
+                    SoundManager.Instance.PlaySE("chairDown");
                     DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
                     DE.Move(15, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
                     DE.chair.enabled = false;
