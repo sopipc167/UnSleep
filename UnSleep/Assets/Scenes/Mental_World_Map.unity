@@ -16786,6 +16786,10 @@ PrefabInstance:
       propertyPath: interactionObjParent
       value: 
       objectReference: {fileID: 637818272}
+    - target: {fileID: 4744764315333031983, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6781079484197349827, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -16822,6 +16826,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8528798681124546643, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8528798681765602456, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_Color.a
       value: 0
@@ -16837,6 +16845,10 @@ PrefabInstance:
     - target: {fileID: 8528798682089432713, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8528798682103681875, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682782122522, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: csvData
@@ -29023,7 +29035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 2311
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -29043,7 +29055,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634540, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: m_Enabled

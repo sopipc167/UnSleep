@@ -30,7 +30,8 @@ public class TextManager : MonoBehaviour
     public Text TextB;
     public Button ButtonA;
     public Button ButtonB;
-    private bool SelectA = false;
+    public bool SelectA = false;
+    private bool loading = false;
 
     //<----------잘 있어요 퍼즐 UI-------------->
     [Header("잘 있어요 퍼즐 UI")]
@@ -293,10 +294,11 @@ public class TextManager : MonoBehaviour
                             Set_Select_System();
                         else
                             Set_Dialogue_System();
+                            
 
 
                         //배경 전환
-                        if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG != null)
+                        if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG != null && !loading)
                             Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG);
 
 
@@ -431,6 +433,21 @@ public class TextManager : MonoBehaviour
                             }
                             else //맵모드 + 동굴 + 7세까지 처리. 머지할때 잘 보고 하기
                             {
+                                if (SelectA) //선택지 2개 기준. A를 누르면 대화 묶음 하나 더 넘어가도록
+                                {
+                                    //ex. 선택지A결과(1811) 선택지B결과(1812) 다음대화(1813)일 때 1811에서 바로 1813으로 넘어가도록.
+                                    //선택지 개수를 동적으로 바꾼다면 수정해야 함
+                                    int before = Dia_Id;
+                                    if (dp.CurrentEpiID == 12) //어라.. 선택지 후 답이 똑같네 예외처리띠~
+                                        Dia_Id++;
+                                    else
+                                        Dia_Id += 2;
+                                    // dp.UpdateCurrentDiaID(Dia_Id);
+                                    
+                                    proceedScene(before, Dia_Id);
+                                    // SelectA = false;
+                                }
+
                                 Increasediaindex = false;
                                 DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기.
                             }
@@ -462,45 +479,19 @@ public class TextManager : MonoBehaviour
 
                             if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].isSelect) //선택지인 경우
                                 Set_Select_System();
-                            else
-                                Set_Dialogue_System();
+                            else {
+                                if (!loading)
+                                    Set_Dialogue_System();
+                            }
+                              
 
 
                             //배경 전환
-                            if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG != null)
+                            if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG != null && !loading)
                                 Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG);
-                        }
-
-                        else //씬 변화가 있음
+                        } else //씬 변화가 있음
                         {
-                            dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
-                            if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 2) //스토리->정신세계
-                            {
-                                SoundManager.Instance.FadeOutBGM();
-                                StartCoroutine(LoadStoryMental(SceneType.Mental));
-                                //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
-                                //SceneManager.LoadScene("Mental_World_Map");
-                            }
-                            else if (DiaDic[Dia_Id].SceneNum == 2 && DiaDic[Dia_Id + 1].SceneNum == 1) //정신세계(퍼즐)->스토리
-                            {
-                                SoundManager.Instance.FadeOutBGM();
-                                StartCoroutine(LoadStoryMental(SceneType.Dialogue));
-                                //Dialogue_Proceeder.instance.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
-                                //SceneManager.LoadScene("DialogueTest");
-
-
-                            }
-                            else if (DiaDic[Dia_Id].SceneNum == 1 && DiaDic[Dia_Id + 1].SceneNum == 9)
-                            {
-                                StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
-                            }
-                            else // 그 밖의 경우에는 단순 대화 종료. (ex) 스토리 맵 -> 동굴 이동 전 대기 상태
-                            {
-
-                                dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
-
-                                DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기.
-                            }
+                            proceedScene(Dia_Id, Dia_Id + 1);
                         }
                     }
                 }
@@ -509,6 +500,32 @@ public class TextManager : MonoBehaviour
 
         }
 
+    }
+
+    private void proceedScene(int beforeId, int nextId)
+    {
+        dp.CurrentDiaIndex = 0; //대사 인덱스 초기화
+        if (DiaDic[beforeId].SceneNum == 1 && DiaDic[nextId].SceneNum == 2) //스토리->정신세계
+        {
+            SoundManager.Instance.FadeOutBGM();
+            StartCoroutine(LoadStoryMental(SceneType.Mental));
+        }
+        else if (DiaDic[beforeId].SceneNum == 2 && DiaDic[nextId].SceneNum == 1) //정신세계(퍼즐)->스토리
+        {
+            SoundManager.Instance.FadeOutBGM();
+            StartCoroutine(LoadStoryMental(SceneType.Dialogue));
+        }
+        else if (DiaDic[beforeId].SceneNum == 1 && DiaDic[nextId].SceneNum == 9)
+        {
+            StartCoroutine(LoadStoryMental(SceneType.Nightmare27));
+        }
+        else // 그 밖의 경우에는 단순 대화 종료. (ex) 스토리 맵 -> 동굴 이동 전 대기 상태
+        {
+
+            dp.AddCompleteCondition(beforeId); //대화 종료. 완수 조건에 현재 대화묶음id 추가
+
+            DiaUI.SetActive(false); //대화가 끝나면 대화 UI 끄기.
+        }
     }
 
     public void Get_Content()
@@ -759,7 +776,7 @@ public class TextManager : MonoBehaviour
 
         if (!BG_Change)
         {
-            //Debug.Log("배경바뀜");
+
             StartCoroutine(fadein(target, Change_target, 0f, 1f, 0.5f, ImgName));
 
         }
@@ -773,7 +790,6 @@ public class TextManager : MonoBehaviour
 
     public void SetDiaInMap()
     {
-        Debug.Log("대사 시작");
         Dia_Id = dp.CurrentDiaID;
         dp.CurrentDiaIndex = 0;
 
@@ -830,7 +846,7 @@ public class TextManager : MonoBehaviour
     {
         Increasediaindex = false ;
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        yield return new WaitForSecondsRealtime(0.2f);
 
         Increasediaindex = true;
     }
@@ -839,8 +855,6 @@ public class TextManager : MonoBehaviour
     //잘 있어요 퍼즐 전용 대화 UI
     public void Set_Dialogue_Goodbye() //처음 킬 때
     {
-
-        Debug.Log("Set_Dialogue_Goodbye");
 
         DiaUI.SetActive(false);
         LogUI.SetActive(false);
@@ -970,6 +984,7 @@ public class TextManager : MonoBehaviour
     IEnumerator LoadStoryMental(SceneType type)
     {
         Increasediaindex = false;
+        loading = true;
         yield return new WaitForSeconds(1f);
 
         if (type == SceneType.Mental)
@@ -985,8 +1000,11 @@ public class TextManager : MonoBehaviour
 
 
         dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
-        dp.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
+
+        if (SelectA) dp.UpdateCurrentDiaID(Dia_Id + 2); //Proceeder 업데이트.
+        else dp.UpdateCurrentDiaID(Dia_Id + 1); //Proceeder 업데이트.
         Increasediaindex = true;
+        loading = false;
         SceneChanger.Instance.ChangeScene(type, false);
     }
 

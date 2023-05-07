@@ -11,7 +11,7 @@ public class SceneTransition : MonoBehaviour
     private IEnumerator curCoroutine;
     private bool isClicked = false;
 
-    private void Start()
+    private void Awake()
     {
         img = transform.GetChild(0).GetComponent<Image>();
     }

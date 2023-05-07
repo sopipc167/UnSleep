@@ -51,6 +51,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Awake()
     {
+        transition = GetComponent<SceneTransition>();
         if (Instance != this)
         {
             Destroy(gameObject);
@@ -70,7 +71,7 @@ public class SceneChanger : MonoBehaviour
 
     private void Start()
     {
-        transition = GetComponent<SceneTransition>();
+
         untilTransition = new WaitUntil(() => transition.IsDone);
     }
 
