@@ -445,11 +445,11 @@ public class DiaEvent : MonoBehaviour
             Color tmp = Fade.color;
             tmp.a = 0.7f;
             Fade.color = tmp;
-            SoundManager.Instance.PlaySE("LightBlink", 0.7f);
+            SoundManager.Instance.PlaySE("LightOnOff", 0.7f);
             yield return new WaitForSeconds(0.3f);
             tmp.a = 0;
             Fade.color = tmp;
-            SoundManager.Instance.PlaySE("LightBlink", 0.7f);
+            SoundManager.Instance.PlaySE("LightOnOff", 0.7f);
             yield return new WaitForSeconds(0.3f);
         }
         Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
@@ -457,7 +457,7 @@ public class DiaEvent : MonoBehaviour
 
     IEnumerator Bigger()
     {
-        SoundManager.Instance.PlaySE("bigGomme");
+        SoundManager.Instance.PlaySE("bigGome");
         ob[5].transform.DOScaleX(-2.3f, 0.5f);
         ob[5].transform.DOScaleY(2.3f, 0.5f);
         yield return new WaitForSeconds(0.2f);

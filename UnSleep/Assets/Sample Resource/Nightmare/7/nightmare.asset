@@ -30,7 +30,7 @@ MonoBehaviour:
     value: 0.48
   smoothness:
     overrideState: 1
-    value: 0.14
+    value: 0.29
   roundness:
     overrideState: 1
     value: 1
@@ -65,10 +65,10 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.61
+    value: 0.33
   size:
     overrideState: 1
-    value: 1
+    value: 0.84
   lumContrib:
     overrideState: 0
     value: 0.8

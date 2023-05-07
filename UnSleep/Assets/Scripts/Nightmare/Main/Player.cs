@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     public Image sadFace;
 
     public bool isSE = true;
+    public AudioClip walk;
 
     void Start()
     {
@@ -80,14 +81,6 @@ public class Player : MonoBehaviour
         {
             TransTargetPos();
         }
-        else if (isStop)
-        {
-            if (isSE)
-            {
-                SoundManager.Instance.StopSE();
-                isSE = false;
-            }
-        }
 
         Vector3 tmp = transform.position;
         if (isMiniGame)
@@ -117,30 +110,16 @@ public class Player : MonoBehaviour
             if (transform.position == targetPos)
             {
                 animator.SetBool("isMove", false);
-               
-                if (isSE)
-                {
-                    Debug.Log("Domoon_walk_false");
-                    SoundManager.Instance.StopSE();
-                    isSE = false;
-                }
+                SoundManager.Instance.StopSE();
+
                 if (isAuto)
                 {
                     dia.moveEnd();
                     isAuto = false;
                 }
             }
-            else
-            {
-                if (!isSE)
-                {
-                    Debug.Log("Domoon_walk_true");
-                    SoundManager.Instance.PlaySE("domoon_walk");
-                    isSE = true;
-                }
-                transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
 
-            }
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         }
 
 
@@ -172,6 +151,7 @@ public class Player : MonoBehaviour
 
         targetPos = new Vector3(transPos.x, transPos.y, 0);
         animator.SetBool("isMove", true);
+        SoundManager.Instance.PlaySE(walk, 2);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

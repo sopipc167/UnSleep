@@ -3734,7 +3734,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: -4203134511358695322, guid: fc290aec13756f346984b28092b0416a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5992,6 +5992,7 @@ MonoBehaviour:
   surprise: {fileID: 1910573202}
   sadFace: {fileID: 923843428}
   isSE: 0
+  walk: {fileID: 8300000, guid: 5b8774877a8b7ea4dbece6aebdf4e371, type: 3}
 --- !u!61 &436431056
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -18146,10 +18147,10 @@ MonoBehaviour:
   finalBlitToCameraTarget: 0
   antialiasingMode: 0
   temporalAntialiasing:
-    jitterSpread: 0.75
-    sharpness: 0.25
-    stationaryBlending: 0.95
-    motionBlending: 0.85
+    jitterSpread: 0.1
+    sharpness: 0
+    stationaryBlending: 0.46
+    motionBlending: 0.33
   subpixelMorphologicalAntialiasing:
     quality: 2
   fastApproximateAntialiasing:
@@ -18181,7 +18182,7 @@ MonoBehaviour:
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
   m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -19331,7 +19332,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1728089077
 Transform:
   m_ObjectHideFlags: 0
@@ -19385,7 +19386,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 3341303161060404076, guid: bf5c28aa01fd8a44d9a0c03bfddd6228, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -21233,7 +21234,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 6469675324446754025, guid: bf5c28aa01fd8a44d9a0c03bfddd6228, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

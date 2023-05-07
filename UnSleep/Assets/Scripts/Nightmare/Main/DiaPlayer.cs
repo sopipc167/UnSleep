@@ -196,7 +196,6 @@ public class DiaPlayer : MonoBehaviour
                 }
                 if (!isOnce)
                 {
-                    Debug.Log("isReplay = true;");
                     textManager.isReplay = true;
                     isOnce = true;
                 }
