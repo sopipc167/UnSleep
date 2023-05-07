@@ -33,7 +33,6 @@ TagManager:
   - Unperformed
   - CogWheel
   - Tutorial
-
   layers:
   - Default
   - TransparentFX
