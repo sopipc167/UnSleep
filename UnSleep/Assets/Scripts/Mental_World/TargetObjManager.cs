@@ -18,6 +18,8 @@ public class TargetObjManager : MonoBehaviour
     public float lightRange;
     public Color lightColor;
 
+    public SceneType CurScene { get; private set; }
+
     private void Awake()
     {
         foreach (var item in objs)
@@ -34,6 +36,7 @@ public class TargetObjManager : MonoBehaviour
     public void SetTarget(SceneType target)
     {
         TargetObj targetObj;
+        CurScene = target;
         switch (target)
         {
             case SceneType.Cave:

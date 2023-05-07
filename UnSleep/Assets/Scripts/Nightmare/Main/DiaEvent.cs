@@ -98,6 +98,7 @@ public class DiaEvent : MonoBehaviour
         if ((diaGroupIndex != TM.Dia_Id || diaIndex != dp.CurrentDiaIndex || TM.isEnd) && !isFirst)
         {
             Debug.Log("con_EventNum: " + EventNum);
+
             if (EventNum == 0)
                 nextLevel();
             else if (EventNum == 1)
@@ -114,7 +115,10 @@ public class DiaEvent : MonoBehaviour
                 TM.EffectEnd = true;
             }
             else if (EventNum == 4)
+            {
+                SoundManager.Instance.PlaySE("chair");
                 Move(2, new Vector3(7.54f, -0.95f, 0), new Vector3(0, 0, 0));
+            }
             else if (EventNum == 5)
             {
                 ob[1].SetActive(false);
@@ -141,6 +145,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (EventNum == 8)
             {
+                SoundManager.Instance.PlayBGM("gomeFollow");
                 gome.targetPos = player.transform.position;
                 gome.isFollow = true;
                 gome.isStart = true;
@@ -175,6 +180,13 @@ public class DiaEvent : MonoBehaviour
             else if(EventNum == 16)
             {
                 GameOver_s();
+            }
+            else if(EventNum == 17)
+            {
+                Color tmp = Fade.color;
+                tmp.a = 255;
+                Fade.color = tmp;
+                ob[5].SetActive(false);
             }
 
             if (isMovie)
@@ -319,6 +331,16 @@ public class DiaEvent : MonoBehaviour
 
                 content = null;
             }
+            else if(content == "knock")
+            {
+                gome.isFollow = false;
+                SoundManager.Instance.PauseBGM();
+                SoundManager.Instance.PlaySE("knock");
+            }
+            else if(content == "doorHandle")
+            {
+                SoundManager.Instance.PlaySE("handle");
+            }
             else if (content == "SceneOver")
             {
                 dia_p.diaScene3.SetActive(false);
@@ -327,7 +349,7 @@ public class DiaEvent : MonoBehaviour
                 targetPos.x -= 2.5f;
                 gome.ChangeTarget(targetPos);
                 block.enabled = true;
-                gome.isFollow = false;
+                //gome.isFollow = false;
                 gome.isStart = true;
             }
             else if (content == "EyeMove_D")
@@ -360,6 +382,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "LightOn")
             {
+                SoundManager.Instance.PauseBGM();
                 SoundManager.Instance.PlaySE("LightOnOff");
                 ob[12].SetActive(true);
                 gome.isStart = false;
@@ -368,15 +391,20 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "Hide")
             {
-                Debug.Log("Hide");
+                SoundManager.Instance.PlaySE("fuss");
                 EventNum = 10;
                 content = null;
             }
             else if (content == "Surprise")
             {
+                SoundManager.Instance.PlaySE("surprise");
                 surprise.enabled = true;
                 content = null;
                 EventNum = 7;
+            }
+            else if(content == "wakeup")
+            {
+                EventNum = 17;
             }
             else if (content == "Choose")
             {
@@ -410,6 +438,7 @@ public class DiaEvent : MonoBehaviour
             }
             else if (content == "GameOver")
             {
+                SoundManager.Instance.PauseBGM();
                 EventNum = 16;
                 content = null;
             }
@@ -445,11 +474,11 @@ public class DiaEvent : MonoBehaviour
             Color tmp = Fade.color;
             tmp.a = 0.7f;
             Fade.color = tmp;
-            SoundManager.Instance.PlaySE("LightBlink", 0.7f);
+            SoundManager.Instance.PlaySE("LightOnOff", 0.7f);
             yield return new WaitForSeconds(0.3f);
             tmp.a = 0;
             Fade.color = tmp;
-            SoundManager.Instance.PlaySE("LightBlink", 0.7f);
+            SoundManager.Instance.PlaySE("LightOnOff", 0.7f);
             yield return new WaitForSeconds(0.3f);
         }
         Dialogue_system_manager.GetComponent<TextManager>().Increasediaindex = true;
@@ -457,7 +486,7 @@ public class DiaEvent : MonoBehaviour
 
     IEnumerator Bigger()
     {
-        SoundManager.Instance.PlaySE("bigGomme");
+        SoundManager.Instance.PlaySE("bigGome");
         ob[5].transform.DOScaleX(-2.3f, 0.5f);
         ob[5].transform.DOScaleY(2.3f, 0.5f);
         yield return new WaitForSeconds(0.2f);
@@ -468,6 +497,7 @@ public class DiaEvent : MonoBehaviour
     {
         ending_bg.enabled = true;
         eye.enabled = true;
+        SoundManager.Instance.PlaySE("gomeEyes");
         yield return new WaitForSeconds(0.5f);
         eye.transform.DOLocalMoveX(-138, 2.5f);
         yield return new WaitForSeconds(4.0f);
@@ -565,6 +595,7 @@ public class DiaEvent : MonoBehaviour
     {
         if (!dp.Complete_Condition.Contains(750) || !dp.Complete_Condition.Contains(751))
         {
+            SoundManager.Instance.PauseBGM();
             isUnperform = true;
             TM.DiaUI.SetActive(false);
             //플레이어 멈추고
@@ -603,7 +634,8 @@ public class DiaEvent : MonoBehaviour
         player.isStop = true;
         gome.isStart = false;
         fadeinout.Fade_In();
-        yield return new WaitForSeconds(2.5f);
+        SoundManager.Instance.PlaySE("GameOver");
+        yield return new WaitForSeconds(1.5f);
         Color tmp = gameOver.color;
         tmp.a = 1;
         gameOver.color = tmp;

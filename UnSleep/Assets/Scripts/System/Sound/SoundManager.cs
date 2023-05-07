@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource seSource2;
     private AudioSource seSource;
 
-    private int seState = 0;
+    public int seState = 0;
 
     private IEnumerator bgmCoroutine;
 
@@ -275,7 +275,8 @@ public class SoundManager : MonoBehaviour
     private void CheckAndPlaySE(AudioClip clip, float volume)
     {
         seSource = seSource1;
-        if (seState == 1) seSource = seSource2;
+        if (seState == 1)
+            seSource = seSource2;
 
         // 7초 이상인 SE라면 현재 상태에 check
         if (clip.length > 10f)

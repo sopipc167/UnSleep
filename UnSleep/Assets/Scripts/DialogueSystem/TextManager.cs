@@ -472,6 +472,8 @@ public class TextManager : MonoBehaviour
                                 }
 
                                 gome.isStart = true;
+                                if (gome.isFollow)
+                                    SoundManager.Instance.PlayBGM("gomeFollow");
                             }
 
 

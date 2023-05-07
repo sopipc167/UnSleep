@@ -17,7 +17,7 @@ public class Wave : MonoBehaviour
         wave = GetComponent<ParticleSystem>();
         while (true)
         {
-            transform.position = new Vector3(mid.x + Random.Range(-13f, 13f), mid.y, mid.z + Random.Range(-13f, 13f));
+            transform.position = new Vector3(mid.x, mid.y, mid.z);
             wave.Play();
             yield return new WaitForSeconds(Random.Range(minTime, maxTime));
         }
