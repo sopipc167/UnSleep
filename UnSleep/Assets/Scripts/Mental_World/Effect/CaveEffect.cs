@@ -14,11 +14,11 @@ public class CaveEffect : MonoBehaviour, IEffect
     {
         switch (Dialogue_Proceeder.instance.CurrentEpiID)
         {
-            case 19: SoundManager.Instance.PlaySE(se19); break;
-            case 20: SoundManager.Instance.PlaySE(se20); break;
-            case 27: SoundManager.Instance.PlaySE(se27); break;
-            case 50: SoundManager.Instance.PlaySE(se50); break;
-            case 65: SoundManager.Instance.PlaySE(se65); break;
+            case 5: SoundManager.Instance.PlaySE(se19); break;
+            case 6: SoundManager.Instance.PlaySE(se20); break;
+            case 11: SoundManager.Instance.PlaySE(se27); break;
+            case 15: SoundManager.Instance.PlaySE(se50); break;
+            case 17: SoundManager.Instance.PlaySE(se65); break;
         }
         
     }
