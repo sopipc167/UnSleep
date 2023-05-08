@@ -55,6 +55,7 @@ public class TextManager : MonoBehaviour
     //<---------- 기타 정보 ---------------->
     [Header("기타 정보")]
     public bool isDnI;
+    public EffectManager effectManager;
 
     //<---------- 기타 정보 ---------------->
 
@@ -586,13 +587,14 @@ public class TextManager : MonoBehaviour
 
     public void Set_Dialogue_System()
     {
-        string NAME = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].name; //이름
-        string CONTEXT = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].contexts; //대사
-        int EMOTION = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].portrait_emotion; //초상화id (표정id)
+        Dialogue dialogue = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex];
+        string NAME = dialogue.name; //이름
+        string CONTEXT = dialogue.contexts; //대사
+        int EMOTION = dialogue.portrait_emotion; //초상화id (표정id)
         float result; //이름(문자열)이 문자인지 숫자인지 판단하기 위해 있는 변수 (아래 보면 알아요)
-        int LAYOUT = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].layoutchange; //레이아웃 변화
-        string CONTENT = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].Content;//상호작용명(int가 될 수 있음)
-        string SE = DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].SE; //효과음
+        int LAYOUT = dialogue.layoutchange; //레이아웃 변화
+        string CONTENT = dialogue.Content;//상호작용명(int가 될 수 있음)
+        string SE = dialogue.SE; //효과음
         //string BGM = DiaDic[Dia_Id].BGM; // 배경음악 (스토리)
 
         UI_Objects.GetComponent<ChangeLayout>().LayoutChange(LAYOUT); //전달. 저쪽에서 알아서 할거임
@@ -627,6 +629,15 @@ public class TextManager : MonoBehaviour
             else
                 SoundManager.Instance.PlaySE(SE);
 
+        }
+
+     
+        if (DiaDic[Dia_Id].SceneNum == 2)
+        {
+            if (!string.IsNullOrEmpty(CONTENT) && effectManager != null)
+            {
+                effectManager.OnEffect();
+            }
         }
         /*
         if (BGM != null)

@@ -16870,6 +16870,10 @@ PrefabInstance:
       propertyPath: STEManager
       value: 
       objectReference: {fileID: 1095147911}
+    - target: {fileID: 8528798682782122523, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: effectManager
+      value: 
+      objectReference: {fileID: 530515989}
     - target: {fileID: 8528798682909620384, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -957.0776
