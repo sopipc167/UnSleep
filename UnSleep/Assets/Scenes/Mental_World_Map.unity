@@ -16897,7 +16897,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 78a76cc94cb11134895bb1dc9d07b585, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 945979326645088448, guid: 78a76cc94cb11134895bb1dc9d07b585, type: 3}
       propertyPath: m_Layer
@@ -101917,7 +101917,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8ad51608d5a6efd48bb757f076f5cb4c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1374529532473985307, guid: 8ad51608d5a6efd48bb757f076f5cb4c, type: 3}
       propertyPath: m_StaticEditorFlags
