@@ -42,6 +42,8 @@ public class DrawLine : MonoBehaviour
             colorButtons[i].onClick.AddListener(() => OnClickColorButton(index));
             colors[i] = colorButtons[i].image.color;
         }
+        handle.color = colors[colorIdx];
+        fill.color = colors[colorIdx];
     }
 
     // Update is called once per frame

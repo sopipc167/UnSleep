@@ -17,7 +17,7 @@ public class SettingsMenu : MonoBehaviour
     public Dropdown resolutionDropdown;
 
     private SoundManager soundManager;
-    private Resolution[] resolutions;
+    private List<Resolution> resolutions = new List<Resolution>();
 
     private SystemOption data;
 
@@ -80,45 +80,49 @@ public class SettingsMenu : MonoBehaviour
         soundManager.SetMute(SoundType.SE, data.mute_se);
 
         //Graphics
-        List<string> options = new List<string>();
-
+        List<string> qualityOptions = new List<string>(6);
         qualityDropdown.ClearOptions();
-        options.Add("Ultra");
-        options.Add("Very High");
-        options.Add("High");
-        options.Add("Medium");
-        options.Add("Low");
-        options.Add("Very Low");
-        qualityDropdown.AddOptions(options);
+        qualityOptions.Add("최고");
+        qualityOptions.Add("매우 높음");
+        qualityOptions.Add("높음");
+        qualityOptions.Add("중간");
+        qualityOptions.Add("낮음");
+        qualityOptions.Add("매우 낮음");
+        qualityDropdown.AddOptions(qualityOptions);
         qualityDropdown.onValueChanged.AddListener(value => SetQuality(value));
         qualityDropdown.value = data.graphic;
 
-        //Screen - screen type
-        screenTypeDropdown.ClearOptions();
-        options.Clear();
-        options.Add("Full Screen");
-        options.Add("Borderless Window");
-        options.Add("Window");
-        screenTypeDropdown.AddOptions(options);
-        screenTypeDropdown.onValueChanged.AddListener(value => SetScreen(value));
-        screenTypeDropdown.value = data.screenType;
-
         //Screen - resolution
-        options.Clear();
-        resolutions = Screen.resolutions;
-        for (int i = resolutions.Length - 1; i >= 0; --i)
+        List<string> resolutionOptions = new List<string>();
+        HashSet<int> widthSet = new HashSet<int>();
+        var allResolutions = Screen.resolutions;
+        for (int i = allResolutions.Length - 1; i >= 0; --i)
         {
-            options.Add(resolutions[i].width + " x " + resolutions[i].height);
+            if (!widthSet.Contains(allResolutions[i].width))
+            {
+                if (allResolutions[i].width * 9 == allResolutions[i].height * 16)
+                {
+                    resolutions.Add(allResolutions[i]);
+                    resolutionOptions.Add(allResolutions[i].width + " x " + allResolutions[i].height);
+                    widthSet.Add(allResolutions[i].width);
+                }
+            }
         }
-        options = options.Distinct().ToList();
 
         resolutionDropdown.ClearOptions();
-        resolutionDropdown.AddOptions(options);
-
+        resolutionDropdown.AddOptions(resolutionOptions);
         resolutionDropdown.onValueChanged.AddListener(value => SetResolution(value));
         resolutionDropdown.value = data.resolutionType;
 
-        SetScreen(screenTypeDropdown.value);
+        //Screen - screen type
+        List<string> screenOptions = new List<string>(3);
+        screenTypeDropdown.ClearOptions();
+        screenOptions.Add("전체 화면 모드");
+        screenOptions.Add("테두리 없는 창모드");
+        screenOptions.Add("창모드");
+        screenTypeDropdown.AddOptions(screenOptions);
+        screenTypeDropdown.onValueChanged.AddListener(value => SetScreen(value));
+        screenTypeDropdown.value = data.screenType;
     }
 
     private void SetQuality(int qualityIdx)
@@ -127,11 +131,20 @@ public class SettingsMenu : MonoBehaviour
         data.graphic = qualityDropdown.options.Count - 1 - qualityIdx;
     }
 
-    private void SetResolution(int resolutionIdx)
+    private void SetResolution(int resolutionIdx, FullScreenMode mode = FullScreenMode.Windowed)
     {
-        var resolution = resolutions[resolutionDropdown.options.Count - 1 - resolutionIdx];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-        data.resolutionType = resolutionIdx;
+        if (mode == FullScreenMode.Windowed)
+        {
+            var resolution = resolutions[resolutionIdx];
+            Screen.SetResolution(resolution.width, resolution.height, mode);
+            data.resolutionType = resolutionIdx;
+        }
+        else
+        {
+            var resolution = resolutions[0];
+            Screen.SetResolution(resolution.width, resolution.height, mode);
+            data.resolutionType = resolutionIdx;
+        }
     }
 
     private void SetScreen(int screenIdx)
@@ -142,14 +155,19 @@ public class SettingsMenu : MonoBehaviour
             case 0: // Full Screen
                 Application.runInBackground = false;
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
+                SetResolution(0, FullScreenMode.ExclusiveFullScreen);
+                resolutionDropdown.interactable = false;
                 break;
             case 1: // Borderless
                 Application.runInBackground = true;
                 Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                SetResolution(0, FullScreenMode.FullScreenWindow);
+                resolutionDropdown.interactable = false;
                 break;
             case 2:    // Window
                 Application.runInBackground = true;
                 Screen.fullScreenMode = FullScreenMode.Windowed;
+                resolutionDropdown.interactable = true;
                 break;
         }
 #endif
@@ -160,17 +178,23 @@ public class SettingsMenu : MonoBehaviour
             case 0: // Full Screen
                 Application.runInBackground = false;
                 Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                SetResolution(0, FullScreenMode.FullScreenWindow);
+            resolutionDropdown.interactable = false;
                 break;
             case 1: // Borderless
                 Application.runInBackground = true;
                 Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+                SetResolution(0, FullScreenMode.MaximizedWindow);
+            resolutionDropdown.interactable = false;
                 break;
             case 2:    // Window
                 Application.runInBackground = true;
                 Screen.fullScreenMode = FullScreenMode.Windowed;
+            resolutionDropdown.interactable = true;
                 break;
         }
 #endif
+
         data.screenType = screenIdx;
     }
 }

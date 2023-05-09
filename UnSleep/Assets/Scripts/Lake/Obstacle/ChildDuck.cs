@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ChildDuck : MonoBehaviour
 {
+    [Header("소리")]
+    public AudioClip sound;
+
     private SpriteRenderer spriteRenderer;
     private LakeBall ball;
 
@@ -22,6 +25,7 @@ public class ChildDuck : MonoBehaviour
             }
 
             ball.duckCnt += 1;
+            SoundManager.Instance.PlaySE(sound);
             StartCoroutine(DestroyCoroutine());
         }
     }

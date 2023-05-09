@@ -8,37 +8,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 89fd560c4d96d0c45b2e9dee63be404a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Prologue.unity
     guid: e88672c1da32c3645a8a933fb798e8e8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Diary.unity
     guid: bdff8a10c3e57d740891b793b3a144c5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DialogueTest.unity
     guid: f8a4e563e7e98c848803e16f88d05a5c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Mental_World_Map.unity
     guid: da987f451b039fd4dbbc1a848357617d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lake.unity
     guid: bfb6f3e27025bc5498ebc777fcd958a0
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Volcano.unity
     guid: d1162ea90ff873d45a351e47dfdb2bbf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/ClockTower.unity
     guid: a5814bb44d3c96b4b8e0303f670ddf1e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nightmare.unity
     guid: ab7c4b723fcb267468f78057dab2a057
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Nightmare_27.unity
     guid: 840c0d785e990a54796bd3a647316322
-  - enabled: 1
-    path: Assets/Scenes/Cave.unity
-    guid: 2cd00ff90de1c794c80fa535d0a38aee
-  - enabled: 1
-    path: Assets/Scenes/Cliff.unity
-    guid: dfd9f6375859dd144990b22be94d14a0
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Lotus : MonoBehaviour
 {
+    public AudioClip sound;
+
     private LotusManager lotusManager;
     private LakeBall ball;
     private bool isFirst = true;
@@ -25,6 +27,7 @@ public class Lotus : MonoBehaviour
         {
             if (isFirst)
             {
+                SoundManager.Instance.PlaySE(sound);
                 isFirst = false;
                 lotusManager.canMove = true;
 
