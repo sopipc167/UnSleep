@@ -19,7 +19,6 @@ public class CogWheelInfoPanel : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(Input.mousePosition);
         if (Input.mousePosition.y - offsetY < 10f)
         {
             rect.anchoredPosition = new Vector3(
