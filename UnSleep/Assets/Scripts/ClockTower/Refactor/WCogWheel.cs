@@ -59,9 +59,22 @@ public class WCogWheel : MonoBehaviour, CogWheel
         actionUp(detect());
     }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, info.radius + 0.15f / 2);
+
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, info.radius - 0.15f);
+
+
+    }
+
     void Update()
     {
         hasOverlapChild = overlapChild != null; // for debug
+
 
         switch (info.state)
         {
@@ -357,4 +370,5 @@ public class WCogWheel : MonoBehaviour, CogWheel
     {
         return info;
     }
+
 }
