@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class DialogueSkip : MonoBehaviour
 {
     public TextManager textManager;
+    public AudioClip skipClip;
 
 
     public void skip()
@@ -13,6 +14,7 @@ public class DialogueSkip : MonoBehaviour
         // DiaDic을 받아와서 현재 DiaID를 기준으로
         Dictionary<int, DialogueEvent> DiaDic = textManager.getDiaDic();
         int CurDiaID = Dialogue_Proceeder.instance.CurrentDiaID;
+        SoundManager.Instance.PlaySE(skipClip);
 
         // 1 씬이 바뀌거나 2 테이블이 끝나는 곳을 찾기
         while (true)

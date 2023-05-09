@@ -6731,6 +6731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialButton: {fileID: 1125823017696764130}
+  clip: {fileID: 8300000, guid: cbecb13ffbf37e94685375d8ff60a27a, type: 3}
 --- !u!114 &1229336497330041133
 MonoBehaviour:
   m_ObjectHideFlags: 0

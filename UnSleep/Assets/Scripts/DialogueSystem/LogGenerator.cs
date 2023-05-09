@@ -12,6 +12,10 @@ public class LogGenerator : MonoBehaviour
     public GameObject Content;
     public GameObject logPrefabSmall;
 
+    public AudioClip logOnClip;
+    public AudioClip logOffClip;
+
+
     private Dictionary<int, DialogueEvent> diaDic;
     private Dictionary<int, Sprite[]> porDic;
     private Dictionary<int, string> nameDic = new Dictionary<int, string>() //이름 딕셔너리. 캐릭터 id가 있는 주요 인물들
@@ -32,12 +36,15 @@ public class LogGenerator : MonoBehaviour
     {
         createLog();
         logUI.SetActive(true);
+        SoundManager.Instance.PlaySE(logOnClip);
         Content.GetComponent<RectTransform>().anchoredPosition = new Vector3(0, 0, 0); // 스크롤 항상 최하단부터.
     }
 
     public void turnOffLog()
     {
         logUI.SetActive(false);
+        SoundManager.Instance.PlaySE(logOffClip);
+
         for (int i = 0; i < Content.transform.childCount; i++) //로그 프리팹 모두 삭제
         {
             Destroy(Content.transform.GetChild(i).gameObject);

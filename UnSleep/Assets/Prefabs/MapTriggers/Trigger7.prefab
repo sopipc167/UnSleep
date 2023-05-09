@@ -243,7 +243,10 @@ MonoBehaviour:
   Interaction_distance: 10
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isClick: 0
+  sprite: {fileID: 0}
+  DE: {fileID: 0}
 --- !u!135 &8921667008890744499
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -404,7 +407,10 @@ MonoBehaviour:
   Interaction_distance: 28
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isClick: 0
+  sprite: {fileID: 0}
+  DE: {fileID: 0}
 --- !u!1 &7226818316893613804
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,4 +524,7 @@ MonoBehaviour:
   Interaction_distance: 4
   isChangeScene: 0
   sceneType: 0
-  isNext: 0
+  isAuto: 0
+  isClick: 0
+  sprite: {fileID: 0}
+  DE: {fileID: 0}

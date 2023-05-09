@@ -7918,6 +7918,7 @@ MonoBehaviour:
   charInfo: {fileID: 406835339599334605, guid: 97cc2a5471d137c419a1901ec9fc52ea, type: 3}
   CH12: {fileID: 170630924}
   CH34: {fileID: 1708264824}
+  writingSE: {fileID: 8300000, guid: f6430878c41f1624a862aac974fc7018, type: 3}
 --- !u!1 &6697785794857972358
 GameObject:
   m_ObjectHideFlags: 0
