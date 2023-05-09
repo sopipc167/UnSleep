@@ -102,6 +102,7 @@ public class DiaInterActor : MonoBehaviour
             //실행 조건 가져옴
             int[] conditions = textManager.ReturnDiaConditions(hit_Diaid[i]);
 
+
             //조건에 만족하면
             if (Dialogue_Proceeder.instance.Satisfy_Condition(conditions))
             {
@@ -111,10 +112,6 @@ public class DiaInterActor : MonoBehaviour
                 textManager.Increasediaindex = true; //대사 인덱스 넘어갈 수 있게 함.
 
                 return;
-            }
-            else
-            {
-                Debug.Log(conditions);
             }
         }
 
@@ -127,7 +124,7 @@ public class DiaInterActor : MonoBehaviour
         goToPuzzle.SetActive(true);
         SoundManager.Instance.FadeOutBGM();
         yield return new WaitForSeconds(3f);
-        SceneManager.LoadScene(SceneChanger.GetSceneName(sceneType));
+        SceneChanger.Instance.ChangeScene(sceneType, false);
     }
 }
 

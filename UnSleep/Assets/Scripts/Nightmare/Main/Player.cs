@@ -43,6 +43,9 @@ public class Player : MonoBehaviour
 
     public Image sadFace;
 
+    public bool isSE = true;
+    public AudioClip walk;
+
     void Start()
     {
         instance = this;
@@ -106,7 +109,14 @@ public class Player : MonoBehaviour
 
             if (transform.position == targetPos)
             {
+                if (isSE)
+                {
+                    Debug.Log("Domoon_walk_false");
+                    SoundManager.Instance.seSource1.Stop();
+                    isSE = false;
+                }
                 animator.SetBool("isMove", false);
+
                 if (isAuto)
                 {
                     dia.moveEnd();
@@ -146,6 +156,14 @@ public class Player : MonoBehaviour
 
         targetPos = new Vector3(transPos.x, transPos.y, 0);
         animator.SetBool("isMove", true);
+
+        if (!isSE)
+        {
+            Debug.Log("Domoon_walk_true");
+            SoundManager.Instance.seState = 0;
+            SoundManager.Instance.PlaySE(walk, 2);
+            isSE = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

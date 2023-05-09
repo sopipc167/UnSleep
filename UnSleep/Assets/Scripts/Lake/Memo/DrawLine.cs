@@ -11,6 +11,8 @@ public class DrawLine : MonoBehaviour
     public GameObject linePrefab;
     public Slider memoSlider;
     public Button[] colorButtons;
+    public Image handle;
+    public Image fill;
     private Color[] colors;
 
     [Header("그려지는 선 옵션")]
@@ -22,6 +24,8 @@ public class DrawLine : MonoBehaviour
     private EraseLine eraseLine;
     private LineRenderer lineRenderer;
     private Vector2 oldPos;
+
+    private bool exceptHandling = true;
 
     private void Start()
     {
@@ -38,6 +42,8 @@ public class DrawLine : MonoBehaviour
             colorButtons[i].onClick.AddListener(() => OnClickColorButton(index));
             colors[i] = colorButtons[i].image.color;
         }
+        handle.color = colors[colorIdx];
+        fill.color = colors[colorIdx];
     }
 
     // Update is called once per frame
@@ -50,6 +56,7 @@ public class DrawLine : MonoBehaviour
             {
                 if (Input.GetMouseButtonDown(0))
                 {
+                    exceptHandling = false;
                     if (memoManager.memoDetailCanvas.activeSelf)
                     {
                         memoManager.memoDetailCanvas.SetActive(false);
@@ -65,7 +72,7 @@ public class DrawLine : MonoBehaviour
                     oldPos = memoManager.memoCamera.ScreenToWorldPoint(Input.mousePosition);
                     lineRenderer.SetPosition(0, oldPos);
                 }
-                else if (Input.GetMouseButton(0))
+                else if (!exceptHandling && Input.GetMouseButton(0))
                 {
                     Vector2 pos = memoManager.memoCamera.ScreenToWorldPoint(Input.mousePosition);
                     if (Vector2.Distance(oldPos, pos) > 0.1f)
@@ -74,6 +81,10 @@ public class DrawLine : MonoBehaviour
                         ++lineRenderer.positionCount;
                         lineRenderer.SetPosition(lineRenderer.positionCount - 1, pos);
                     }
+                }
+                else if (Input.GetMouseButtonUp(0))
+                {
+                    exceptHandling = true;
                 }
             }
             else
@@ -98,5 +109,7 @@ public class DrawLine : MonoBehaviour
     private void OnClickColorButton(int idx)
     {
         colorIdx = idx;
+        handle.color = colors[colorIdx];
+        fill.color = colors[colorIdx];
     }
 }

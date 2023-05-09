@@ -125,6 +125,7 @@ public class DiaPlayer : MonoBehaviour
                 }
                 else if(dia_hit_colliders[i].tag == "Chair")
                 {
+                    SoundManager.Instance.PlaySE("chairDown");
                     DE.Move(2, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
                     DE.Move(15, new Vector3(7.74f, -1.86f, 0), new Vector3(0, 0, -90));
                     DE.chair.enabled = false;
@@ -141,7 +142,7 @@ public class DiaPlayer : MonoBehaviour
 
         if (hit.isChangeScene) //상호작용으로 씬 전환이 이루어지는 경우
         {
-            SceneChanger.ChangeScene(hit.sceneType);
+            SceneChanger.Instance.ChangeScene(hit.sceneType, false);
         }
 
         //Debug.Log("상호작용 대화 실행");
@@ -195,7 +196,6 @@ public class DiaPlayer : MonoBehaviour
                 }
                 if (!isOnce)
                 {
-                    Debug.Log("isReplay = true;");
                     textManager.isReplay = true;
                     isOnce = true;
                 }

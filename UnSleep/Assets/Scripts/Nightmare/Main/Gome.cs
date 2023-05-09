@@ -39,7 +39,9 @@ public class Gome : MonoBehaviour
                 anim.SetBool("isMove", true);
 
                 if (isFollow)
+                {
                     targetPos = target.transform.position;
+                }
 
                 transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
             }
@@ -47,6 +49,7 @@ public class Gome : MonoBehaviour
         else
         {
             anim.SetBool("isMove", false);
+            SoundManager.Instance.PauseBGM();
         }
     }
 

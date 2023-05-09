@@ -50,7 +50,7 @@ public class Prologue : MonoBehaviour
         else
         {
             Saveinfo();
-            SceneChanger.ChangeScene(SceneType.Diary);
+            SceneChanger.Instance.ChangeScene(SceneType.Diary);
             //Test();
         }
     }

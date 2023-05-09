@@ -134,6 +134,6 @@ public class CliffUIManager : MonoBehaviour
     //아래는 Button function
     public void OnClickRestart()
     {
-        SceneChanger.RestartScene();
+        SceneChanger.Instance.RestartScene();
     }
 }

@@ -10,18 +10,20 @@ public class GearUI65 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     private Vector3 CenterPos = new Vector3(0, 0, 0);
     Vector3 offset;
     private float StartDistance;
+    private RectTransform rect;
 
     // Start is called before the first frame update
     void Start()
     {
-        StartPos = transform.position;
+        rect = GetComponent<RectTransform>();
+        StartPos = rect.position;
         StartDistance = Vector3.Distance(StartPos, CenterPos);
     }
 
     void Update()
     {
-        float CurScale = (StartDistance / Vector3.Distance(transform.position, CenterPos)) * -0.7f + 1.5f;
-        transform.localScale = new Vector3(CurScale, CurScale);
+        float CurScale = 0.8f + 0.5f / Vector3.Distance(rect.position, CenterPos);
+        rect.localScale = new Vector3(CurScale, CurScale);
 
     }
 
@@ -29,8 +31,8 @@ public class GearUI65 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            Vector3 CurPos = Input.mousePosition;
-            transform.position = CurPos + offset;
+            Vector3 CurPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            rect.position = CurPos + offset;
         }
     }
 
@@ -38,19 +40,21 @@ public class GearUI65 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
     {
         if (eventData.button == PointerEventData.InputButton.Left)
         {
-            offset = transform.position - Input.mousePosition;
+            offset = rect.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
         }
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        transform.DOMove(StartPos, 1f, true);
+
+        rect.DOMove(StartPos, 1f);
     }
 
     public void OnScroll(PointerEventData eventData)
     {
-        Quaternion curQua = transform.rotation;
+        Quaternion curQua = rect.rotation;
         Quaternion newQua = Quaternion.Euler(new Vector3(0, 0, 60 * eventData.scrollDelta.y));
-        transform.DORotateQuaternion(curQua*newQua, 0.5f);
+        rect.DORotateQuaternion(curQua*newQua, 0.5f);
     }
+
 }

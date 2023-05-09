@@ -71,30 +71,32 @@ public class MenuManager : MonoBehaviour
             else
             {
                 GameManager.IsPause = !GameManager.IsPause;
-                if (GameManager.IsPause) menuCanvas.SetActive(true);
+                if (GameManager.IsPause) ShowMenu();
                 else menuCanvas.SetActive(false);
             }
         }
     }
 
-    private void OnEnable()
+    private void ShowMenu()
     {
-        tutorialButton.interactable = SceneChanger.IsPuzleScene();
+        tutorialButton.interactable = SceneChanger.Instance.IsPuzleScene();
+        menuCanvas.SetActive(true);
     }
 
     public void Resume()
     {
         GameManager.IsPause = false;
-        if (GameManager.IsPause) menuCanvas.SetActive(true);
+        if (GameManager.IsPause) ShowMenu();
         else menuCanvas.SetActive(false);
     }
 
     public void GoDiary()
     {
         GameManager.IsPause = false;
-        if (GameManager.IsPause) menuCanvas.SetActive(true);
+        if (GameManager.IsPause) ShowMenu();
         else menuCanvas.SetActive(false);
-        SceneManager.LoadScene("Diary");
+        SoundManager.Instance.StopSE();
+        SceneChanger.Instance.ChangeScene(SceneType.Diary);
     }
 
     public void Exit_()
@@ -116,7 +118,7 @@ public class MenuManager : MonoBehaviour
         {
             isSettingOn = false;
             settingCanvas.SetActive(false);
-            menuCanvas.SetActive(true);
+            ShowMenu();
         }
         else
         {
