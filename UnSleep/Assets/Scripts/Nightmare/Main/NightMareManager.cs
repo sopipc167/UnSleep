@@ -133,6 +133,7 @@ public class NightMareManager : MonoBehaviour
         player_s.isMiniGame = true;
         player.transform.localScale = new Vector3(0.35f, 0.35f, 0);
         player_s.Noise.enabled = true;
+        player_s.isStop = false;
         player.SetActive(true);
     }
 

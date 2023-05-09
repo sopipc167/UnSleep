@@ -64,6 +64,7 @@ public class DiaPlayer : MonoBehaviour
                     {
                         isOnce = false;
                     }
+                    SoundManager.Instance.PlaySE("ClickSound");
                     DialogueInteraction(hit_info);
                 }
             }
@@ -171,6 +172,7 @@ public class DiaPlayer : MonoBehaviour
             {
                 if (DE.outline != 0)
                     DE.Outline_false();
+                SoundManager.Instance.PlaySE("Click");
                 movie.MovieFrameIn();
                 textManager.isMovieIn = true;
             }
