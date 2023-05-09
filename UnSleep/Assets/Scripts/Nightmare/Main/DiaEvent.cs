@@ -68,6 +68,7 @@ public class DiaEvent : MonoBehaviour
     public int effectIndex;
 
     public int outline = 0;
+    public SpriteRenderer[] choose;
 
     private void Awake()
     {
@@ -467,14 +468,16 @@ public class DiaEvent : MonoBehaviour
     {
         if(diaNum == 744)
         {
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                ob[19].SetActive(true);
-                yield return new WaitForSeconds(0.2f);
-                ob[19].SetActive(false);
-                yield return new WaitForSeconds(0.2f);
+                choose[0].enabled = true;
+                choose[1].enabled = true;
+                yield return new WaitForSeconds(0.15f);
+                choose[0].enabled = false;
+                choose[1].enabled = false;
+                if(i < 2)
+                    yield return new WaitForSeconds(0.15f);
             }
-            yield return new WaitForSeconds(0.2f);
             SoundManager.Instance.PlayBGM("gomeFollow");
         }
 
