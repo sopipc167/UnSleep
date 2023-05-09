@@ -287,7 +287,7 @@ public class Pages : MonoBehaviour
                 {3 ,  new CHPosAngle[] { new CHPosAngle(-70f, 0f, 10f), new CHPosAngle(80f, 0f, 0f), new CHPosAngle(200f, 0f, -10f)}},
                 {4 ,  new CHPosAngle[] { new CHPosAngle(-140f, 0f, 10f), new CHPosAngle(0f, 0f, 5f), new CHPosAngle(115f, 0f, -5f), new CHPosAngle(250f, 0f, -10f)}},
                 {5 ,  new CHPosAngle[] { new CHPosAngle(-165f, 0f, 10f), new CHPosAngle(-45f, 0f, 5f), new CHPosAngle(77f, 0f, 0f), new CHPosAngle(190f, 0f, -5f), new CHPosAngle(300f, 0f, -10f)}},
-                {6 ,  new CHPosAngle[] { new CHPosAngle(-175f, 0f, 10f), new CHPosAngle(-55f, 0f, 5f), new CHPosAngle(30f, 0f, 0f), new CHPosAngle(80f, 0f, 0f), new CHPosAngle(2000f, 0f, -5f), new CHPosAngle(315f, 0f, -10f)}}
+                {6 ,  new CHPosAngle[] { new CHPosAngle(-175f, 0f, 10f), new CHPosAngle(-55f, 0f, 5f), new CHPosAngle(30f, 0f, 0f), new CHPosAngle(110f, 0f, 0f), new CHPosAngle(200f, 0f, -5f), new CHPosAngle(315f, 0f, -10f)}}
         };
 
         int chCnt = characs.Length; //인물 수

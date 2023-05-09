@@ -6,6 +6,8 @@ public class Axis : MonoBehaviour
 {
     [Header("참조")]
     public Transform playerPos;
+    public GameObject logUI;
+    public GameObject dialogueUI;
 
     [Header("카메라 회전 설정")]
     public float distance;
@@ -28,19 +30,23 @@ public class Axis : MonoBehaviour
     private void Update()
     {
         // 줌 인/아웃 기능
-        float scroll = Input.GetAxis("Mouse ScrollWheel") * scrollScale;
-        if (mainCam.fieldOfView - scroll < 40f)
+        if (!logUI.activeSelf && !dialogueUI.activeSelf)
         {
-            mainCam.fieldOfView = 40f;
+            float scroll = Input.GetAxis("Mouse ScrollWheel") * scrollScale;
+            if (mainCam.fieldOfView - scroll < 40f)
+            {
+                mainCam.fieldOfView = 40f;
+            }
+            else if (mainCam.fieldOfView - scroll > 80f)
+            {
+                mainCam.fieldOfView = 80f;
+            }
+            else
+            {
+                mainCam.fieldOfView -= scroll;
+            }
         }
-        else if (mainCam.fieldOfView - scroll > 80f)
-        {
-            mainCam.fieldOfView = 80f;
-        }
-        else
-        {
-            mainCam.fieldOfView -= scroll;
-        }
+
 
         // 마우스 우클릭 후 좌우로 움직이면 카메라도 움직임
         if (Input.GetMouseButton(1))

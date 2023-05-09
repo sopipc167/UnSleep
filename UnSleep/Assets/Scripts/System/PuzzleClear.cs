@@ -5,7 +5,7 @@ using UnityEngine;
 public class PuzzleClear : MonoBehaviour
 {
     private float startDelay;
-    private float endDelay;
+    private float endDelay = 2f;
     private SceneType sceneType;
     [SerializeField] private Animator ani;
 
