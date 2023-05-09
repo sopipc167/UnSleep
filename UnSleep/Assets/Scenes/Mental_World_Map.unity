@@ -18143,11 +18143,11 @@ PrefabInstance:
       objectReference: {fileID: 637818273}
     - target: {fileID: 3233963774659547708, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3233963774659547708, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589673104055367138, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: interactionObjParent
@@ -18179,15 +18179,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8332860866770900275, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8332860866770900275, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8332860866770900275, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -47
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8379347920026992262, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_IsActive
@@ -18297,6 +18297,10 @@ PrefabInstance:
       propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8571790700920214147, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8528798682208535616, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
@@ -18336,6 +18340,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b1a151f129719549aa2f59ccbeb4371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &637818274 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8277254593092800458, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
+  m_PrefabInstance: {fileID: 637818267}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &642954551
 GameObject:
   m_ObjectHideFlags: 0
@@ -23646,6 +23655,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DiaUI: {fileID: 637818271}
+  logButton: {fileID: 637818274}
+  clip: {fileID: 0}
 --- !u!320 &664617013
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -24215,6 +24226,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DiaUI: {fileID: 637818271}
+  logButton: {fileID: 0}
+  clip: {fileID: 0}
 --- !u!1001 &704699895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32416,6 +32429,8 @@ MonoBehaviour:
   - "\uC9C0\uAE08 \uB3C4\uBB38\uC774\uB294 \uC124\uB808\uC11C \uC7A0\uC774 \uC624\uC9C0
     \uC54A\uB098 \uBD10!"
   interval_: 5
+  typingInterval: 0.02
+  logButton: {fileID: 0}
 --- !u!1 &1020539635
 GameObject:
   m_ObjectHideFlags: 0
@@ -62206,6 +62221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 1351840341}
+  logUI: {fileID: 0}
+  dialogueUI: {fileID: 0}
   distance: 10
   rotationSpeed: 5
   scrollScale: 12
