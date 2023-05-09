@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
 {
+    public AudioClip sound;
+
     internal bool result;
 
     private Vector3 initPos;
@@ -36,7 +38,7 @@ public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
     {
         if (!result) return;
 
-        if (dp.CurrentDiaID == 3201 && dp.CurrentDiaIndex == 4 ||
+        if (dp.CurrentDiaID == 3203 && dp.CurrentDiaIndex == 0 ||
             dp.CurrentDiaID == 6502 && dp.CurrentDiaIndex == 15)
         {
             transform.parent.gameObject.SetActive(false);
@@ -64,13 +66,12 @@ public class BeerImg : MonoBehaviour, IDragHandler, IBeginDragHandler
             diff.y = 0f;
         }
 
-        // 재미로 넣은 코드...
-        // 도문이 혼술 가능 ㅋㅋ
         transform.localRotation = Quaternion.Euler(new Vector3(0, 0, transform.localRotation.eulerAngles.z - (diff.x * 0.08f)));
         transform.localPosition += diff;
 
         if (transform.localPosition.x > -35.2f && transform.localPosition.y > -97.2f)
         {
+            SoundManager.Instance.PlaySE(sound);
             img.raycastTarget = false;
             result = true;
         }

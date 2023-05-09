@@ -73,6 +73,10 @@ public class ClockLevelManager : MonoBehaviour
             {
                 StopCoroutine(coroutine);
                 coroutine = null;
+
+                Color color = blinkPanel.color;
+                color.a = 0f;
+                blinkPanel.color = color;
             }
 
         }
