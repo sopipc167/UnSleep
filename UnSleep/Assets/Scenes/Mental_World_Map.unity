@@ -22620,7 +22620,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &664617011
 Transform:
   m_ObjectHideFlags: 0
@@ -22653,6 +22653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiaUI: {fileID: 637818271}
   logButton: {fileID: 637818275}
+  clip: {fileID: 8300000, guid: 66f6f00f2e70a7b40adeaa53e090148a, type: 3}
 --- !u!320 &664617013
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -23223,6 +23224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiaUI: {fileID: 637818271}
   logButton: {fileID: 637818275}
+  clip: {fileID: 8300000, guid: ddd7c047d918eba46adf1bc641949b7a, type: 3}
 --- !u!1001 &704699895
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -59852,8 +59854,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468922088}
-  m_LocalRotation: {x: -0.25126433, y: 0.20339781, z: -0.07814529, w: -0.94307417}
-  m_LocalPosition: {x: -33.981304, y: 11.760731, z: 50.6913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -11.141006, y: 0.2284627, z: 16.484436}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -93334,8 +93336,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977870153}
-  m_LocalRotation: {x: -0.25126433, y: 0.20339781, z: -0.07814529, w: -0.94307417}
-  m_LocalPosition: {x: 7.319702, y: 8.262268, z: -36.083138}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30.16, y: -3.27, z: -70.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 664617011}
@@ -93356,12 +93358,27 @@ MonoBehaviour:
   m_Events:
     m_Signals:
     - {fileID: 11400000, guid: 012fd6bbba54e6f45bcc04c93263858b, type: 2}
+    - {fileID: 11400000, guid: 7020d32b1f4d17e49a45a0d22cec08fd, type: 2}
     m_Events:
     - m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 664617012}
           m_TargetAssemblyTypeName: MWIntro, Assembly-CSharp
           m_MethodName: DisableMWIntro
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 664617012}
+          m_TargetAssemblyTypeName: MWIntro, Assembly-CSharp
+          m_MethodName: playClip
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
