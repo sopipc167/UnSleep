@@ -23656,7 +23656,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DiaUI: {fileID: 637818271}
   logButton: {fileID: 637818274}
-  clip: {fileID: 0}
+  clip: {fileID: 8300000, guid: 66f6f00f2e70a7b40adeaa53e090148a, type: 3}
 --- !u!320 &664617013
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -24226,7 +24226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DiaUI: {fileID: 637818271}
-  logButton: {fileID: 0}
+  logButton: {fileID: 637818274}
   clip: {fileID: 0}
 --- !u!1001 &704699895
 PrefabInstance:
@@ -32430,7 +32430,7 @@ MonoBehaviour:
     \uC54A\uB098 \uBD10!"
   interval_: 5
   typingInterval: 0.02
-  logButton: {fileID: 0}
+  logButton: {fileID: 637818274}
 --- !u!1 &1020539635
 GameObject:
   m_ObjectHideFlags: 0
@@ -62221,8 +62221,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 1351840341}
-  logUI: {fileID: 0}
-  dialogueUI: {fileID: 0}
+  logUI: {fileID: 157296178}
+  dialogueUI: {fileID: 637818271}
   distance: 10
   rotationSpeed: 5
   scrollScale: 12
