@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 2407818122583095530}
   - component: {fileID: 3400725419052308551}
   - component: {fileID: 5050483437686234285}
-  - component: {fileID: -4489198298482066575}
+  - component: {fileID: 7718528754749708994}
   m_Layer: 0
   m_Name: BCog8
   m_TagString: CogWheel
@@ -169,8 +169,8 @@ MonoBehaviour:
     type: 0
     speed: 0
     rotation: 0
---- !u!58 &-4489198298482066575
-CircleCollider2D:
+--- !u!60 &7718528754749708994
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,5 +183,55 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.2, y: 1.2}
+    newSize: {x: 1.15, y: 1.15}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.5, y: -0.32}
+      - {x: 0.45999998, y: -0.25}
+      - {x: 0.59999996, y: -0.11}
+      - {x: 0.59999996, y: 0.14}
+      - {x: 0.45999998, y: 0.21}
+      - {x: 0.52, y: 0.38}
+      - {x: 0.37, y: 0.5}
+      - {x: 0.32, y: 0.5}
+      - {x: 0.25, y: 0.45999998}
+      - {x: 0.11, y: 0.59999996}
+      - {x: -0.13, y: 0.59999996}
+      - {x: -0.21, y: 0.44}
+      - {x: -0.29999998, y: 0.55}
+      - {x: -0.55, y: 0.39}
+      - {x: -0.45999998, y: 0.14999999}
+      - {x: -0.59999996, y: 0.12}
+      - {x: -0.59999996, y: -0.17}
+      - {x: -0.55, y: -0.39}
+      - {x: -0.29999998, y: -0.55}
+      - {x: -0.16, y: -0.59999996}
+      - {x: 0.13, y: -0.59999996}
+      - {x: 0.21, y: -0.45999998}
+      - {x: 0.39, y: -0.53}
+      - {x: 0.5, y: -0.37}
+    - - {x: -0.049999997, y: -0.089999996}
+      - {x: -0.089999996, y: -0.049999997}
+      - {x: -0.11, y: -0.02}
+      - {x: -0.11, y: 0.02}
+      - {x: -0.089999996, y: 0.049999997}
+      - {x: -0.049999997, y: 0.089999996}
+      - {x: -0.02, y: 0.11}
+      - {x: 0.02, y: 0.11}
+      - {x: 0.049999997, y: 0.089999996}
+      - {x: 0.089999996, y: 0.049999997}
+      - {x: 0.11, y: 0.02}
+      - {x: 0.11, y: -0.02}
+      - {x: 0.089999996, y: -0.049999997}
+      - {x: 0.049999997, y: -0.089999996}
+      - {x: 0.02, y: -0.11}
+      - {x: -0.02, y: -0.11}
+      - {x: -0.02, y: -0.099999994}
