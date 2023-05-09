@@ -11,6 +11,8 @@ public class DrawLine : MonoBehaviour
     public GameObject linePrefab;
     public Slider memoSlider;
     public Button[] colorButtons;
+    public Image handle;
+    public Image fill;
     private Color[] colors;
 
     [Header("그려지는 선 옵션")]
@@ -105,5 +107,7 @@ public class DrawLine : MonoBehaviour
     private void OnClickColorButton(int idx)
     {
         colorIdx = idx;
+        handle.color = colors[colorIdx];
+        fill.color = colors[colorIdx];
     }
 }

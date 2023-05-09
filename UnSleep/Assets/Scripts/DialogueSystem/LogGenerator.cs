@@ -53,6 +53,8 @@ public class LogGenerator : MonoBehaviour
 
     private void createLogItem(int diaId, int until = -1)
     {
+        if (!diaDic.ContainsKey(diaId)) return;
+
         Dialogue[] diaList = diaDic[diaId].dialogues;
         string lastName = null;
         string line = "";
@@ -88,12 +90,10 @@ public class LogGenerator : MonoBehaviour
                             if ((Dialogue_Proceeder.instance.CurrentEpiID <= 2 && lastName.Equals("1001")) || lastName.Equals("1000"))
                             {
                                 log = Instantiate(logPrefabSmall); //프리팹 생성
-                                Debug.Log("small");
                             }
                             else
                             {
                                 log = Instantiate(logPrefab); //프리팹 생성
-                                Debug.Log("normal");
                             }
                             char_img = porDic[int.Parse(lastName)][0];
                             log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남

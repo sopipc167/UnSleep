@@ -95,6 +95,7 @@ public class MenuManager : MonoBehaviour
         GameManager.IsPause = false;
         if (GameManager.IsPause) ShowMenu();
         else menuCanvas.SetActive(false);
+        SoundManager.Instance.StopSE();
         SceneChanger.Instance.ChangeScene(SceneType.Diary);
     }
 
