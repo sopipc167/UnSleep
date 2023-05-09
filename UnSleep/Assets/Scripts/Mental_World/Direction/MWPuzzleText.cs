@@ -12,7 +12,10 @@ public class MWPuzzleText : MonoBehaviour
     public Text LineText;
     public string[] LineList;
     public float interval_ = 2f;
-    private bool isTyping;
+    public float typingInterval = 0.02f;
+    private bool isTyping; 
+    public GameObject logButton;
+
 
     private PlayableDirector playableDirector;
     private TextManager textManager;
@@ -37,7 +40,7 @@ public class MWPuzzleText : MonoBehaviour
         {
             if (!isTyping)
             {
-                StartCoroutine(OnType(0.05f, LineList[i]));
+                StartCoroutine(OnType(typingInterval, LineList[i]));
                 i++;
             }
 
@@ -60,6 +63,7 @@ public class MWPuzzleText : MonoBehaviour
 
     public void DisableMWPuzzle()
     {
+        logButton.SetActive(true);
         mainCamera.enabled = true;
         Dialogue_Proceeder.instance.UpdateCurrentDiaIDPlus1();
         textManager.SetDiaInMap();
