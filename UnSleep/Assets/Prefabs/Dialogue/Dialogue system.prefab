@@ -2599,6 +2599,8 @@ MonoBehaviour:
   logPrefab: {fileID: 7594936392712446685, guid: e1dc9b6ef37cfc74cbcd29e968b7a863, type: 3}
   Content: {fileID: 2239054028534971478}
   logPrefabSmall: {fileID: 7047214564848471919, guid: 1d2115d57d9fe1644990a220ae39a1fb, type: 3}
+  logOnClip: {fileID: 8300000, guid: cbecb13ffbf37e94685375d8ff60a27a, type: 3}
+  logOffClip: {fileID: 8300000, guid: cbecb13ffbf37e94685375d8ff60a27a, type: 3}
 --- !u!114 &2811922211074286234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2612,6 +2614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textManager: {fileID: 8528798682782122523}
+  skipClip: {fileID: 8300000, guid: cbecb13ffbf37e94685375d8ff60a27a, type: 3}
 --- !u!1 &8528798682909620385
 GameObject:
   m_ObjectHideFlags: 0
