@@ -10,6 +10,8 @@ public class CogWheelInfoWatcher : MonoBehaviour
 
     void Update()
     {
+        if (MemoManager.isMemoOn) return;
+
         if (Input.GetMouseButton(1))
         {
             Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);

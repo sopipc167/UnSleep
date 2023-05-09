@@ -44,6 +44,8 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if (Stop)
             return;
 
+        if (MemoManager.isMemoOn) return;
+
         if (eventData.button == PointerEventData.InputButton.Left)
         {
             //ScrSpace = transform.parent.transform.position;
@@ -57,7 +59,7 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (Stop)
             return;
-
+        if (MemoManager.isMemoOn) return;
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
@@ -74,7 +76,7 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (Stop)
             return;
-
+        if (MemoManager.isMemoOn) return;
         if (eventData.button == PointerEventData.InputButton.Left)
         {
 
@@ -91,7 +93,7 @@ public class Gear_Drag_new : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     {
         if (Stop)
             return;
-
+        if (MemoManager.isMemoOn) return;
         transform.GetChild(0).GetComponent<Outline>().enabled = true;
         //StartCoroutine("GetBigger");
     }
