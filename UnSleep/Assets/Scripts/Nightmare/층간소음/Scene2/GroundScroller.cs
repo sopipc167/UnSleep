@@ -9,6 +9,7 @@ public class GroundScroller : MonoBehaviour
     public float speed;
     float Speed;
     public float PosY;
+    public bool isStop;
     void Start()
     {
         temp = tiles[0];
@@ -18,27 +19,25 @@ public class GroundScroller : MonoBehaviour
 
     void Update()
     {
-        for(int i = 0; i < tiles.Length; i++)
+        if (!isStop)
         {
-            if(-15 >= tiles[i].transform.position.x)
+            for (int i = 0; i < tiles.Length; i++)
             {
-                for(int q = 0; q < tiles.Length; q++)
+                if (-15 >= tiles[i].transform.position.x)
                 {
-                    if (temp.transform.position.x < tiles[q].transform.position.x)
-                        temp = tiles[q];
+                    for (int q = 0; q < tiles.Length; q++)
+                    {
+                        if (temp.transform.position.x < tiles[q].transform.position.x)
+                            temp = tiles[q];
+                    }
+                    tiles[i].transform.position = new Vector2(temp.transform.position.x + 7, PosY);
+                    tiles[i].sprite = groundImg[Random.Range(0, groundImg.Length)];
                 }
-                tiles[i].transform.position = new Vector2(temp.transform.position.x + 7, PosY);
-                tiles[i].sprite = groundImg[Random.Range(0, groundImg.Length)];
+            }
+            for (int i = 0; i < tiles.Length; i++)
+            {
+                tiles[i].transform.Translate(new Vector2(-1, 0) * Time.deltaTime * speed);
             }
         }
-        for(int i = 0; i < tiles.Length; i++)
-        {
-            tiles[i].transform.Translate(new Vector2(-1, 0) * Time.deltaTime * speed);
-        }
-    }
-
-    public void SpeedBack()
-    {
-        speed = Speed;
     }
 }

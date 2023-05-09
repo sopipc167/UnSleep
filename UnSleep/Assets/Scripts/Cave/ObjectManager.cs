@@ -43,7 +43,7 @@ public class ObjectManager : MonoBehaviour
         {
             rootObject = MonoBehaviour.Instantiate(cave_object[5]);
             GearUI = MonoBehaviour.Instantiate(GearUI65);
-            GearUI.transform.SetParent(OBJECT);
+            GearUI.transform.SetParent(OBJECT, false);
             //GearUI.transform.position = OBJECT.position;
             GearUI.SetActive(false);
         }
@@ -58,7 +58,7 @@ public class ObjectManager : MonoBehaviour
 
 
 
-        rootObject.transform.SetParent(OBJECT);
+        rootObject.transform.SetParent(OBJECT, false);
         rootObject.transform.position = OBJECT.position;
         objectsCnt = rootObject.transform.childCount;
         objects = new GameObject[objectsCnt];

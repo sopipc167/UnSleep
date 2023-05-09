@@ -71,7 +71,7 @@ GameObject:
   - component: {fileID: 2407818122583095530}
   - component: {fileID: 3400725419052308551}
   - component: {fileID: 5050483437686234285}
-  - component: {fileID: -4489198298482066575}
+  - component: {fileID: 2508571137082230260}
   m_Layer: 0
   m_Name: BCog8
   m_TagString: CogWheel
@@ -169,7 +169,7 @@ MonoBehaviour:
     type: 0
     speed: 0
     rotation: 0
---- !u!58 &-4489198298482066575
+--- !u!58 &2508571137082230260
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

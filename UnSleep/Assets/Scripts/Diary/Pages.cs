@@ -54,6 +54,8 @@ public class Pages : MonoBehaviour
     public GameObject CH12; //12페이지의 CH
     public GameObject CH34; //34페이지의 CH
 
+    [Header("효과음")]
+    public AudioClip writingSE;
 
     void Start()
     {
@@ -269,11 +271,14 @@ public class Pages : MonoBehaviour
         typingText.text = "";
         yield return new WaitForSeconds(0.5f);
 
+        SoundManager.Instance.PlaySE(writingSE);
         for (int i = 0; i < message.Length; i++)
         {
             typingText.text = message.Substring(0, i + 1);
             yield return new WaitForSeconds(speed);
         }
+
+        SoundManager.Instance.StopSE();
     }
 
     public void generateCh(int epinum, CharacIntro[] characs, bool onetwo) //에피소드 별 등장인물 정보에 따라 생성. 마지막 bool은 페이지1-2면 true. 
@@ -287,7 +292,7 @@ public class Pages : MonoBehaviour
                 {3 ,  new CHPosAngle[] { new CHPosAngle(-70f, 0f, 10f), new CHPosAngle(80f, 0f, 0f), new CHPosAngle(200f, 0f, -10f)}},
                 {4 ,  new CHPosAngle[] { new CHPosAngle(-140f, 0f, 10f), new CHPosAngle(0f, 0f, 5f), new CHPosAngle(115f, 0f, -5f), new CHPosAngle(250f, 0f, -10f)}},
                 {5 ,  new CHPosAngle[] { new CHPosAngle(-165f, 0f, 10f), new CHPosAngle(-45f, 0f, 5f), new CHPosAngle(77f, 0f, 0f), new CHPosAngle(190f, 0f, -5f), new CHPosAngle(300f, 0f, -10f)}},
-                {6 ,  new CHPosAngle[] { new CHPosAngle(-175f, 0f, 10f), new CHPosAngle(-55f, 0f, 5f), new CHPosAngle(30f, 0f, 0f), new CHPosAngle(80f, 0f, 0f), new CHPosAngle(2000f, 0f, -5f), new CHPosAngle(315f, 0f, -10f)}}
+                {6 ,  new CHPosAngle[] { new CHPosAngle(-175f, 0f, 10f), new CHPosAngle(-55f, 0f, 5f), new CHPosAngle(30f, 0f, 0f), new CHPosAngle(110f, 0f, 0f), new CHPosAngle(200f, 0f, -5f), new CHPosAngle(315f, 0f, -10f)}}
         };
 
         int chCnt = characs.Length; //인물 수

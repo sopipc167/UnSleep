@@ -319,11 +319,12 @@ public class TextManager : MonoBehaviour
                         {
                             dp.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
                             dp.CurrentDiaIndex = 0;
+                            Increasediaindex = false;
                             SaveDataManager.Instance.SaveEpiProgress(dp.CurrentEpiID + 1); //현재 에피소드 완료 저장
                             SceneChanger.Instance.ChangeScene(SceneType.Diary);
                         }
 
-                        if (DiaDic[Dia_Id].SceneNum == DiaDic[Dia_Id + 1].SceneNum) //씬 변화가 없음
+                        if (DiaDic.ContainsKey(Dia_Id + 1) && DiaDic[Dia_Id].SceneNum == DiaDic[Dia_Id + 1].SceneNum) //씬 변화가 없음
                         {
                             dp.AddCompleteCondition(Dia_Id); //대화 종료. 완수 조건에 현재 대화묶음id 추가
 
@@ -490,9 +491,11 @@ public class TextManager : MonoBehaviour
                             //배경 전환
                             if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG != null && !loading)
                                 Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG);
-                        } else //씬 변화가 있음
+                        }
+                        else //씬 변화가 있음
                         {
-                            proceedScene(Dia_Id, Dia_Id + 1);
+                            if (DiaDic[Dia_Id].SceneNum != 7) // 동굴은 동굴에서 처리
+                                proceedScene(Dia_Id, Dia_Id + 1);
                         }
                     }
                 }

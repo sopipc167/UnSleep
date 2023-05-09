@@ -12,7 +12,7 @@ public class CogWheelUtil
         float edgeDist = centerDist - (root.getCogWheelInfo().radius + other.getCogWheelInfo().radius);
 
         if (centerDist <= offset) return CogAction.OVERLAP;
-        else if (edgeDist < -offset) return CogAction.RESTRICT;
+        else if (edgeDist < -offset*2) return CogAction.RESTRICT;
         else if (edgeDist <= offset) return CogAction.ADJOIN;
         else return CogAction.FAR;
     }

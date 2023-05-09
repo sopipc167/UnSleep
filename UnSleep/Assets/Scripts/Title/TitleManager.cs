@@ -35,4 +35,9 @@ public class TitleManager : MonoBehaviour
         SaveDataManager.Instance.SaveEpiProgress(0);
         SceneChanger.Instance.ChangeScene(SceneType.Prologue);
     }
+
+    public void Exit_()
+    {
+        Application.Quit();
+    }
 }

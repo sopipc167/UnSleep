@@ -7,6 +7,8 @@ public class MWIntro : MonoBehaviour
 {
 
     public GameObject DiaUI;
+    public GameObject logButton;
+    public AudioClip clip;
 
     private void OnEnable() //인트로 재생
     {
@@ -14,9 +16,15 @@ public class MWIntro : MonoBehaviour
         GetComponent<PlayableDirector>().Play();
     }
 
+    public void playClip()
+    {
+        SoundManager.Instance.PlaySE(clip);
+    }
+
     public void DisableMWIntro()
     {
         DiaUI.SetActive(true);
+        logButton.SetActive(true);
         Camera.main.transform.rotation = Quaternion.Euler(new Vector3(10f, 0f, 0f)); //카메라 회전 초기화
         Dialogue_Proceeder.instance.CurrentDiaIndex = 0; //잘 안 나오는데 가끔 빠르게 클릭하면 이전 씬에서 대사 넘겨지는 경우 방지
         this.gameObject.SetActive(false);

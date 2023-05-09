@@ -408,7 +408,7 @@ public class Game_Manager : MonoBehaviour //게임의 전체적인 설정과 다
             time += Time.deltaTime;
             p = time / fadeTime;
             Color c = Over.GetComponent<Image>().color;
-            c.a=Mathf.Lerp(0f,0.75f,curve.Evaluate(p));
+            c.a=Mathf.Lerp(0f,0.6f,curve.Evaluate(p));
             Over.GetComponent<Image>().color = c;
             yield return null;
         }

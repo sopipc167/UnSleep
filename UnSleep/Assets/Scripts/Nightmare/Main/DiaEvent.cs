@@ -68,6 +68,9 @@ public class DiaEvent : MonoBehaviour
     public int effectIndex;
 
     public int outline = 0;
+    public SpriteRenderer[] choose;
+    public bool isChoose;
+    public bool isBlink;
 
     private void Awake()
     {
@@ -99,6 +102,17 @@ public class DiaEvent : MonoBehaviour
         {
             Debug.Log("con_EventNum: " + EventNum);
 
+            if (isChoose)
+            {
+                isChoose = false;
+                Color full = new Vector4(255, 255, 255, 255);
+                for(int i = 0; i < 2; i++)
+                {
+                    choose[i].enabled = false;
+                    choose[i].color = full;
+                }
+            }
+
             if (EventNum == 0)
                 nextLevel();
             else if (EventNum == 1)
@@ -106,7 +120,7 @@ public class DiaEvent : MonoBehaviour
                 Shadow(false);
             }
             else if (EventNum == 2)
-                Sound(100);
+                SoundManager.Instance.StopSE();
             else if (EventNum == 3)
             {
                 Color tmp = Fade.color;
@@ -146,6 +160,13 @@ public class DiaEvent : MonoBehaviour
             else if (EventNum == 8)
             {
                 SoundManager.Instance.PlayBGM("gomeFollow");
+                if (diaGroupIndex == 744)
+                {
+                    choose[0].enabled = true;
+                    choose[1].enabled = true;
+                    isChoose = true;
+                }
+
                 gome.targetPos = player.transform.position;
                 gome.isFollow = true;
                 gome.isStart = true;
@@ -153,7 +174,7 @@ public class DiaEvent : MonoBehaviour
                 player.isStop = false;
                 isFollow = true;
             }
-            else if(EventNum == 9)
+            else if (EventNum == 9)
             {
                 moveEnd();
             }
@@ -163,25 +184,25 @@ public class DiaEvent : MonoBehaviour
                 Move(9, tPos[5].localPosition, ob[9].transform.eulerAngles);
                 ob[9].transform.localScale = new Vector3(1.3f, 1.3f, 1.0f);
             }
-            else if(EventNum == 13)
+            else if (EventNum == 13)
             {
                 isMovie = false;
                 TM.isMovieIn = true;
             }
-            else if(EventNum == 14)
+            else if (EventNum == 14)
             {
                 fadeinout.Blackout_Func(0.5f);
                 PlayerMove(6);
             }
-            else if(EventNum == 15)
+            else if (EventNum == 15)
             {
                 TM.EffectEnd = true;
             }
-            else if(EventNum == 16)
+            else if (EventNum == 16)
             {
                 GameOver_s();
             }
-            else if(EventNum == 17)
+            else if (EventNum == 17)
             {
                 Color tmp = Fade.color;
                 tmp.a = 255;
@@ -201,13 +222,14 @@ public class DiaEvent : MonoBehaviour
             EventNum = 100;
         }
 
+        if (isChoose && !isBlink)
+        {
+            StartCoroutine(chooseBlink());
+        }
+
         if (isFirst)
         {
-            if (content != "Sound0" || content != "Sound1" || content != "Sound2")
-            {
-               
-                Setting();
-            }
+            Setting();
 
             if (content == "Shadow")
             {
@@ -230,14 +252,7 @@ public class DiaEvent : MonoBehaviour
             else if (content == "Sound0" || content == "Sound1" || content == "Sound2")
             {
                 EventNum = 2;
-                if (content == "Sound0")
-                    Sound(0);
-                else if (content == "Sound1")
-                    Sound(1);
-                else if (content == "Sound2")
-                    Sound(2);
-
-                Setting();
+                SoundManager.Instance.PlaySE("WindowKnock", 2f);
             }
             else if (content == "Next")
             {
@@ -330,6 +345,10 @@ public class DiaEvent : MonoBehaviour
                 }
 
                 content = null;
+            }
+            else if(content == "chooseOff")
+            {
+                isChoose = false;
             }
             else if(content == "knock")
             {
@@ -436,6 +455,22 @@ public class DiaEvent : MonoBehaviour
             {
                 StartCoroutine(LBlink(2));
             }
+            else if(content == "bookStack")
+            {
+                SoundManager.Instance.PlaySE("bookStack");
+                ob[16].SetActive(false);
+                ob[17].SetActive(true);
+            }
+            else if(content == "chair")
+            {
+                SoundManager.Instance.PlaySE("chair");
+                ob[2].transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if(content == "closet")
+            {
+                SoundManager.Instance.PlaySE("closet");
+                ob[18].SetActive(true);
+            }
             else if (content == "GameOver")
             {
                 SoundManager.Instance.PauseBGM();
@@ -450,6 +485,24 @@ public class DiaEvent : MonoBehaviour
 
             content = null;
         }
+    }
+
+    IEnumerator chooseBlink()
+    {
+        isBlink = true;
+        Color tmp = choose[0].color;
+        float alpha;
+
+        if (tmp.a > 0)
+            alpha = 0;
+        else
+            alpha = 1;
+
+        choose[0].DOFade(alpha, 0.3f);
+        choose[1].DOFade(alpha, 0.3f);
+
+        yield return new WaitForSeconds(0.3f);
+        isBlink = false;
     }
 
     public void Outline_false()
@@ -557,38 +610,6 @@ public class DiaEvent : MonoBehaviour
     {
         ob[index].transform.localPosition = pos;
         ob[index].transform.eulerAngles = angle;
-    }
-
-    public void Sound(int soundNum)
-    {
-        if(soundNum < 2)
-            audioSource.clip = audioClip[soundNum];
-
-        switch (soundNum)
-        {
-            case 0:
-                //Debug.Log("Sound0");
-                audioSource.panStereo = 1;
-                audioSource.volume = 0.7f;
-                audioSource.Play();
-                return;
-            case 1:
-                //Debug.Log("Sound1");
-                audioSource.panStereo = 1;
-                audioSource.volume = 1.0f;
-                audioSource.Play();
-                return;
-            case 2:
-                //Debug.Log("Sound2");
-                audioSource.panStereo = 0.7f;
-                audioSource.volume = 1.0f;
-                audioSource.Play();
-                return;
-            default:
-                //Debug.Log("Stop");
-                audioSource.Stop();
-                return;
-        }
     }
 
     public void unperform()

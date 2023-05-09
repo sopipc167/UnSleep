@@ -42,6 +42,7 @@ public class MenuManager : MonoBehaviour
     #endregion
 
     [SerializeField] private Button tutorialButton;
+    public AudioClip clip;
     private TutorialHelper tutorial;
 
     private bool isSettingOn = false;
@@ -85,6 +86,7 @@ public class MenuManager : MonoBehaviour
 
     public void Resume()
     {
+        SoundManager.Instance.PlaySE(clip);
         GameManager.IsPause = false;
         if (GameManager.IsPause) ShowMenu();
         else menuCanvas.SetActive(false);
@@ -92,19 +94,23 @@ public class MenuManager : MonoBehaviour
 
     public void GoDiary()
     {
+        SoundManager.Instance.PlaySE(clip);
         GameManager.IsPause = false;
         if (GameManager.IsPause) ShowMenu();
         else menuCanvas.SetActive(false);
+        SoundManager.Instance.StopSE();
         SceneChanger.Instance.ChangeScene(SceneType.Diary);
     }
 
     public void Exit_()
     {
+        SoundManager.Instance.PlaySE(clip);
         Application.Quit();
     }
 
     public void OnClickSettingOn()
     {
+        SoundManager.Instance.PlaySE(clip);
         isSettingOn = true;
         settingCanvas.SetActive(true);
         if (menuCanvas.activeSelf) menuCanvas.SetActive(false);
@@ -113,6 +119,8 @@ public class MenuManager : MonoBehaviour
 
     public void OnClickSettingOff()
     {
+        SoundManager.Instance.PlaySE(clip);
+
         if (GameManager.IsPause)
         {
             isSettingOn = false;
@@ -129,6 +137,8 @@ public class MenuManager : MonoBehaviour
 
     public void OnClickTutorialOn()
     {
+        SoundManager.Instance.PlaySE(clip);
+
         GameManager.IsPause = false;
         if (tutorial == null)
         {
