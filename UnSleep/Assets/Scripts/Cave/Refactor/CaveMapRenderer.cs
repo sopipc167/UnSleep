@@ -18,6 +18,7 @@ public class CaveMapRenderer : MonoBehaviour
 
     public TextManager textManager;
     public ObjectManager objectManager;
+    public SoundCompass soundCompass;
 
     public bool moving = false;
 
@@ -112,7 +113,7 @@ public class CaveMapRenderer : MonoBehaviour
                 break;
         }
 
-
+        soundCompass.updateSoundCompass(cavern);
 
     }
 
