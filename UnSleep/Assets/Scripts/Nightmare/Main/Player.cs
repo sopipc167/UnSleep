@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
         targetPos = new Vector3(transPos.x, transPos.y, 0);
         animator.SetBool("isMove", true);
 
-        if (!isSE)
+        if (!isSE && !isSeven && !isMiniGame)
         {
             Debug.Log("Domoon_walk_true");
             SoundManager.Instance.seState = 0;
@@ -170,8 +170,8 @@ public class Player : MonoBehaviour
     {
         if(collision.gameObject.tag == "Ob_N")
         {
-
-            if(!isFall)
+            isStop = true;
+            if (!isFall)
                 StartCoroutine(Stop());
         }
 
@@ -205,17 +205,16 @@ public class Player : MonoBehaviour
     {
         for (int i = 0; i < 4; i++)
         {
-            GS[i].speed = 0;
+            GS[i].isStop = true;
+            Debug.Log("backGroundStop" + GS[i].isStop);
         }
     }
 
     IEnumerator Stop()
     {
         isFall = true;
-        //Ob.enabled = false;
-        isStop = true;
-
         sadFace.enabled = true;
+        BackGroundStop();
 
         if (Ob_M.Gauge.value >= 0.1f)
             Ob_M.Gauge.value -= 0.1f;
@@ -230,8 +229,6 @@ public class Player : MonoBehaviour
         }
         else
             Ob_M.ObList[0].GetComponent<Obstruction>().enabled = false;
-
-        BackGroundStop();
 
         yield return new WaitForSeconds(0.5f);
         sadFace.enabled = false;
@@ -248,9 +245,9 @@ public class Player : MonoBehaviour
 
         for (int i = 0; i < 4; i++)
         {
-            GS[i].SpeedBack();
+            Debug.Log("backGroundPlay" + i);
+            GS[i].isStop = false;
         }
-
 
         yield return new WaitForSeconds(0.5f);
         isFall = false;

@@ -436,6 +436,22 @@ public class DiaEvent : MonoBehaviour
             {
                 StartCoroutine(LBlink(2));
             }
+            else if(content == "bookStack")
+            {
+                SoundManager.Instance.PlaySE("bookStack");
+                ob[16].SetActive(false);
+                ob[17].SetActive(true);
+            }
+            else if(content == "chair")
+            {
+                SoundManager.Instance.PlaySE("chair");
+                ob[2].transform.eulerAngles = new Vector3(0, 0, 0);
+            }
+            else if(content == "closet")
+            {
+                SoundManager.Instance.PlaySE("closet");
+                ob[18].SetActive(true);
+            }
             else if (content == "GameOver")
             {
                 SoundManager.Instance.PauseBGM();
