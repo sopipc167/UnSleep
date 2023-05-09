@@ -7,6 +7,7 @@ using UnityEngine;
 public class WarpHole : MonoBehaviour
 {
     public Transform destination;
+    public AudioClip sound;
 
     private LakeBall ball = null;
     private Vector3 originalScale;
@@ -41,6 +42,8 @@ public class WarpHole : MonoBehaviour
 
     private IEnumerator HoleCoroutine()
     {
+        SoundManager.Instance.PlaySE(sound);
+
         float scale = originalScale.x * 0.01f;
         while (ball.transform.localScale.x > scale)
         {

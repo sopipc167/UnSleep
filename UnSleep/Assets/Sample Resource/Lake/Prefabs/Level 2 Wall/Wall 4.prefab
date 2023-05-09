@@ -55,5 +55,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3522380765249607937, guid: 47770fb387e4bd745981cedde6f6a648, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47770fb387e4bd745981cedde6f6a648, type: 3}
