@@ -17050,7 +17050,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528798681124546643, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_RaycastTarget
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8528798681765602456, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_Color.a
@@ -17070,7 +17070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682103681875, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: m_RaycastTarget
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8528798682782122522, guid: a1c6b10e03263e341b0563b4640bae8f, type: 3}
       propertyPath: csvData
