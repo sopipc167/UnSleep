@@ -58,7 +58,8 @@ public class BlockBehavior : MonoBehaviour //블럭을 담당하는 스크립트
     }
     private void OnMouseExit() //마우스가 나갈 경우
     {
-        SpriteChange(false);
+        if(!swapable)
+            SpriteChange(false);
     }
     public void SpriteChange(bool a)
     {
