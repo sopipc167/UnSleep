@@ -131,18 +131,18 @@ public class SettingsMenu : MonoBehaviour
         data.graphic = qualityDropdown.options.Count - 1 - qualityIdx;
     }
 
-    private void SetResolution(int resolutionIdx, FullScreenMode mode = FullScreenMode.Windowed)
+    private void SetResolution(int resolutionIdx)
     {
-        if (mode == FullScreenMode.Windowed)
+        if (Screen.fullScreenMode == FullScreenMode.Windowed)
         {
             var resolution = resolutions[resolutionIdx];
-            Screen.SetResolution(resolution.width, resolution.height, mode);
+            Screen.SetResolution(resolution.width, resolution.height, FullScreenMode.Windowed);
             data.resolutionType = resolutionIdx;
         }
         else
         {
             var resolution = resolutions[0];
-            Screen.SetResolution(resolution.width, resolution.height, mode);
+            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
             data.resolutionType = resolutionIdx;
         }
     }
@@ -155,13 +155,13 @@ public class SettingsMenu : MonoBehaviour
             case 0: // Full Screen
                 Application.runInBackground = false;
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-                SetResolution(0, FullScreenMode.ExclusiveFullScreen);
+                resolutionDropdown.value = 0;
                 resolutionDropdown.interactable = false;
                 break;
             case 1: // Borderless
                 Application.runInBackground = true;
                 Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
-                SetResolution(0, FullScreenMode.FullScreenWindow);
+                resolutionDropdown.value = 0;
                 resolutionDropdown.interactable = false;
                 break;
             case 2:    // Window
