@@ -5,7 +5,7 @@ using UnityEngine;
 public class LakeEffect : MonoBehaviour, IEffect
 {
     public ParticleSystem tornado;
-
+    public Wave waveParticle;
 
     public void OnEffect()
     {
@@ -18,6 +18,7 @@ public class LakeEffect : MonoBehaviour, IEffect
         StartCoroutine(OnEffectCoroutine(list));
         tornado.gameObject.SetActive(true);
         tornado.Play();
+        waveParticle.IsEffectOn = true;
     }
 
     private IEnumerator OnEffectCoroutine(List<SpriteRenderer> list)

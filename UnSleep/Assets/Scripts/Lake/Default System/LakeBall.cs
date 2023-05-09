@@ -144,7 +144,7 @@ public class LakeBall : LakeMovement
         {
             if (!isTutorial)
             {
-                SoundManager.Instance.PlaySE(wallSound);
+                SoundManager.Instance.PlaySE(wallSound, 0.7f);
             }
 
             if (ballManager.isRight)
