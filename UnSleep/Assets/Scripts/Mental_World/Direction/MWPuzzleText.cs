@@ -12,6 +12,7 @@ public class MWPuzzleText : MonoBehaviour
     public Text LineText;
     public string[] LineList;
     public float interval_ = 2f;
+    public float typingInterval = 0.02f;
     private bool isTyping;
 
     private PlayableDirector playableDirector;
@@ -37,7 +38,7 @@ public class MWPuzzleText : MonoBehaviour
         {
             if (!isTyping)
             {
-                StartCoroutine(OnType(0.05f, LineList[i]));
+                StartCoroutine(OnType(typingInterval, LineList[i]));
                 i++;
             }
 
