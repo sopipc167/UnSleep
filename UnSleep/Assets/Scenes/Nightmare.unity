@@ -4603,6 +4603,8 @@ MonoBehaviour:
   choose:
   - {fileID: 1574091840}
   - {fileID: 224049317}
+  isChoose: 0
+  isBlink: 0
 --- !u!82 &349265053
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9758,7 +9760,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Game Over
+  m_Text: "\uAC8C\uC784 \uC624\uBC84"
 --- !u!222 &849601713
 CanvasRenderer:
   m_ObjectHideFlags: 0
