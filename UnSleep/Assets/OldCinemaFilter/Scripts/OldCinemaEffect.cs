@@ -7,26 +7,25 @@ class ConstantBufferVariable {
     public int     FrameIndex;
     public Vector2 FrameOffset;
     public float   GrainStrange;
-    public float   VignetteStrange;
+    //public float   VignetteStrange;
+    public float   GrayScale;
     public static void Apply(ComputeShader shader, ConstantBufferVariable buffer) {
         shader.SetInt("FrameIndex", buffer.FrameIndex);
         shader.SetVector("FrameOffset", buffer.FrameOffset);
         shader.SetFloat("GrainStrange", buffer.GrainStrange);
-        shader.SetFloat("VignetteStrange", buffer.VignetteStrange);
-
+        //shader.SetFloat("VignetteStrange", buffer.VignetteStrange);
+        shader.SetFloat("GrayScale", buffer.GrayScale);
     }
 }
-
-
-
 
 [RequireComponent(typeof(Camera)), ExecuteInEditMode, ImageEffectAllowedInSceneView]
 public class OldCinemaEffect : MonoBehaviour {
 
+    [Range(0.0f, 1.0f)]   public float GrayScale = 1.0f;
     [Range(0.0f, 1.0f)]   public float GrainStrange    = 0.2f;
-    [Range(1.0f, 100.0f)] public float VignetteStrange = 1.0f;
+    //[Range(1.0f, 100.0f)] public float VignetteStrange = 1.0f;
     [Range(0.0f, 0.01f)]  public float JitterStrange = 0.0f;
- 
+
     private ComputeShader          m_OldCinemaComputer;
     private Camera                 m_Camera;
     private RenderTexture          m_TextureOldCinema;
@@ -56,8 +55,9 @@ public class OldCinemaEffect : MonoBehaviour {
     void Update() {
         m_ConstantBuffer.FrameIndex = m_FrameIndex;
         m_ConstantBuffer.GrainStrange = GrainStrange;
-        m_ConstantBuffer.VignetteStrange = 100 - VignetteStrange;
+       // m_ConstantBuffer.VignetteStrange = 100 - VignetteStrange;
         m_ConstantBuffer.FrameOffset = m_FrameOffset;
+        m_ConstantBuffer.GrayScale = GrayScale;
 
         if (Input.GetKeyDown(KeyCode.F))
             ScreenCapture.CaptureScreenshot("Frame.png");
@@ -75,8 +75,6 @@ public class OldCinemaEffect : MonoBehaviour {
         m_OldCinemaComputer.SetTexture(kernelOldCinema, "TextureColorUAV", m_TextureOldCinema);
         m_OldCinemaComputer.Dispatch(kernelOldCinema, Mathf.CeilToInt(m_Camera.pixelWidth / 8.0f), Mathf.CeilToInt(m_Camera.pixelHeight / 8.0f), 1);
         Graphics.Blit(m_TextureOldCinema, destination);
-
-     
     }
 
 

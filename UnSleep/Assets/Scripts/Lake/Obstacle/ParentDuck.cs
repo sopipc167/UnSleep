@@ -10,6 +10,10 @@ public class ParentDuck : MonoBehaviour
     [Header("자식오리의 총 마릿수")]
     public int childrenCnt;
 
+    [Header("소리")]
+    public AudioClip clearSound;
+    public AudioClip blockSound;
+
     private SpriteRenderer spriteRenderer;
     private bool isChange = false;
 
@@ -42,7 +46,12 @@ public class ParentDuck : MonoBehaviour
         {
             if (isChange)
             {
+                SoundManager.Instance.PlaySE(clearSound);
                 StartCoroutine(DestroyCoroutine());
+            }
+            else
+            {
+                SoundManager.Instance.PlaySE(blockSound);
             }
         }
     }

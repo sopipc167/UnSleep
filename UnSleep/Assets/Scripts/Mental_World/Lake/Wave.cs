@@ -10,6 +10,8 @@ public class Wave : MonoBehaviour
     private ParticleSystem wave;
     private Vector3 mid;
 
+    public bool IsEffectOn { get; set; }
+
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -19,7 +21,7 @@ public class Wave : MonoBehaviour
         {
             transform.position = new Vector3(mid.x, mid.y, mid.z);
             wave.Play();
-            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+            yield return new WaitForSeconds(IsEffectOn ? 0.7f : Random.Range(minTime, maxTime));
         }
     }
 }
