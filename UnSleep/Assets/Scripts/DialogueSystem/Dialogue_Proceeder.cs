@@ -105,6 +105,8 @@ public class Dialogue_Proceeder : MonoBehaviour
 
     public void InitEpi()
     {
+        CurrentDiaIndex = 0;
+        RemoveAllCompleteCondition();
         StartCoroutine(InitEpiCoroutine());
     }
 
