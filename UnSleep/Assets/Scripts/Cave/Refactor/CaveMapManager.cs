@@ -106,6 +106,7 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
     {
         if (currentCavern.routeCnt == 999 && currentCavern.talkId == DiaId)
         {
+            DiaUI.SetActive(false);
             puzzleClear.gameObject.SetActive(true);
             SoundManager.Instance.FadeOutBGM();
             int CurEpiId = Dialogue_Proceeder.instance.CurrentEpiID;
@@ -115,14 +116,14 @@ public class CaveMapManager : MonoBehaviour, DialogueDoneListener
             if (CurEpiId == 7)
             {
                 if (CurDiaId == 2013)
-                    puzzleClear.ClearPuzzle(SceneType.Mental, startDelay:2f);
+                    puzzleClear.ClearPuzzle(SceneType.Mental, 2f, 2f);
                 else if (CurDiaId == 2017)
-                    puzzleClear.ClearPuzzle(SceneType.Dialogue, startDelay: 2f);
+                    puzzleClear.ClearPuzzle(SceneType.Dialogue, 2f, 2f);
             }
             else if (CurEpiId == 9 || CurEpiId == 11 || CurEpiId == 15 || CurEpiId == 16 || CurEpiId == 18 || CurEpiId == 19) //나중엔 퍼즐 연출로
-                puzzleClear.ClearPuzzle(SceneType.Mental, startDelay: 2f);
+                puzzleClear.ClearPuzzle(SceneType.Mental, 2f, 2f);
             else if (CurEpiId == 2 || CurEpiId == 5 || CurEpiId == 17)
-                puzzleClear.ClearPuzzle(SceneType.Dialogue, startDelay: 2f);
+                puzzleClear.ClearPuzzle(SceneType.Dialogue, 2f, 2f);
 
         }
     }

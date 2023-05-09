@@ -490,9 +490,11 @@ public class TextManager : MonoBehaviour
                             //배경 전환
                             if (DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG != null && !loading)
                                 Change_IMG(BackGround, Change_BackGround, DiaDic[Dia_Id].dialogues[dp.CurrentDiaIndex].BG);
-                        } else //씬 변화가 있음
+                        }
+                        else //씬 변화가 있음
                         {
-                            proceedScene(Dia_Id, Dia_Id + 1);
+                            if (DiaDic[Dia_Id].SceneNum != 7) // 동굴은 동굴에서 처리
+                                proceedScene(Dia_Id, Dia_Id + 1);
                         }
                     }
                 }
