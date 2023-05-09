@@ -146,12 +146,7 @@ public class DiaEvent : MonoBehaviour
             else if (EventNum == 8)
             {
                 SoundManager.Instance.PlayBGM("gomeFollow");
-                gome.targetPos = player.transform.position;
-                gome.isFollow = true;
-                gome.isStart = true;
-                gome.isMinigame = false;
-                player.isStop = false;
-                isFollow = true;
+                StartCoroutine(gomeFollow(diaGroupIndex));
             }
             else if(EventNum == 9)
             {
@@ -466,6 +461,29 @@ public class DiaEvent : MonoBehaviour
 
             content = null;
         }
+    }
+
+    IEnumerator gomeFollow(int diaNum)
+    {
+        if(diaNum == 744)
+        {
+            for(int i = 0; i < 3; i++)
+            {
+                ob[19].SetActive(true);
+                yield return new WaitForSeconds(0.2f);
+                ob[19].SetActive(false);
+                yield return new WaitForSeconds(0.2f);
+            }
+            yield return new WaitForSeconds(0.2f);
+            SoundManager.Instance.PlayBGM("gomeFollow");
+        }
+
+        gome.targetPos = player.transform.position;
+        gome.isFollow = true;
+        gome.isStart = true;
+        gome.isMinigame = false;
+        player.isStop = false;
+        isFollow = true;
     }
 
     public void Outline_false()
