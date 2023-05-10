@@ -131,9 +131,9 @@ public class SettingsMenu : MonoBehaviour
         data.graphic = qualityDropdown.options.Count - 1 - qualityIdx;
     }
 
-    private void SetResolution(int resolutionIdx)
+    private void SetResolution(int resolutionIdx, FullScreenMode mode = FullScreenMode.Windowed)
     {
-        if (Screen.fullScreenMode == FullScreenMode.Windowed)
+        if (mode == FullScreenMode.Windowed)
         {
             var resolution = resolutions[resolutionIdx];
             Screen.SetResolution(resolution.width, resolution.height, FullScreenMode.Windowed);
@@ -142,7 +142,7 @@ public class SettingsMenu : MonoBehaviour
         else
         {
             var resolution = resolutions[0];
-            Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreenMode);
+            Screen.SetResolution(resolution.width, resolution.height, mode);
             data.resolutionType = resolutionIdx;
         }
     }
@@ -156,12 +156,14 @@ public class SettingsMenu : MonoBehaviour
                 Application.runInBackground = false;
                 Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
                 resolutionDropdown.value = 0;
+                SetResolution(0, FullScreenMode.ExclusiveFullScreen);
                 resolutionDropdown.interactable = false;
                 break;
             case 1: // Borderless
                 Application.runInBackground = true;
                 Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
                 resolutionDropdown.value = 0;
+                SetResolution(0, FullScreenMode.FullScreenWindow);
                 resolutionDropdown.interactable = false;
                 break;
             case 2:    // Window
@@ -178,12 +180,14 @@ public class SettingsMenu : MonoBehaviour
             case 0: // Full Screen
                 Application.runInBackground = false;
                 Screen.fullScreenMode = FullScreenMode.FullScreenWindow;
+                resolutionDropdown.value = 0;
                 SetResolution(0, FullScreenMode.FullScreenWindow);
             resolutionDropdown.interactable = false;
                 break;
             case 1: // Borderless
                 Application.runInBackground = true;
                 Screen.fullScreenMode = FullScreenMode.MaximizedWindow;
+                resolutionDropdown.value = 0;
                 SetResolution(0, FullScreenMode.MaximizedWindow);
             resolutionDropdown.interactable = false;
                 break;
