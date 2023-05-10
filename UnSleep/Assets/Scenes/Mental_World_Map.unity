@@ -21264,7 +21264,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 603
+      value: 1911
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: Complete_Condition.Array.data[0]
@@ -21284,7 +21284,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentPuzzle
@@ -83357,8 +83357,9 @@ MonoBehaviour:
   GrainStrange: 0
   JitterStrange: 0.00208
   effect: {fileID: 1468922098}
-  towerObj: {fileID: 0}
+  towerObj: {fileID: 9174640956805740236}
   ticSound: {fileID: 8300000, guid: 0058c18ea116467489bb2349bbadcb02, type: 3}
+  groundSound: {fileID: 8300000, guid: 76c3f0e593a4d9544ab394aa83284731, type: 3}
 --- !u!4 &2135647351
 Transform:
   m_ObjectHideFlags: 0

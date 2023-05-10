@@ -15,11 +15,40 @@ public class ClockTowerObject : MonoBehaviour
     public GameObject timeniddle;
     public GameObject minniddle;
 
-    private bool isCounterClockwise = false;
+    private float min = 5f / 60;
+    private float sec = 5f;
+    private bool isRand = false;
 
     public void OnEffect()
     {
-        isCounterClockwise = true;
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 4 ||
+            Dialogue_Proceeder.instance.CurrentEpiID == 13)
+        {
+            isRand = true;
+        }
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 8 ||
+            Dialogue_Proceeder.instance.CurrentEpiID == 14)
+        {
+            min = 60f / 60;
+            sec = 60f;
+        }
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 9)
+        {
+            min = -10f / 60;
+            sec = -10f;
+        }
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 12)
+        {
+            min = 1f / 60;
+            sec = 1f;
+        }
+
+        // 5 14 19
+        else
+        {
+            min = 5f / 60;
+            sec = 5f;
+        }
     }
 
     void Update()
@@ -31,7 +60,13 @@ public class ClockTowerObject : MonoBehaviour
         Gear5.transform.Rotate(0, 0, 0.1f);
         Gear6.transform.Rotate(0, 0, -0.05f);
 
-        timeniddle.transform.Rotate(0, 0, isCounterClockwise ? -0.08f : 0.08f);
-        minniddle.transform.Rotate(0, 0, isCounterClockwise ? -0.007f : 0.007f);
+        if (isRand)
+        {
+            int rand = Random.Range(0, 10000);
+            min = 5f / 60 + (rand < 5000 ? -0.02f : 0.02f);
+            sec = 5f + (rand < 5000 ? -1f : 1f);
+        }
+        minniddle.transform.Rotate(0, 0, min * Time.deltaTime);
+        timeniddle.transform.Rotate(0, 0, sec * Time.deltaTime);
     }
 }
