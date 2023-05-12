@@ -23,7 +23,10 @@ public class DialogueSkip : MonoBehaviour
             {
                 Dialogue_Proceeder.instance.End = true; // 끝났음 true. 일기장에서 보고 자동 페이지 넘김과 후일담 출력
                 Dialogue_Proceeder.instance.CurrentDiaIndex = 0;
-                SaveDataManager.Instance.SaveEpiProgress(Dialogue_Proceeder.instance.CurrentEpiID + 1); //현재 에피소드 완료 저장
+                if (Dialogue_Proceeder.instance.CurrentEpiID == 0)
+                    SaveDataManager.Instance.SaveEpiProgress(1); //현재 에피소드 완료 저장
+                else
+                    SaveDataManager.Instance.SaveEpiProgress(19); //현재 에피소드 완료 저장
                 SceneChanger.Instance.ChangeScene(SceneType.Diary);
                 break;
             }

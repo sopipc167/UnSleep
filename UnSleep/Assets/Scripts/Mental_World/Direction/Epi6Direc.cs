@@ -15,7 +15,7 @@ public class Epi6Direc : MonoBehaviour, DialogueDoneListener
     {
         mwpuzzle = GameObject.Find("Cinematic").transform.GetChild(1).gameObject;
         // fadeInOut = GameObject.Find("Canvas").transform.GetChild(1).GetComponent<FadeInOut>();
-        fadePanel = mwpuzzle.transform.GetChild(6).GetChild(1).GetComponent<Image>();
+        fadePanel = mwpuzzle.transform.GetChild(7).GetChild(1).GetComponent<Image>();
         FindObjectOfType<TextManager>().addDialogueDoneListeners(this);
 
     }
