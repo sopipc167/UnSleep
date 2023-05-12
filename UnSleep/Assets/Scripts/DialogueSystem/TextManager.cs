@@ -843,7 +843,7 @@ public class TextManager : MonoBehaviour
 
     IEnumerator OnType(float interval, string Line, float delay = 0f)
     {
-        yield return new WaitForSecondsRealtime(delay);
+        yield return new WaitForSeconds(delay);
 
         isTyping = true;
         LineText.text = "";
@@ -851,7 +851,7 @@ public class TextManager : MonoBehaviour
         foreach (char item in Line)
         {
             LineText.text += item;
-            yield return new WaitForSecondsRealtime(interval);
+            yield return new WaitForSeconds(interval);
         }
         isTyping = false;
     }

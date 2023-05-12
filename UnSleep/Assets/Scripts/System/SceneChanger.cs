@@ -62,16 +62,13 @@ public class SceneChanger : MonoBehaviour
     #endregion
 
     private SceneTransition transition;
-
-    private readonly WaitForSeconds delay = new WaitForSeconds(0.1f);
     private WaitUntil untilTransition;
+    private IEnumerator curCoroutine;
 
-    public SceneTransition Transition { get => transition; }
-    public bool IsDone { get; private set; } = false;
+    public bool IsDone { get; private set; } = true;
 
     private void Start()
     {
-
         untilTransition = new WaitUntil(() => transition.IsDone);
     }
 
@@ -80,7 +77,9 @@ public class SceneChanger : MonoBehaviour
         if (isFade)
         {
             IsDone = false;
-            StartCoroutine(ChangeSceneCoroutine(GetSceneName(type), fadeTime));
+            if (curCoroutine != null) StopCoroutine(curCoroutine);
+            curCoroutine = ChangeSceneCoroutine(GetSceneName(type), fadeTime);
+            StartCoroutine(curCoroutine);
         }
         else
         {
@@ -94,7 +93,9 @@ public class SceneChanger : MonoBehaviour
         if (isFade)
         {
             IsDone = false;
-            StartCoroutine(ChangeSceneCoroutine(SceneManager.GetActiveScene().name, fadeTime));
+            if (curCoroutine != null) StopCoroutine(curCoroutine);
+            curCoroutine = ChangeSceneCoroutine(SceneManager.GetActiveScene().name, fadeTime);
+            StartCoroutine(curCoroutine);
         }
         else
         {
@@ -145,7 +146,7 @@ public class SceneChanger : MonoBehaviour
         scene.allowSceneActivation = false;
         do
         {
-            yield return delay;
+            yield return null;
         } while (scene.progress < 0.9f);
 
         yield return untilTransition;

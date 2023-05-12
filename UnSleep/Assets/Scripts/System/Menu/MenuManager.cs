@@ -62,7 +62,7 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && SceneChanger.Instance.IsDone)
         {
             if (MemoManager.isMemoOn) return;
             if (isSettingOn)

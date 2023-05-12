@@ -104,7 +104,6 @@ public class FadeInOut : MonoBehaviour
 
     IEnumerator fadeout()
     {
-
         isPlaying = true;
         float time = 0f;
         float start = 1f;
@@ -112,16 +111,17 @@ public class FadeInOut : MonoBehaviour
         Color color = FADE_panel.color;
         color.a = Mathf.Lerp(start, end, time);
 
-        while(color.a > 0f)
+        while(color.a > 0.05f)
         {
-            time += Time.deltaTime / FadeTime;
+            time += Time.unscaledDeltaTime / FadeTime;
             color.a = Mathf.Lerp(start, end, time);
             FADE_panel.color = color;
 
-            yield return null;
+            yield return Time.unscaledDeltaTime;
 
         }
         color.a = 0f;
+        FADE_panel.color = color;
         isPlaying = false;
         FADEINOUT.SetActive(false);
 
@@ -138,14 +138,15 @@ public class FadeInOut : MonoBehaviour
         
         while (color.a < 0.95f)
         {
-            time += Time.deltaTime / FadeTime;
+            time += Time.unscaledDeltaTime / FadeTime;
             color.a = Mathf.Lerp(start, end, time);
             FADE_panel.color = color;
 
-            yield return null;
+            yield return Time.unscaledDeltaTime;
 
         }
         color.a = 1f;
+        FADE_panel.color = color;
         isPlaying = false;
     }
 

@@ -9,7 +9,6 @@ public class SceneTransition : MonoBehaviour
 
     private Image img;
     private IEnumerator curCoroutine;
-    private bool isClicked = false;
 
     private void Awake()
     {
@@ -20,6 +19,7 @@ public class SceneTransition : MonoBehaviour
     {
         IsDone = false;
         img.gameObject.SetActive(true);
+        if (curCoroutine != null) StopCoroutine(curCoroutine);
         curCoroutine = FadeOutCoroutine(delay);
         StartCoroutine(curCoroutine);
     }
@@ -28,36 +28,20 @@ public class SceneTransition : MonoBehaviour
     {
         IsDone = false;
         img.gameObject.SetActive(true);
+        if (curCoroutine != null) StopCoroutine(curCoroutine);
         curCoroutine = FadeInCoroutine(delay);
-        StartCoroutine(curCoroutine);
-    }
-
-    public void FadeOut(Image curImg, Sprite nextSprite, float delay)
-    {
-        IsDone = false;
-        img.gameObject.SetActive(true);
-        curCoroutine = FadeOutCoroutine(curImg, nextSprite, delay);
-        StartCoroutine(curCoroutine);
-    }
-
-    public void Dissolve(Image curImg, Sprite nextSprite, float delay)
-    {
-        IsDone = false;
-        img.gameObject.SetActive(true);
-        curCoroutine = DissolveCoroutine(curImg, nextSprite, delay);
         StartCoroutine(curCoroutine);
     }
 
     private IEnumerator FadeOutCoroutine(float delay)
     {
         float tmp = 1f / delay;
-        while (img.color.a < 0.99f && !isClicked)
+        while (img.color.a < 0.99f)
         {
-            img.color += new Color(0f, 0f, 0f, tmp * Time.deltaTime);
-            yield return null;
+            img.color += new Color(0f, 0f, 0f, tmp * Time.unscaledDeltaTime);
+            yield return Time.unscaledDeltaTime;
         }
 
-        isClicked = false;
         img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
         curCoroutine = null;
         IsDone = true;
@@ -66,51 +50,13 @@ public class SceneTransition : MonoBehaviour
     private IEnumerator FadeInCoroutine(float delay)
     {
         float tmp = 1f / delay;
-        while (img.color.a > 0.01f && !isClicked)
+        while (img.color.a > 0.01f)
         {
-            img.color -= new Color(0f, 0f, 0f, tmp * Time.deltaTime);
-            yield return null;
+            img.color -= new Color(0f, 0f, 0f, tmp * Time.unscaledDeltaTime);
+            yield return Time.unscaledDeltaTime;
         }
 
-        isClicked = false;
         img.color = new Color(img.color.r, img.color.g, img.color.b, 0f);
-        curCoroutine = null;
-        IsDone = true;
-        img.gameObject.SetActive(false);
-    }
-
-    private IEnumerator FadeOutCoroutine(Image curImg, Sprite nextSprite, float delay)
-    {
-        float tmp = 1f / delay;
-        while (img.color.a < 0.99f && !isClicked)
-        {
-            img.color += new Color(0f, 0f, 0f, tmp * Time.deltaTime);
-            yield return null;
-        }
-
-        isClicked = false;
-        img.color = new Color(img.color.r, img.color.g, img.color.b, 1f);
-        curImg.sprite = nextSprite;
-        curCoroutine = null;
-        IsDone = true;
-    }
-
-    private IEnumerator DissolveCoroutine(Image curImg, Sprite nextSprite, float delay)
-    {
-        img.material = curImg.material;
-        img.sprite = nextSprite;
-        img.color = new Color(255f, 255f, 255f, 0f);
-
-        float tmp = 1 / delay;
-        while (img.color.a < 0.99f && !isClicked)
-        {
-            img.color += new Color(0f, 0f, 0f, tmp * Time.deltaTime);
-            yield return null;
-        }
-
-        isClicked = false;
-        img.color = new Color(curImg.color.r, curImg.color.g, curImg.color.b, 1f);
-        curImg.sprite = img.sprite;
         curCoroutine = null;
         IsDone = true;
         img.gameObject.SetActive(false);
