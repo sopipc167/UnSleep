@@ -249,8 +249,7 @@ public class DiaEvent : MonoBehaviour
                 Dia[16].SetActive(true);
                 SoundManager.Instance.PlaySE("fuss");
             }
-            else if (content == "Sound0" || content == "Sound1" || content == "Sound2")
-            {
+            else if (content == "Sound") {
                 EventNum = 2;
                 SoundManager.Instance.PlaySE("WindowKnock", 2f);
             }
