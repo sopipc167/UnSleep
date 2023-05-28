@@ -19,7 +19,7 @@ public class ShowLakeMovement : MonoBehaviour
     private Quaternion bmRot;
     private Vector3 bmScl;
 
-    protected readonly WaitForSeconds delay = new WaitForSeconds(0.1f);
+    protected readonly WaitForSeconds delay = new WaitForSeconds(0.5f);
 
     protected virtual void Start()
     {

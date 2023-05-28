@@ -46823,11 +46823,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentEpiID
-      value: 5
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1571707690156634539, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
       propertyPath: CurrentDiaID
-      value: 8025
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7391558600d7de3449e20dbb7488fc37, type: 3}
@@ -57883,7 +57883,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1648719887}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 193ba5f68a3a6c240b623c6031ecdebb, type: 3}
   m_Name: 
@@ -59365,7 +59365,10 @@ LineRenderer:
   m_SortingLayerID: 1627219397
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Positions: []
+  m_Positions:
+  - {x: -780.4462, y: 489.86987, z: 10}
+  - {x: -783.322, y: 489.8699, z: 40}
+  - {x: -784.28674, y: 488.1858, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -59373,8 +59376,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.015563965
-        value: 0.20934105
+        time: 0.02576828
+        value: 0.0445711
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -59413,7 +59416,7 @@ LineRenderer:
       m_Mode: 0
       m_NumColorKeys: 3
       m_NumAlphaKeys: 2
-    numCornerVertices: 0
+    numCornerVertices: 5
     numCapVertices: 5
     alignment: 1
     textureMode: 0

@@ -11,15 +11,45 @@ public class ClockEffect : MonoBehaviour, IEffect
     public OldCinemaEffect effect;
     public ClockTowerObject towerObj;
     public AudioClip ticSound;
+    public AudioClip groundSound;
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            OnEffect();
+        }
+    }
 
     public void OnEffect()
     {
         effect.GrayScale = GrayScale;
         effect.GrainStrange = GrainStrange;
-        effect.JitterStrange = JitterStrange;
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 4 ||
+            Dialogue_Proceeder.instance.CurrentEpiID == 13)
+        {
+            effect.JitterStrange = JitterStrange * 2;
+        }
+        else if (Dialogue_Proceeder.instance.CurrentEpiID == 5)
+        {
+            effect.JitterStrange = JitterStrange;
+        }
+        else
+        {
+            effect.JitterStrange = 0f;
+        }
         effect.enabled = true;
         towerObj.OnEffect();
-        StartCoroutine(PlaySoundCoroutine());
+
+        if (Dialogue_Proceeder.instance.CurrentEpiID == 4 ||
+            Dialogue_Proceeder.instance.CurrentEpiID == 13)
+        {
+            SoundManager.Instance.PlaySE(groundSound);
+        }
+        else
+        {
+            StartCoroutine(PlaySoundCoroutine());
+        }
     }
 
     private IEnumerator PlaySoundCoroutine()
@@ -27,7 +57,19 @@ public class ClockEffect : MonoBehaviour, IEffect
         while (true)
         {
             SoundManager.Instance.PlaySE(ticSound);
-            yield return new WaitForSeconds(Random.Range(0.8f, 1f));
+            if (Dialogue_Proceeder.instance.CurrentEpiID == 8 ||
+                Dialogue_Proceeder.instance.CurrentEpiID == 14)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+            else if (Dialogue_Proceeder.instance.CurrentEpiID == 12)
+            {
+                yield return new WaitForSeconds(2.5f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(1f);
+            }
         }
     }
 }

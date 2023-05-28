@@ -8,11 +8,17 @@ public class MWIntro : MonoBehaviour
 
     public GameObject DiaUI;
     public GameObject logButton;
+    public AudioClip clip;
 
     private void OnEnable() //인트로 재생
     {
         DiaUI.SetActive(false);
         GetComponent<PlayableDirector>().Play();
+    }
+
+    public void playClip()
+    {
+        SoundManager.Instance.PlaySE(clip);
     }
 
     public void DisableMWIntro()

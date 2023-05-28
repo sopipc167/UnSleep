@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5584190463161220575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5584190463161220568}
+  - component: {fileID: 5584190463161220569}
+  m_Layer: 0
+  m_Name: Doremi
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5584190463161220568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5584190463161220575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5584190463161220569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5584190463161220575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 067da4718eaba8440b883093d5f82b48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: c83aaa4883b9753418de5c62e5a2dc49, type: 3}
+  - {fileID: 8300000, guid: 6fae3ac7df88b8647b0951af48c27986, type: 3}
+  - {fileID: 8300000, guid: f413ccaf1f534f3459686bf2ba093f9d, type: 3}
+  - {fileID: 8300000, guid: ca4f83cf985c1ee4593abbdcadc97616, type: 3}
+  - {fileID: 8300000, guid: 6b4e2995be3034f4786b3bfaa21fc1f4, type: 3}
+  - {fileID: 8300000, guid: c9d5781698e14f949bfdf16e30e4cabe, type: 3}
+  - {fileID: 8300000, guid: f96d1a324b615d146a633ec59bafe41a, type: 3}
+  - {fileID: 8300000, guid: 20f40620077ca2942bc131e3678dd1bc, type: 3}
+  effectInterval: 1
+  isEffecting: 0

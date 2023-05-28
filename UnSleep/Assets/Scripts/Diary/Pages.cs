@@ -54,6 +54,8 @@ public class Pages : MonoBehaviour
     public GameObject CH12; //12페이지의 CH
     public GameObject CH34; //34페이지의 CH
 
+    [Header("효과음")]
+    public AudioClip writingSE;
 
     void Start()
     {
@@ -269,11 +271,14 @@ public class Pages : MonoBehaviour
         typingText.text = "";
         yield return new WaitForSeconds(0.5f);
 
+        SoundManager.Instance.PlaySE(writingSE);
         for (int i = 0; i < message.Length; i++)
         {
             typingText.text = message.Substring(0, i + 1);
             yield return new WaitForSeconds(speed);
         }
+
+        SoundManager.Instance.StopSE();
     }
 
     public void generateCh(int epinum, CharacIntro[] characs, bool onetwo) //에피소드 별 등장인물 정보에 따라 생성. 마지막 bool은 페이지1-2면 true. 

@@ -38,7 +38,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        if (Moving)
+        if (Moving || MemoManager.isMemoOn)
             return;
 
         OffEffect();
@@ -103,7 +103,7 @@ public class Gear_Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDra
     public void GoToStartPos()
     {
 
-        if (Moving)
+        if (Moving || MemoManager.isMemoOn)
             return;
         Moving = true;
         StartCoroutine("BackToPos", Start_pos);

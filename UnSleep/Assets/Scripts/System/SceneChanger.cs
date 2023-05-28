@@ -86,6 +86,7 @@ public class SceneChanger : MonoBehaviour
         {
             SceneManager.LoadScene(GetSceneName(type));
         }
+        MemoManager.isMemoOn = false;
     }
 
     public void RestartScene(bool isFade = true, float fadeTime = 1.5f)

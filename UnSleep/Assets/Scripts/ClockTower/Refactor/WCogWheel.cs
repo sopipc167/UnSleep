@@ -36,6 +36,8 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     private void OnMouseDown()
     {
+        if (MemoManager.isMemoOn) return;
+
         clickOffset = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         if (info.state == CogState.INACTIVE || info.state == CogState.READY)
             changeState(CogState.IDLE);
@@ -43,6 +45,8 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     private void OnMouseDrag()
     {
+        if (MemoManager.isMemoOn) return;
+
         transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) - clickOffset;
         stop();
         actionDrag(detect());
@@ -56,6 +60,8 @@ public class WCogWheel : MonoBehaviour, CogWheel
 
     private void OnMouseUp()
     {
+        if (MemoManager.isMemoOn) return;
+
         actionUp(detect());
     }
 
