@@ -83,7 +83,7 @@ public class LogGenerator : MonoBehaviour
                     if (lastName.Equals("")) //나레이션
                     {
                         GameObject log = Instantiate(logPrefab); //프리팹 생성
-                        log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
+                        log.transform.SetParent(Content.transform, false); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
                         log.name = "logItem";
                         log.GetComponent<SetLogContent>().setItemInfo(line); 
                     }
@@ -103,7 +103,7 @@ public class LogGenerator : MonoBehaviour
                                 log = Instantiate(logPrefab); //프리팹 생성
                             }
                             char_img = porDic[int.Parse(lastName)][0];
-                            log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
+                            log.transform.SetParent(Content.transform, false); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
                             log.name = "logItem";
                             log.GetComponent<SetLogContent>().setItemInfo(char_img, nameDic[int.Parse(lastName)], line); //정보 넘겨주면 set
                         }
@@ -111,7 +111,7 @@ public class LogGenerator : MonoBehaviour
                         {
                             char_img = porDic[9999][extraIndex]; //해당 초상화 가져와서
                             GameObject log = Instantiate(logPrefab); //프리팹 생성
-                            log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
+                            log.transform.SetParent(Content.transform, false); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
                             log.name = "logItem";
                             log.GetComponent<SetLogContent>().setItemInfo(char_img, lastName, line); //정보 넘겨주면 set
                         }
@@ -132,7 +132,7 @@ public class LogGenerator : MonoBehaviour
             if (lastName.Equals("")) //나레이션
             {
                 GameObject log = Instantiate(logPrefab); //프리팹 생성
-                log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
+                log.transform.SetParent(Content.transform, false); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
                 log.name = "logItem";
                 log.GetComponent<SetLogContent>().setItemInfo(line);
             }
@@ -152,7 +152,7 @@ public class LogGenerator : MonoBehaviour
                         log = Instantiate(logPrefab); //프리팹 생성
                     }
                     char_img = porDic[int.Parse(lastName)][0];
-                    log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
+                    log.transform.SetParent(Content.transform, false); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
                     log.name = "logItem";
                     log.GetComponent<SetLogContent>().setItemInfo(char_img, nameDic[int.Parse(lastName)], line); //정보 넘겨주면 set
                 }
@@ -160,7 +160,7 @@ public class LogGenerator : MonoBehaviour
                 {
                     char_img = porDic[9999][extraIndex]; //해당 초상화 가져와서
                     GameObject log = Instantiate(logPrefab); //프리팹 생성
-                    log.transform.SetParent(Content.transform); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
+                    log.transform.SetParent(Content.transform, false); //스크롤 뷰 내에 "Content"의 자식들이 스크롤 뷰 리스트로 나타남
                     log.name = "logItem";
                     log.GetComponent<SetLogContent>().setItemInfo(char_img, lastName, line); //정보 넘겨주면 set
                 }
